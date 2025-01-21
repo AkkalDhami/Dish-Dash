@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DishDash - Food Delivery Website, Find Your Favourite Dishes</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="../css/output.css" />
+  </head>
+
+  <body class="font-['Poppins']">
+    <!-- Navbar -->
+    <header class="md:fixed w-full md:top-0 md:left-0 z-50 bg-[#f6f6f6]">
+      <nav
+        class="container mx-auto px-6 py-4 flex items-center justify-between"
+      >
+        <div class="text-3xl font-bold text-[#0d6efd]">DishDash</div>
+        <div class="hidden md:flex items-center space-x-8">
+          <a
+            href="#"
+            data-nav-link
+            class="nav-link text-gray-600 hover:text-[#3284e8] relative text-[18px]"
+            data-active="true"
+            >Home</a
+          >
+          <a
+            href="#"
+            data-nav-link
+            class="nav-link text-gray-600 hover:text-[#3284e8] relative text-[18px]"
+            >Food</a
+          >
+
+          <a
+            href="#"
+            data-nav-link
+            class="nav-link text-gray-600 hover:text-[#3284e8] relative text-[18px]"
+            >Contact us</a
+          >
+        </div>
+        <div class="hidden md:flex items-center space-x-4">
+          <button
+            id="searchButton"
+            class="p-2 text-[22px] hover:text-[#3284e8]"
+          >
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+          <button class="p-2 relative hover:text-[#3284e8]">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-7 w-7"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+              />
+            </svg>
+            <span
+              class="cartItems absolute w-[23px] h-[23px] rounded-full text-white top-0 right-0 bg-[#3284e8] text-[12px] flex items-center justify-center"
+              >0</span
+            >
+          </button>
+          <div class="relative inline-block text-left">
+            <div>
+              <button
+                class="inline-flex justify-center items-center gap-2 w-full rounded-full shadow-sm px-4 py-3 bg-[#0d6efd] text-[18px] text-white hover:bg-[#3284e8]"
+                id="menu-button"
+                aria-expanded="true"
+                aria-haspopup="true"
+              >
+                <i class="fa-solid fa-circle-user"></i>
+                <span class="text-[16px]"> My Profile</span>
+                <svg
+                  class="ml-2 h-5 w-5 rotate"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  aria-hidden="true"
+                  id="chevron-icon"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </button>
+            </div>
+            <div
+              class="dropdown-content origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+              role="menu"
+              aria-orientation="vertical"
+              aria-labelledby="menu-button"
+              tabindex="-1"
+            >
+              <div class="py-1" role="none">
+                <a
+                  href="./html/loginPage.html"
+                  class="text-gray-700 text-[16px] flex items-center gap-2 px-4 py-3 hover:bg-[#f6f6f6]"
+                  role="menuitem"
+                  tabindex="-1"
+                  id="menu-item-0"
+                >
+                  <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                  <span>Login</span>
+                </a>
+                <a
+                  href="./html/signup.html"
+                  class="text-gray-700 text-[16px] flex items-center gap-2 px-4 py-3 text-sm hover:bg-[#f6f6f6]"
+                  role="menuitem"
+                  tabindex="-1"
+                  id="menu-item-1"
+                >
+                  <i class="fa-solid fa-user-plus"></i>
+                  <span>Signup</span>
+                </a>
+                <a
+                  href="#"
+                  class="text-gray-700 text-[16px] flex items-center gap-2 px-4 py-3 text-sm hover:bg-[#f6f6f6]"
+                  role="menuitem"
+                  tabindex="-1"
+                  id="menu-item-2"
+                >
+                  <i class="fa-solid fa-user"></i>
+                  <span> My Profile</span>
+                </a>
+                <a
+                  href="#"
+                  class="text-gray-700 text-[16px] flex items-center gap-2 px-4 py-3 text-sm hover:bg-[#f6f6f6]"
+                  role="menuitem"
+                  tabindex="-1"
+                  id="menu-item-3"
+                >
+                  <i class="fa-solid fa-box-open"></i>
+                  <span>My Orders</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <div
+      id="searchResultsContainer"
+      class="fixed -top-1/2 left-1/2 -translate-x-1/2 -ty1/2 max-w-[1200px] w-full z-[117] duration-300"
+    >
+      <div class="searchBox rounded-lg relative bg-[#f6f6f6] px-4 py-5 w-full">
+        <i
+          class="ri-search-line absolute top-[30px] left-[23px] text-[18px] sm:text-[22px]"
+        ></i>
+        <input
+          type="search"
+          placeholder="Search Foods, Menu.."
+          class="w-full p-[12px_20px_12px_30px] sm:p-[15px_22px_15px_35px] rounded-md outline-0 focus:ring focus:ring-[#ff6b38] duration-300"
+        />
+      </div>
+      <div id="searchResults"></div>
+    </div>
+
+    <div
+      class="overlay overlayActive bg-[#6a6666ba] fixed top-0 left-0 w-full h-full z-[115]"
+    ></div>
+
+    <!-- Mobile Bottom Navigation -->
+    <div class="fixed bottom-0 left-0 right-0 bg-white md:hidden z-50">
+      <div
+        class="flex justify-between items-center px-6 py-3 border-t border-gray-200"
+      >
+        <a
+          data-nav-link
+          data-active="true"
+          href="#"
+          class="nav-link flex flex-col items-center text-gray-700 hover:text-[#3284e8]"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5 sm:h-6 sm:w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+            />
+          </svg>
+          <span class="text-xs mt-1">Home</span>
+        </a>
+
+        <a
+          id="searchBottomButton"
+          data-nav-link
+          href="#"
+          class="nav-link flex flex-col items-center text-gray-700 hover:text-[#3284e8]"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5 sm:h-6 sm:w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+            />
+          </svg>
+          <span class="text-xs mt-1">Search</span>
+        </a>
+
+        <a
+          data-nav-link
+          href="#"
+          class="nav-link flex flex-col items-center text-gray-700 hover:text-[#3284e8]"
+        >
+          <i class="ri-bowl-line sm:text-xl"></i>
+          <span class="text-xs">Food</span>
+        </a>
+
+        <a
+          data-nav-link
+          href="#"
+          class="nav-link flex flex-col items-center text-gray-700 relative hover:text-[#3284e8]"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5 sm:h-6 sm:w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+            />
+          </svg>
+          <span class="text-xs mt-1">Cart</span>
+          <span
+            class="cartItems absolute w-[20px] h-[20px] rounded-full text-white -top-2 -right-2 bg-[#3284e8] text-[12px] flex items-center justify-center"
+            >0</span
+          >
+        </a>
+
+        <a
+          data-nav-link
+          href="#"
+          class="nav-link flex flex-col items-center text-gray-700 hover:text-[#3284e8]"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5 sm:h-6 sm:w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+            />
+          </svg>
+          <span class="text-xs mt-1">Profile</span>
+        </a>
+
+        <a
+          data-nav-link
+          href="#"
+          class="nav-link flex flex-col items-center text-gray-700 hover:text-[#3284e8]"
+        >
+          <i class="ri-customer-service-2-line"></i>
+          <span class="text-xs mt-1">Contact</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- toast notification -->
+    <div
+      class="toastNotify z-50  fixed bottom-20 md:bottom-2 left-1/2 -translate-x-1/2 max-w-[380px] w-full"
+    >
+    </div>
+
+    <section
+      class="flex mt-[16px] sm:mt-[100px] items-center justify-center my-8"
+    >
+      <form
+        action="#"
+        class="p-5 rounded-lg w-full max-w-md bg-[#f6f6f6] text-black"
+        id="signupForm"
+      >
+        <div class="mb-6">
+          <h2
+            class="text-2xl sm:text-3xl font-semibold tracking-wide text-center"
+          >
+            SIGNUP FORM
+          </h2>
+        </div>
+
+        <!-- username Input -->
+        <div class="mb-5">
+          <input
+            type="text"
+            class="w-full text-[16px] p-3 sm:text-[18px] bg-white rounded-md focus:ring focus:ring-[#ff6b38] outline-none ] duration-300"
+            id="username"
+            placeholder="Username"
+          />
+          <div
+            id="usernameError"
+            class="mt-2 text-[16px] text-red-500 ml-1"
+          ></div>
+        </div>
+
+        <!-- Email Input -->
+        <div class="mb-5">
+          <input
+            type="email"
+            class="w-full text-[16px] p-3 sm:text-[18px] bg-white rounded-md focus:ring focus:ring-[#ff6b38] outline-none ] duration-300"
+            id="signupEmail"
+            placeholder="Email"
+          />
+          <div id="emailError" class="mt-2 text-[16px] text-red-500 ml-1"></div>
+        </div>
+
+        <!-- Password Input -->
+        <div class="mb-5">
+          <div class="relative">
+            <input
+              data-input-id="1"
+              type="password"
+              class="w-full p-3 sm:text-[18px] text-[16px] bg-white rounded-md focus:ring focus:ring-[#ff6b38] outline-none duration-300"
+              id="signupPassword"
+              placeholder="Password"
+            />
+
+            <i
+              id="password-toggle-icon1"
+              class="fa-regular fa-eye absolute right-4 top-1/2 transform -translate-y-1/2 text-[18px] sm:text-xl text-gray-600 cursor-pointer"
+            ></i>
+          </div>
+          <div
+            id="passwdError"
+            class="mt-2 text-[16px] text-red-500 ml-1"
+          ></div>
+        </div>
+        <!-- Confirm Password Input -->
+        <div class="mb-5">
+          <dic class="relative">
+            <input
+              data-input-id="2"
+              type="password"
+              class="w-full p-3 sm:text-[18px] text-[16px] bg-white rounded-md focus:ring focus:ring-[#ff6b38] outline-none duration-300"
+              id="signupPassword2"
+              placeholder="Confirm Password"
+            />
+
+            <i
+              id="password-toggle-icon2"
+              class="fa-regular fa-eye absolute right-4 top-1/2 transform -translate-y-1/2 text-[18px] sm:text-xl text-gray-600 cursor-pointer"
+            ></i>
+          </dic>
+          <div
+            id="passwd2Error"
+            class="mt-2 text-[16px] text-red-500 ml-1"
+          ></div>
+        </div>
+
+        <div class="flex items-center justify-start space-x-2 mb-6">
+          <input
+            type="checkbox"
+            id="termsCheckbox"
+            class="w-4 h-4 text-[#0d6efd] rounded focus:ring-2 focus:ring-[#eb5f2f] accent-secondary duration-300"
+          />
+          <label for="termsCheckbox" class="ms-2 text-[16px] text-gray-900"
+            >I agree with the
+            <a href="#" class="text-blue-600 hover:underline"
+              >terms and conditions</a
+            >.</label
+          >
+        </div>
+
+        <!-- Submit Button -->
+        <button
+          type="submit"
+          id="login-button"
+          class="w-full p-3 text-lg font-medium text-white bg-[#3284e8] rounded-md hover:bg-[#0d6efd] transition duration-300"
+        >
+          Sign Up
+        </button>
+
+        <!-- Sign Up -->
+        <div class="flex items-center justify-between mt-6 text-gray-600">
+          <span>Already have an account</span>
+          <a
+            href="../html/loginPage.html"
+            class="text-[#0d6efd] hover:underline duration-300"
+            >Log In</a
+          >
+        </div>
+      </form>
+    </section>
+
+    <footer class="bg-gray-800 py-8 mb-[70px] md:mb-0">
+      <div
+        class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-start"
+      >
+        <div class="mb-6 md:mb-0 md:max-w-[250px] lg:max-w-[290px]">
+          <div class="text-3xl font-bold text-[#3284e8]">DishDash</div>
+          <p class="mt-2 text-gray-400">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minima
+            dolorum ab itaque?
+          </p>
+          <div class="flex mt-4 space-x-4">
+            <a href="#" class="text-gray-400 hover:text-white"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+            <a href="#" class="text-gray-400 hover:text-white"
+              ><i class="fab fa-twitter"></i
+            ></a>
+            <a href="#" class="text-gray-400 hover:text-white"
+              ><i class="fab fa-linkedin-in"></i
+            ></a>
+          </div>
+        </div>
+        <div class="mb-6 md:mb-0">
+          <h3 class="text-xl text-white font-semibold uppercase">
+            Quick Links
+          </h3>
+          <ul class="mt-2 space-y-2">
+            <li>
+              <a
+                href="#"
+                class="text-gray-300 duration-300 hover:text-[#3284e8]"
+                >Home</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="text-gray-300 duration-300 hover:text-[#3284e8]"
+                >Food</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="text-gray-300 duration-300 hover:text-[#3284e8]"
+                >Contact us</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="text-gray-300 duration-300 hover:text-[#3284e8]"
+                >Privacy policy</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-xl font-semibold text-white">GET IN TOUCH</h3>
+          <p class="mt-2 text-gray-400">+1-212-4560-7890</p>
+          <p class="mt-2 text-gray-400">contact@dishdash.com</p>
+        </div>
+      </div>
+      <div
+        class="border-t-[1px] py-3 text-[#d1d5db] border-gray-300 text-center mt-12 max-w-[1400px] mx-auto w-full"
+      >
+        <a
+          href="./index.html"
+          class="text-[#3284e8] hover:text-[#ff6b38] duration-200"
+          >DishDash</a
+        >
+        &copy; | 2025 All Rights are Preserved
+      </div>
+    </footer>
+
+    <script src="../js/search.js"></script>
+    <script src="../js/signup.js"></script>
+    <script src="../js/script.js"></script>
+    <script type="module" src="../js/addToCart.js"></script>
+  </body>
+</html>
