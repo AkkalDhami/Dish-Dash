@@ -21,13 +21,14 @@
     />
     <link rel="stylesheet" href="./css/output.css" />
   </head>
+
   <body class="font-['Poppins']">
     <!-- Navbar -->
     <header class="md:fixed w-full md:top-0 md:left-0 z-50 bg-[#f6f6f6]">
       <nav
         class="container mx-auto px-6 py-4 flex items-center justify-between"
       >
-        <div class="text-3xl font-bold text-[#3284e8]">DishDash</div>
+        <div class="text-3xl font-bold text-[#0d6efd]">DishDash</div>
         <div class="hidden md:flex items-center space-x-8">
           <a
             href="#"
@@ -73,16 +74,87 @@
               />
             </svg>
             <span
-              id="cartItems"
-              class="absolute w-[23px] h-[23px] rounded-full text-white top-0 right-0 bg-[#3284e8] text-[12px] flex items-center justify-center"
-              >12</span
+              class="cartItems absolute w-[23px] h-[23px] rounded-full text-white top-0 right-0 bg-[#3284e8] text-[12px] flex items-center justify-center"
+              >0</span
             >
           </button>
-          <button
-            class="text-white px-6 py-3 rounded-full bg-[#0d6efd] hover:bg-[#3284e8]"
-          >
-            sign in
-          </button>
+          <div class="relative inline-block text-left">
+            <div>
+              <button
+                class="inline-flex justify-center items-center gap-2 w-full rounded-full shadow-sm px-4 py-3 bg-[#0d6efd] text-[18px] text-white hover:bg-[#3284e8]"
+                id="menu-button"
+                aria-expanded="true"
+                aria-haspopup="true"
+              >
+                <i class="fa-solid fa-circle-user"></i>
+                <span class="text-[16px]"> My Profile</span>
+                <svg
+                  class="ml-2 h-5 w-5 rotate"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  aria-hidden="true"
+                  id="chevron-icon"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </button>
+            </div>
+            <div
+              class="dropdown-content origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+              role="menu"
+              aria-orientation="vertical"
+              aria-labelledby="menu-button"
+              tabindex="-1"
+            >
+              <div class="py-1" role="none">
+                <a
+                  href="./html/loginPage.html"
+                  class="text-gray-700 text-[16px] flex items-center gap-2 px-4 py-3 hover:bg-[#f6f6f6]"
+                  role="menuitem"
+                  tabindex="-1"
+                  id="menu-item-0"
+                >
+                  <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                  <span>Login</span>
+                </a>
+                <a
+                  href="./html/signupPage.html"
+                  class="text-gray-700 text-[16px] flex items-center gap-2 px-4 py-3 text-sm hover:bg-[#f6f6f6]"
+                  role="menuitem"
+                  tabindex="-1"
+                  id="menu-item-1"
+                >
+                  <i class="fa-solid fa-user-plus"></i>
+                  <span>Signup</span>
+                </a>
+                <a
+                  href="#"
+                  class="text-gray-700 text-[16px] flex items-center gap-2 px-4 py-3 text-sm hover:bg-[#f6f6f6]"
+                  role="menuitem"
+                  tabindex="-1"
+                  id="menu-item-2"
+                >
+                  <i class="fa-solid fa-user"></i>
+                  <span> My Profile</span>
+                </a>
+                <a
+                  href="#"
+                  class="text-gray-700 text-[16px] flex items-center gap-2 px-4 py-3 text-sm hover:bg-[#f6f6f6]"
+                  role="menuitem"
+                  tabindex="-1"
+                  id="menu-item-3"
+                >
+                  <i class="fa-solid fa-box-open"></i>
+                  <span>My Orders</span>
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </nav>
     </header>
@@ -108,7 +180,7 @@
       class="overlay overlayActive bg-[#6a6666ba] fixed top-0 left-0 w-full h-full z-[115]"
     ></div>
 
-    <!-- Mobile Bottom Navigation -->
+
     <div class="fixed bottom-0 left-0 right-0 bg-white md:hidden z-50">
       <div
         class="flex justify-between items-center px-6 py-3 border-t border-gray-200"
@@ -189,9 +261,8 @@
           </svg>
           <span class="text-xs mt-1">Cart</span>
           <span
-            id="cartItems2"
-            class="absolute w-[20px] h-[20px] rounded-full text-white -top-2 -right-2 bg-[#3284e8] text-[12px] flex items-center justify-center"
-            >12</span
+            class="cartItems absolute w-[25px] h-[25px] rounded-full text-white -top-2 -right-2 bg-[#3284e8] text-[12px] flex items-center justify-center"
+            >0</span
           >
         </a>
 
@@ -374,5 +445,6 @@
     <script src="./js/menu.js"></script>
     <script src="./js/search.js"></script>
     <script src="./js/script.js"></script>
+    <script type="module" src="./js/addToCart.js"></script>
   </body>
 </html>
