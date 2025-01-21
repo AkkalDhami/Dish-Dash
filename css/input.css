@@ -20,7 +20,105 @@
 html {
   scroll-behavior: smooth;
 }
-.overlayActive{
+.overlayActive {
   display: none;
 }
+.dropdown-content {
+  display: none;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+.dropdown:hover .dropdown-content {
+  display: block;
+  opacity: 1;
+}
+.rotate {
+  transition: transform 0.3s ease-in-out;
+}
+.rotate.open {
+  transform: rotate(180deg);
+}
+
+/* .toastBox {
+  visibility: hidden;
+  -webkit-animation:  fadeout 0.5s 3s;
+  animation:  fadeout 0.5s 3s;
+} */
+.toastNotify.success {
+  color: #12d615;
+}
+.toastNotify.error {
+  color: #ff0000;
+}
+
+.toastLine::after {
+  width: 0%;
+  animation: fullWidth 3s linear forwards;
+}
+
+@keyframes fullWidth {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0%;
+  }
+}
+
+@-webkit-keyframes fadein {
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
+}
+
+@keyframes fadein {
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeout {
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes fadeout {
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
+}
+
+.toastBox {
+  @apply flex  items-center w-full px-2 sm:px-3 py-3 justify-between overflow-hidden shadow-lg bg-white rounded-md;
+}
+@layer utilities {
+  .success {
+    color: #12d615;
+  }
+  .error{
+    color: #ff0000;
+  }
+}
+
 @tailwind utilities;
