@@ -9,9 +9,9 @@ function filterFood() {
   filteredFood.forEach((food, ind) => {
     let { _id, category, description, image, name, price, rating } = food;
     foodMenuContainer.innerHTML += `
-              <div data-category="${category}"
+      <div data-category="${category}"
             id="${_id}"
-            class="card bg-[#f6f6f6] p-5 rounded-md hover:shadow-lg hover:bg-[#ffffff] duration-300 w-[300px] group overflow-hidden"
+            class="foodItem bg-[#f6f6f6] p-5 rounded-md hover:shadow-lg hover:bg-[#ffffff] duration-300 w-[300px] group overflow-hidden"
           >
             <div
               class="img max-w-[280px] max-h-[280px] rounded-md overflow-hidden"
@@ -24,9 +24,7 @@ function filterFood() {
             </div>
             <div class="flex mt-3 flex-col">
               <h3 class="text-[18px] font-semibold">${name}</h3>
-              <h4 class="text-[15px]">
-               ${description}
-              </h4>
+              <h4 class="text-[15px]">${description}</h4>
               <div class="flex mt-2 w-full justify-between">
                 <div class="flex gap-4 items-center">
                   <p class="text-[18px] font-[500]">$${price}</p>
@@ -40,13 +38,26 @@ function filterFood() {
             <div
               class="mt-2 flex flex-col space-y-3 justify-between w-full items-center"
             >
-              <button
-                class="px-4 flex items-center gap-4 py-2 bg-[#ff6b38] hover:bg-[#eb5f2f] rounded-sm text-white text-[16px] sm:text-[16px] duration-300 w-full justify-center"
-              >
-                Add to Cart <i class="ri-shopping-bag-line"></i>
-              </button>
-              <button
-                class="px-4 flex items-center gap-4 py-2 duration-300 bg-[#3284e8] hover:bg-[#0d6efd] rounded-sm text-white text-[16px] sm:text-[16px] w-full justify-center"
+              <div class="flex items-center justify-between w-full">
+                <button
+                  class="addToCart px-4 flex items-center gap-4 py-2 bg-[#ff6b38] hover:bg-[#eb5f2f] rounded-sm text-white text-[16px] sm:text-[16px] duration-300 justify-center"
+                >
+                  Add to Cart <i class="ri-shopping-bag-line"></i>
+                </button>
+                <button 
+                  class="decreaseQuantity text-black bg-[#f6f6f6] text-[18px] px-2 py-1 rounded-sm"
+                >
+                  <i class="decreaseQuantity ri-subtract-line"></i>
+                </button>
+                <p  class="foodQuantity text-[15px] text-black font-[400]">1</p>
+                <button
+                  class="increaseQuantity px-2 bg-[#f6f6f6] text-black text-[16px] py-1 rounded-sm"
+                >
+                  <i class="increaseQuantity ri-add-large-fill"></i>
+                </button>
+              </div>
+              <button 
+                class=" px-4 flex items-center gap-4 py-2 duration-300 bg-[#3284e8] hover:bg-[#0d6efd] rounded-sm text-white text-[16px] sm:text-[16px] w-full justify-center"
               >
                 Buy Now <i class="ri-restaurant-fill"></i>
               </button>
