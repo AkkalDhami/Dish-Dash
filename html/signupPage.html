@@ -59,7 +59,10 @@
           >
             <i class="fa-solid fa-magnifying-glass"></i>
           </button>
-          <button class="p-2 relative hover:text-[#3284e8]">
+          <button
+            class="p-2 relative hover:text-[#3284e8]"
+            onclick="window.location.href=`../html/cartPage.html`"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="h-7 w-7"
@@ -302,9 +305,8 @@
 
     <!-- toast notification -->
     <div
-      class="toastNotify z-50  fixed bottom-20 md:bottom-2 left-1/2 -translate-x-1/2 max-w-[380px] w-full"
-    >
-    </div>
+      class="toastNotify z-50 fixed -top-1/2 left-1/2 -translate-x-1/2 max-w-[380px] w-full"
+    ></div>
 
     <section
       class="flex mt-[16px] sm:mt-[100px] items-center justify-center my-8"
@@ -501,7 +503,7 @@
     </footer>
 
     <script src="../js/search.js"></script>
-    <script src="../js/signup.js"></script>
+    <script type="module" src="../js/signup.js"></script>
     <script src="../js/script.js"></script>
     <script type="module" src="../js/addToCart.js"></script>
   </body>
