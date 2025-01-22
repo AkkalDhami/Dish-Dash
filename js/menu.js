@@ -43,8 +43,7 @@ function displayMenu() {
   food_list.forEach((food, ind) => {
     let { _id, category, description, image, name, price, rating } = food;
     item_container.innerHTML += `
-   <div
-            data-category="${category}"
+   <div data-category="${category}"
             id="${_id}"
             class="foodItem bg-[#f6f6f6] p-5 rounded-md hover:shadow-lg hover:bg-[#ffffff] duration-300 w-[300px] group overflow-hidden"
           >
@@ -75,7 +74,7 @@ function displayMenu() {
             >
               <div class="flex items-center justify-between w-full">
                 <button
-                  class="px-4 flex items-center gap-4 py-2 bg-[#ff6b38] hover:bg-[#eb5f2f] rounded-sm text-white text-[16px] sm:text-[16px] duration-300 justify-center"
+                  class="addToCart px-4 flex items-center gap-4 py-2 bg-[#ff6b38] hover:bg-[#eb5f2f] rounded-sm text-white text-[16px] sm:text-[16px] duration-300 justify-center"
                 >
                   Add to Cart <i class="ri-shopping-bag-line"></i>
                 </button>
@@ -92,69 +91,6 @@ function displayMenu() {
                 </button>
               </div>
               <button 
-                class=" px-4 flex items-center gap-4 py-2 duration-300 bg-[#3284e8] hover:bg-[#0d6efd] rounded-sm text-white text-[16px] sm:text-[16px] w-full justify-center"
-              >
-                Buy Now <i class="ri-restaurant-fill"></i>
-              </button>
-            </div>
-          </div>
-    `;
-  });
-
-  let ratedFoods = food_list.filter((food) => food.rating >= 4.6);
-  let rated_foods_container = document.querySelector("#rated_foods_container");
-
-  ratedFoods.forEach((item, ind) => {
-    let { _id, category, description, image, name, price, rating } = item;
-    rated_foods_container.innerHTML += `
-       <div data-category="${category}"
-            id="${_id}"
-            class="foodItem bg-[#f6f6f6] p-5 rounded-md hover:shadow-lg hover:bg-[#ffffff] duration-300 w-[300px] group overflow-hidden"
-          >
-            <div
-              class="img max-w-[280px] max-h-[280px] rounded-md overflow-hidden"
-            >
-              <img
-                src="${image}"
-                alt="food-${ind} image"
-                class="w-full h-full object-cover object-center scale-100 group-hover:scale-110 duration-300 transition-all"
-              />
-            </div>
-            <div class="flex mt-3 flex-col">
-              <h3 class="text-[18px] font-semibold">${name}</h3>
-              <h4 class="text-[15px]">${description}</h4>
-              <div class="flex mt-2 w-full justify-between">
-                <div class="flex gap-4 items-center">
-                  <p class="text-[18px] font-[500]">$${price}</p>
-                  <p class="text-[16px] text-[#727374] font-[400] line-through">
-                    $${price + 5}
-                  </p>
-                </div>
-                <h3><i class="ri-star-fill text-[#ff6b38]"></i> | ${rating}</h3>
-              </div>
-            </div>
-            <div
-              class="mt-2 flex flex-col space-y-3 justify-between w-full items-center"
-            >
-              <div class="flex items-center justify-between w-full">
-                <button 
-                  class="px-4 flex items-center gap-4 py-2 bg-[#ff6b38] hover:bg-[#eb5f2f] rounded-sm text-white text-[16px] sm:text-[16px] duration-300 justify-center"
-                >
-                  Add to Cart <i class="ri-shopping-bag-line"></i>
-                </button>
-                <button
-                  class="decreaseQuantity text-black bg-[#f6f6f6] text-[16px] px-2 py-1 rounded-sm"
-                >
-                  <i class="decreaseQuantity ri-subtract-line"></i>
-                </button>
-                <p class="foodQuantity text-[15px] text-black font-[400]">1</p>
-                <button 
-                  class="increaseQuantity px-2 bg-[#f6f6f6] text-black text-[16px] py-1 rounded-sm"
-                >
-                  <i class="increaseQuantity ri-add-large-fill"></i>
-                </button>
-              </div>
-              <button
                 class=" px-4 flex items-center gap-4 py-2 duration-300 bg-[#3284e8] hover:bg-[#0d6efd] rounded-sm text-white text-[16px] sm:text-[16px] w-full justify-center"
               >
                 Buy Now <i class="ri-restaurant-fill"></i>
