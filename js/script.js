@@ -18,16 +18,6 @@ navLinks.forEach((link) => {
     });
 });
 
-// mobileNavLinks.forEach((link) => {
-//     link.addEventListener("click", (e) => {
-//         e.preventDefault();
-//         setActiveLink(link);
-
-//         localStorage.setItem("activeLink", link.textContent.trim());
-//     });
-// });
-
-
 document.addEventListener("DOMContentLoaded", () => {
     const savedActiveLink = localStorage.getItem("activeLink");
     if (savedActiveLink) {
@@ -79,5 +69,3 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 10);
     });
 });
-
-
