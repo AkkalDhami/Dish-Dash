@@ -1,7 +1,7 @@
 let searchButton = document.getElementById('searchButton');
 let searchBottomButton = document.getElementById('searchBottomButton');
 let searchResultsContainer = document.getElementById('searchResultsContainer');
-let overlay = document.querySelector(".overlay");
+let overlay = document?.querySelector(".overlay");
 
 searchBottomButton.addEventListener('click', () => {
     overlay.classList.remove('overlayActive');
