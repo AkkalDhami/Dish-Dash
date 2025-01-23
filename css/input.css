@@ -1,6 +1,13 @@
 @tailwind base;
 @tailwind components;
 
+#messageError::-webkit-scrollbar {
+  display: none;
+}
+#messageError::-webkit-scrollbar-thumb {
+  display: none;
+}
+
 .nav-link.active {
   color: #ff6b38;
   font-weight: 500;
@@ -58,12 +65,48 @@ html {
 }
 @layer utilities {
   /* all 0.6s cubic-bezier(0.6, 0.15, 0.13, 1.1) */
-  .error {
+  .errorIcon {
     color: #ff0000;
+    font-size: 22px;
   }
   .checkIcon {
     color: #30e522;
     font-size: 22px;
+  }
+  .borderError {
+    border-color: #ff0000;
+    animation: shake 0.4s ease;
+  }
+  .freeShipping {
+    color: #f3f4f6;
+    background-color: #ff6b38;
+    font-size: 12px;
+  }
+  .shippingFee {
+    padding: 2px 8px;
+    font-weight: 450;
+    border-radius: 8px;
+    color: #ff6b38;
+    font-size: 16px;
+    background: transparent;
+  }
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  75% {
+    transform: translateX(-5px);
+  }
+  100% {
+    transform: translateX(0);
   }
 }
 
@@ -77,3 +120,11 @@ input[type="number"] {
   -moz-appearance: textfield;
 }
 @tailwind utilities;
+
+textarea::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, and Edge */
+}
+textarea {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
