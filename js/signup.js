@@ -1,4 +1,6 @@
 import successToast from "../assets/utility/successToast.js";
+import errorToast from "../assets/utility/errorToast.js";
+
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("signupForm");
     const signupEmail = document.getElementById("signupEmail");
@@ -27,24 +29,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
     form.addEventListener("submit", (e) => {
         e.preventDefault();
-
         let valid = true;
-
         // Validate Username
         const usernameRegex = /^[a-zA-Z0-9]{3,}$/;
         if (!usernameRegex.test(username.value.trim())) {
             usernameError.innerHTML = `<i class="ri-error-warning-line text-[18px]"></i> Username must be at least 3 characters long`;
             valid = false;
+            username.classList.add("borderError");
         } else {
             usernameError.innerHTML = "";
+            username.classList.remove("borderError");
         }
 
         // Validate Email
         if (signupEmail.value.trim() === "") {
             emailError.innerHTML = `<i class="ri-error-warning-line text-[18px]"></i> Please enter your email`;
             valid = false;
+            signupEmail.classList.add("borderError");
         } else {
             emailError.innerHTML = "";
+            signupEmail.classList.remove("borderError");
         }
 
         // Validate Password
@@ -53,9 +57,11 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!passwordRegex.test(signupPassword.value.trim())) {
             passwdError.innerHTML = `<i class="ri-error-warning-line text-[18px]"></i> Password must be 6-25 characters long, include uppercase, lowercase, digit, and special character`;
             valid = false;
+            signupPassword.classList.add("borderError");
             return;
         } else {
             passwdError.innerHTML = "";
+            signupPassword.classList.remove("borderError");
         }
 
         // Validate Confirm Password
@@ -65,13 +71,15 @@ document.addEventListener("DOMContentLoaded", () => {
         ) {
             passwd2Error.innerHTML = `<i class="ri-error-warning-line text-[18px]"></i> Passwords do not match`;
             valid = false;
+            signupPassword2.classList.add("borderError");
         } else {
             passwd2Error.innerHTML = "";
+            signupPassword2.classList.remove("borderError");
         }
 
         // Validate Terms Checkbox
         if (!termsCheckbox.checked) {
-
+            errorToast("Please agree to the terms and conditions.");
             valid = false;
         }
 
@@ -84,6 +92,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
+    username.addEventListener("animationend", () => {
+        username.classList.remove("borderError");
+    });
+
+    signupEmail.addEventListener("animationend", () => {
+        signupEmail.classList.remove("borderError");
+    });
+
+    signupPassword.addEventListener("animationend", () => {
+        signupPassword.classList.remove("borderError");
+    });
+    signupPassword2.addEventListener("animationend", () => {
+        signupPassword2.classList.remove("borderError");
+    });
 
     function togglePasswordVisibility(inputId, iconId) {
         const passwordInput = document.querySelector(
