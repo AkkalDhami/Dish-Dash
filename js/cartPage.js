@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <i class="ri-star-fill text-[#ff6b38]"></i> | ${rating}
               </p>
               <p class="text-gray-800 text-[16px]  font-[500] mt-1">
-                Total: $${price.toFixed(2)}
+                Price: $${price.toFixed(2)}
               </p>
               <p class="text-gray-800  text-[16px] font-[500] mt-1">
                 Subtotal: $${(price * quantity).toFixed(2)}
@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 type="number"
                 value="${item.quantity}"
                 min="1"
-                class="quantity w-12 py-1 text-center border duration-300 border-gray-300 rounded"
+                class="quantity w-12 py-1 focus:outline-0 text-center border duration-300 border-gray-300 rounded" readonly
               />
               <button
                 class="increaseCartQuantity px-2 py-1 bg-[#f6f6f6] duration-300 rounded hover:bg-gray-300"
@@ -95,47 +95,57 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   clearCartBtn.addEventListener("click", () => {
-    overlay.classList.remove("overlayActive");
-    deleteToast.classList.remove("-top-1/2");
-    deleteToast.classList.add("top-1/2");
+    if (cartItems.length >= 1) {
 
-    let cancelClearCartItems = deleteToast.querySelectorAll(
-      ".cancelClearCartItems"
-    );
-    let yesSureClearCartItems = deleteToast.querySelector(
-      "#yesSureClearCartItems"
-    );
 
-    overlay.addEventListener("click", () => {
-      cancelClearCart();
-    });
-    cancelClearCartItems.forEach((btn) =>
-      btn.addEventListener("click", cancelClearCart)
-    );
+      overlay.classList.remove("overlayActive");
+      deleteToast.classList.remove("-top-1/2");
+      deleteToast.classList.add("top-1/2");
 
-    function cancelClearCart() {
-      overlay.classList.add("overlayActive");
-      deleteToast.classList.remove("top-1/2");
-      deleteToast.classList.add("-top-1/2");
-      return;
+      let cancelClearCartItems = deleteToast.querySelectorAll(
+        ".cancelClearCartItems"
+      );
+      let yesSureClearCartItems = deleteToast.querySelector(
+        "#yesSureClearCartItems"
+      );
+
+      overlay.addEventListener("click", () => {
+        cancelClearCart();
+      });
+      cancelClearCartItems.forEach((btn) =>
+        btn.addEventListener("click", cancelClearCart)
+      );
+
+      function cancelClearCart() {
+        overlay.classList.add("overlayActive");
+        deleteToast.classList.remove("top-1/2");
+        deleteToast.classList.add("-top-1/2");
+        return;
+      }
+
+      yesSureClearCartItems.addEventListener("click", () => {
+        cartItems = [];
+        updateCart();
+        saveCart(cartItems);
+        getCartLength();
+        cancelClearCart();
+      });
+    } else {
+      alert("Your cart is empty")
     }
-
-    yesSureClearCartItems.addEventListener("click", () => {
-      cartItems = [];
-      updateCart();
-      saveCart(cartItems);
-      getCartLength();
-      cancelClearCart();
-    });
   });
 
   continueShoppingBtn.addEventListener("click", () => {
-    alert("Continue Shopping button clicked! Redirect to the shop page.");
+    window.location.href = `../index.html`;
   });
 
   // Checkout (Redirect Example)
   checkoutBtn.addEventListener("click", () => {
-    alert("Checkout button clicked! Redirect to the checkout page.");
+    if (cartItems.length >= 1) {
+      window.location.href = `../html/checkoutPage.html`;
+    } else {
+      alert("Your cart is empty")
+    }
   });
 
   renderCart();
