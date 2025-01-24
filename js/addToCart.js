@@ -1,5 +1,5 @@
 import { getCartLength } from "./getCartLength.js";
-import successToast from "../assets/utility/successToast.js";
+import {showToast} from "../assets/utility/showToast.js";
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const FoodList = getFoodList();
 
     if (!FoodList.length) {
-      alert("FoodList not found in localStorage!");
+      showToast("FoodList not found in localStorage!", "error");
       return;
     }
 
@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
         } else if (e.target.classList.contains("decreaseQuantity")) {
           quantity--;
           if (quantity < 1) {
-            alert("Enter a valid quantity");
+            showToast("Enter a valid quantity", "error");
             return;
           }
         }
@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
           const productInCart = cart.find((product) => product._id === id);
 
           if (productInCart) {
-            successToast("Product added to cart!");
+            showToast("Product added to your cart!", "success");
             productInCart.quantity += quantity;
           } else {
             const productToAdd = FoodList.find((product) => product._id === id);
