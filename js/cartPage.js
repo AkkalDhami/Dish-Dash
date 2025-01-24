@@ -1,4 +1,5 @@
 import { getCartLength } from "./getCartLength.js";
+import { showToast } from "../assets/utility/showToast.js";
 document.addEventListener("DOMContentLoaded", () => {
   const cartItemsContainer = document.getElementById("cartItems");
   const totalQuantityEl = document.getElementById("totalQuantity");
@@ -131,7 +132,7 @@ document.addEventListener("DOMContentLoaded", () => {
         cancelClearCart();
       });
     } else {
-      alert("Your cart is empty")
+      showToast("Your cart is empty", "error");
     }
   });
 
@@ -144,7 +145,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (cartItems.length >= 1) {
       window.location.href = `../html/checkoutPage.html`;
     } else {
-      alert("Your cart is empty")
+      showToast("Your cart is empty", "error");
     }
   });
 
@@ -176,7 +177,7 @@ document.addEventListener("DOMContentLoaded", () => {
           item.quantity -= 1;
           if (item.quantity < 1) {
             item.quantity = 1;
-            alert("Quantity cannot be less than 1");
+            showToast("Quantity cannot be less than 1", "error");
           }
 
         }
