@@ -3,280 +3,29 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Checkout Page</title>
+    <title>My Orders</title>
     <link
-      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
       rel="stylesheet"
     />
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/2.5.0/remixicon.css"
-      rel="stylesheet"
-    />
-    <style>
-      .error {
-        border-color: red;
-      }
-    </style>
-    <link rel="stylesheet" href="./css/output.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="myorders.js"></script>
   </head>
-  <body class="bg-gray-100">
-    <form id="checkoutForm" class="bg-[#f6f6f6] p-6 rounded-md">
-      <h2 class="text-2xl font-bold mb-6">Billing Information</h2>
-      <p class="text-gray-600 my-2 text-[14px] sm:text-[16px]">
-        Please fill out all the required
-        <span class="text-[#ff0000]">*</span> fields below to complete your
-        order
-      </p>
-      <!-- first name -->
-      <div class="mb-4">
-        <label
-          for="firstName"
-          class="block text-[14px] sm:text-[16px] text-gray-700 mb-[5px]"
-          >First Name <span class="text-[#ff0000]">*</span></label
-        >
-        <input
-          type="text"
-          id="firstName"
-          class="w-full text-[16px] px-2 py-[8px] sm:text-[18px] rounded-md focus:ring focus:ring-[#ff6b38] outline-none duration-300 border-[3px] border-transparent focus:bg-transparent focus:border-transparent"
-        />
-        <div
-          id="firstNameError"
-          class="paymentFormErrorMsg flex items-center mt-2 space-x-1"
-        ></div>
+  <body class="bg-gray-100 font-sans">
+    <div class="container mx-auto p-4">
+      <h1 class="text-2xl font-bold text-gray-800 mb-6">My Orders</h1>
+      <div class="flex justify-end mb-4">
+        <select id="statusFilter" class="border px-3 py-2 rounded">
+          <option value="All">All</option>
+          <option value="Pending">Pending</option>
+          <option value="Completed">Completed</option>
+          <option value="Cancelled">Cancelled</option>
+        </select>
       </div>
+      
 
-      <!-- last name -->
-      <div class="mb-4">
-        <label
-          for="lastName"
-          class="block text-[14px] sm:text-[16px] text-gray-700 mb-[5px]"
-          >Last Name <span class="text-[#ff0000]">*</span></label
-        >
-        <input
-          type="text"
-          id="lastName"
-          class="w-full text-[16px] px-2 py-[8px] sm:text-[18px] rounded-md focus:ring focus:ring-[#ff6b38] outline-none duration-300 border-[3px] border-transparent focus:bg-transparent focus:border-transparent"
-        />
-        <div
-          id="lastNameError"
-          class="paymentFormErrorMsg flex items-center mt-2 space-x-1"
-        ></div>
-      </div>
-
-      <!-- email -->
-      <div class="mb-4">
-        <label
-          for="paymentEmail"
-          class="block text-[14px] sm:text-[16px] text-gray-700 mb-[5px]"
-          >Email Address <span class="text-[#ff0000]">*</span></label
-        >
-        <input
-          type="email"
-          id="paymentEmail"
-          class="w-full text-[16px] px-2 py-[8px] sm:text-[18px] rounded-md focus:ring focus:ring-[#ff6b38] outline-none duration-300 border-[3px] border-transparent focus:bg-transparent focus:border-transparent"
-        />
-        <div
-          id="emailError"
-          class="paymentFormErrorMsg flex items-center mt-2 space-x-1"
-        ></div>
-      </div>
-
-      <!-- phone -->
-      <div class="mb-4">
-        <label
-          for="phoneNumber"
-          class="block text-[14px] sm:text-[16px] text-gray-700 mb-[5px]"
-          >Phone Number <span class="text-[#ff0000]">*</span></label
-        >
-        <input
-          type="text"
-          id="phoneNumber"
-          class="w-full text-[16px] px-2 py-[8px] sm:text-[18px] rounded-md focus:ring focus:ring-[#ff6b38] outline-none duration-300 border-[3px] border-transparent focus:bg-transparent focus:border-transparent"
-        />
-        <div
-          id="phoneNumberError"
-          class="paymentFormErrorMsg flex items-center mt-2 space-x-1"
-        ></div>
-      </div>
-
-      <!-- city -->
-      <div class="mb-4">
-        <label
-          for="cityName"
-          class="block text-[14px] sm:text-[16px] text-gray-700 mb-[5px]"
-          >City Name <span class="text-[#ff0000]">*</span></label
-        >
-        <input
-          type="text"
-          id="city"
-          class="w-full text-[16px] px-2 py-[8px] sm:text-[18px] rounded-md focus:ring focus:ring-[#ff6b38] outline-none duration-300 border-[3px] border-transparent focus:bg-transparent focus:border-transparent"
-        />
-        <div
-          id="cityError"
-          class="paymentFormErrorMsg flex items-center mt-2 space-x-1"
-        ></div>
-      </div>
-
-      <!-- state -->
-      <div class="mb-4">
-        <label
-          for="state"
-          class="block text-[14px] sm:text-[16px] text-gray-700 mb-[5px]"
-          >State Name <span class="text-[#ff0000]">*</span></label
-        >
-        <input
-          type="text"
-          id="state"
-          class="w-full text-[16px] px-2 py-[8px] sm:text-[18px] rounded-md focus:ring focus:ring-[#ff6b38] outline-none duration-300 border-[3px] border-transparent focus:bg-transparent focus:border-transparent"
-        />
-        <div
-          id="stateError"
-          class="paymentFormErrorMsg flex items-center mt-2 space-x-1"
-        ></div>
-      </div>
-
-      <!-- address -->
-      <div class="mb-4">
-        <label
-          for="address"
-          class="block text-[14px] sm:text-[16px] text-gray-700 mb-[5px]"
-          >Address <span class="text-[#ff0000]">*</span></label
-        >
-        <input
-          type="text"
-          id="address"
-          class="w-full text-[16px] px-2 py-[8px] sm:text-[18px] rounded-md focus:ring focus:ring-[#ff6b38] outline-none duration-300 border-[3px] border-transparent focus:bg-transparent focus:border-transparent"
-        />
-        <div
-          id="addressError"
-          class="paymentFormErrorMsg flex items-center mt-2 space-x-1"
-        ></div>
-      </div>
-
-      <!-- Payment Methods and Submit Button -->
-      <div class="mb-2">
-        <!-- Payment Method -->
-        <div class="mb-4">
-          <label
-            for="paymentMethod"
-            class="block text-gray-700 font-[500] mb-[6px] text-[15px] sm:text-[16px]"
-            >Payment Method <span class="text-[#ff0000]">*</span></label
-          >
-          <select
-            id="paymentMethod"
-            name="paymentMethod"
-            class="w-full border border-gray-300 rounded px-4 py-3 focus:outline-none focus:ring focus:ring-[#ff6b38] duration-300"
-          >
-            <option value hidden disabled selected>
-              Select Payment Method
-            </option>
-            <option value="card">Credit/Debit Card</option>
-            <option value="paypal">PayPal</option>
-            <option value="cod">Cash on Delivery</option>
-          </select>
-          <p id="paymentError" class="text-sm paymentFormErrorMsg hidden">
-            <i class="ri-error-warning-line"></i> Please select a payment
-            method.
-          </p>
-        </div>
-
-        <button
-          class="w-full my-3 p-3 text-lg font-medium text-white bg-[#3284e8] rounded-md hover:bg-[#0d6efd] transition duration-300"
-        >
-          Submit Payment
-        </button>
-      </div>
-    </form>
-
-    <script>
-      document
-        .getElementById("checkoutForm")
-        .addEventListener("submit", function (e) {
-          e.preventDefault();
-
-          const form = e.target;
-          let isValid = true;
-
-          // Reset errors
-          const errorElements = form.querySelectorAll(".paymentFormErrorMsg");
-          errorElements.forEach((el) => (el.innerHTML = ""));
-
-          // Regex patterns
-          const namePattern = /^[a-zA-Z ]+$/;
-          const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-          const phonePattern = /^[0-9]{10}$/;
-
-          // Validation function
-          const validateInput = (input, pattern, errorMsg) => {
-            const value = input.value.trim();
-            if (!pattern.test(value)) {
-              const errorElement = input.nextElementSibling;
-              errorElement.innerHTML = `<i class="ri-error-warning-line"></i><span>${errorMsg}</span>`;
-              isValid = false;
-            }
-          };
-
-          // Validate first name
-          validateInput(
-            form.firstName,
-            namePattern,
-            "Please enter a valid first name"
-          );
-
-          // Validate last name
-          validateInput(
-            form.lastName,
-            namePattern,
-            "Please enter a valid last name"
-          );
-
-          // Validate email
-          validateInput(
-            form.paymentEmail,
-            emailPattern,
-            "Please enter a valid email address"
-          );
-
-          // Validate phone number
-          validateInput(
-            form.phoneNumber,
-            phonePattern,
-            "Please enter a valid phone number"
-          );
-
-          // Validate city name
-          validateInput(
-            form.city,
-            namePattern,
-            "Please enter a valid city name"
-          );
-
-          // Validate state name
-          validateInput(
-            form.state,
-            namePattern,
-            "Please enter a valid state name"
-          );
-
-          // Validate address (non-empty check)
-          if (form.address.value.trim() === "") {
-            const errorElement = form.address.nextElementSibling;
-            errorElement.innerHTML = `<i class="ri-error-warning-line"></i><span>Please enter a valid address</span>`;
-            isValid = false;
-          }
-
-          // Validate payment method
-          if (form.paymentMethod.value === "") {
-            const errorElement = form.querySelector("#paymentError");
-            errorElement.classList.remove("hidden");
-            isValid = false;
-          }
-
-          // If form is valid, you can proceed with form submission
-          if (isValid) {
-            form.submit();
-          }
-        });
-    </script>
+      <!-- Orders List -->
+      <div id="ordersContainer" class="space-y-4"></div>
+    </div>
   </body>
 </html>
