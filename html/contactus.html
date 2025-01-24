@@ -303,9 +303,10 @@
       </div>
     </div>
 
-    <!-- toast notification -->
+    <!-- Toast Container -->
     <div
-      class="toastNotify z-50 fixed -top-1/2 left-1/2 -translate-x-1/2 max-w-[380px] w-full"
+      id="toastContainer"
+      class="fixed top-10 left-1/2 -translate-x-1/2 z-50 flex flex-col space-y-4"
     ></div>
 
     <section
@@ -328,7 +329,7 @@
         <div class="mb-5">
           <input
             type="text"
-            class="w-full text-[16px] p-3 sm:text-[18px] bg-white rounded-md focus:ring focus:ring-[#ff6b38] outline-none duration-300 border-[3px] border-transparent focus:bg-transparent focus:border-transparent"
+            class="w-full text-[16px] p-3 sm:text-[18px] bg-white rounded focus:ring focus:ring-[#ff6b38] outline-none duration-300 border-[3px] border-blue-100 focus:bg-transparent focus:border-transparent"
             id="contactUserName"
             placeholder="Name"
           />
@@ -342,7 +343,7 @@
         <div class="mb-5">
           <input
             type="text"
-            class="w-full text-[16px] p-3 sm:text-[18px] bg-white rounded-md focus:ring focus:ring-[#ff6b38] outline-none duration-300 focus:bg-transparent border-[3px] border-transparent focus:border-transparent"
+            class="w-full text-[16px] p-3 sm:text-[18px] bg-white rounded focus:ring focus:ring-[#ff6b38] outline-none duration-300 focus:bg-transparent border-[3px] border-blue-100 focus:border-transparent"
             id="contactEmail"
             placeholder="Email"
           />
@@ -357,7 +358,7 @@
             placeholder="Message"
             id="message"
             rows="7"
-            class="w-full text-[16px] resize-none  p-3 sm:text-[18px] bg-white rounded-md focus:ring focus:ring-[#ff6b38] outline-none duration-300 border-[3px] border-transparent focus:bg-transparent focus:border-transparent h-full overflow-auto"
+            class="w-full text-[16px] resize-none p-3 sm:text-[18px] bg-white rounded focus:ring focus:ring-[#ff6b38] outline-none duration-300 border-[3px] border-blue-100 focus:bg-transparent focus:border-transparent h-full overflow-auto"
           ></textarea>
           <div
             id="messageError"
