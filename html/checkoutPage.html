@@ -361,14 +361,13 @@
       </div>
     </div>
 
-    <!-- toast notification -->
+    <!-- Toast Container -->
     <div
-      class="toastNotify z-50 fixed -top-1/2 left-1/2 -translate-x-1/2 max-w-[380px] w-full"
+      id="toastContainer"
+      class="fixed top-10 left-1/2 -translate-x-1/2 z-50 flex flex-col space-y-4"
     ></div>
 
-    <section
-      class="flex mt-[16px] sm:mt-[100px] items-center justify-center my-8"
-    >
+    <section class="mt-[16px] sm:mt-[100px] max-w-[1400px] mx-auto my-8">
       <div class="container mx-auto">
         <div class="flex flex-col-reverse lg:flex-row">
           <!-- Billing Information -->
@@ -657,6 +656,6 @@
     <script src="../js/search.js"></script>
     <script type="module" src="../js/checkout.js"></script>
     <script src="../js/script.js"></script>
-    <!-- <script type="module" src="../js/addToCart.js"></script> -->
+    <script type="module" src="../js/addToCart.js"></script>
   </body>
 </html>
