@@ -1,5 +1,4 @@
-import successToast from "../assets/utility/successToast.js";
-import errorToast from "../assets/utility/errorToast.js";
+import { showToast } from "../assets/utility/showToast.js";
 
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("contactForm");
@@ -59,12 +58,12 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         if (!isValid) {
-            errorToast("Please fill in all the required fields.");
+            showToast("Please fill in all the required fields.", "error");
             return;
         }
 
-        successToast(
-            "Your message has been sent successfully. We will get back to you soon."
+        showToast(
+            "Your message has been sent successfully. We will get back to you soon.", "success"
         );
         clearInput();
     });
