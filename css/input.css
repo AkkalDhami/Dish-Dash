@@ -47,17 +47,8 @@ html {
 }
 
 .toastLine::after {
-  width: 20%;
+  width: 0%;
   animation: fullWidth 3s linear forwards;
-}
-
-@keyframes fullWidth {
-  from {
-    width: 100%;
-  }
-  to {
-    width: 0%;
-  }
 }
 
 .toastBox {
@@ -89,6 +80,18 @@ html {
     color: #ff6b38;
     font-size: 16px;
     background: transparent;
+  }
+  .toastAfterLine {
+    animation: fullWidth 3s linear forwards;
+  }
+}
+
+@keyframes fullWidth {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0%;
   }
 }
 
