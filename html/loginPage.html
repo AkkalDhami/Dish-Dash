@@ -180,6 +180,12 @@
       class="overlay overlayActive bg-[#6a6666ba] fixed top-0 left-0 w-full h-full z-[115]"
     ></div>
 
+    <!-- Toast Container -->
+    <div
+      id="toastContainer"
+      class="fixed top-10 left-1/2 -translate-x-1/2 z-50 flex flex-col space-y-4"
+    ></div>
+
     <!-- Mobile Bottom Navigation -->
     <div class="fixed bottom-0 left-0 right-0 bg-white md:hidden z-50">
       <div
@@ -298,6 +304,7 @@
         </a>
       </div>
     </div>
+
     <section
       class="flex mt-[16px] sm:mt-[100px] items-center justify-center my-8"
     >
@@ -318,7 +325,7 @@
         <div class="mb-5">
           <input
             type="email"
-            class="w-full text-[16px] p-3 sm:text-[18px] bg-white rounded-md focus:ring focus:ring-[#ff6b38] outline-none ] duration-300"
+            class="w-full text-[16px] p-3 sm:text-[18px] bg-white rounded focus:ring focus:ring-[#ff6b38] outline-none duration-300 border-[3px] border-blue-100 focus:bg-transparent focus:border-transparent"
             id="login-Email"
             placeholder="Your Email"
           />
@@ -330,12 +337,12 @@
           <div class="relative">
             <input
               type="password"
-              class="w-full p-3 sm:text-[18px] text-[16px] bg-white rounded-md focus:ring focus:ring-[#ff6b38] outline-none duration-300"
+              class="w-full p-3 sm:text-[18px] text-[16px] bg-white rounded focus:ring focus:ring-[#ff6b38] outline-none duration-300 border-[3px] border-blue-100 focus:bg-transparent focus:border-transparent"
               id="login-Password"
               placeholder="Your Password"
             />
-
             <i
+              id="password-toggle-icon"
               class="fa-regular fa-eye absolute right-4 top-1/2 transform -translate-y-1/2 sm:text-xl text-[18px] text-gray-600 cursor-pointer"
             ></i>
           </div>
@@ -455,6 +462,7 @@
 
     <script src="../js/search.js"></script>
     <script src="../js/script.js"></script>
+    <script type="module" src="../js/loginPage.js"></script>
     <script type="module" src="../js/addToCart.js"></script>
   </body>
 </html>
