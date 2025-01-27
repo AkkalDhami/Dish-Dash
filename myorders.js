@@ -2,37 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const ordersContainer = document.getElementById("ordersContainer");
 
     // Fetch orders from localStorage (mock data if empty)
-    let myOrders = JSON.parse(localStorage.getItem("myOrders")) || [
-        {
-            orderId: "12345",
-            items: [
-                { name: "Laptop", image: "https://via.placeholder.com/80", price: 1000, quantity: 1 },
-                { name: "Headphones", image: "https://via.placeholder.com/80", price: 50, quantity: 2 }
-            ],
-            totalAmount: 1100,
-            paymentMethod: "Credit Card",
-            orderStatus: "Pending"
-        },
-        {
-            orderId: "67890",
-            items: [
-                { name: "Smartphone", image: "https://via.placeholder.com/80", price: 800, quantity: 1 }
-            ],
-            totalAmount: 800,
-            paymentMethod: "PayPal",
-            orderStatus: "Cancelled"
-        },
-        {
-            orderId: "13579",
-            items: [
-                { name: "Tablet", image: "https://via.placeholder.com/80", price: 600, quantity: 1 }
-            ],
-            totalAmount: 600,
-            paymentMethod: "UPI",
-            orderStatus: "Completed"
-        }
-    ];
-
+    let myOrders = JSON.parse(localStorage.getItem("myOrders")) || [];
     // Save mock data to localStorage for demonstration
     localStorage.setItem("myOrders", JSON.stringify(myOrders));
 
