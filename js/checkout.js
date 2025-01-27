@@ -233,8 +233,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         cancelClearCartItems.addEventListener("click", () => {
-          // window.location.href = "../html/orderPage.html";
-          window.location.href = "../test2.html";
+          window.location.href = "../html/orderPage.html";
         });
 
         const cartItems = JSON.parse(localStorage.getItem("myCart")) || [];
@@ -245,14 +244,11 @@ document.addEventListener("DOMContentLoaded", () => {
           return;
         }
 
-
         // Validate the user-provided payment method
         if (!pmmthd || typeof pmmthd !== "string") {
           showToast("Invalid payment method. Please try again.", "error");
           return;
         }
-
-
 
         // Create a new order object
         const newOrder = {
@@ -260,7 +256,7 @@ document.addEventListener("DOMContentLoaded", () => {
           items: [...cartItems],
           totalAmount: cartItems.reduce((total, item) => total + item.price * item.quantity, 0),
           paymentMethod: pmmthd,
-          orderStatus: "Completed",
+          orderStatus: "Pending",
         };
 
         myOrders.push(newOrder);
