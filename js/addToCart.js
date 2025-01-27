@@ -47,8 +47,8 @@ document.addEventListener("DOMContentLoaded", () => {
         if (e.target.classList.contains("addToCart")) {
           const productInCart = cart.find((product) => product._id === id);
 
+          showToast("Product added to your cart!", "success");
           if (productInCart) {
-            showToast("Product added to your cart!", "success");
             productInCart.quantity += quantity;
           } else {
             const productToAdd = FoodList.find((product) => product._id === id);
@@ -65,6 +65,8 @@ document.addEventListener("DOMContentLoaded", () => {
           getCartLength();
           console.log("Cart updated:", cart);
         }
+
+
       });
     });
   };
