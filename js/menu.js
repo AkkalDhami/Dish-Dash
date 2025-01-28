@@ -41,7 +41,7 @@ function displayMenu() {
   });
 
   food_list.forEach((food, ind) => {
-    let { _id, category, description, image, name, price, rating } = food;
+    let { _id, category, description, image, name, selling_price, rating } = food;
     item_container.innerHTML += `
    <div data-category="${category}"
             id="${_id}"
@@ -61,9 +61,9 @@ function displayMenu() {
               <h4 class="text-[15px]">${description}</h4>
               <div class="flex mt-2 w-full justify-between">
                 <div class="flex gap-4 items-center">
-                  <p class="text-[18px] font-[500]">$${price}</p>
+                  <p class="text-[18px] font-[500]">$${selling_price}</p>
                   <p class="text-[16px] text-[#727374] font-[400] line-through">
-                    $${price + 5}
+                    $${selling_price + 5}
                   </p>
                 </div>
                 <h3><i class="ri-star-fill text-[#ff6b38]"></i> | ${rating}</h3>
