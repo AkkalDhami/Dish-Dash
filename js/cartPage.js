@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let totalPrice = 0;
 
     cartItems.forEach((item, ind) => {
-      let { _id, rating, image, name, price, quantity } = item;
+      let { _id, rating, image, name, selling_price, quantity } = item;
 
       cartItemsContainer.innerHTML += `
     <div id="${_id}" class="itemDiv max-w-[255px] hover:shadow-[0px_0px_11px_3px_#c0c7cd]  sm:max-w-full flex space-y-4 items-start sm:items-center flex-col  duration-300 transition-all  sm:flex-row sm:justify-between bg-[#f6f6f6] hover:bg-[#fff] shadow-lg rounded-lg p-4">
@@ -37,10 +37,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 <i class="ri-star-fill text-[#ff6b38]"></i> | ${rating}
               </p>
               <p class="text-gray-800 text-[16px]  font-[500] mt-1">
-                Price: $${price.toFixed(2)}
+                Price: $${selling_price.toFixed(2)}
               </p>
               <p class="text-gray-800  text-[16px] font-[500] mt-1">
-                Subtotal: $${(price * quantity).toFixed(2)}
+                Subtotal: $${(selling_price * quantity).toFixed(2)}
               </p>
             </div>
           </div>
