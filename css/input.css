@@ -54,6 +54,7 @@ html {
 .toastBox {
   @apply flex  items-center w-full px-2  py-4 justify-between overflow-hidden shadow-lg bg-white rounded-md z-50 absolute after:absolute after:left-0 after:bottom-0 after:w-[0%] after:h-[4px] after:bg-[#30e522] duration-1000 transition-all after:duration-1000;
 }
+
 @layer utilities {
   /* all 0.6s cubic-bezier(0.6, 0.15, 0.13, 1.1) */
   .errorIcon {
@@ -83,6 +84,73 @@ html {
   }
   .toastAfterLine {
     animation: fullWidth 3s linear forwards;
+  }
+  .inStock {
+    background-color: #1edb10;
+    animation: blimblim 1s ease-in-out infinite;
+  }
+  .outStock {
+    background-color: #ff0000;
+    animation: blimblim2 1s ease-in-out infinite;
+  }
+  .tabActive {
+    color: #fff;
+    background-color: #0d6efd;
+    &:hover {
+      background-color: #3284e8;
+  }
+}
+
+@keyframes blimblim {
+  0% {
+    transform: scale(1.02);
+    box-shadow: 0 0 15px rgba(9, 223, 48, 0.991);
+    -webkit-transform: scale(1.02);
+    -moz-transform: scale(1.02);
+    -ms-transform: scale(1.02);
+    -o-transform: scale(1.02);
+  }
+  50% {
+    transform: scale(1.03);
+    box-shadow: 0 0 30px rgb(7, 225, 47);
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.3);
+    -ms-transform: scale(1.03);
+    -o-transform: scale(1.03);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 15px rgb(12, 202, 37);
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+  }
+}
+@keyframes blimblim2 {
+  0% {
+    transform: scale(1.02);
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+    -webkit-transform: scale(1.02);
+    -moz-transform: scale(1.02);
+    -ms-transform: scale(1.02);
+    -o-transform: scale(1.02);
+  }
+  50% {
+    transform: scale(1.03);
+    box-shadow: 0 0 30px rgba(255, 0, 0, 1);
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.3);
+    -ms-transform: scale(1.03);
+    -o-transform: scale(1.03);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
   }
 }
 
