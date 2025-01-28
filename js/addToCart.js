@@ -1,5 +1,5 @@
 import { getCartLength } from "./getCartLength.js";
-import {showToast} from "../assets/utility/showToast.js";
+import { showToast } from "../assets/utility/showToast.js";
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -27,24 +27,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
       item.addEventListener("click", (e) => {
         const cart = getCart();
-        const foodQuantity = item.querySelector(".foodQuantity");
-        let quantity = parseInt(foodQuantity.getAttribute("data-quantity")) || 1;
+        let quantity = 1;
 
-        if (e.target.classList.contains("increaseQuantity")) {
-
-          quantity++;
-        } else if (e.target.classList.contains("decreaseQuantity")) {
-          quantity--;
-          if (quantity < 1) {
-            showToast("Enter a valid quantity", "error");
-            return;
-          }
-        }
-
-        foodQuantity.innerHTML = quantity;
-        foodQuantity.setAttribute("data-quantity", quantity);
 
         if (e.target.classList.contains("addToCart")) {
+
           const productInCart = cart.find((product) => product._id === id);
 
           showToast("Product added to your cart!", "success");
