@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DishDash - Food Delivery Website, Find Your Favourite Dishes</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/output.css" />
+    <style>
+      @media (max-width: 768px) {
+        section {
+          padding: 1rem;
+        }
+        .grid {
+          gap: 2rem;
+        }
+        .text-3xl {
+          font-size: 1.75rem;
+        }
+        .text-lg {
+          font-size: 1rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body class="font-['Poppins']">
+    <!-- Navbar -->
+    <header class="md:fixed w-full md:top-0 md:left-0 z-50 bg-[#f6f6f6]">
+      <nav
+        class="container mx-auto px-6 py-4 flex items-center justify-between"
+      >
+        <div class="text-3xl font-bold text-[#0d6efd]">DishDash</div>
+        <div class="hidden md:flex items-center space-x-8">
+          <a
+            href="#"
+            data-nav-link
+            class="nav-link text-gray-600 hover:text-[#3284e8] relative text-[18px]"
+            data-active="true"
+            >Home</a
+          >
+          <a
+            href="#"
+            data-nav-link
+            class="nav-link text-gray-600 hover:text-[#3284e8] relative text-[18px]"
+            >Food</a
+          >
+
+          <a
+            href="#"
+            data-nav-link
+            class="nav-link text-gray-600 hover:text-[#3284e8] relative text-[18px]"
+            >Contact us</a
+          >
+        </div>
+        <div class="hidden md:flex items-center space-x-4">
+          <button
+            id="searchButton"
+            class="p-2 text-[22px] hover:text-[#3284e8]"
+          >
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+          <button
+            id="searchButton"
+            class="p-2 text-[22px] hover:text-[#3284e8]"
+          >
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+          <button
+            data-nav-link
+            class="nav-link p-2 relative hover:text-[#3284e8]"
+            onclick="window.location.href=`../html/cartPage.html`"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-7 w-7"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+              />
+            </svg>
+            <span
+              class="cartItems absolute w-[23px] h-[23px] rounded-full text-white top-0 -right-1 bg-[#3284e8] text-[12px] flex items-center justify-center"
+              >0</span
+            >
+          </button>
+          <div class="relative inline-block text-left">
+            <div>
+              <button
+                class="inline-flex justify-center items-center gap-2 w-full rounded-full shadow-sm px-4 py-3 bg-[#0d6efd] text-[18px] text-white hover:bg-[#3284e8]"
+                id="menu-button"
+                aria-expanded="true"
+                aria-haspopup="true"
+              >
+                <i class="fa-solid fa-circle-user"></i>
+                <span class="text-[16px]"> My Profile</span>
+                <svg
+                  class="ml-2 h-5 w-5 rotate"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  aria-hidden="true"
+                  id="chevron-icon"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </button>
+            </div>
+            <div
+              class="dropdown-content origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+              role="menu"
+              aria-orientation="vertical"
+              aria-labelledby="menu-button"
+              tabindex="-1"
+            >
+              <div class="py-1" role="none">
+                <a
+                  href="./html/loginPage.html"
+                  class="text-gray-700 text-[16px] flex items-center gap-2 px-4 py-3 hover:bg-[#f6f6f6]"
+                  role="menuitem"
+                  tabindex="-1"
+                  id="menu-item-0"
+                >
+                  <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                  <span>Login</span>
+                </a>
+                <a
+                  href="./html/signupPage.html"
+                  class="text-gray-700 text-[16px] flex items-center gap-2 px-4 py-3 text-sm hover:bg-[#f6f6f6]"
+                  role="menuitem"
+                  tabindex="-1"
+                  id="menu-item-1"
+                >
+                  <i class="fa-solid fa-user-plus"></i>
+                  <span>Signup</span>
+                </a>
+                <a
+                  href="#"
+                  class="text-gray-700 text-[16px] flex items-center gap-2 px-4 py-3 text-sm hover:bg-[#f6f6f6]"
+                  role="menuitem"
+                  tabindex="-1"
+                  id="menu-item-2"
+                >
+                  <i class="fa-solid fa-user"></i>
+                  <span> My Profile</span>
+                </a>
+                <a
+                  href="#"
+                  class="text-gray-700 text-[16px] flex items-center gap-2 px-4 py-3 text-sm hover:bg-[#f6f6f6]"
+                  role="menuitem"
+                  tabindex="-1"
+                  id="menu-item-3"
+                >
+                  <i class="fa-solid fa-box-open"></i>
+                  <span>My Orders</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <div
+      id="searchResultsContainer"
+      class="fixed -top-1/2 left-1/2 -translate-x-1/2 -ty1/2 max-w-[1200px] w-full z-[117] duration-300"
+    >
+      <div class="searchBox rounded-lg relative bg-[#f6f6f6] px-4 py-5 w-full">
+        <i
+          class="ri-search-line absolute top-[30px] left-[23px] text-[18px] sm:text-[22px]"
+        ></i>
+        <input
+          type="search"
+          placeholder="Search Foods, Menu.."
+          class="w-full p-[12px_20px_12px_30px] sm:p-[15px_22px_15px_35px] rounded-md outline-0 focus:ring focus:ring-[#ff6b38] duration-300"
+        />
+      </div>
+      <div id="searchResults"></div>
+    </div>
+
+    <div
+      class="overlay overlayActive bg-[#6a6666ba] fixed top-0 left-0 w-full h-full z-[115]"
+    ></div>
+
+    <section class="mt-[100px] container mx-auto px-4 py-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 p-6">
+        <!-- Image Section -->
+        <div class="flex justify-center">
+          <img
+            id="foodImage"
+            src="../assets/images/food_1.png"
+            alt="Food Item"
+            class="w-full max-w-md object-cover rounded-lg shadow-md"
+          />
+        </div>
+
+        <!-- Details Section -->
+        <div class="space-y-4 text-gray-800">
+          <h1 id="itemName" class="text-2xl font-[500]">Delicious Pizza</h1>
+          <div id="itemRating" class="flex items-center gap-3"></div>
+
+          <div id="itemPrice" class="flex items-center gap-4"></div>
+
+          <p id="itemStock" class="text-[18px] text-gray-700"></p>
+
+          <!-- Quantity Section -->
+          <div>
+            <label for="quantity" class="block mb-2 text-gray-600 font-medium">
+              Quantity:
+            </label>
+            <div class="flex items-center gap-3">
+              <button
+                onclick="changeQuantity(-1)"
+                class="bg-[#f6f6f6] text-gray-800 px-4 py-1.5 rounded-lg shadow-md hover:bg-gray-300 transition text-lg"
+              >
+                -
+              </button>
+              <input
+                id="quantity"
+                type="number"
+                value="1"
+                min="1"
+                max="10"
+                class="w-16 text-center py-[7px] bg-gray-100 border border-gray-300 rounded-lg text-gray-800 focus:outline-none"
+                readonly
+              />
+              <button
+                onclick="changeQuantity(1)"
+                class="bg-gray-200 text-gray-800 text-lg px-4 py-1.5 rounded-lg shadow-md hover:bg-gray-300 transition"
+              >
+                +
+              </button>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="flex flex-col sm:flex-row gap-4">
+            <button
+              class="bg-[#0d6efd] sm:w-[300px] hover:bg-transparent border-2 hover:text-gray-800 border-[#0d6efd] text-white px-6 py-3.5 rounded-full shadow-md flex justify-center items-center space-x-2 transition"
+            >
+              <span>Add to Cart</span> <i class="ri-shopping-bag-line"></i>
+            </button>
+          </div>
+
+          <!-- Tabs -->
+          <div class="tabs mt-6 flex gap-4">
+            <button
+              data-tab="description"
+              class="tabActive bg-gray-200 px-4 py-2 rounded-lg shadow-md text-gray-800 transition"
+            >
+              Description
+            </button>
+            <button
+              data-tab="reviews"
+              class="bg-gray-200 px-4 py-2 rounded-lg shadow-md text-gray-800 transition"
+            >
+              Reviews
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- Tab Content -->
+      <div class="mt-6 flex items-center justify-center w-full">
+        <div id="itemReviews" class="flex-col flex space-y-3">
+         </div>
+        <div
+          id="itemDescription"
+          data-tab="description"
+          class="tabContent p-6 max-w-[700px]"
+        ></div>
+      </div>
+    </section>
+
+    <!-- Script -->
+    <script>
+      function changeQuantity(amount) {
+        const quantityInput = document.getElementById("quantity");
+        let quantity = parseInt(quantityInput.value, 10) || 1;
+        quantity = Math.max(1, Math.min(10, quantity + amount));
+        quantityInput.value = quantity;
+      }
+    </script>
+
+    <script src="../js/foodDetails.js"></script>
+  </body>
+</html>
