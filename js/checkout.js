@@ -46,8 +46,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     carts.forEach((item) => {
-      let { _id, rating, image, name, price, quantity } = item;
-      const itemTotal = price * quantity;
+      let { _id, rating, image, name, selling_price, quantity } = item;
+      const itemTotal = selling_price * quantity;
       totalAmount += itemTotal;
       selectedProducts.innerHTML += `
                <div id="${_id}" class="flex justify-between mb-4 rounded-md p-4 bg-[#f6f6f6]">
@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
                       Quantity: ${quantity}
                       </p>
                       <p class="text-gray-600 text-[13.5px] sm:text-[15px]">
-                        Price: $${price.toFixed(2)}
+                        Price: $${selling_price.toFixed(2)}
                       </p>
                     </div>
                   </div>
