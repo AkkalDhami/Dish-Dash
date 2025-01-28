@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
         `;
 
       totalQuantity += item.quantity;
-      totalPrice += item.quantity * item.price;
+      totalPrice += item.quantity * item.selling_price;
     });
 
     totalQuantityEl.textContent = totalQuantity;
