@@ -41,9 +41,10 @@ function displayMenu() {
   });
 
   food_list.forEach((food, ind) => {
-    let { _id, category, description, image, name, selling_price, rating } = food;
+    let { _id, category, description, image, name, selling_price, original_price, rating } = food;
     item_container.innerHTML += `
-   <div data-category="${category}"
+  <div
+            data-category="${category}"
             id="${_id}"
             class="foodItem bg-[#f6f6f6] p-5 rounded-md hover:shadow-lg hover:bg-[#ffffff] duration-300 w-[300px] group overflow-hidden"
           >
@@ -63,7 +64,7 @@ function displayMenu() {
                 <div class="flex gap-4 items-center">
                   <p class="text-[18px] font-[500]">$${selling_price}</p>
                   <p class="text-[16px] text-[#727374] font-[400] line-through">
-                    $${selling_price + 5}
+                    $${original_price}
                   </p>
                 </div>
                 <h3><i class="ri-star-fill text-[#ff6b38]"></i> | ${rating}</h3>
@@ -72,25 +73,18 @@ function displayMenu() {
             <div
               class="mt-2 flex flex-col space-y-3 justify-between w-full items-center"
             >
-              <div
-                class="px-4 flex items-center py-1 duration-300 border border-[#0d6efd] text-white text-[16px] sm:text-[16px] w-full justify-between rounded"
-              >
-                <button
-                  class="decreaseQuantity text-black bg-[#f6f6f6] text-[18px] px-2 py-1 rounded-sm"
-                >
-                  <i class="decreaseQuantity ri-subtract-line"></i>
-                </button>
-                <p class="foodQuantity text-[15px] text-black font-[400]">1</p>
-                <button
-                  class="increaseQuantity px-2 bg-[#f6f6f6] text-black text-[16px] py-1 rounded-sm"
-                >
-                  <i class="increaseQuantity ri-add-large-fill"></i>
-                </button>
-              </div>
               <button
-                class="addToCart px-4 flex items-center gap-4 py-[10px] bg-[#ff6b38] hover:bg-[#eb5f2f] rounded text-white text-[16px] sm:text-[16px] duration-300 justify-center w-full"
+                class="addToCart px-4 flex items-center gap-4 py-[12px] bg-[#0d6efd] hover:bg-[#3284e8] rounded-full text-white text-[16px] sm:text-[16px] duration-300 justify-center w-full"
               >
                 Add to Cart <i class="ri-shopping-bag-line"></i>
+              </button>
+              <button onclick="window.location.href='../html/foodDetails.html?id=${_id}&category=${category}'"
+                class="viewMore px-4 flex items-center gap-4 py-[10px] border-2 border-[#eb5f2f] hover:bg-[#ff6b38] text-gray-800 rounded-full hover:text-white text-[16px] group/viewMore sm:text-[16px] duration-300 justify-center w-full"
+              >
+                View More
+                <i
+                  class="ri-arrow-right-line group-hover/viewMore:translate-x-2 duration-100"
+                ></i>
               </button>
             </div>
           </div>
