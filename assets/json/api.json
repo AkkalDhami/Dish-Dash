@@ -38,289 +38,577 @@
             "_id": "1",
             "name": "Greek salad",
             "image": "../../assets/images/food_1.png",
-            "price": 12,
+            "selling_price": 12,
+            "original_price": 15,
             "description": "Food provides essential nutrients for overall health and well-being",
             "category": "Salad",
-            "rating": 4.5
+            "rating": 4.5,
+            "stock": 50,
+            "reviews": [
+                {
+                    "username": "john doe",
+                    "rating": 4.5,
+                    "comment": "Good but could use more seasoning."
+                }
+            ]
         },
         {
             "_id": "2",
             "name": "Veg salad",
             "image": "../../assets/images/food_2.png",
-            "price": 18,
+            "selling_price": 18,
+            "original_price": 20,
             "description": "Food provides essential nutrients for overall health and well-being",
             "category": "Salad",
-            "rating": 4.0
+            "rating": 4.0,
+            "stock": 30,
+            "reviews": [
+                {
+                    "username": "john doe",
+                    "rating": 4.5,
+                    "comment": "Good but could use more seasoning."
+                }
+            ]
         },
         {
             "_id": "3",
             "name": "Clover Salad",
             "image": "../../assets/images/food_3.png",
-            "price": 16,
+            "selling_price": 16,
+            "original_price": 18,
             "description": "Food provides essential nutrients for overall health and well-being",
             "category": "Salad",
-            "rating": 4.2
+            "rating": 4.2,
+            "stock": 40,
+            "reviews": [
+                {
+                    "username": "john doe",
+                    "rating": 4.5,
+                    "comment": "Good but could use more seasoning."
+                }
+            ]
         },
         {
             "_id": "4",
             "name": "Chicken Salad",
             "image": "../../assets/images/food_4.png",
-            "price": 24,
+            "selling_price": 24,
+            "original_price": 28,
             "description": "Food provides essential nutrients for overall health and well-being",
             "category": "Salad",
-            "rating": 4.8
+            "rating": 4.8,
+            "stock": 25,
+            "reviews": [
+                {
+                    "username": "john doe",
+                    "rating": 4.5,
+                    "comment": "Good but could use more seasoning."
+                }
+            ]
         },
         {
             "_id": "5",
             "name": "Lasagna Rolls",
             "image": "../../assets/images/food_5.png",
-            "price": 14,
+            "selling_price": 14,
+            "original_price": 16,
             "description": "Food provides essential nutrients for overall health and well-being",
             "category": "Rolls",
-            "rating": 4.1
+            "rating": 4.1,
+            "stock": 35,
+            "reviews": [
+                {
+                    "username": "john doe",
+                    "rating": 4.5,
+                    "comment": "Good but could use more seasoning."
+                }
+            ]
         },
         {
             "_id": "6",
             "name": "Peri Peri Rolls",
             "image": "../../assets/images/food_6.png",
-            "price": 12,
+            "selling_price": 12,
+            "original_price": 14,
             "description": "Food provides essential nutrients for overall health and well-being",
             "category": "Rolls",
-            "rating": 4.3
+            "rating": 4.3,
+            "stock": 45,
+            "reviews": [
+                {
+                    "username": "john doe",
+                    "rating": 4.5,
+                    "comment": "Good but could use more seasoning."
+                }
+            ]
         },
         {
             "_id": "7",
             "name": "Chicken Rolls",
             "image": "../../assets/images/food_7.png",
-            "price": 20,
+            "selling_price": 20,
+            "original_price": 22,
             "description": "Food provides essential nutrients for overall health and well-being",
             "category": "Rolls",
-            "rating": 4.7
+            "rating": 4.7,
+            "stock": 20,
+            "reviews": [
+                {
+                    "username": "john doe",
+                    "rating": 4.5,
+                    "comment": "Good but could use more seasoning."
+                }
+            ]
         },
         {
             "_id": "8",
             "name": "Veg Rolls",
             "image": "../../assets/images/food_8.png",
-            "price": 15,
+            "selling_price": 15,
+            "original_price": 17,
             "description": "Food provides essential nutrients for overall health and well-being",
             "category": "Rolls",
-            "rating": 4.0
+            "rating": 4.0,
+            "stock": 50,
+            "reviews": [
+                {
+                    "username": "john doe",
+                    "rating": 4.5,
+                    "comment": "Good but could use more seasoning."
+                }
+            ]
         },
         {
             "_id": "9",
             "name": "Ripple Ice Cream",
             "image": "../../assets/images/food_9.png",
-            "price": 14,
+            "selling_price": 14,
+            "original_price": 16,
             "description": "Food provides essential nutrients for overall health and well-being",
             "category": "Deserts",
-            "rating": 4.6
+            "rating": 4.6,
+            "stock": 60,
+            "reviews": [
+                {
+                    "username": "john doe",
+                    "rating": 4.5,
+                    "comment": "Good but could use more seasoning."
+                }
+            ]
         },
         {
             "_id": "10",
             "name": "Fruit Ice Cream",
             "image": "../../assets/images/food_10.png",
-            "price": 22,
+            "selling_price": 22,
+            "original_price": 25,
             "description": "Food provides essential nutrients for overall health and well-being",
             "category": "Deserts",
-            "rating": 4.9
+            "rating": 4.9,
+            "stock": 30,
+            "reviews": [
+                {
+                    "username": "john doe",
+                    "rating": 4.5,
+                    "comment": "Good but could use more seasoning."
+                }
+            ]
         },
         {
             "_id": "11",
             "name": "Jar Ice Cream",
             "image": "../../assets/images/food_11.png",
-            "price": 10,
+            "selling_price": 10,
+            "original_price": 12,
             "description": "Food provides essential nutrients for overall health and well-being",
             "category": "Deserts",
-            "rating": 4.3
+            "rating": 4.3,
+            "stock": 40,
+            "reviews": [
+                {
+                    "username": "john doe",
+                    "rating": 4.5,
+                    "comment": "Good but could use more seasoning."
+                }
+            ]
         },
         {
             "_id": "12",
             "name": "Vanilla Ice Cream",
             "image": "../../assets/images/food_12.png",
-            "price": 12,
+            "selling_price": 12,
+            "original_price": 14,
             "description": "Food provides essential nutrients for overall health and well-being",
             "category": "Deserts",
-            "rating": 4.5
+            "rating": 4.5,
+            "stock": 50,
+            "reviews": [
+                {
+                    "username": "john doe",
+                    "rating": 4.5,
+                    "comment": "Good but could use more seasoning."
+                }
+            ]
         },
         {
             "_id": "13",
             "name": "Chicken Sandwich",
             "image": "../../assets/images/food_13.png",
-            "price": 12,
+            "selling_price": 12,
+            "original_price": 14,
             "description": "Food provides essential nutrients for overall health and well-being",
             "category": "Sandwich",
-            "rating": 4.4
+            "rating": 4.4,
+            "stock": 35,
+            "reviews": [
+                {
+                    "username": "john doe",
+                    "rating": 4.5,
+                    "comment": "Good but could use more seasoning."
+                }
+            ]
         },
         {
             "_id": "14",
             "name": "Vegan Sandwich",
             "image": "../../assets/images/food_14.png",
-            "price": 18,
+            "selling_price": 18,
+            "original_price": 20,
             "description": "Food provides essential nutrients for overall health and well-being",
             "category": "Sandwich",
-            "rating": 4.2
+            "rating": 4.2,
+            "stock": 25,
+            "reviews": [
+                {
+                    "username": "john doe",
+                    "rating": 4.5,
+                    "comment": "Good but could use more seasoning."
+                }
+            ]
         },
         {
             "_id": "15",
             "name": "Grilled Sandwich",
             "image": "../../assets/images/food_15.png",
-            "price": 16,
+            "selling_price": 16,
+            "original_price": 18,
             "description": "Food provides essential nutrients for overall health and well-being",
             "category": "Sandwich",
-            "rating": 4.6
+            "rating": 4.6,
+            "stock": 30,
+            "reviews": [
+                {
+                    "username": "john doe",
+                    "rating": 4.5,
+                    "comment": "Good but could use more seasoning."
+                }
+            ]
         },
         {
             "_id": "16",
             "name": "Bread Sandwich",
             "image": "../../assets/images/food_16.png",
-            "price": 24,
+            "selling_price": 24,
+            "original_price": 28,
             "description": "Food provides essential nutrients for overall health and well-being",
             "category": "Sandwich",
-            "rating": 4.7
+            "rating": 4.7,
+            "stock": 20,
+            "reviews": [
+                {
+                    "username": "john doe",
+                    "rating": 4.5,
+                    "comment": "Good but could use more seasoning."
+                }
+            ]
         },
         {
             "_id": "17",
             "name": "Cup Cake",
             "image": "../../assets/images/food_17.png",
-            "price": 14,
+            "selling_price": 14,
+            "original_price": 16,
             "description": "Food provides essential nutrients for overall health and well-being",
             "category": "Cake",
-            "rating": 4.5
+            "rating": 4.5,
+            "stock": 40,
+            "reviews": [
+                {
+                    "username": "john doe",
+                    "rating": 4.5,
+                    "comment": "Good but could use more seasoning."
+                }
+            ]
         },
         {
             "_id": "18",
             "name": "Vegan Cake",
             "image": "../../assets/images/food_18.png",
-            "price": 12,
+            "selling_price": 12,
+            "original_price": 14,
             "description": "Food provides essential nutrients for overall health and well-being",
             "category": "Cake",
-            "rating": 4.3
+            "rating": 4.3,
+            "stock": 50,
+            "reviews": [
+                {
+                    "username": "john doe",
+                    "rating": 4.5,
+                    "comment": "Good but could use more seasoning."
+                }
+            ]
         },
         {
             "_id": "19",
             "name": "Butterscotch Cake",
             "image": "../../assets/images/food_19.png",
-            "price": 20,
+            "selling_price": 20,
+            "original_price": 22,
             "description": "Food provides essential nutrients for overall health and well-being",
             "category": "Cake",
-            "rating": 4.8
+            "rating": 4.8,
+            "stock": 30,
+            "reviews": [
+                {
+                    "username": "john doe",
+                    "rating": 4.5,
+                    "comment": "Good but could use more seasoning."
+                }
+            ]
         },
         {
             "_id": "20",
             "name": "Sliced Cake",
             "image": "../../assets/images/food_20.png",
-            "price": 15,
+            "selling_price": 15,
+            "original_price": 17,
             "description": "Food provides essential nutrients for overall health and well-being",
             "category": "Cake",
-            "rating": 4.6
+            "rating": 4.6,
+            "stock": 40,
+            "reviews": [
+                {
+                    "username": "john doe",
+                    "rating": 4.5,
+                    "comment": "Good but could use more seasoning."
+                }
+            ]
         },
         {
             "_id": "21",
             "name": "Garlic Mushroom",
             "image": "../../assets/images/food_21.png",
-            "price": 14,
+            "selling_price": 14,
+            "original_price": 16,
             "description": "Food provides essential nutrients for overall health and well-being",
             "category": "Pure Veg",
-            "rating": 4.4
+            "rating": 4.4,
+            "stock": 35,
+            "reviews": [
+                {
+                    "username": "john doe",
+                    "rating": 4.5,
+                    "comment": "Good but could use more seasoning."
+                }
+            ]
         },
         {
             "_id": "22",
             "name": "Fried Cauliflower",
             "image": "../../assets/images/food_22.png",
-            "price": 22,
+            "selling_price": 22,
+            "original_price": 25,
             "description": "Food provides essential nutrients for overall health and well-being",
             "category": "Pure Veg",
-            "rating": 4.5
+            "rating": 4.5,
+            "stock": 20,
+            "reviews": [
+                {
+                    "username": "john doe",
+                    "rating": 4.5,
+                    "comment": "Good but could use more seasoning."
+                }
+            ]
         },
         {
             "_id": "23",
             "name": "Mix Veg Pulao",
             "image": "../../assets/images/food_23.png",
-            "price": 10,
+            "selling_price": 10,
+            "original_price": 12,
             "description": "Food provides essential nutrients for overall health and well-being",
             "category": "Pure Veg",
-            "rating": 4.2
+            "rating": 4.2,
+            "stock": 50,
+            "reviews": [
+                {
+                    "username": "john doe",
+                    "rating": 4.5,
+                    "comment": "Good but could use more seasoning."
+                }
+            ]
         },
         {
             "_id": "24",
             "name": "Rice Zucchini",
             "image": "../../assets/images/food_24.png",
-            "price": 12,
+            "selling_price": 12,
+            "original_price": 14,
             "description": "Food provides essential nutrients for overall health and well-being",
             "category": "Pure Veg",
-            "rating": 4.3
+            "rating": 4.3,
+            "stock": 45,
+            "reviews": [
+                {
+                    "username": "john doe",
+                    "rating": 4.5,
+                    "comment": "Good but could use more seasoning."
+                }
+            ]
         },
         {
             "_id": "25",
             "name": "Cheese Pasta",
             "image": "../../assets/images/food_25.png",
-            "price": 12,
+            "selling_price": 12,
+            "original_price": 14,
             "description": "Food provides essential nutrients for overall health and well-being",
             "category": "Pasta",
-            "rating": 4.5
+            "rating": 4.5,
+            "stock": 40,
+            "reviews": [
+                {
+                    "username": "john doe",
+                    "rating": 4.5,
+                    "comment": "Good but could use more seasoning."
+                }
+            ]
         },
         {
             "_id": "26",
             "name": "Tomato Pasta",
             "image": "../../assets/images/food_26.png",
-            "price": 18,
+            "selling_price": 18,
+            "original_price": 20,
             "description": "Food provides essential nutrients for overall health and well-being",
             "category": "Pasta",
-            "rating": 4.6
+            "rating": 4.6,
+            "stock": 30,
+            "reviews": [
+                {
+                    "username": "john doe",
+                    "rating": 4.5,
+                    "comment": "Good but could use more seasoning."
+                }
+            ]
         },
         {
             "_id": "27",
             "name": "Creamy Pasta",
             "image": "../../assets/images/food_27.png",
-            "price": 16,
+            "selling_price": 16,
+            "original_price": 18,
             "description": "Food provides essential nutrients for overall health and well-being",
             "category": "Pasta",
-            "rating": 4.4
+            "rating": 4.4,
+            "stock": 35,
+            "reviews": [
+                {
+                    "username": "john doe",
+                    "rating": 4.5,
+                    "comment": "Good but could use more seasoning."
+                }
+            ]
         },
         {
             "_id": "28",
             "name": "Chicken Pasta",
             "image": "../../assets/images/food_28.png",
-            "price": 24,
+            "selling_price": 24,
+            "original_price": 28,
             "description": "Food provides essential nutrients for overall health and well-being",
             "category": "Pasta",
-            "rating": 4.7
+            "rating": 4.7,
+            "stock": 20,
+            "reviews": [
+                {
+                    "username": "john doe",
+                    "rating": 4.5,
+                    "comment": "Good but could use more seasoning."
+                }
+            ]
         },
         {
             "_id": "29",
             "name": "Buttter Noodles",
             "image": "../../assets/images/food_29.png",
-            "price": 14,
+            "selling_price": 14,
+            "original_price": 16,
             "description": "Food provides essential nutrients for overall health and well-being",
             "category": "Noodles",
-            "rating": 4.3
+            "rating": 4.3,
+            "stock": 40,
+            "reviews": [
+                {
+                    "username": "john doe",
+                    "rating": 4.5,
+                    "comment": "Good but could use more seasoning."
+                }
+            ]
         },
         {
             "_id": "30",
             "name": "Veg Noodles",
             "image": "../../assets/images/food_30.png",
-            "price": 12,
+            "selling_price": 12,
+            "original_price": 14,
             "description": "Food provides essential nutrients for overall health and well-being",
             "category": "Noodles",
-            "rating": 4.2
+            "rating": 4.2,
+            "stock": 50,
+            "reviews": [
+                {
+                    "username": "john doe",
+                    "rating": 4.5,
+                    "comment": "Good but could use more seasoning."
+                }
+            ]
         },
         {
             "_id": "31",
             "name": "Somen Noodles",
             "image": "../../assets/images/food_31.png",
-            "price": 20,
+            "selling_price": 20,
+            "original_price": 22,
             "description": "Food provides essential nutrients for overall health and well-being",
             "category": "Noodles",
-            "rating": 4.6
+            "rating": 4.6,
+            "stock": 30,
+            "reviews": [
+                {
+                    "username": "john doe",
+                    "rating": 4.5,
+                    "comment": "Good but could use more seasoning."
+                }
+            ]
         },
         {
             "_id": "32",
-            "name": "Cooked Noodles",
+            "name": "Cooked  Noodles",
             "image": "../../assets/images/food_32.png",
-            "price": 15,
+            "selling_price": 18,
+            "original_price": 20,
             "description": "Food provides essential nutrients for overall health and well-being",
             "category": "Noodles",
-            "rating": 4.5
+            "rating": 4.4,
+            "stock": 35,
+            "reviews": [
+                {
+                    "username": "john doe",
+                    "rating": 4.5,
+                    "comment": "Good but could use more seasoning."
+                }
+            ]
         }
     ]
 }
