@@ -20,10 +20,9 @@ const statusIcons = {
 };
 
 let orderItemContainer = document.querySelector("#orderItemContainer");
-myOrders.forEach((element, i) => {
-    // console.log(element.items, element.orderId, element.orderStatus);
+myOrders.forEach((element) => {
     element.items.forEach((item) => {
-        let { _id, quantity, image, name, price } = item;
+        let { _id, quantity, image, name, selling_price } = item;
         orderItemContainer.innerHTML += `
        <div id="${_id}" data-orderId="${element.orderId}" class="flex flex-wrap gap-y-4 py-6">
                 <dl class="w-1/2 sm:w-1/4 lg:w-auto lg:flex-1">
@@ -66,7 +65,7 @@ myOrders.forEach((element, i) => {
                     Sub total:
                   </dt>
                   <dd class="mt-1 text-[14px] text-gray-900 dark:text-white">
-                    $${price * quantity}
+                    $${selling_price * quantity}
                   </dd>
                 </dl>
 
