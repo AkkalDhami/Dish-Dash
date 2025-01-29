@@ -3,51 +3,678 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Beautiful Review Card</title>
+    <title>My Wishlist | FoodieHub</title>
     <link
-      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css"
       rel="stylesheet"
     />
+    <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body class="bg-gray-100 flex items-center justify-center min-h-screen">
-    <div class="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
-      <div class="flex items-center mb-4">
-        <img
-          class="w-12 h-12 rounded-full mr-4"
-          src="https://via.placeholder.com/150"
-          alt="Profile Picture"
-        />
-        <div>
-          <h2 class="text-xl font-semibold">John Doe</h2>
-          <div class="flex items-center">
-            <span class="text-yellow-400 text-lg">★</span>
-            <span class="text-yellow-400 text-lg">★</span>
-            <span class="text-yellow-400 text-lg">★</span>
-            <span class="text-gray-400 text-lg">★</span>
-            <span class="text-gray-400 text-lg">★</span>
-            <span class="ml-2 text-gray-400">3.5</span>
+  <body class="bg-gray-50">
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+      <div class="container mx-auto px-4 py-4">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-8">
+            <a href="/" class="text-2xl font-bold text-[#ff6b38]">FoodieHub</a>
+            <nav class="hidden md:flex items-center gap-6">
+              <a href="/" class="text-gray-600 hover:text-[#ff6b38]">Home</a>
+              <a href="/menu" class="text-gray-600 hover:text-[#ff6b38]"
+                >Menu</a
+              >
+              <a href="/wishlist" class="text-[#ff6b38]">Wishlist</a>
+            </nav>
+          </div>
+          <div class="flex items-center gap-4">
+            <div class="relative">
+              <button class="p-2 hover:bg-gray-100 rounded-full relative">
+                <i class="ri-shopping-cart-line text-xl"></i>
+                <span
+                  class="absolute -top-1 -right-1 bg-[#ff6b38] text-white text-xs w-5 h-5 flex items-center justify-center rounded-full"
+                  >3</span
+                >
+              </button>
+            </div>
+            <img
+              src="https://ui-avatars.com/api/?name=John+Doe"
+              alt="Profile"
+              class="w-10 h-10 rounded-full"
+            />
           </div>
         </div>
       </div>
-      <p class="mb-4">
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia,
-        quo."
-      </p>
-      <div class="text-green-500 flex items-center">
-        <svg
-          class="w-5 h-5 mr-1"
-          fill="currentColor"
-          viewBox="0 0 20 20"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            fill-rule="evenodd"
-            d="M6 2a1 1 0 00-1 1v2H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V7a2 2 0 00-2-2h-1V3a1 1 0 00-1-1H6zm1 3V3h6v2H7z"
-            clip-rule="evenodd"
-          ></path>
-        </svg>
-        <span>2024-11-6</span>
+    </header>
+
+    <main class="container mx-auto px-4 py-8">
+      <!-- Enhanced Wishlist Header with Stats -->
+      <div class="bg-white rounded-2xl shadow-sm p-6 mb-8">
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 bg-gradient-to-r from-[#ff6b38] to-[#ff8b38] rounded-xl flex items-center justify-center">
+              <i class="ri-heart-3-fill text-2xl text-white"></i>
+            </div>
+            <div>
+              <h1 class="text-2xl font-bold text-gray-800">My Wishlist</h1>
+              <div class="flex items-center gap-3 text-sm text-gray-500 mt-1">
+                <span class="flex items-center gap-1">
+                  <i class="ri-shopping-bag-line"></i>
+                  12 Items
+                </span>
+                <span class="w-1 h-1 bg-gray-300 rounded-full"></span>
+                <span class="flex items-center gap-1">
+                  <i class="ri-coin-line"></i>
+                  Total: $235.88
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-wrap gap-3">
+            <button id="clearAll" class="px-4 py-2 text-gray-600 hover:text-[#ff6b38] transition-colors duration-300 flex items-center gap-2 border rounded-xl hover:border-[#ff6b38] hover:bg-[#ff6b38]/5">
+              <i class="ri-delete-bin-line"></i>
+              Clear All
+            </button>
+            <button id="addAllToCart" class="px-6 py-2 bg-gradient-to-r from-[#ff6b38] to-[#ff8b38] text-white rounded-xl hover:shadow-lg hover:shadow-[#ff6b38]/20 transition-all duration-300 flex items-center gap-2">
+              <i class="ri-shopping-cart-line"></i>
+              Add All to Cart
+            </button>
+          </div>
+        </div>
       </div>
+
+      <!-- Improved Empty State -->
+      <div
+        id="emptyState"
+        class="hidden  flex-col items-center justify-center py-16 bg-white rounded-2xl"
+      >
+        <div
+          class="w-48 h-48 bg-gray-100 rounded-full flex items-center justify-center mb-6"
+        >
+          <i class="ri-heart-line text-6xl text-gray-400"></i>
+        </div>
+        <h2 class="text-2xl font-semibold mb-2 text-gray-800">
+          Your Wishlist is Empty
+        </h2>
+        <p class="text-gray-500 mb-6 text-center max-w-md">
+          Explore our menu and save your favorite items for later
+        </p>
+        <a
+          href="/menu"
+          class="bg-[#ff6b38] text-white px-8 py-3 rounded-xl hover:bg-[#3284e8] transition-colors duration-300 flex items-center gap-2"
+        >
+          <i class="ri-arrow-right-line"></i>
+          Browse Menu
+        </a>
+      </div>
+
+      <!-- Enhanced Wishlist Grid -->
+      <div
+        id="wishlistGrid"
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+      >
+        <!-- Product cards will be dynamically inserted here -->
+      </div>
+
+      <!-- Enhanced Notification -->
+      <div
+        id="notification"
+        class="fixed bottom-4 right-4 transform translate-y-full opacity-0 transition-all duration-300"
+      >
+        <div
+          class="bg-white border border-gray-200 rounded-xl shadow-lg p-4 flex items-center gap-3"
+        >
+          <div
+            class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center"
+          >
+            <i class="ri-check-line text-green-500"></i>
+          </div>
+          <p class="text-gray-800" id="notificationText"></p>
+        </div>
+      </div>
+    </main>
+
+    <!-- Updated Modal HTML -->
+    <div id="clearModal" class="fixed inset-0 z-50 hidden">
+        <!-- Blurred Backdrop -->
+        <div class="absolute inset-0 bg-black/30 backdrop-blur-sm"></div>
+        
+        <!-- Modal Content -->
+        <div class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white rounded-2xl p-6 w-[90%] max-w-md shadow-xl">
+            <!-- Close Button -->
+            <button id="closeModal" class="absolute top-4 right-4 p-1 hover:bg-gray-100 rounded-full transition-colors duration-300">
+                <i class="ri-close-line text-xl text-gray-500 hover:text-gray-700"></i>
+            </button>
+
+            <div class="flex flex-col items-center text-center">
+                <!-- Warning Icon -->
+                <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mb-4">
+                    <i class="ri-error-warning-line text-3xl text-red-500"></i>
+                </div>
+                
+                <!-- Modal Text -->
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">
+                    Clear Wishlist
+                </h3>
+                <p class="text-gray-600 mb-6">
+                    Are you sure to clear all products from your wishlist?
+                </p>
+                
+                <!-- Action Buttons -->
+                <div class="flex gap-3 w-full">
+                    <button id="cancelClear" 
+                        class="flex-1 px-6 py-2.5 border border-gray-300 rounded-xl text-gray-700 hover:bg-gray-50 transition-colors duration-300">
+                        No, cancel
+                    </button>
+                    <button id="confirmClear" 
+                        class="flex-1 px-6 py-2.5 bg-red-500 text-white rounded-xl hover:bg-red-600 transition-colors duration-300">
+                        Yes, I'm sure
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <!-- Enhanced Modal HTML -->
+    <div id="itemActionModal" class="fixed inset-0 z-50 hidden">
+        <!-- Improved Blurred Backdrop with scale animation -->
+        <div class="absolute inset-0 bg-black/40 backdrop-blur-[6px] transition-opacity duration-300"></div>
+        
+        <!-- Enhanced Modal Content -->
+        <div class="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[95%] max-w-md 
+            bg-white rounded-2xl shadow-2xl transform  opacity-0 transition-all duration-300
+            overflow-hidden">
+            
+            <!-- Modal Header with Gradient -->
+            <div class="bg-gradient-to-r from-[#ff6b38]/10 to-[#ff8b38]/10 p-6">
+                <div class="flex items-center gap-4">
+                    <!-- Product Image with Shadow -->
+                    <div class="relative group">
+                        <img id="modalProductImage" src="" alt="" 
+                            class="w-24 h-24 object-cover rounded-2xl shadow-lg transform transition-transform duration-300 group-hover:scale-105"/>
+                        <div class="absolute inset-0 rounded-2xl shadow-inner"></div>
+                    </div>
+                    
+                    <!-- Product Info -->
+                    <div class="flex-1">
+                        <h3 id="modalProductName" class="font-semibold text-gray-800 text-xl mb-1 line-clamp-1"></h3>
+                        <div class="flex items-center gap-2 mb-2">
+                            <p id="modalProductPrice" class="text-[#ff6b38] font-bold text-lg"></p>
+                            <span id="modalOriginalPrice" class="text-gray-400 text-sm line-through"></span>
+                        </div>
+                        <!-- Stock Status Badge -->
+                        <div id="modalStockStatus"></div>
+                    </div>
+
+                    <!-- Close Button -->
+                    <button id="closeItemModal" 
+                        class="p-2 hover:bg-white/50 rounded-full transition-all duration-300 hover:rotate-90
+                        absolute top-4 right-4">
+                        <i class="ri-close-line text-xl text-gray-500"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="p-6 pt-4">
+                <!-- Product Details -->
+                <div class="mb-6">
+                    <div class="flex items-center gap-3 text-sm text-gray-500 mb-3">
+                        <span id="modalCategory" class="flex items-center gap-1">
+                            <i class="ri-price-tag-3-line"></i>
+                            Category
+                        </span>
+                        <span class="w-1 h-1 bg-gray-300 rounded-full"></span>
+                        <span id="modalRating" class="flex items-center gap-1">
+                            <i class="ri-star-fill text-yellow-400"></i>
+                            4.5 (245 reviews)
+                        </span>
+                    </div>
+                    <p id="modalDescription" class="text-gray-600 text-sm">
+                        Fresh and delicious product with high-quality ingredients.
+                    </p>
+                </div>
+
+                <!-- Action Buttons with Enhanced Styling -->
+                <div class="flex gap-3">
+                    <button id="moveToCartBtn" 
+                        class="flex-1 px-4 py-3.5 rounded-xl flex items-center justify-center gap-2 
+                        transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98]">
+                        <i class="ri-shopping-cart-line"></i>
+                        <span>Move to Cart</span>
+                    </button>
+                    <button id="removeItemBtn" 
+                        class="flex-1 px-4 py-3.5 border-2 border-red-500 text-red-500 rounded-xl 
+                        hover:bg-red-50 transition-all duration-300 flex items-center justify-center gap-2
+                        transform hover:scale-[1.02] active:scale-[0.98]">
+                        <i class="ri-delete-bin-line"></i>
+                        Remove
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+      // Sample wishlist data
+      
+      let wishlistItems = [
+        {
+          id: 1,
+          name: "Mediterranean Salad Bowl",
+          image: "../assets/images/food_1.png",
+          price: 18.99,
+          originalPrice: 22.99,
+          description: "Fresh mixed greens with feta cheese, olives, and our signature dressing",
+          rating: 4.8,
+          reviews: 234,
+          category: "Healthy",
+          inStock: true,
+          discount: "17% off",
+          isNew: true
+        },
+        {
+          id: 2,
+          name: "Truffle Mushroom Pizza",
+          image: "../assets/images/food_2.png",
+          price: 24.99,
+          originalPrice: 29.99,
+          description: "Wood-fired pizza with wild mushrooms and truffle oil",
+          rating: 4.9,
+          reviews: 189,
+          category: "Italian",
+          inStock: false,
+          restockDate: "2024-04-20",
+          discount: "17% off"
+        },
+        {
+          id: 3,
+          name: "Signature Burger",
+          image: "../assets/images/food_3.png",
+          price: 16.99,
+          originalPrice: 19.99,
+          description: "Premium beef patty with special sauce and fresh vegetables",
+          rating: 4.7,
+          reviews: 456,
+          category: "Burgers",
+          inStock: true,
+          discount: "15% off",
+          bestSeller: true
+        },
+        {
+          id: 4,
+          name: "Wagyu Steak Special",
+          image: "../assets/images/food_4.png",
+          price: 89.99,
+          originalPrice: 99.99,
+          description: "Premium grade Wagyu beef with seasonal vegetables",
+          rating: 4.9,
+          reviews: 78,
+          category: "Premium",
+          inStock: false,
+          restockDate: "2024-04-15",
+          limited: true
+        }
+      ];
+
+      // DOM Elements
+      const wishlistGrid = document.getElementById("wishlistGrid");
+      const emptyState = document.getElementById("emptyState");
+      const notification = document.getElementById("notification");
+      const clearAllBtn = document.getElementById("clearAll");
+      const addAllToCartBtn = document.getElementById("addAllToCart");
+
+      // Render wishlist items
+      function renderWishlist() {
+        wishlistGrid.innerHTML = "";
+
+        if (wishlistItems.length === 0) {
+          emptyState.classList.remove("hidden");
+          return;
+        }
+
+        emptyState.classList.add("hidden");
+        wishlistItems.forEach((item) => {
+          wishlistGrid.innerHTML += createWishlistItem(item);
+        });
+      }
+
+      // Create wishlist item HTML
+      function createWishlistItem(item) {
+        return `
+          <div class="bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden group" data-id="${item.id}">
+            <div class="relative">
+              <img src="${item.image}" alt="${item.name}" 
+                class="w-full h-56 object-cover ${!item.inStock ? 'filter grayscale' : ''} group-hover:scale-105 transition-transform duration-500"/>
+              
+              <!-- Status Overlay for Out of Stock -->
+              ${!item.inStock ? `
+                <div class="absolute inset-0 bg-black/40 backdrop-blur-[2px] flex flex-col items-center justify-center gap-3">
+                  <span class="bg-red-500/90 text-white px-4 py-2 rounded-xl font-medium">
+                    Out of Stock
+                  </span>
+                  <span class="text-white text-sm">
+                    Restock Expected: ${new Date(item.restockDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                  </span>
+                </div>
+              ` : ''}
+
+              <!-- Action Buttons -->
+              <div class="absolute top-3 right-3 flex flex-col gap-2">
+                <button onclick="showItemActionModal(${item.id})" 
+                  class="bg-white/90 p-2 rounded-full shadow-md hover:bg-red-500 hover:text-white transition-all duration-300 transform hover:scale-110">
+                  <i class="ri-close-line"></i>
+                </button>
+                ${item.inStock ? `
+                  <button class="bg-white/90 p-2 rounded-full shadow-md hover:bg-[#ff6b38] hover:text-white transition-all duration-300 transform hover:scale-110">
+                    <i class="ri-share-line"></i>
+                  </button>
+                ` : ''}
+              </div>
+
+              <!-- Badges -->
+              <div class="absolute top-3 left-3 flex flex-col gap-2">
+                ${item.isNew ? `
+                  <span class="bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+                    New
+                  </span>
+                ` : ''}
+                ${item.bestSeller ? `
+                  <span class="bg-[#ff6b38] text-white px-3 py-1 rounded-full text-sm font-medium">
+                    Best Seller
+                  </span>
+                ` : ''}
+                ${item.limited ? `
+                  <span class="bg-purple-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+                    Limited Edition
+                  </span>
+                ` : ''}
+              </div>
+            </div>
+
+            <div class="p-4">
+              <!-- Category & Rating -->
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-sm text-gray-500">${item.category}</span>
+                <div class="flex items-center gap-1">
+                  <i class="ri-star-fill text-yellow-400"></i>
+                  <span class="text-sm font-medium">${item.rating}</span>
+                  <span class="text-gray-400 text-sm">(${item.reviews})</span>
+                </div>
+              </div>
+
+              <h3 class="text-lg font-semibold mb-2 group-hover:text-[#ff6b38] transition-colors duration-300">
+                ${item.name}
+              </h3>
+              
+              <p class="text-gray-600 text-sm mb-3 line-clamp-2">${item.description}</p>
+              
+              <!-- Price Section -->
+              <div class="flex justify-between items-center mb-4">
+                <div class="flex items-center gap-2">
+                  <span class="text-xl font-bold ${item.inStock ? 'text-[#3284e8]' : 'text-gray-400'}">
+                    $${item.price}
+                  </span>
+                  ${item.originalPrice ? `
+                    <span class="text-gray-400 text-sm line-through">$${item.originalPrice}</span>
+                    <span class="text-green-500 text-sm">${item.discount}</span>
+                  ` : ''}
+                </div>
+              </div>
+
+              <!-- Action Button -->
+              ${item.inStock ? `
+                <button onclick="addToCart(${item.id})" 
+                  class="w-full bg-gradient-to-r from-[#ff6b38] to-[#ff8b38] text-white py-2 rounded-xl 
+                  hover:shadow-lg hover:shadow-[#ff6b38]/20 transition-all duration-300 flex items-center justify-center gap-2">
+                  <i class="ri-shopping-cart-line"></i>
+                  Move to Cart
+                </button>
+              ` : `
+                <button class="w-full bg-gray-100 text-gray-400 py-2 rounded-xl flex items-center justify-center gap-2 cursor-not-allowed">
+                  <i class="ri-notification-line"></i>
+                  Notify When Available
+                </button>
+              `}
+            </div>
+          </div>
+        `;
+      }
+
+      // Show notification
+      function showNotification(message, type = 'success') {
+        const notificationText = document.getElementById("notificationText");
+        const icon = notification.querySelector('i');
+        
+        // Update icon and colors based on type
+        if (type === 'success') {
+          icon.className = 'ri-check-line text-green-500';
+          icon.parentElement.className = 'w-8 h-8 bg-green-100 rounded-full flex items-center justify-center';
+        } else if (type === 'info') {
+          icon.className = 'ri-information-line text-blue-500';
+          icon.parentElement.className = 'w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center';
+        }
+
+        notificationText.textContent = message;
+        notification.classList.remove("translate-y-full", "opacity-0");
+
+        setTimeout(() => {
+          notification.classList.add("translate-y-full", "opacity-0");
+        }, 3000);
+      }
+
+      // Remove item from wishlist
+      function removeFromWishlist(id) {
+        wishlistItems = wishlistItems.filter((item) => item.id !== id);
+        renderWishlist();
+        showNotification("Item removed from wishlist");
+      }
+
+      // Add item to cart
+      function addToCart(id) {
+        const item = wishlistItems.find((item) => item.id === id);
+        // Add your cart logic here
+        removeFromWishlist(id);
+        showNotification("Item moved to cart");
+      }
+
+      // Modal Elements
+      const clearModal = document.getElementById('clearModal');
+      const closeModalBtn = document.getElementById('closeModal');
+      const cancelClearBtn = document.getElementById('cancelClear');
+      const confirmClearBtn = document.getElementById('confirmClear');
+
+      // Show Modal Function
+      function showClearModal() {
+          clearModal.classList.remove('hidden');
+          document.body.style.overflow = 'hidden'; // Prevent background scrolling
+      }
+
+      // Hide Modal Function
+      function hideClearModal() {
+          clearModal.classList.add('hidden');
+          document.body.style.overflow = ''; // Restore scrolling
+      }
+
+      // Update Clear All button click handler
+      clearAllBtn.addEventListener('click', () => {
+          showClearModal();
+      });
+
+      // Close button click handler
+      closeModalBtn.addEventListener('click', hideClearModal);
+
+      // Cancel button click handler
+      cancelClearBtn.addEventListener('click', hideClearModal);
+
+      // Confirm clear button click handler
+      confirmClearBtn.addEventListener('click', () => {
+          wishlistItems = [];
+          renderWishlist();
+          showNotification('Wishlist cleared');
+          hideClearModal();
+      });
+
+      // Close modal when clicking outside
+      clearModal.addEventListener('click', (e) => {
+          if (e.target === clearModal) {
+              hideClearModal();
+          }
+      });
+
+      // Close modal with Escape key
+      document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && !clearModal.classList.contains('hidden')) {
+              hideClearModal();
+          }
+      });
+
+      // Add all to cart
+      addAllToCartBtn.addEventListener("click", () => {
+        const inStockItems = wishlistItems.filter((item) => item.inStock);
+        // Add your cart logic here
+        wishlistItems = wishlistItems.filter((item) => !item.inStock);
+        renderWishlist();
+        showNotification(`${inStockItems.length} items moved to cart`);
+      });
+
+      // Item Action Modal Elements
+      const itemActionModal = document.getElementById('itemActionModal');
+      const closeItemModalBtn = document.getElementById('closeItemModal');
+      const moveToCartBtn = document.getElementById('moveToCartBtn');
+      const removeItemBtn = document.getElementById('removeItemBtn');
+      const modalProductImage = document.getElementById('modalProductImage');
+      const modalProductName = document.getElementById('modalProductName');
+      const modalProductPrice = document.getElementById('modalProductPrice');
+      const modalOriginalPrice = document.getElementById('modalOriginalPrice');
+      const modalCategory = document.getElementById('modalCategory');
+      const modalDescription = document.getElementById('modalDescription');
+
+      let selectedItemId = null;
+
+      // Show Item Action Modal
+      function showItemActionModal(itemId) {
+          const item = wishlistItems.find(item => item.id === itemId);
+          if (!item) return;
+
+          selectedItemId = item.id;
+          
+          // Update modal content
+          modalProductImage.src = item.image;
+          modalProductImage.alt = item.name;
+          modalProductName.textContent = item.name;
+          modalProductPrice.textContent = `$${item.price}`;
+          modalOriginalPrice.textContent = item.originalPrice ? `$${item.originalPrice}` : '';
+          modalCategory.textContent = item.category || 'General';
+          modalDescription.textContent = item.description || 'No description available';
+          
+          // Update stock status and button
+          const stockStatus = document.getElementById('modalStockStatus');
+          const moveToCartBtn = document.getElementById('moveToCartBtn');
+          
+          if (item.inStock) {
+              stockStatus.innerHTML = `
+                  <span class="inline-flex items-center gap-1.5 text-green-600 bg-green-50 px-3 py-1 rounded-full text-sm font-medium">
+                      <i class="ri-checkbox-circle-fill"></i>
+                      In Stock
+                  </span>
+              `;
+              moveToCartBtn.innerHTML = `
+                  <i class="ri-shopping-cart-line text-lg"></i>
+                  Move to Cart
+              `;
+              moveToCartBtn.className = `
+                  flex-1 px-4 py-3.5 bg-gradient-to-r from-[#ff6b38] to-[#ff8b38] text-white rounded-xl 
+                  hover:shadow-lg hover:shadow-[#ff6b38]/20 transition-all duration-300 
+                  flex items-center justify-center gap-2 transform hover:scale-[1.02] active:scale-[0.98]
+              `;
+              moveToCartBtn.disabled = false;
+          } else {
+              stockStatus.innerHTML = `
+                  <span class="inline-flex items-center gap-1.5 text-red-600 bg-red-50 px-3 py-1 rounded-full text-sm font-medium">
+                      <i class="ri-error-warning-fill"></i>
+                      Out of Stock
+                  </span>
+              `;
+              moveToCartBtn.innerHTML = `
+                  <i class="ri-notification-line text-lg"></i>
+                  Notify When Available
+              `;
+              moveToCartBtn.className = `
+                  flex-1 px-4 py-3.5 bg-gray-100 text-gray-400 rounded-xl 
+                  cursor-not-allowed flex items-center justify-center gap-2
+              `;
+              moveToCartBtn.disabled = true;
+          }
+          
+          // Show modal with enhanced animation
+          itemActionModal.classList.remove('hidden');
+          requestAnimationFrame(() => {
+              const modalContent = itemActionModal.querySelector('div:nth-child(2)');
+              modalContent.classList.remove('translate-y-full', 'opacity-0');
+          });
+      }
+
+      // Hide Item Action Modal
+      function hideItemActionModal() {
+          const modalContent = itemActionModal.querySelector('div:nth-child(2)');
+          modalContent.classList.add('translate-y-full', 'opacity-0');
+          
+          setTimeout(() => {
+              itemActionModal.classList.add('hidden');
+              selectedItemId = null;
+          }, 300);
+      }
+
+      // Move to Cart Action
+      moveToCartBtn.addEventListener('click', () => {
+          if (selectedItemId) {
+              const item = wishlistItems.find(item => item.id === selectedItemId);
+              if (item && item.inStock) {
+                  // Add to cart logic here
+                  removeFromWishlist(selectedItemId);
+                  showNotification('Item moved to cart');
+                  hideItemActionModal();
+              } else if (item && !item.inStock) {
+                  // Notify me logic here
+                  showNotification('We\'ll notify you when this item is back in stock');
+                  hideItemActionModal();
+              }
+          }
+      });
+
+      // Remove Item Action
+      removeItemBtn.addEventListener('click', () => {
+          if (selectedItemId) {
+              removeFromWishlist(selectedItemId);
+              showNotification('Item removed from wishlist');
+          }
+          hideItemActionModal();
+      });
+
+      // Close Modal Events
+      closeItemModalBtn.addEventListener('click', hideItemActionModal);
+
+      // Close on Escape key
+      document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && !itemActionModal.classList.contains('hidden')) {
+              hideItemActionModal();
+          }
+      });
+
+      // Close on scroll
+      window.addEventListener('scroll', () => {
+          if (!itemActionModal.classList.contains('hidden')) {
+              hideItemActionModal();
+          }
+      });
+
+      // Close modal when clicking on backdrop
+      itemActionModal.addEventListener('click', (e) => {
+          if (e.target === itemActionModal || e.target === itemActionModal.firstElementChild) {
+              hideItemActionModal();
+          }
+      });
+
+      // Initial render
+      renderWishlist();
+    </script>
   </body>
 </html>
