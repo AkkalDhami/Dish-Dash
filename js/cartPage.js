@@ -79,10 +79,153 @@ document.addEventListener("DOMContentLoaded", () => {
     totalPriceEl.textContent = totalPrice.toFixed(2);
 
     if (cartItems.length == 0) {
-      cartItemsContainer.innerHTML = `<div class="flex flex-col my-7 items-center justify-center">
-                    <img src="../assets/images/empty-cart.png" alt="empty cart" class="w-[200px] h-[200px] sm:w-[350px] sm:h-[350px] object-cover object-center scale-100 group-hover:scale-110 duration-300 transition-all">
-                    <h3 class="text-center flex items-center space-x-2 text-xl  sm:text-3xl font-semibold text-gray-900 mt-4">Your cart is empty <img src="../assets/images/shopping-empty-bag.png" alt="empty cart" class="w-[30px] h-[30px] sm:w-[40px] sm:h-[40px] object-cover object-center scale-100 group-hover:scale-110 duration-300 transition-all"> </h3>
-                    </div>`;
+      cartItemsContainer.innerHTML = `
+                     <div id="emptyState" class="">
+      <div class="bg-white rounded-2xl shadow-sm p-8 md:p-12">
+        <div class="relative w-full max-w-[300px] h-[300px] mx-auto mb-8">
+          <div
+            class="absolute inset-0 flex items-center justify-center animate-float"
+          >
+            <div class="relative">
+              <i class="ri-heart-3-line text-[36px] text-gray-200"></i>
+              <img
+                src="../assets/images/empty-cart.png"
+                alt="empty cart"
+                class="w-[200px] h-[200px] sm:w-[350px] sm:h-[350px] object-center object-contain scale-100 group-hover:scale-110 duration-300 transition-all"
+              />
+              <!-- Animated Food Items -->
+              <div
+                class="absolute top-[2rem] -left-16 animate-float-delay-1 opacity-90"
+              >
+                <i class="ri-cake-3-line text-4xl text-[#ff6b38]"></i>
+              </div>
+              <div
+                class="absolute top-[2rem] right-16 animate-float-delay-2 opacity-80"
+              >
+                <i class="ri-restaurant-line text-5xl text-[#ff8b38]"></i>
+              </div>
+              <div
+                class="absolute top-24 -right-12 animate-float-delay-3 opacity-70"
+              >
+                <i class="ri-cup-line text-4xl text-[#ff6b38]"></i>
+              </div>
+
+              <!-- Animated Stars -->
+              <div class="absolute -top-4 left-20 animate-ping-slow opacity-60">
+                <i class="ri-star-smile-line text-2xl text-yellow-400"></i>
+              </div>
+              <div
+                class="absolute top-20 -left-8 animate-ping-slower opacity-50"
+              >
+                <i class="ri-star-smile-line text-xl text-yellow-400"></i>
+              </div>
+              <div
+                class="absolute -bottom-2 right-16 animate-ping-slow opacity-70"
+              >
+                <i class="ri-star-smile-line text-2xl text-yellow-400"></i>
+              </div>
+
+              <!-- Animated Circles -->
+              <div
+                class="absolute -top-20 left-10 w-3 h-3 rounded-full bg-[#ff6b38]/20 animate-ping-slow"
+              ></div>
+              <div
+                class="absolute top-10 -right-10 w-2 h-2 rounded-full bg-[#ff8b38]/30 animate-ping-slower"
+              ></div>
+              <div
+                class="absolute -bottom-10 left-20 w-4 h-4 rounded-full bg-[#ff6b38]/10 animate-ping-slow"
+              ></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Content -->
+        <div class="text-center max-w-[45rem] mx-auto">
+          <h3 class="text-center flex justify-center my-3 items-center space-x-2 text-xl  sm:text-3xl font-semibold text-gray-900 mt-4">Your cart is empty <img src="../assets/images/shopping-empty-bag.png" alt="empty cart" class="w-[30px] h-[30px] sm:w-[40px] sm:h-[40px] object-cover object-center scale-100 group-hover:scale-110 duration-300 transition-all"> </h3>
+          <p class="text-gray-500 mb-8 leading-relaxed animate-fade-in-delay-1">
+            Explore our delicious menu and save your favorite items here. Start
+            adding items to cart
+          </p>
+
+          <div
+            class="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-delay-2"
+          >
+            <a
+              href="../index.html"
+              class="group px-6 py-3 bg-gradient-to-r from-[#2896ea] to-[#107bdf] text-white rounded-md hover:shadow-lg hover:shadow-[#ff6b38]/20 transition-all duration-300 flex items-center justify-center gap-2 transform hover:scale-[1.02] active:scale-[0.98]"
+            >
+              <i
+                class="ri-restaurant-line text-xl group-hover:rotate-12 transition-transform duration-300"
+              ></i>
+              <span>Explore Menu</span>
+            </a>
+            <a
+              href="../index.html"
+              class="group px-6 py-3 border-2 border-[#ff6b38] text-[#ff6b38] rounded-xl hover:bg-[#ff6b38]/5 transition-all duration-300 flex items-center justify-center gap-2"
+            >
+             <i class="ri-arrow-left-fill text-xl group-hover:-translate-x-1"></i>
+              <span>Back to Homepage</span>
+            </a>
+          </div>
+
+           <div id="category-buttons" class="flex mt-6 flex-wrap justify-center gap-4">
+            <button
+              data-category="Pure Veg"
+              class="px-4 py-2 rounded-full bg-[#ff6b38]/5 text-[#ff6b38] hover:bg-[#ff6b38]/10 transition-colors duration-300"
+            >
+              🥗 Pure Veg
+            </button>
+
+            <button
+              data-category="Noodles"
+              class="px-4 py-2 rounded-full bg-[#ff6b38]/5 text-[#ff6b38] hover:bg-[#ff6b38]/10 transition-colors duration-300"
+            >
+              🍜 Noodles
+            </button>
+            <button
+              data-category="Rolls"
+              class="px-4 py-2 rounded-full bg-[#ff6b38]/5 text-[#ff6b38] hover:bg-[#ff6b38]/10 transition-colors duration-300"
+            >
+              🍣 Rolls
+            </button>
+            <button
+              data-category="Salads"
+              class="px-4 py-2 rounded-full bg-[#ff6b38]/5 text-[#ff6b38] hover:bg-[#ff6b38]/10 transition-colors duration-300"
+            >
+              🥗 Salads
+            </button>
+            <button
+              data-category="Sandwich"
+              class="px-4 py-2 rounded-full bg-[#ff6b38]/5 text-[#ff6b38] hover:bg-[#ff6b38]/10 transition-colors duration-300"
+            >
+              🥪 Sandwich
+            </button>
+            <button
+              data-category="Cake"
+              class="px-4 py-2 rounded-full bg-[#ff6b38]/5 text-[#ff6b38] hover:bg-[#ff6b38]/10 transition-colors duration-300"
+            >
+              🍰 Cake
+            </button>
+            <button
+              data-category="pasta"
+              class="px-4 py-2 rounded-full bg-[#ff6b38]/5 text-[#ff6b38] hover:bg-[#ff6b38]/10 transition-colors duration-300"
+            >
+              🍝 Pasta
+            </button>
+            <button
+              data-category="Deserts"
+              class="px-4 py-2 rounded-full bg-[#ff6b38]/5 text-[#ff6b38] hover:bg-[#ff6b38]/10 transition-colors duration-300"
+            >
+              🍨 Deserts
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+                    
+                    
+                    `
+        ;
     }
   };
 
@@ -151,10 +294,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
   renderCart();
 
-
+  const categoryButtons = document.querySelectorAll("#category-buttons button");
+  categoryButtons.forEach((button) => {
+    button.addEventListener('click', (e) => {
+      console.log(e.target.dataset.category);
+      window.location.href = `../html/filterFood.html?menu=${e.target.dataset.category}`
+    })
+  })
 
   cartItemsContainer.addEventListener("click", (event) => {
-    const itemDiv = event.target.closest(".itemDiv");
+    const itemDiv = event.target?.closest(".itemDiv");
     const itemId = itemDiv.id;
     if (event.target.closest(".increaseCartQuantity")) {
       let increaseBtn = itemDiv.querySelector(".increaseCartQuantity");
@@ -197,6 +346,7 @@ document.addEventListener("DOMContentLoaded", () => {
       getCartLength();
     }
   });
+
 
 });
 
