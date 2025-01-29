@@ -58,12 +58,7 @@
           >
             <i class="fa-solid fa-magnifying-glass"></i>
           </button>
-          <button
-            id="searchButton"
-            class="p-2 text-[22px] hover:text-[#3284e8]"
-          >
-            <i class="fa-solid fa-magnifying-glass"></i>
-          </button>
+       
           <button
             data-nav-link
             class="nav-link p-2 relative hover:text-[#3284e8]"
@@ -169,21 +164,26 @@
       </nav>
     </header>
 
+    <!-- search results -->
     <div
       id="searchResultsContainer"
-      class="fixed -top-1/2 left-1/2 -translate-x-1/2 -ty1/2 max-w-[1200px] w-full z-[117] duration-300"
+      class="fixed -top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 max-w-[1200px] w-full z-[117] duration-300"
     >
-      <div class="searchBox rounded-lg relative bg-[#f6f6f6] px-4 py-5 w-full">
+      <div class="searchBox relative bg-[#f6f6f6] px-4 py-5 w-full">
         <i
-          class="ri-search-line absolute top-[30px] left-[23px] text-[18px] sm:text-[22px]"
+          class="ri-search-line absolute top-[33px] left-[23px] text-[18px] sm:text-[22px]"
         ></i>
         <input
+          id="searchInput"
           type="search"
           placeholder="Search Foods, Menu.."
-          class="w-full p-[12px_20px_12px_30px] sm:p-[15px_22px_15px_35px] rounded-md outline-0 focus:ring focus:ring-[#ff6b38] duration-300"
+          class="w-full border-2 border-blue-300 focus:border-transparent p-[12px_20px_12px_30px] sm:p-[15px_22px_15px_35px] rounded-md outline-0 focus:ring focus:ring-[#ff6b38] duration-300"
         />
       </div>
-      <div id="searchResults"></div>
+      <div
+        id="searchResults"
+        class="max-h-[500px] sm:max-h-[600px] bg-[#f6f6f6] overflow-auto"
+      ></div>
     </div>
 
     <div
