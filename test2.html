@@ -10,234 +10,241 @@
     />
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.10.2/dist/cdn.min.js"></script>
     <link
-    href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
-    rel="stylesheet"
-  />
-  <script src="https://cdn.tailwindcss.com"></script>
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Add these styles -->
+    <style>
+      /* Floating Animations */
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+      }
+
+      @keyframes float-delay-1 {
+        0%,
+        100% {
+          transform: translate(0, 0) rotate(-5deg);
+        }
+        50% {
+          transform: translate(-10px, -15px) rotate(5deg);
+        }
+      }
+
+      @keyframes float-delay-2 {
+        0%,
+        100% {
+          transform: translate(0, 0) rotate(5deg);
+        }
+        50% {
+          transform: translate(10px, -20px) rotate(-5deg);
+        }
+      }
+
+      @keyframes float-delay-3 {
+        0%,
+        100% {
+          transform: translate(0, 0) rotate(-3deg);
+        }
+        50% {
+          transform: translate(-5px, -12px) rotate(3deg);
+        }
+      }
+
+      @keyframes ping-slow {
+        0%,
+        100% {
+          transform: scale(1);
+          opacity: 0.5;
+        }
+        50% {
+          transform: scale(1.2);
+          opacity: 1;
+        }
+      }
+
+      @keyframes ping-slower {
+        0%,
+        100% {
+          transform: scale(1);
+          opacity: 0.3;
+        }
+        50% {
+          transform: scale(1.3);
+          opacity: 0.8;
+        }
+      }
+
+      @keyframes fade-in {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Animation Classes */
+      .animate-float {
+        animation: float 6s ease-in-out infinite;
+      }
+      .animate-float-delay-1 {
+        animation: float-delay-1 5s ease-in-out infinite;
+      }
+      .animate-float-delay-2 {
+        animation: float-delay-2 7s ease-in-out infinite;
+      }
+      .animate-float-delay-3 {
+        animation: float-delay-3 6s ease-in-out infinite;
+      }
+      .animate-ping-slow {
+        animation: ping-slow 3s ease-in-out infinite;
+      }
+      .animate-ping-slower {
+        animation: ping-slower 4s ease-in-out infinite;
+      }
+      .animate-fade-in {
+        animation: fade-in 0.6s ease-out forwards;
+      }
+      .animate-fade-in-delay-1 {
+        animation: fade-in 0.6s ease-out 0.2s forwards;
+        opacity: 0;
+      }
+      .animate-fade-in-delay-2 {
+        animation: fade-in 0.6s ease-out 0.4s forwards;
+        opacity: 0;
+      }
+      .animate-fade-in-delay-3 {
+        animation: fade-in 0.6s ease-out 0.6s forwards;
+        opacity: 0;
+      }
+
+      /* Category Button Styles */
+      .category-btn {
+        @apply px-4 py-2 rounded-full bg-[#ff6b38]/5 text-[#ff6b38] hover:bg-[#ff6b38]/10 
+      transition-all duration-300 transform hover:scale-105;
+      }
+    </style>
   </head>
 
   <body class="bg-gray-100 font-sans">
-    <h1 class="text-2xl font-bold text-gray-800 mb-6">My Orders</h1>
-      <div class="flex justify-end mb-4">
-        <select id="statusFilter" class="border px-3 py-2 rounded">
-          <option value="All">All</option>
-          <option value="Pending">Pending</option>
-          <option value="Completed">Completed</option>
-          <option value="Cancelled">Cancelled</option>
-        </select>
+    <!-- Replace or update your empty state section -->
+    <div id="emptyState" class="hidden">
+      <div class="bg-white rounded-2xl shadow-sm p-8 md:p-12">
+        <!-- Animated Illustration -->
+        <div class="relative w-full max-w-[300px] h-[300px] mx-auto mb-8">
+          <!-- Main Heart Container -->
+          <div
+            class="absolute inset-0 flex items-center justify-center animate-float"
+          >
+            <div class="relative">
+              <!-- Large Heart -->
+              <i class="ri-heart-3-line text-[120px] text-gray-200"></i>
+
+              <!-- Animated Food Items -->
+              <div
+                class="absolute -top-16 -left-16 animate-float-delay-1 opacity-90"
+              >
+                <i class="ri-cake-3-line text-4xl text-[#ff6b38]"></i>
+              </div>
+              <div
+                class="absolute -top-8 right-16 animate-float-delay-2 opacity-80"
+              >
+                <i class="ri-restaurant-line text-5xl text-[#ff8b38]"></i>
+              </div>
+              <div
+                class="absolute top-16 -right-12 animate-float-delay-3 opacity-70"
+              >
+                <i class="ri-cup-line text-4xl text-[#ff6b38]"></i>
+              </div>
+
+              <!-- Animated Stars -->
+              <div class="absolute -top-4 left-20 animate-ping-slow opacity-60">
+                <i class="ri-star-smile-line text-2xl text-yellow-400"></i>
+              </div>
+              <div
+                class="absolute top-20 -left-8 animate-ping-slower opacity-50"
+              >
+                <i class="ri-star-smile-line text-xl text-yellow-400"></i>
+              </div>
+              <div
+                class="absolute -bottom-2 right-16 animate-ping-slow opacity-70"
+              >
+                <i class="ri-star-smile-line text-2xl text-yellow-400"></i>
+              </div>
+
+              <!-- Animated Circles -->
+              <div
+                class="absolute -top-20 left-10 w-3 h-3 rounded-full bg-[#ff6b38]/20 animate-ping-slow"
+              ></div>
+              <div
+                class="absolute top-10 -right-10 w-2 h-2 rounded-full bg-[#ff8b38]/30 animate-ping-slower"
+              ></div>
+              <div
+                class="absolute -bottom-10 left-20 w-4 h-4 rounded-full bg-[#ff6b38]/10 animate-ping-slow"
+              ></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Content -->
+        <div class="text-center max-w-md mx-auto">
+          <h2
+            class="text-2xl md:text-3xl font-bold text-gray-800 mb-4 animate-fade-in"
+          >
+            Your Wishlist is Empty
+          </h2>
+          <p class="text-gray-500 mb-8 leading-relaxed animate-fade-in-delay-1">
+            Explore our delicious menu and save your favorite items here. Start
+            adding items to create your perfect wishlist!
+          </p>
+
+          <!-- Action Buttons -->
+          <div
+            class="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-delay-2"
+          >
+            <a
+              href="/menu"
+              class="group px-6 py-3 bg-gradient-to-r from-[#ff6b38] to-[#ff8b38] text-white rounded-xl hover:shadow-lg hover:shadow-[#ff6b38]/20 transition-all duration-300 flex items-center justify-center gap-2 transform hover:scale-[1.02] active:scale-[0.98]"
+            >
+              <i
+                class="ri-restaurant-line text-xl group-hover:rotate-12 transition-transform duration-300"
+              ></i>
+              <span>Explore Menu</span>
+            </a>
+            <a
+              href="/popular"
+              class="group px-6 py-3 border-2 border-[#ff6b38] text-[#ff6b38] rounded-xl hover:bg-[#ff6b38]/5 transition-all duration-300 flex items-center justify-center gap-2"
+            >
+              <i
+                class="ri-fire-line text-xl group-hover:scale-110 transition-transform duration-300"
+              ></i>
+              <span>Popular Items</span>
+            </a>
+          </div>
+
+          <!-- Quick Categories -->
+          <div class="mt-12 pt-8 border-t animate-fade-in-delay-3">
+            <h3 class="text-gray-500 mb-6">Popular Categories</h3>
+            <div class="flex flex-wrap justify-center gap-3">
+              <button class="category-btn">🍕 Pizza</button>
+              <button class="category-btn">🍔 Burgers</button>
+              <button class="category-btn">🍜 Noodles</button>
+              <button class="category-btn">🍣 Sushi</button>
+              <button class="category-btn">🥗 Salads</button>
+            </div>
+          </div>
+        </div>
       </div>
-    <div id="ordersContainer" class="container mx-auto my-8"></div>
-
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const ordersContainer = document.getElementById("ordersContainer");
-
-        // Fetch orders from localStorage (mock data if empty)
-        let myOrders = JSON.parse(localStorage.getItem("myOrders")) || [
-          {
-            orderId: "12345",
-            items: [
-              {
-                name: "Laptop",
-                image: "https://via.placeholder.com/80",
-                price: 1000,
-                quantity: 1,
-              },
-              {
-                name: "Headphones",
-                image: "https://via.placeholder.com/80",
-                price: 50,
-                quantity: 2,
-              },
-            ],
-            totalAmount: 1100,
-            paymentMethod: "Credit Card",
-            orderStatus: "Pending",
-          },
-          {
-            orderId: "67890",
-            items: [
-              {
-                name: "Smartphone",
-                image: "https://via.placeholder.com/80",
-                price: 800,
-                quantity: 1,
-              },
-            ],
-            totalAmount: 800,
-            paymentMethod: "PayPal",
-            orderStatus: "Cancelled",
-          },
-          {
-            orderId: "13579",
-            items: [
-              {
-                name: "Tablet",
-                image: "https://via.placeholder.com/80",
-                price: 600,
-                quantity: 1,
-              },
-            ],
-            totalAmount: 600,
-            paymentMethod: "UPI",
-            orderStatus: "Completed",
-          },
-        ];
-
-        // Save mock data to localStorage for demonstration
-        localStorage.setItem("myOrders", JSON.stringify(myOrders));
-
-        // Icons based on order status
-        const statusIcons = {
-          Pending: "ri-truck-line text-yellow-500",
-          Completed: "ri-check-line text-green-500",
-          Cancelled: "ri-close-line text-red-500",
-        };
-
-        // Render orders
-        const renderOrders = (filteredOrders = myOrders) => {
-          ordersContainer.innerHTML = ""; // Clear the container
-
-          myOrders.forEach((order) => {
-            const orderHTML = `
-                        <div class="bg-white p-4 rounded-lg shadow-md mb-4">
-                            <div class="flex items-center justify-between mb-4">
-                                <div>
-                                    <p class="text-sm text-gray-500">Order ID: <span class="font-medium">${
-                                      order.orderId
-                                    }</span></p>
-                                    <p class="text-sm text-gray-500">Payment Method: <span class="font-medium">${
-                                      order.paymentMethod
-                                    }</span></p>
-                                </div>
-                                <div class="flex items-center">
-                                    <i class="${
-                                      statusIcons[order.orderStatus]
-                                    } text-2xl"></i>
-                                    <p class="ml-2 text-sm font-medium text-gray-700">${
-                                      order.orderStatus
-                                    }</p>
-                                </div>
-                            </div>
-                            <div class="space-y-4">
-                                ${order.items
-                                  .map(
-                                    (item) => `
-                                    <div class="flex items-center space-x-4">
-                                        <img src="${item.image}" alt="${
-                                      item.name
-                                    }" class="w-16 h-16 object-cover rounded">
-                                        <div class="flex-1">
-                                            <h3 class="font-semibold text-gray-800">${
-                                              item.name
-                                            }</h3>
-                                            <p class="text-sm text-gray-500">Price: $${
-                                              item.price
-                                            }</p>
-                                            <p class="text-sm text-gray-500">Quantity: ${
-                                              item.quantity
-                                            }</p>
-                                        </div>
-                                        <p class="font-semibold text-gray-800">$${
-                                          item.price * item.quantity
-                                        }</p>
-                                    </div>
-                                `
-                                  )
-                                  .join("")}
-                            </div>
-                            <div class="mt-4 border-t pt-2 flex justify-between">
-                                <p class="text-sm text-gray-500">Total Amount:</p>
-                                <p class="font-semibold text-gray-800">$${
-                                  order.totalAmount
-                                }</p>
-                            </div>
-                            <div class="mt-4 flex justify-end space-x-4">
-                                ${
-                                  order.orderStatus === "Pending"
-                                    ? `
-                                    <button 
-                                        class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 cancelOrderBtn" 
-                                        data-order-id="${order.orderId}">
-                                        Cancel Order
-                                    </button>`
-                                    : ""
-                                }
-                                ${
-                                  order.orderStatus === "Cancelled" ||
-                                  order.orderStatus === "Completed"
-                                    ? `
-                                    <button 
-                                        class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 reorderBtn" 
-                                        data-order-id="${order.orderId}">
-                                        Order Again
-                                    </button>`
-                                    : ""
-                                }
-                                ${
-                                  order.orderStatus === "Completed"
-                                    ? `
-                                    <button 
-                                        class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 reviewOrderBtn" 
-                                        data-order-id="${order.orderId}">
-                                        Leave Review
-                                    </button>`
-                                    : ""
-                                }
-                            </div>
-                        </div>
-                    `;
-            ordersContainer.innerHTML += orderHTML;
-          });
-
-          addEventListeners();
-        };
-
-        // Add event listeners to cancel and reorder buttons
-        const addEventListeners = () => {
-          document.querySelectorAll(".cancelOrderBtn").forEach((button) => {
-            button.addEventListener("click", (e) => {
-              const orderId = e.target.getAttribute("data-order-id");
-              myOrders = myOrders.map((order) =>
-                order.orderId === orderId
-                  ? { ...order, orderStatus: "Cancelled" }
-                  : order
-              );
-              localStorage.setItem("myOrders", JSON.stringify(myOrders));
-              renderOrders();
-            });
-          });
-
-          document.querySelectorAll(".reorderBtn").forEach((button) => {
-            button.addEventListener("click", (e) => {
-              const orderId = e.target.getAttribute("data-order-id");
-              const orderToReorder = myOrders.find(
-                (order) => order.orderId === orderId
-              );
-              if (orderToReorder) {
-                const newOrder = {
-                  ...orderToReorder,
-                  orderId: Date.now().toString(), // Generate new order ID
-                  orderStatus: "Pending",
-                };
-                myOrders.push(newOrder);
-                localStorage.setItem("myOrders", JSON.stringify(myOrders));
-                renderOrders();
-              }
-            });
-          });
-
-          document.querySelectorAll(".reviewOrderBtn").forEach((button) => {
-            button.addEventListener("click", (e) => {
-              const orderId = e.target.getAttribute("data-order-id");
-              alert(`Review option for Order ID: ${orderId}`);
-            });
-          });
-        };
-
-        // Initial render
-        renderOrders(myOrders);
-      });
-    </script>
+    </div>
   </body>
 </html>
