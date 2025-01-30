@@ -3,248 +3,1747 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Order Management</title>
+    <title>My Wishlist | FoodieHub</title>
     <link
-      href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css"
-      rel="stylesheet"
-    />
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.10.2/dist/cdn.min.js"></script>
-    <link
-      href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+      href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css"
       rel="stylesheet"
     />
     <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-50">
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+      <div class="container mx-auto px-4 py-4">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-8">
+            <a href="/" class="text-2xl font-bold text-[#ff6b38]">FoodieHub</a>
+            <nav class="hidden md:flex items-center gap-6">
+              <a href="/" class="text-gray-600 hover:text-[#ff6b38]">Home</a>
+              <a href="/menu" class="text-gray-600 hover:text-[#ff6b38]"
+                >Menu</a
+              >
+              <a href="/wishlist" class="text-[#ff6b38]">Wishlist</a>
+            </nav>
+          </div>
+          <div class="flex items-center gap-4">
+            <div class="relative">
+              <button class="p-2 hover:bg-gray-100 rounded-full relative">
+                <i class="ri-shopping-cart-line text-xl"></i>
+                <span
+                  class="absolute -top-1 -right-1 bg-[#ff6b38] text-white text-xs w-5 h-5 flex items-center justify-center rounded-full"
+                  >3</span
+                >
+              </button>
+            </div>
+            <img
+              src="https://ui-avatars.com/api/?name=John+Doe"
+              alt="Profile"
+              class="w-10 h-10 rounded-full"
+            />
+          </div>
+        </div>
+      </div>
+    </header>
 
-    <!-- Add these styles -->
+    <main class="container mx-auto px-4 py-8">
+      <!-- Enhanced Wishlist Header with Stats -->
+      <div class="bg-white rounded-2xl shadow-sm p-6 mb-8">
+        <div
+          class="flex flex-col md:flex-row md:items-center md:justify-between gap-4"
+        >
+          <div class="flex items-center gap-4">
+            <div
+              class="w-12 h-12 bg-gradient-to-r from-[#3284e8] to-[#0754b1] rounded-xl flex items-center justify-center"
+            >
+              <i class="ri-heart-3-fill text-2xl text-white"></i>
+            </div>
+            <div>
+              <h1 class="text-2xl font-bold text-gray-800">My Wishlist</h1>
+              <div class="flex items-center gap-3 text-sm text-gray-500 mt-1">
+                <span class="flex items-center gap-1">
+                  <i class="ri-shopping-bag-line"></i>
+                  <span id="itemCount">0 Items</span>
+                </span>
+                <span class="w-1 h-1 bg-gray-300 rounded-full"></span>
+                <span class="flex items-center gap-1">
+                  <i class="ri-coin-line"></i>
+                  Total: $235.88
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-wrap gap-3">
+            <button
+              id="clearAll"
+              class="px-4 py-2 text-gray-600 hover:text-[#ff6b38] transition-colors duration-300 flex items-center gap-2 border rounded-md hover:border-[#ff6b38] hover:bg-[#3284e8]/5"
+            >
+              <i class="ri-delete-bin-line"></i>
+              Clear All
+            </button>
+            <button
+              id="addAllToCart"
+              class="px-6 py-3 bg-gradient-to-r from-[#3284e8] to-[#0754b1] text-white rounded-md hover:shadow-lg hover:shadow-[#3284e8]/20 transition-all duration-300 flex items-center gap-2"
+            >
+              <i class="ri-shopping-cart-line"></i>
+              Add All to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Add this after the Wishlist Header and before the Grid -->
+      <div class="bg-white rounded-2xl shadow-sm p-4 md:p-6 mb-8">
+        <div class="flex flex-col gap-4">
+          <!-- Search and Filters -->
+          <div class="flex flex-col lg:flex-row gap-4">
+            <!-- Search -->
+            <div class="flex-1">
+              <div class="relative">
+                <input
+                  type="text"
+                  id="searchInput"
+                  placeholder="Search in wishlist..."
+                  class="w-full pl-10 pr-4 py-2.5 rounded-md border border-gray-200 focus:border-[#3284e8] focus:ring-2 focus:ring-[#3284e8]/20 outline-none transition-all duration-300"
+                />
+                <i
+                  class="ri-search-line absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+                ></i>
+              </div>
+            </div>
+
+            <!-- Filters Group -->
+            <div class="flex flex-col sm:flex-row gap-3">
+              <select
+                id="sortSelect"
+                class="w-full sm:w-auto px-4 py-2.5 rounded-xl border border-gray-200 focus:border-[#3284e8] outline-none cursor-pointer"
+              >
+                <option value="name">Name (A-Z)</option>
+                <option value="name-desc">Name (Z-A)</option>
+                <option value="price-low">Price: Low to High</option>
+                <option value="price-high">Price: High to Low</option>
+                <option value="rating">Rating: High to Low</option>
+                <option value="stock">Stock: High to Low</option>
+              </select>
+
+              <select
+                id="categoryFilter"
+                class="w-full sm:w-auto px-4 py-2.5 rounded-xl border border-gray-200 focus:border-[#3284e8] outline-none cursor-pointer"
+              >
+                <option value="">All Categories</option>
+              </select>
+
+              <select
+                id="stockFilter"
+                class="w-full sm:w-auto px-4 py-2.5 rounded-xl border border-gray-200 focus:border-[#3284e8] outline-none cursor-pointer"
+              >
+                <option value="">All Items</option>
+                <option value="in-stock">In Stock</option>
+                <option value="out-of-stock">Out of Stock</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Add this grid structure right after your filters section -->
+      <div class="mt-8">
+        <!-- Grid Container -->
+        <div
+          id="wishlistGrid"
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
+          <!-- Products will be dynamically inserted here -->
+        </div>
+      </div>
+
+      <!-- Add this pagination structure after your wishlistGrid div -->
+      <div class="mt-8 flex justify-center">
+        <!-- Pagination Controls -->
+        <div class="flex items-center gap-2">
+          <!-- Previous Button -->
+          <button
+            id="prevPage"
+            class="px-4 py-2 rounded-xl border border-gray-200 text-gray-600 hover:border-[#ff6b38] hover:text-[#ff6b38] disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
+          >
+            <i class="ri-arrow-left-s-line"></i>
+          </button>
+
+          <!-- Page Numbers -->
+          <div id="pageNumbers" class="flex items-center gap-2">
+            <!-- Page numbers will be dynamically inserted here -->
+          </div>
+
+          <!-- Next Button -->
+          <button
+            id="nextPage"
+            class="px-4 py-2 rounded-xl border border-gray-200 text-gray-600 hover:border-[#ff6b38] hover:text-[#ff6b38] disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
+          >
+            <i class="ri-arrow-right-s-line"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Replace the existing empty state with this enhanced version -->
+      <div id="emptyState" class="hidden">
+        <div class="bg-white rounded-2xl shadow-sm p-8 md:p-12 text-center">
+          <!-- Animated Illustration -->
+          <div class="mb-8 relative mx-auto w-48 h-48 md:w-56 md:h-56">
+            <!-- Empty Cart Illustration -->
+            <div class="absolute inset-0 flex items-center justify-center">
+              <div class="relative">
+                <!-- Heart Animation -->
+                <div class="animate-float">
+                  <i
+                    class="ri-heart-line text-7xl md:text-8xl text-gray-300"
+                  ></i>
+                </div>
+                <!-- Floating Items -->
+                <div class="absolute -top-6 -left-4 animate-float-delay-1">
+                  <i
+                    class="ri-shopping-basket-line text-3xl text-[#ff6b38]/40"
+                  ></i>
+                </div>
+                <div class="absolute -bottom-4 -right-4 animate-float-delay-2">
+                  <i
+                    class="ri-shopping-bag-line text-4xl text-[#ff6b38]/60"
+                  ></i>
+                </div>
+                <div class="absolute -top-4 -right-6 animate-float-delay-3">
+                  <i
+                    class="ri-shopping-cart-line text-3xl text-[#ff6b38]/50"
+                  ></i>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Text Content -->
+          <div class="max-w-md mx-auto">
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-3">
+              Your Wishlist is Empty
+            </h2>
+            <p class="text-gray-500 mb-8 leading-relaxed">
+              Explore our delicious menu and save your favorite items here. Your
+              wishlist helps you keep track of everything you'd love to try!
+            </p>
+
+            <!-- Action Buttons -->
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href="/menu"
+                class="px-6 py-3 bg-gradient-to-r from-[#ff6b38] to-[#ff8b38] text-white rounded-xl hover:shadow-lg hover:shadow-[#ff6b38]/20 transition-all duration-300 flex items-center justify-center gap-2 group"
+              >
+                <i
+                  class="ri-restaurant-line text-xl group-hover:rotate-12 transition-transform duration-300"
+                ></i>
+                <span>Browse Menu</span>
+              </a>
+              <a
+                href="/popular"
+                class="px-6 py-3 border-2 border-[#ff6b38] text-[#ff6b38] rounded-xl hover:bg-[#ff6b38]/5 transition-all duration-300 flex items-center justify-center gap-2 group"
+              >
+                <i
+                  class="ri-fire-line text-xl group-hover:scale-110 transition-transform duration-300"
+                ></i>
+                <span>Popular Items</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Quick Categories -->
+          <div class="mt-12 pt-8 border-t">
+            <h3 class="text-gray-500 mb-6">Popular Categories</h3>
+            <div class="flex flex-wrap justify-center gap-4">
+              <button
+                class="px-4 py-2 rounded-full bg-[#ff6b38]/5 text-[#ff6b38] hover:bg-[#ff6b38]/10 transition-colors duration-300"
+              >
+                🍕 Pizza
+              </button>
+              <button
+                class="px-4 py-2 rounded-full bg-[#ff6b38]/5 text-[#ff6b38] hover:bg-[#ff6b38]/10 transition-colors duration-300"
+              >
+                🍔 Burgers
+              </button>
+              <button
+                class="px-4 py-2 rounded-full bg-[#ff6b38]/5 text-[#ff6b38] hover:bg-[#ff6b38]/10 transition-colors duration-300"
+              >
+                🍜 Noodles
+              </button>
+              <button
+                class="px-4 py-2 rounded-full bg-[#ff6b38]/5 text-[#ff6b38] hover:bg-[#ff6b38]/10 transition-colors duration-300"
+              >
+                🍣 Sushi
+              </button>
+              <button
+                class="px-4 py-2 rounded-full bg-[#ff6b38]/5 text-[#ff6b38] hover:bg-[#ff6b38]/10 transition-colors duration-300"
+              >
+                🥗 Salads
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Enhanced Notification -->
+      <div
+        id="notification"
+        class="fixed bottom-4 right-4 transform translate-y-full opacity-0 transition-all duration-300"
+      >
+        <div
+          class="bg-white border border-gray-200 rounded-xl shadow-lg p-4 flex items-center gap-3"
+        >
+          <div
+            class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center"
+          >
+            <i class="ri-check-line text-green-500"></i>
+          </div>
+          <p class="text-gray-800" id="notificationText"></p>
+        </div>
+      </div>
+    </main>
+
+    <!-- Updated Modal HTML -->
+    <div id="clearModal" class="fixed inset-0 z-50 hidden">
+      <div class="absolute inset-0 bg-black/30 backdrop-blur-sm"></div>
+
+      <div
+        class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white rounded-2xl p-6 w-[90%] max-w-md shadow-xl"
+      >
+        <button
+          id="closeModal"
+          class="absolute top-4 w-[36px] h-[36px] flex items-center justify-center right-4 p-1 hover:bg-gray-100 rounded-full transition-colors duration-300"
+        >
+          <i
+            class="ri-close-line text-xl text-gray-500 hover:text-gray-700"
+          ></i>
+        </button>
+
+        <div class="flex flex-col items-center text-center">
+          <div
+            class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mb-4"
+          >
+            <i class="ri-error-warning-line text-3xl text-red-500"></i>
+          </div>
+
+          <!-- Modal Text -->
+          <h3 class="text-xl font-semibold text-gray-800 mb-2">
+            Clear Wishlist
+          </h3>
+          <p class="text-gray-700 mb-6 text-[18px]">
+            Are you sure to clear all products from your wishlist?
+          </p>
+
+          <div class="flex gap-3 w-full">
+            <button
+              id="cancelClear"
+              class="flex-1 px-6 py-2.5 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 transition-colors duration-300"
+            >
+              No, Cancel
+            </button>
+            <button
+              id="confirmClear"
+              class="flex-1 px-6 py-2.5 bg-red-500 text-white rounded-md hover:bg-red-600 transition-colors duration-300"
+            >
+              Yes, I'm sure
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Enhanced Modal HTML -->
+    <div id="itemActionModal" class="fixed inset-0 z-50 hidden">
+      <div
+        class="absolute inset-0 bg-black/40 backdrop-blur-[6px] transition-opacity duration-300"
+      ></div>
+
+      <div
+        class="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[95%] max-w-md bg-white rounded-2xl shadow-2xl transform opacity-0 transition-all duration-300 overflow-hidden"
+      >
+        <div class="bg-gradient-to-r from-[#ff6b38]/10 to-[#ff8b38]/10 p-6">
+          <div class="flex items-center gap-4">
+            <div class="relative group">
+              <img
+                id="modalProductImage"
+                src=""
+                alt=""
+                class="w-24 h-24 object-cover rounded-2xl shadow-lg transform transition-transform duration-300 group-hover:scale-105"
+              />
+              <div class="absolute inset-0 rounded-2xl shadow-inner"></div>
+            </div>
+
+            <div class="flex-1">
+              <h3
+                id="modalProductName"
+                class="font-semibold text-gray-800 text-xl mb-1 line-clamp-1"
+              ></h3>
+              <div class="flex items-center gap-2 mb-2">
+                <p
+                  id="modalProductPrice"
+                  class="text-[#ff6b38] font-bold text-lg"
+                ></p>
+                <span
+                  id="modalOriginalPrice"
+                  class="text-gray-400 text-sm line-through"
+                ></span>
+              </div>
+              <div id="modalStockStatus"></div>
+            </div>
+
+            <button
+              id="closeItemModal"
+              class="p-2 hover:bg-white/50 w-[36px] h-[36px] flex items-center justify-center rounded-full transition-all duration-300 hover:rotate-90 absolute top-4 right-4"
+            >
+              <i class="ri-close-line text-xl text-gray-500"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="p-4 pt-3 sm:p-6 sm:pt-4">
+          <div class="mb-6">
+            <div class="flex items-center gap-3 text-sm text-gray-500 mb-3">
+              <span id="modalCategory" class="flex items-center gap-1">
+                <i class="ri-price-tag-3-line"></i>
+                Category
+              </span>
+              <span class="w-1 h-1 bg-gray-300 rounded-full"></span>
+              <span id="modalRating" class="flex items-center gap-1">
+                <i class="ri-star-fill text-orange-500"></i> | 4.5 (245 reviews)
+              </span>
+            </div>
+            <p id="modalDescription" class="text-gray-600 text-[16px]">
+              Fresh and delicious product with high-quality ingredients.
+            </p>
+          </div>
+
+          <div class="flex gap-3">
+            <button
+              id="moveToCartBtn"
+              class="flex-1 px-2 sm:px-4 py-3 rounded-md flex items-center justify-center gap-2 transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98]"
+            >
+              <i class="ri-shopping-bag-line"></i>
+              <span>Move to Cart asdf</span>
+            </button>
+            <button
+              id="removeItemBtn"
+              class="flex-1 px-2 sm:px-4 py-3 border-2 border-red-500 text-red-500 rounded-md hover:bg-red-50 transition-all duration-300 flex items-center justify-center gap-2 transform hover:scale-[1.02] active:scale-[0.98]"
+            >
+              <i class="ri-delete-bin-line"></i>
+              Remove
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Share Wishlist Modal -->
+    <div id="shareModal" class="fixed inset-0 z-50 hidden">
+      <div class="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
+      <div class="relative min-h-screen flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl p-6 max-w-md w-full shadow-xl">
+          <div class="flex items-center justify-between mb-6">
+            <h3 class="text-xl font-semibold">Share Wishlist</h3>
+            <button
+              onclick="closeShareModal()"
+              class="p-2 hover:bg-gray-100 rounded-full transition-colors"
+            >
+              <i class="ri-close-line text-xl"></i>
+            </button>
+          </div>
+
+          <!-- Share Link -->
+          <div class="mb-6">
+            <label class="text-sm text-gray-600 mb-2 block">Share Link</label>
+            <div class="flex gap-2">
+              <input
+                type="text"
+                id="shareLink"
+                class="flex-1 px-4 py-2 border rounded-xl focus:border-[#ff6b38] outline-none"
+                readonly
+              />
+              <button
+                onclick="copyShareLink()"
+                class="px-4 py-2 bg-[#ff6b38] text-white rounded-xl hover:bg-[#ff8b38] transition-colors"
+              >
+                Copy
+              </button>
+            </div>
+          </div>
+
+          <!-- Share Options -->
+          <div class="space-y-4">
+            <h4 class="text-sm text-gray-600">Share via</h4>
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+              <!-- WhatsApp -->
+              <button
+                onclick="shareVia('whatsapp')"
+                class="flex items-center gap-2 px-4 py-3 border rounded-xl hover:bg-gray-50 transition-colors"
+              >
+                <i class="ri-whatsapp-line text-green-500"></i>
+                <span>WhatsApp</span>
+              </button>
+
+              <!-- Facebook -->
+              <button
+                onclick="shareVia('facebook')"
+                class="flex items-center gap-2 px-4 py-3 border rounded-xl hover:bg-gray-50 transition-colors"
+              >
+                <i class="ri-facebook-line text-blue-600"></i>
+                <span>Facebook</span>
+              </button>
+
+              <!-- Twitter -->
+              <button
+                onclick="shareVia('twitter')"
+                class="flex items-center gap-2 px-4 py-3 border rounded-xl hover:bg-gray-50 transition-colors"
+              >
+                <i class="ri-twitter-x-line"></i>
+                <span>Twitter</span>
+              </button>
+
+              <!-- Email -->
+              <button
+                onclick="shareVia('email')"
+                class="flex items-center gap-2 px-4 py-3 border rounded-xl hover:bg-gray-50 transition-colors"
+              >
+                <i class="ri-mail-line text-gray-600"></i>
+                <span>Email</span>
+              </button>
+
+              <!-- SMS -->
+              <button
+                onclick="shareVia('sms')"
+                class="flex items-center gap-2 px-4 py-3 border rounded-xl hover:bg-gray-50 transition-colors"
+              >
+                <i class="ri-message-2-line text-purple-500"></i>
+                <span>SMS</span>
+              </button>
+
+              <!-- QR Code -->
+              <button
+                onclick="showQRCode()"
+                class="flex items-center gap-2 px-4 py-3 border rounded-xl hover:bg-gray-50 transition-colors"
+              >
+                <i class="ri-qr-code-line text-gray-800"></i>
+                <span>QR Code</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Initialize variables
+      let wishlistItems = [];
+      let currentPage = 1;
+      const itemsPerPage = 9;
+      let selectedItems = new Set();
+
+      // DOM Elements
+      const searchInput = document.getElementById("searchInput");
+      const sortSelect = document.getElementById("sortSelect");
+      const categoryFilter = document.getElementById("categoryFilter");
+      const stockFilter = document.getElementById("stockFilter");
+      const selectAllCheckbox = document.getElementById("selectAll");
+      const bulkShareBtn = document.getElementById("bulkShare");
+      const bulkMoveBtn = document.getElementById("bulkMove");
+      const bulkDeleteBtn = document.getElementById("bulkDelete");
+      const wishlistGrid = document.getElementById("wishlistGrid");
+      const emptyState = document.getElementById("emptyState");
+      const notification = document.getElementById("notification");
+      const clearAllBtn = document.getElementById("clearAll");
+      const addAllToCartBtn = document.getElementById("addAllToCart");
+
+      // Initialize categories
+      function initializeCategories() {
+        const categories = [
+          ...new Set(wishlistItems.map((item) => item.category)),
+        ];
+        categoryFilter.innerHTML = `
+          <option value="">All Categories</option>
+          ${categories
+            .map(
+              (category) => `
+            <option value="${category}">${category}</option>
+          `
+            )
+            .join("")}
+        `;
+      }
+
+      // Filter and Sort Functions
+      function getFilteredItems() {
+        const searchTerm = searchInput.value.toLowerCase();
+        const category = categoryFilter.value;
+        const stockStatus = stockFilter.value;
+
+        return wishlistItems.filter((item) => {
+          const matchesSearch =
+            item.name.toLowerCase().includes(searchTerm) ||
+            item.description.toLowerCase().includes(searchTerm);
+          const matchesCategory = !category || item.category === category;
+          const matchesStock =
+            !stockStatus ||
+            (stockStatus === "in-stock" && item.stock > 0) ||
+            (stockStatus === "out-of-stock" && item.stock === 0);
+
+          return matchesSearch && matchesCategory && matchesStock;
+        });
+      }
+
+      function getSortedItems(items) {
+        return [...items].sort((a, b) => {
+          switch (sortSelect.value) {
+            case "name":
+              return a.name.localeCompare(b.name);
+            case "price-low":
+              return a.price - b.price;
+            case "price-high":
+              return b.price - a.price;
+            case "rating":
+              return b.rating - a.rating;
+            default:
+              return 0;
+          }
+        });
+      }
+
+      // Bulk Actions
+      function updateBulkActionButtons() {
+        const hasSelection = selectedItems.size > 0;
+        bulkShareBtn.disabled = !hasSelection;
+        bulkMoveBtn.disabled = !hasSelection;
+        bulkDeleteBtn.disabled = !hasSelection;
+      }
+
+      function handleBulkShare() {
+        const selectedProducts = wishlistItems.filter((item) =>
+          selectedItems.has(item.id)
+        );
+        // Implement share logic
+        showNotification(`Sharing ${selectedProducts.length} items`);
+      }
+
+      function handleBulkMoveToCart() {
+        const selectedProducts = wishlistItems.filter((item) =>
+          selectedItems.has(item.id)
+        );
+        const inStockItems = selectedProducts.filter((item) => item.stock > 0);
+
+        if (inStockItems.length > 0) {
+          // Add to cart logic here
+          wishlistItems = wishlistItems.filter(
+            (item) => !selectedItems.has(item.id)
+          );
+          selectedItems.clear();
+          renderWishlist();
+          showNotification(`${inStockItems.length} items moved to cart`);
+        } else {
+          showNotification("Selected items are out of stock", "error");
+        }
+      }
+
+      // Initialize
+      async function initialize() {
+        try {
+          // Sample wishlist items
+          wishlistItems = [
+            {
+              id: 30,
+              name: "Veg Noodles",
+              image: "../../assets/images/food_30.png",
+              price: 12,
+              description:
+                "Fresh vegetables stir-fried with noodles in our special sauce. A healthy and delicious choice for noodle lovers.",
+              category: "Noodles",
+              rating: 4.2,
+              stock: 50,
+              reviews: [
+                {
+                  user: "John Doe",
+                  rating: 4.5,
+                  comment: "Good but could use more seasoning.",
+                  date: "28 Jan 2025",
+                },
+              ],
+            },
+            {
+              id: 45,
+              name: "Spicy Chicken Pizza",
+              image: "../../assets/images/food_4.png",
+              price: 18,
+              description:
+                "Hand-tossed pizza topped with spicy chicken, bell peppers, onions, and our signature sauce blend.",
+              category: "Pizza",
+              rating: 4.8,
+              stock: 0, // Out of stock
+              reviews: [
+                {
+                  user: "Sarah Smith",
+                  rating: 5.0,
+                  comment: "Best pizza in town! Love the spicy kick.",
+                  date: "25 Jan 2025",
+                },
+              ],
+            },
+            {
+              id: 52,
+              name: "Classic Burger",
+              image: "../../assets/images/food_5.png",
+              price: 15,
+              description:
+                "100% beef patty with fresh lettuce, tomatoes, cheese, and our special sauce. Served with crispy fries.",
+              category: "Burgers",
+              rating: 4.5,
+              stock: 25,
+              reviews: [
+                {
+                  user: "Mike Johnson",
+                  rating: 4.0,
+                  comment: "Juicy and flavorful. Great value!",
+                  date: "27 Jan 2025",
+                },
+              ],
+            },
+            {
+              id: 67,
+              name: "Chocolate Brownie",
+              image: "../../assets/images/food_6.png",
+              price: 8,
+              description:
+                "Rich and fudgy chocolate brownie topped with vanilla ice cream and chocolate sauce.",
+              category: "Desserts",
+              rating: 4.9,
+              stock: 0, // Out of stock
+              reviews: [
+                {
+                  user: "Emily White",
+                  rating: 5.0,
+                  comment: "Absolutely divine! Can't wait to order again.",
+                  date: "26 Jan 2025",
+                },
+              ],
+            },
+            {
+              id: 73,
+              name: "Green Salad Bowl",
+              image: "../../assets/images/food_7.png",
+              price: 10,
+              description:
+                "Fresh mixed greens with cherry tomatoes, cucumber, avocado, and balsamic dressing.",
+              category: "Salads",
+              rating: 4.3,
+              stock: 15,
+              reviews: [
+                {
+                  user: "Lisa Brown",
+                  rating: 4.5,
+                  comment: "Fresh and healthy. Perfect lunch option.",
+                  date: "24 Jan 2025",
+                },
+              ],
+            },
+            {
+              id: 88,
+              name: "Sushi Platter",
+              image: "../../assets/images/food_1.png",
+              price: 25,
+              description:
+                "Assorted sushi rolls including California, Spicy Tuna, and Vegetable rolls. Served with wasabi and ginger.",
+              category: "Sushi",
+              rating: 4.7,
+              stock: 8,
+              reviews: [
+                {
+                  user: "David Chen",
+                  rating: 4.8,
+                  comment: "Fresh fish and well-balanced flavors.",
+                  date: "23 Jan 2025",
+                },
+              ],
+            },
+          ];
+
+          initializeCategories();
+          setupEventListeners();
+          renderWishlist();
+        } catch (error) {
+          console.error("Failed to initialize wishlist:", error);
+          showNotification("Failed to load wishlist", "error");
+        }
+      }
+
+      // Initialize on page load
+      document.addEventListener("DOMContentLoaded", initialize);
+
+      // Render wishlist items
+      function renderWishlist() {
+        let items = [...wishlistItems];
+
+        // Apply search and filters
+        items = getFilteredItems();
+
+        // Apply sorting
+        items = getSortedItems(items);
+
+        // Apply pagination
+        const startIndex = (currentPage - 1) * itemsPerPage;
+        const paginatedItems = items.slice(
+          startIndex,
+          startIndex + itemsPerPage
+        );
+
+        // Update grid
+        const grid = document.getElementById("wishlistGrid");
+        grid.innerHTML = paginatedItems
+          .map((item) => createWishlistItem(item))
+          .join("");
+
+        // Setup pagination
+        setupPagination(items.length);
+
+        // Update item count
+        document.getElementById(
+          "itemCount"
+        ).textContent = `${items.length} Items`;
+
+        // Show/hide empty state
+        document
+          .getElementById("emptyState")
+          .classList.toggle("hidden", items.length > 0);
+      }
+
+      // Show notification
+      function showNotification(message, type = "success") {
+        const notificationText = document.getElementById("notificationText");
+        const icon = notification.querySelector("i");
+
+        // Update icon and colors based on type
+        if (type === "success") {
+          icon.className = "ri-check-line text-green-500";
+          icon.parentElement.className =
+            "w-8 h-8 bg-green-100 rounded-full flex items-center justify-center";
+        } else if (type === "error") {
+          icon.className = "ri-error-warning-line text-red-500";
+          icon.parentElement.className =
+            "w-8 h-8 bg-red-100 rounded-full flex items-center justify-center";
+        }
+
+        notificationText.textContent = message;
+        notification.classList.remove("translate-y-full", "opacity-0");
+
+        setTimeout(() => {
+          notification.classList.add("translate-y-full", "opacity-0");
+        }, 3000);
+      }
+
+      // Remove item from wishlist
+      function removeFromWishlist(id) {
+        wishlistItems = wishlistItems.filter((item) => item.id !== id);
+        renderWishlist();
+        showNotification("Item removed from wishlist");
+      }
+
+      // Add item to cart
+      function addToCart(id) {
+        const item = wishlistItems.find((item) => item.id === id);
+        // Add your cart logic here
+        removeFromWishlist(id);
+        showNotification("Item moved to cart");
+      }
+
+      // Modal Elements
+      const clearModal = document.getElementById("clearModal");
+      const closeModalBtn = document.getElementById("closeModal");
+      const cancelClearBtn = document.getElementById("cancelClear");
+      const confirmClearBtn = document.getElementById("confirmClear");
+
+      // Show Modal Function
+      function showClearModal() {
+        clearModal.classList.remove("hidden");
+        document.body.style.overflow = "hidden"; // Prevent background scrolling
+      }
+
+      // Hide Modal Function
+      function hideClearModal() {
+        clearModal.classList.add("hidden");
+        document.body.style.overflow = ""; // Restore scrolling
+      }
+
+      // Update Clear All button click handler
+      clearAllBtn.addEventListener("click", () => {
+        showClearModal();
+      });
+
+      // Close button click handler
+      closeModalBtn.addEventListener("click", hideClearModal);
+
+      // Cancel button click handler
+      cancelClearBtn.addEventListener("click", hideClearModal);
+
+      // Confirm clear button click handler
+      confirmClearBtn.addEventListener("click", () => {
+        wishlistItems = [];
+        renderWishlist();
+        showNotification("Wishlist cleared");
+        hideClearModal();
+      });
+
+      // Close modal when clicking outside
+      clearModal.addEventListener("click", (e) => {
+        if (e.target === clearModal) {
+          hideClearModal();
+        }
+      });
+
+      // Close modal with Escape key
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && !clearModal.classList.contains("hidden")) {
+          hideClearModal();
+        }
+      });
+
+      // Add all to cart
+      addAllToCartBtn.addEventListener("click", () => {
+        const inStockItems = wishlistItems.filter((item) => item.stock > 0);
+        // Add your cart logic here
+        wishlistItems = wishlistItems.filter((item) => item.stock === 0);
+        renderWishlist();
+        showNotification(`${inStockItems.length} items moved to cart`);
+      });
+
+      // Item Action Modal Elements
+      const itemActionModal = document.getElementById("itemActionModal");
+      const closeItemModalBtn = document.getElementById("closeItemModal");
+      const moveToCartBtn = document.getElementById("moveToCartBtn");
+      const removeItemBtn = document.getElementById("removeItemBtn");
+      const modalProductImage = document.getElementById("modalProductImage");
+      const modalProductName = document.getElementById("modalProductName");
+      const modalProductPrice = document.getElementById("modalProductPrice");
+      const modalOriginalPrice = document.getElementById("modalOriginalPrice");
+      const modalCategory = document.getElementById("modalCategory");
+      const modalDescription = document.getElementById("modalDescription");
+
+      let selectedItemId = null;
+
+      // Show Item Action Modal
+      function showItemActionModal(itemId) {
+        const item = wishlistItems.find((item) => item.id === itemId);
+        if (!item) return;
+
+        selectedItemId = item.id;
+
+        // Update modal content
+        modalProductImage.src = item.image;
+        modalProductImage.alt = item.name;
+        modalProductName.textContent = item.name;
+        modalProductPrice.textContent = `$${item.price}`;
+        modalOriginalPrice.textContent = item.originalPrice
+          ? `$${item.originalPrice}`
+          : "";
+        modalCategory.textContent = item.category || "General";
+        modalDescription.textContent =
+          item.description || "No description available";
+
+        // Update stock status and button
+        const stockStatus = document.getElementById("modalStockStatus");
+        const moveToCartBtn = document.getElementById("moveToCartBtn");
+
+        if (item.stock > 0) {
+          stockStatus.innerHTML = `
+                  <span class="inline-flex items-center gap-1.5 text-green-600 bg-green-50 px-3 py-1 rounded-full text-sm font-medium">
+                      <i class="ri-checkbox-circle-fill"></i>
+                      In Stock
+                  </span>
+              `;
+          moveToCartBtn.innerHTML = `
+                <i class="ri-shopping-bag-line"></i>
+                <span>  Move to Cart</span>
+              `;
+          moveToCartBtn.className = `
+                  flex-1 px-4 py-3.5 bg-gradient-to-r from-[#ff6b38] to-[#ff8b38] text-white rounded-md 
+                  hover:shadow-lg hover:shadow-[#ff6b38]/20 transition-all duration-300 
+                  flex items-center justify-center gap-2 transform hover:scale-[1.02] active:scale-[0.98]
+              `;
+          moveToCartBtn.disabled = false;
+        } else {
+          stockStatus.innerHTML = `
+                  <span class="inline-flex items-center gap-1.5 text-red-600 bg-red-50 px-3 py-1 rounded-full text-sm font-medium">
+                      <i class="ri-error-warning-fill"></i>
+                      Out of Stock
+                  </span>
+              `;
+          moveToCartBtn.innerHTML = `
+                  <i class="ri-notification-line text-lg"></i>
+                  Notify When Available
+              `;
+          moveToCartBtn.className = `
+                  flex-1 px-4 py-3.5 bg-gray-100 text-gray-400 rounded-xl 
+                  cursor-not-allowed flex items-center justify-center gap-2
+              `;
+          moveToCartBtn.disabled = true;
+        }
+
+        // Show modal with enhanced animation
+        itemActionModal.classList.remove("hidden");
+        requestAnimationFrame(() => {
+          const modalContent =
+            itemActionModal.querySelector("div:nth-child(2)");
+          modalContent.classList.remove("translate-y-full", "opacity-0");
+        });
+      }
+
+      // Hide Item Action Modal
+      function hideItemActionModal() {
+        const modalContent = itemActionModal.querySelector("div:nth-child(2)");
+        modalContent.classList.add("translate-y-full", "opacity-0");
+
+        setTimeout(() => {
+          itemActionModal.classList.add("hidden");
+          selectedItemId = null;
+        }, 300);
+      }
+
+      // Move to Cart Action
+      moveToCartBtn.addEventListener("click", () => {
+        if (selectedItemId) {
+          const item = wishlistItems.find((item) => item.id === selectedItemId);
+          if (item && item.stock > 0) {
+            // Add to cart logic here
+            removeFromWishlist(selectedItemId);
+            showNotification("Item moved to cart");
+            hideItemActionModal();
+          } else if (item && item.stock === 0) {
+            // Notify me logic here
+            showNotification(
+              "We'll notify you when this item is back in stock"
+            );
+            hideItemActionModal();
+          }
+        }
+      });
+
+      // Remove Item Action
+      removeItemBtn.addEventListener("click", () => {
+        if (selectedItemId) {
+          removeFromWishlist(selectedItemId);
+          showNotification("Item removed from wishlist");
+        }
+        hideItemActionModal();
+      });
+
+      // Close Modal Events
+      closeItemModalBtn.addEventListener("click", hideItemActionModal);
+
+      // Close on Escape key
+      document.addEventListener("keydown", (e) => {
+        if (
+          e.key === "Escape" &&
+          !itemActionModal.classList.contains("hidden")
+        ) {
+          hideItemActionModal();
+        }
+      });
+
+      // Close on scroll
+      window.addEventListener("scroll", () => {
+        if (!itemActionModal.classList.contains("hidden")) {
+          hideItemActionModal();
+        }
+      });
+
+      // Close modal when clicking on backdrop
+      itemActionModal.addEventListener("click", (e) => {
+        if (
+          e.target === itemActionModal ||
+          e.target === itemActionModal.firstElementChild
+        ) {
+          hideItemActionModal();
+        }
+      });
+
+      // Pagination Functions
+      function updatePagination(totalItems) {
+        const pageNumbers = document.getElementById("pageNumbers");
+        const prevButton = document.getElementById("prevPage");
+        const nextButton = document.getElementById("nextPage");
+
+        if (!pageNumbers || !prevButton || !nextButton) {
+          console.error("Pagination elements not found");
+          return;
+        }
+
+        const totalPages = Math.ceil(totalItems / itemsPerPage);
+
+        // Update buttons state
+        prevButton.disabled = currentPage === 1;
+        nextButton.disabled = currentPage === totalPages;
+
+        // Generate page numbers
+        let paginationHTML = "";
+
+        for (let i = 1; i <= totalPages; i++) {
+          if (
+            i === 1 || // First page
+            i === totalPages || // Last page
+            (i >= currentPage - 1 && i <= currentPage + 1) // Pages around current
+          ) {
+            paginationHTML += `
+                    <button onclick="goToPage(${i})" 
+                        class="px-4 py-2 rounded-xl transition-all duration-300 
+                        ${
+                          currentPage === i
+                            ? "bg-[#ff6b38] text-white"
+                            : "text-gray-600 hover:text-[#ff6b38] hover:bg-[#ff6b38]/10"
+                        }">
+                        ${i}
+                    </button>
+                `;
+          } else if (i === currentPage - 2 || i === currentPage + 2) {
+            paginationHTML += `
+                    <span class="px-2 text-gray-400">...</span>
+                `;
+          }
+        }
+
+        pageNumbers.innerHTML = paginationHTML;
+
+        // Update URL
+        const url = new URL(window.location);
+        url.searchParams.set("page", currentPage);
+        window.history.replaceState({}, "", url);
+      }
+
+      function goToPage(page) {
+        currentPage = page;
+        renderWishlist();
+        // Scroll to top of grid smoothly
+        document
+          .getElementById("wishlistGrid")
+          .scrollIntoView({ behavior: "smooth" });
+      }
+
+      // Update Item Count
+      function updateItemCount(count) {
+        const itemCount = document.getElementById("itemCount");
+        itemCount.textContent = `${count} ${count === 1 ? "Item" : "Items"}`;
+      }
+
+      // Initialize pagination from URL
+      function initializePagination() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const page = parseInt(urlParams.get("page")) || 1;
+        currentPage = page;
+      }
+
+      // Event listener for browser back/forward
+      window.addEventListener("popstate", () => {
+        initializePagination();
+        renderWishlist();
+      });
+
+      // Create Wishlist Item Card
+      function createWishlistItem(item) {
+        return `
+            <div class="bg-white rounded-md shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden group">
+                <!-- Product Image Container -->
+                <div class="relative aspect-[4/3]">
+                   
+
+                    <!-- Product Image -->
+                    <img src="${item.image}" 
+                        alt="${item.name}" 
+                        onerror="this.src='../../assets/images/default-food.png'"
+                        class="w-full h-full object-cover ${
+                          item.stock === 0 ? "filter grayscale" : ""
+                        } 
+                        group-hover:scale-105 transition-transform duration-500"/>
+                    
+                    <!-- Stock Badge -->
+                    ${
+                      item.stock === 0
+                        ? `
+                        <div class="absolute inset-0 bg-black/40 backdrop-blur-[2px] flex items-center justify-center">
+                            <span class="bg-red-500/90 text-white px-4 py-2 rounded-xl font-medium">
+                                Out of Stock
+                            </span>
+                        </div>
+                    `
+                        : ""
+                    }
+
+                    <!-- Quick Actions -->
+                    <div class="absolute top-3 right-3 flex flex-col gap-2">
+                        <button onclick="showItemActionModal(${item.id})" 
+                            class="bg-white/90 p-2 w-[40px] h-[40px] flex item-center justify-center rounded-full shadow-md hover:bg-[#ff6b38] hover:text-white 
+                            transition-all duration-300 transform hover:scale-110">
+                         <i class="ri-delete-bin-line"></i>
+                        </button>
+                    </div>
+
+                    <!-- Price Badge -->
+                    <div class="absolute bottom-3 left-3">
+                        <span class="bg-[#ff6b38] text-white px-3 py-1 rounded-full text-sm font-medium">
+                            $${item.price.toFixed(2)}
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Product Details -->
+                <div class="p-4">
+                    <!-- Category & Rating -->
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-sm text-gray-500">${
+                          item.category
+                        }</span>
+                        <div class="flex items-center gap-1">
+                            <i class="ri-star-fill text-yellow-400"></i>
+                            <span class="text-sm font-medium">${item.rating.toFixed(
+                              1
+                            )}</span>
+                        </div>
+                    </div>
+
+                    <!-- Product Name -->
+                    <h3 class="text-lg font-semibold mb-2 line-clamp-1">${
+                      item.name
+                    }</h3>
+                    
+                    <!-- Description -->
+                    <p class="text-gray-600 text-sm mb-4 line-clamp-2">${
+                      item.description
+                    }</p>
+
+                    <!-- Action Buttons -->
+                    <div class="flex gap-2">
+                        ${
+                          item.stock > 0
+                            ? `
+                            <button onclick="moveToCart(${item.id})"
+                                  class="addToCart bg-[#0d6efd] w-full hover:bg-transparent border-2 hover:text-gray-800 border-[#0d6efd] text-white px-6 py-3 rounded-full shadow-md flex justify-center items-center space-x-2 transition text-[16px]">
+                              <i class="ri-shopping-bag-line"></i>
+                              <span>  Move to Cart</span>
+                            </button>
+                          
+                        `
+                            : `
+                            <button disabled onclick="setStockAlert(${item.id})"
+                                class="flex-1 px-3 py-3 bg-gray-100 text-gray-600 rounded-full  cursor-not-allowed
+                                transition-all duration-300 flex items-center justify-center gap-2 text-sm">
+                                <i class="ri-notification-line"></i>
+                                Notify When Available
+                            </button>
+                        `
+                        }
+                    </div>
+                </div>
+            </div>
+        `;
+      }
+
+      function renderWishlist() {
+        const filteredItems = getFilteredItems();
+        const sortedItems = getSortedItems(filteredItems);
+
+        // Pagination
+        const startIndex = (currentPage - 1) * itemsPerPage;
+        const paginatedItems = sortedItems.slice(
+          startIndex,
+          startIndex + itemsPerPage
+        );
+
+        // Update grid
+        const grid = document.getElementById("wishlistGrid");
+        grid.innerHTML = paginatedItems
+          .map((item) => createWishlistItem(item))
+          .join("");
+
+        // Update UI states
+        updateBulkActionButtons();
+        updatePagination(sortedItems.length);
+        updateItemCount(sortedItems.length);
+
+        // Show/hide empty state
+        document
+          .getElementById("emptyState")
+          .classList.toggle("hidden", sortedItems.length > 0);
+      }
+
+      function closeShareModal() {
+        document.getElementById("shareModal").classList.add("hidden");
+      }
+
+      function moveToCart(itemId) {
+        const item = wishlistItems.find((item) => item.id === itemId);
+        if (!item) return;
+
+        if (item.stock > 0) {
+          // Add to cart logic here
+          // For demo, we'll just remove from wishlist
+          wishlistItems = wishlistItems.filter((i) => i.id !== itemId);
+          selectedItems.delete(itemId);
+          renderWishlist();
+          showNotification(`${item.name} moved to cart`);
+        } else {
+          showNotification("Item is out of stock", "error");
+        }
+      }
+
+      // Bulk Actions
+      function bulkMoveToCart() {
+        const selectedProducts = wishlistItems.filter((item) =>
+          selectedItems.has(item.id)
+        );
+        const inStockItems = selectedProducts.filter((item) => item.stock > 0);
+
+        if (inStockItems.length === 0) {
+          showNotification("Selected items are out of stock", "error");
+          return;
+        }
+
+        // Move in-stock items to cart
+        wishlistItems = wishlistItems.filter(
+          (item) => !selectedItems.has(item.id) || item.stock === 0
+        );
+        selectedItems.clear();
+        renderWishlist();
+        showNotification(`${inStockItems.length} items moved to cart`);
+      }
+
+      function bulkDelete() {
+        const count = selectedItems.size;
+        wishlistItems = wishlistItems.filter(
+          (item) => !selectedItems.has(item.id)
+        );
+        selectedItems.clear();
+        renderWishlist();
+        showNotification(`${count} items removed from wishlist`);
+      }
+
+      // Update event listeners in setupEventListeners function
+      function setupEventListeners() {
+        // Search input with debounce
+        searchInput.addEventListener(
+          "input",
+          debounce(() => {
+            currentPage = 1; // Reset to first page on search
+            renderWishlist();
+            // Update URL with search params
+            const url = new URL(window.location);
+            url.searchParams.set("search", searchInput.value);
+            window.history.replaceState({}, "", url);
+          }, 300)
+        );
+
+        // Filters
+        categoryFilter.addEventListener("change", () => {
+          currentPage = 1;
+          renderWishlist();
+          const url = new URL(window.location);
+          url.searchParams.set("category", categoryFilter.value);
+          window.history.replaceState({}, "", url);
+        });
+
+        stockFilter.addEventListener("change", () => {
+          currentPage = 1;
+          renderWishlist();
+          const url = new URL(window.location);
+          url.searchParams.set("stock", stockFilter.value);
+          window.history.replaceState({}, "", url);
+        });
+
+        // Sorting
+        sortSelect.addEventListener("change", () => {
+          renderWishlist();
+          const url = new URL(window.location);
+          url.searchParams.set("sort", sortSelect.value);
+          window.history.replaceState({}, "", url);
+        });
+
+        // ... existing event listeners ...
+      }
+
+      // Search and Filter Functions
+      function applyFilters() {
+        const searchTerm = searchInput.value.toLowerCase();
+        const selectedCategory = categoryFilter.value;
+        const stockStatus = stockFilter.value;
+        const sortBy = sortSelect.value;
+
+        let filteredItems = wishlistItems.filter((item) => {
+          // Search term filter
+          const matchesSearch =
+            item.name.toLowerCase().includes(searchTerm) ||
+            item.description.toLowerCase().includes(searchTerm) ||
+            item.category.toLowerCase().includes(searchTerm);
+
+          // Category filter
+          const matchesCategory =
+            !selectedCategory || item.category === selectedCategory;
+
+          // Stock status filter
+          const matchesStock =
+            stockStatus === "" ||
+            (stockStatus === "in-stock" && item.stock > 0) ||
+            (stockStatus === "out-of-stock" && item.stock === 0);
+
+          return matchesSearch && matchesCategory && matchesStock;
+        });
+
+        // Apply sorting
+        filteredItems = sortItems(filteredItems, sortBy);
+
+        return filteredItems;
+      }
+
+      function sortItems(items, sortBy) {
+        return [...items].sort((a, b) => {
+          switch (sortBy) {
+            case "name":
+              return a.name.localeCompare(b.name);
+            case "name-desc":
+              return b.name.localeCompare(a.name);
+            case "price-low":
+              return a.price - b.price;
+            case "price-high":
+              return b.price - a.price;
+            case "rating":
+              return b.rating - a.rating;
+            case "stock":
+              return b.stock - a.stock;
+            default:
+              return 0;
+          }
+        });
+      }
+
+      // Update the filter dropdowns
+      function updateFilterOptions() {
+        // Update category filter
+        const categories = [
+          ...new Set(wishlistItems.map((item) => item.category)),
+        ];
+        categoryFilter.innerHTML = `
+            <option value="">All Categories</option>
+            ${categories
+              .map(
+                (category) => `
+                <option value="${category}">${category}</option>
+            `
+              )
+              .join("")}
+        `;
+
+        // Update sort options
+        sortSelect.innerHTML = `
+            <option value="name">Name (A-Z)</option>
+            <option value="name-desc">Name (Z-A)</option>
+            <option value="price-low">Price: Low to High</option>
+            <option value="price-high">Price: High to Low</option>
+            <option value="rating">Rating: High to Low</option>
+            <option value="stock">Stock: High to Low</option>
+        `;
+
+        // Update stock filter
+        stockFilter.innerHTML = `
+            <option value="">All Items</option>
+            <option value="in-stock">In Stock</option>
+            <option value="out-of-stock">Out of Stock</option>
+        `;
+      }
+
+      // Debounce function for search
+      function debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+          const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+          };
+          clearTimeout(timeout);
+          timeout = setTimeout(later, wait);
+        };
+      }
+
+      // Update the renderWishlist function
+      function renderWishlist() {
+        const filteredItems = applyFilters();
+
+        // Update item count with filter info
+        const itemCount = document.getElementById("itemCount");
+        itemCount.innerHTML = `
+            ${filteredItems.length} ${
+          filteredItems.length === 1 ? "Item" : "Items"
+        }
+            ${searchInput.value ? `matching "${searchInput.value}"` : ""}
+            ${categoryFilter.value ? `in ${categoryFilter.value}` : ""}
+            ${
+              stockFilter.value === "in-stock"
+                ? "(In Stock)"
+                : stockFilter.value === "out-of-stock"
+                ? "(Out of Stock)"
+                : ""
+            }
+        `;
+
+        // Pagination
+        const startIndex = (currentPage - 1) * itemsPerPage;
+        const paginatedItems = filteredItems.slice(
+          startIndex,
+          startIndex + itemsPerPage
+        );
+
+        // Render items
+        const grid = document.getElementById("wishlistGrid");
+        if (filteredItems.length === 0) {
+          grid.innerHTML = `
+                <div class="col-span-full p-8 text-center bg-white rounded-2xl">
+                    <div class="text-gray-400 mb-4">
+                        <i class="ri-search-line text-5xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">No items found</h3>
+                    <p class="text-gray-500">Try adjusting your search or filters</p>
+                </div>
+            `;
+        } else {
+          grid.innerHTML = paginatedItems
+            .map((item) => createWishlistItem(item))
+            .join("");
+        }
+
+        // Update pagination
+        updatePagination(filteredItems.length);
+
+        // Show/hide empty state
+        document
+          .getElementById("emptyState")
+          .classList.toggle("hidden", wishlistItems.length > 0);
+      }
+
+      // Initialize from URL params
+      function initializeFromURL() {
+        const urlParams = new URLSearchParams(window.location.search);
+
+        // Set initial values from URL
+        searchInput.value = urlParams.get("search") || "";
+        categoryFilter.value = urlParams.get("category") || "";
+        stockFilter.value = urlParams.get("stock") || "";
+        sortSelect.value = urlParams.get("sort") || "name";
+        currentPage = parseInt(urlParams.get("page")) || 1;
+      }
+
+      // Update initialize function
+      async function initialize() {
+        try {
+          // Ensure required elements exist
+          const requiredElements = [
+            "wishlistGrid",
+            "pageNumbers",
+            "prevPage",
+            "nextPage",
+            "searchInput",
+            "sortSelect",
+            "categoryFilter",
+            "stockFilter",
+          ];
+
+          for (const elementId of requiredElements) {
+            if (!document.getElementById(elementId)) {
+              throw new Error(`Required element #${elementId} not found`);
+            }
+          }
+
+          // Sample wishlist items
+          wishlistItems = [
+            {
+              id: 30,
+              name: "Veg Noodles",
+              image: "../assets/images/food_30.png",
+              price: 12,
+              description:
+                "Fresh vegetables stir-fried with noodles in our special sauce. A healthy and delicious choice for noodle lovers.",
+              category: "Noodles",
+              rating: 4.2,
+              stock: 50,
+              reviews: [
+                {
+                  user: "John Doe",
+                  rating: 4.5,
+                  comment: "Good but could use more seasoning.",
+                  date: "28 Jan 2025",
+                },
+              ],
+            },
+
+            {
+              id: 31,
+              name: "Veg Noodles",
+              image: "../assets/images/food_31.png",
+              price: 12,
+              description:
+                "Fresh vegetables stir-fried with noodles in our special sauce. A healthy and delicious choice for noodle lovers.",
+              category: "Noodles",
+              rating: 4.2,
+              stock: 0,
+              reviews: [
+                {
+                  user: "John Doe",
+                  rating: 4.5,
+                  comment: "Good but could use more seasoning.",
+                  date: "28 Jan 2025",
+                },
+              ],
+            },
+
+            {
+              id: 33,
+              name: "Veg Noodles",
+              image: "../assets/images/food_32.png",
+              price: 12,
+              price: 12,
+              description:
+                "Fresh vegetables stir-fried with noodles in our special sauce. A healthy and delicious choice for noodle lovers.",
+              category: "Noodles",
+              rating: 4.2,
+              stock: 10,
+              reviews: [
+                {
+                  user: "John Doe",
+                  rating: 4.5,
+                  comment: "Good but could use more seasoning.",
+                  date: "28 Jan 2025",
+                },
+              ],
+            },
+            {
+              id: 34,
+              name: "Veg Noodles",
+              image: "../assets/images/food_30.png",
+              price: 12,
+              description:
+                "Fresh vegetables stir-fried with noodles in our special sauce. A healthy and delicious choice for noodle lovers.",
+              category: "Noodles",
+              rating: 4.2,
+              stock: 50,
+              reviews: [
+                {
+                  user: "John Doe",
+                  rating: 4.5,
+                  comment: "Good but could use more seasoning.",
+                  date: "28 Jan 2025",
+                },
+              ],
+            },
+
+            {
+              id: 36,
+              name: "",
+              image: "../assets/images/food_31.png",
+              price: 12,
+              description:
+                "Fresh vegetables stir-fried with noodles in our special sauce. A healthy and delicious choice for noodle lovers.",
+              category: "Noodles",
+              rating: 4.2,
+              stock: 0,
+              reviews: [
+                {
+                  user: "John Doe",
+                  rating: 4.5,
+                  comment: "Good but could use more seasoning.",
+                  date: "28 Jan 2025",
+                },
+              ],
+            },
+
+            {
+              id: 32,
+              name: "Veg Noodles",
+              image: "../assets/images/food_32.png",
+              price: 12,
+              price: 12,
+              description:
+                "Fresh vegetables stir-fried with noodles in our special sauce. A healthy and delicious choice for noodle lovers.",
+              category: "Noodles",
+              rating: 4.2,
+              stock: 10,
+              reviews: [
+                {
+                  user: "John Doe",
+                  rating: 4.5,
+                  comment: "Good but could use more seasoning.",
+                  date: "28 Jan 2025",
+                },
+              ],
+            },
+          ];
+
+          updateFilterOptions();
+          initializeFromURL();
+          setupEventListeners();
+          renderWishlist();
+        } catch (error) {
+          console.error("Failed to initialize wishlist:", error);
+          showNotification("Failed to load wishlist", "error");
+        }
+      }
+    </script>
+
     <style>
-      /* Floating Animations */
       @keyframes float {
         0%,
         100% {
           transform: translateY(0);
         }
         50% {
-          transform: translateY(-20px);
+          transform: translateY(-10px);
         }
       }
 
       @keyframes float-delay-1 {
         0%,
         100% {
-          transform: translate(0, 0) rotate(-5deg);
+          transform: translateY(0) rotate(-10deg);
         }
         50% {
-          transform: translate(-10px, -15px) rotate(5deg);
+          transform: translateY(-8px) rotate(-10deg);
         }
       }
 
       @keyframes float-delay-2 {
         0%,
         100% {
-          transform: translate(0, 0) rotate(5deg);
+          transform: translateY(0) rotate(10deg);
         }
         50% {
-          transform: translate(10px, -20px) rotate(-5deg);
+          transform: translateY(-12px) rotate(10deg);
         }
       }
 
       @keyframes float-delay-3 {
         0%,
         100% {
-          transform: translate(0, 0) rotate(-3deg);
+          transform: translateY(0) rotate(5deg);
         }
         50% {
-          transform: translate(-5px, -12px) rotate(3deg);
+          transform: translateY(-6px) rotate(5deg);
         }
       }
 
-      @keyframes ping-slow {
-        0%,
-        100% {
-          transform: scale(1);
-          opacity: 0.5;
-        }
-        50% {
-          transform: scale(1.2);
-          opacity: 1;
-        }
-      }
-
-      @keyframes ping-slower {
-        0%,
-        100% {
-          transform: scale(1);
-          opacity: 0.3;
-        }
-        50% {
-          transform: scale(1.3);
-          opacity: 0.8;
-        }
-      }
-
-      @keyframes fade-in {
-        from {
-          opacity: 0;
-          transform: translateY(20px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      /* Animation Classes */
       .animate-float {
-        animation: float 6s ease-in-out infinite;
-      }
-      .animate-float-delay-1 {
-        animation: float-delay-1 5s ease-in-out infinite;
-      }
-      .animate-float-delay-2 {
-        animation: float-delay-2 7s ease-in-out infinite;
-      }
-      .animate-float-delay-3 {
-        animation: float-delay-3 6s ease-in-out infinite;
-      }
-      .animate-ping-slow {
-        animation: ping-slow 3s ease-in-out infinite;
-      }
-      .animate-ping-slower {
-        animation: ping-slower 4s ease-in-out infinite;
-      }
-      .animate-fade-in {
-        animation: fade-in 0.6s ease-out forwards;
-      }
-      .animate-fade-in-delay-1 {
-        animation: fade-in 0.6s ease-out 0.2s forwards;
-        opacity: 0;
-      }
-      .animate-fade-in-delay-2 {
-        animation: fade-in 0.6s ease-out 0.4s forwards;
-        opacity: 0;
-      }
-      .animate-fade-in-delay-3 {
-        animation: fade-in 0.6s ease-out 0.6s forwards;
-        opacity: 0;
+        animation: float 3s ease-in-out infinite;
       }
 
-      /* Category Button Styles */
-      .category-btn {
-        @apply px-4 py-2 rounded-full bg-[#ff6b38]/5 text-[#ff6b38] hover:bg-[#ff6b38]/10 
-      transition-all duration-300 transform hover:scale-105;
+      .animate-float-delay-1 {
+        animation: float-delay-1 3.5s ease-in-out infinite;
+      }
+
+      .animate-float-delay-2 {
+        animation: float-delay-2 4s ease-in-out infinite;
+      }
+
+      .animate-float-delay-3 {
+        animation: float-delay-3 3.2s ease-in-out infinite;
       }
     </style>
-  </head>
-
-  <body class="bg-gray-100 font-sans">
-    <!-- Replace or update your empty state section -->
-    <div id="emptyState" class="hidden">
-      <div class="bg-white rounded-2xl shadow-sm p-8 md:p-12">
-        <!-- Animated Illustration -->
-        <div class="relative w-full max-w-[300px] h-[300px] mx-auto mb-8">
-          <!-- Main Heart Container -->
-          <div
-            class="absolute inset-0 flex items-center justify-center animate-float"
-          >
-            <div class="relative">
-              <!-- Large Heart -->
-              <i class="ri-heart-3-line text-[120px] text-gray-200"></i>
-
-              <!-- Animated Food Items -->
-              <div
-                class="absolute -top-16 -left-16 animate-float-delay-1 opacity-90"
-              >
-                <i class="ri-cake-3-line text-4xl text-[#ff6b38]"></i>
-              </div>
-              <div
-                class="absolute -top-8 right-16 animate-float-delay-2 opacity-80"
-              >
-                <i class="ri-restaurant-line text-5xl text-[#ff8b38]"></i>
-              </div>
-              <div
-                class="absolute top-16 -right-12 animate-float-delay-3 opacity-70"
-              >
-                <i class="ri-cup-line text-4xl text-[#ff6b38]"></i>
-              </div>
-
-              <!-- Animated Stars -->
-              <div class="absolute -top-4 left-20 animate-ping-slow opacity-60">
-                <i class="ri-star-smile-line text-2xl text-yellow-400"></i>
-              </div>
-              <div
-                class="absolute top-20 -left-8 animate-ping-slower opacity-50"
-              >
-                <i class="ri-star-smile-line text-xl text-yellow-400"></i>
-              </div>
-              <div
-                class="absolute -bottom-2 right-16 animate-ping-slow opacity-70"
-              >
-                <i class="ri-star-smile-line text-2xl text-yellow-400"></i>
-              </div>
-
-              <!-- Animated Circles -->
-              <div
-                class="absolute -top-20 left-10 w-3 h-3 rounded-full bg-[#ff6b38]/20 animate-ping-slow"
-              ></div>
-              <div
-                class="absolute top-10 -right-10 w-2 h-2 rounded-full bg-[#ff8b38]/30 animate-ping-slower"
-              ></div>
-              <div
-                class="absolute -bottom-10 left-20 w-4 h-4 rounded-full bg-[#ff6b38]/10 animate-ping-slow"
-              ></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Content -->
-        <div class="text-center max-w-md mx-auto">
-          <h2
-            class="text-2xl md:text-3xl font-bold text-gray-800 mb-4 animate-fade-in"
-          >
-            Your Wishlist is Empty
-          </h2>
-          <p class="text-gray-500 mb-8 leading-relaxed animate-fade-in-delay-1">
-            Explore our delicious menu and save your favorite items here. Start
-            adding items to create your perfect wishlist!
-          </p>
-
-          <!-- Action Buttons -->
-          <div
-            class="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-delay-2"
-          >
-            <a
-              href="/menu"
-              class="group px-6 py-3 bg-gradient-to-r from-[#ff6b38] to-[#ff8b38] text-white rounded-xl hover:shadow-lg hover:shadow-[#ff6b38]/20 transition-all duration-300 flex items-center justify-center gap-2 transform hover:scale-[1.02] active:scale-[0.98]"
-            >
-              <i
-                class="ri-restaurant-line text-xl group-hover:rotate-12 transition-transform duration-300"
-              ></i>
-              <span>Explore Menu</span>
-            </a>
-            <a
-              href="/popular"
-              class="group px-6 py-3 border-2 border-[#ff6b38] text-[#ff6b38] rounded-xl hover:bg-[#ff6b38]/5 transition-all duration-300 flex items-center justify-center gap-2"
-            >
-              <i
-                class="ri-fire-line text-xl group-hover:scale-110 transition-transform duration-300"
-              ></i>
-              <span>Popular Items</span>
-            </a>
-          </div>
-
-          <!-- Quick Categories -->
-          <div class="mt-12 pt-8 border-t animate-fade-in-delay-3">
-            <h3 class="text-gray-500 mb-6">Popular Categories</h3>
-            <div class="flex flex-wrap justify-center gap-3">
-              <button class="category-btn">🍕 Pizza</button>
-              <button class="category-btn">🍔 Burgers</button>
-              <button class="category-btn">🍜 Noodles</button>
-              <button class="category-btn">🍣 Sushi</button>
-              <button class="category-btn">🥗 Salads</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
   </body>
 </html>
