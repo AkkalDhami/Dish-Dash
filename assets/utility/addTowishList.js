@@ -1,39 +1,36 @@
 import { showToast } from "./showToast.js";
-import { getCartLength } from "../../js/getCartLength.js";
-export const addToCart = (productId, quantity) => {
-    const getCart = () => JSON.parse(localStorage.getItem("myCart")) || [];
-    const updateCart = (cart) => localStorage.setItem("myCart", JSON.stringify(cart));
+import { getWishlistLength } from "../../assets/utility/getWishlistLength.js";
+
+export const addToWishList = (productId) => {
+    const getWishlist = () => JSON.parse(localStorage.getItem("myWishlist")) || [];
+    const updateWishlist = (wishlist) => localStorage.setItem("myWishlist", JSON.stringify(wishlist));
     const getFoodList = () => JSON.parse(localStorage.getItem("FoodList")) || [];
     const FoodList = getFoodList();
+
+    console.log("FoodList:", FoodList);
 
     if (!FoodList.length) {
         showToast("FoodList not found in localStorage!", "error");
         return;
     }
-    if (quantity <= 0) {
-        showToast("Invalid quantity!", "error");
-        return;
-    }
 
-    const cart = getCart();
-    const productInCart = cart.find((product) => product._id === productId);
+    const wishlist = getWishlist();
+    const productExists = wishlist.some((product) => product._id === productId);
 
-    if (productInCart) {
-        productInCart.quantity += quantity;
-    } else {
+    if (!productExists) {
         const productToAdd = FoodList.find((product) => product._id === productId);
         if (productToAdd) {
-            cart.push({ ...productToAdd, quantity });
+            wishlist.push(productToAdd);
         } else {
             console.error("Product not found in FoodList!");
             return;
         }
     }
 
-    updateCart(cart);
-    getCartLength();
-    showToast(`${quantity} Item added to your cart!`, "success");
-    console.log("FoodList:", FoodList);
-    console.log("Cart before update:", cart);
+    updateWishlist(wishlist);
+    getWishlistLength();
+    showToast("Item added to your wishlist!", "success");
 
+    console.log("Wishlist updated:", wishlist);
 };
+
