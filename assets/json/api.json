@@ -43,7 +43,7 @@
             "description": "Food provides essential nutrients for overall health and well-being",
             "category": "Salad",
             "rating": 4.5,
-            "stock": 50,
+            "stock": 0,
             "reviews": [
                 {
                     "username": "john doe",
@@ -62,7 +62,7 @@
             "description": "Food provides essential nutrients for overall health and well-being",
             "category": "Salad",
             "rating": 4.0,
-            "stock": 30,
+            "stock": 0,
             "reviews": [
                 {
                     "username": "john doe",
@@ -87,7 +87,7 @@
             "description": "Food provides essential nutrients for overall health and well-being",
             "category": "Salad",
             "rating": 4.2,
-            "stock": 40,
+            "stock": 0,
             "reviews": [
                 {
                     "username": "john doe",
@@ -581,7 +581,7 @@
             "description": "Food provides essential nutrients for overall health and well-being",
             "category": "Noodles",
             "rating": 4.3,
-            "stock": 40,
+            "stock": 0,
             "reviews": [
                 {
                     "username": "john doe",
@@ -600,7 +600,7 @@
             "description": "Food provides essential nutrients for overall health and well-being",
             "category": "Noodles",
             "rating": 4.2,
-            "stock": 50,
+            "stock": 0,
             "reviews": [
                 {
                     "username": "john doe",
