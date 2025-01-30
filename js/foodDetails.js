@@ -1,8 +1,11 @@
 import { showToast } from '../assets/utility/showToast.js';
 import { addToCart } from "../assets/utility/addToCart.js";
 import { getCartLength } from "./getCartLength.js";
-
+import { getWishlistLength } from "../assets/utility/getWishlistLength.js";
+import { addToWishList } from "../assets/utility/addToWishList.js";
 getCartLength();
+
+getWishlistLength();
 
 const foodImage = document.getElementById("foodImage");
 const itemRating = document.getElementById("itemRating");
@@ -31,26 +34,26 @@ const rating = finalRating || "No rating available";
 const discount = Math.round(((product.original_price - product.selling_price) / product.original_price) * 100);
 
 const updateFoodDetails = () => {
-    foodImage.src = product.image;
-    itemRating.innerHTML = `
+  foodImage.src = product.image;
+  itemRating.innerHTML = `
         <span class="text-orange-500 text-[20px] flex items-center">
             <i class="ri-star-fill"></i>
             <span class="ml-1 text-gray-800"> | ${rating}</span>
         </span>
         <span class="text-gray-600">(${product.reviews.length} Reviews)</span>
     `;
-    itemPrice.innerHTML = `
+  itemPrice.innerHTML = `
         <span class="text-[18px] font-semibold text-gray-800">$${product.selling_price}</span>
         <span class="line-through text-gray-400 text-[16px]">$${product.original_price}</span>
            <span class="text-[#fff] px-3 py-[2px] rounded-full bg-[#ff6b38] sm:text-[14px] text-[12px] font-[500]">${discount}% off</span>
     `;
-    itemStock.innerHTML = `
+  itemStock.innerHTML = `
         <span>In Stock:</span>
         <span class="text-gray-700 z-10 font-semibold"> ${product.stock}</span>
         <span class="inStock w-3 h-3 rounded-full inline-block"></span>
     `;
-    itemName.innerHTML = `${product.name}`;
-    itemDescription.innerHTML = `
+  itemName.innerHTML = `${product.name}`;
+  itemDescription.innerHTML = `
         <p class="text-gray-700 text-[16px] font-[500]">
             ${product.description}
         </p>
@@ -60,8 +63,8 @@ const updateFoodDetails = () => {
         </ul>
     `;
 
-    product.reviews.forEach((review) => {
-        itemReviews.innerHTML += `
+  product.reviews.forEach((review) => {
+    itemReviews.innerHTML += `
             <div data-tab="reviews"
                 class="tabContent hidden p-3 sm:p-6 rounded-lg shadow-[0_0_10px_3px_rgba(0,0,0,0.1)] max-w-md sm:w-[500px]"
             >
@@ -88,7 +91,7 @@ const updateFoodDetails = () => {
                 </div>
             </div>
         `;
-    });
+  });
 };
 
 updateFoodDetails();
@@ -98,18 +101,18 @@ const tabs = document.querySelectorAll(".tabs button");
 const tabContent = document.querySelectorAll(".tabContent");
 
 tabs.forEach((tab) => {
-    tab.addEventListener("click", () => {
-        tabs.forEach((tab) => tab.classList.remove("tabActive"));
-        tab.classList.add("tabActive");
+  tab.addEventListener("click", () => {
+    tabs.forEach((tab) => tab.classList.remove("tabActive"));
+    tab.classList.add("tabActive");
 
-        const dataTab = tab.getAttribute("data-tab");
-        tabContent.forEach((content) => {
-            content.classList.add("hidden");
-            if (content.getAttribute("data-tab") === dataTab) {
-                content.classList.remove("hidden");
-            }
-        });
+    const dataTab = tab.getAttribute("data-tab");
+    tabContent.forEach((content) => {
+      content.classList.add("hidden");
+      if (content.getAttribute("data-tab") === dataTab) {
+        content.classList.remove("hidden");
+      }
     });
+  });
 });
 
 let addToCartBtn = document.getElementById("addToCartBtn");
@@ -119,44 +122,61 @@ let recommendedItemContainer = document.getElementById("recommendedItemContainer
 let quantityInput = document.getElementById("quantityInput");
 let quantity = parseInt(quantityInput.value) || 1;
 quantityContainer.addEventListener("click", (e) => {
-    if (e.target.classList.contains("decreaseQuantity")) {
-        if (quantityInput.value > 1) {
-            quantityInput.value--;
-            quantity = parseInt(quantityInput.value)
-        } else {
-            quantityInput.value = 1
-            quantity = parseInt(quantityInput.value)
-            showToast("Quantity cannot be less than 1", "error");
-        }
-    }
+  if (e.target.classList.contains("decreaseQuantity")) {
 
-    if (e.target.classList.contains("increaseQuantity")) {
-        if (quantityInput.value >= product.stock) {
-            quantityInput.value = product.stock
-            quantity = parseInt(quantityInput.value)
-            showToast("Quantity cannot be more than stock", "error");
-        } else {
-            quantityInput.value++;
-            quantity = parseInt(quantityInput.value)
-
-        }
+    if (product.stock === 0) {
+      quantityInput.value = 1
+      quantity = parseInt(quantityInput.value);
+      showToast("Out of stock", "error");
+    } else if (quantityInput.value > 1) {
+      quantityInput.value--;
+      quantity = parseInt(quantityInput.value)
+    } else {
+      quantityInput.value = 1
+      quantity = parseInt(quantityInput.value)
+      showToast("Quantity cannot be less than 1", "error");
     }
+  }
+
+  if (e.target.classList.contains("increaseQuantity")) {
+    if (product.stock === 0) {
+      quantityInput.value = 1
+      quantity = parseInt(quantityInput.value);
+      showToast("Out of stock", "error");
+    }
+    else if (quantityInput.value >= product.stock) {
+      quantityInput.value = product.stock
+      quantity = parseInt(quantityInput.value)
+      showToast("Quantity cannot be more than stock", "error");
+    }
+    else {
+      quantityInput.value++;
+      quantity = parseInt(quantityInput.value)
+
+    }
+  }
 
 })
 
 addToCartBtn.addEventListener("click", () => {
-    addToCart(product._id, quantity);
-    getCartLength();
+
+  addToCart(product._id, quantity);
+  getCartLength();
 });
 
 getCartLength();
 
 
 function displayRecommendedItems(recommendedItems) {
-    recommendedItems.forEach((item, ind) => {
-        let { _id, category, description, image, name, selling_price, original_price, rating } = item;
-        let discount = Math.floor((original_price - selling_price) / original_price * 100);
-        recommendedItemContainer.innerHTML += `
+  recommendedItems.forEach((item, ind) => {
+    const userReview = item.reviews.map((review) => review.rating);
+    const finalRating = userReview.reduce((total, rating) => total + rating, 0) / userReview.length || 0;
+    const rating = finalRating || "No rating available";
+
+    let { _id, category, description, image, name, selling_price, original_price } = item;
+
+    let discount = Math.floor((original_price - selling_price) / original_price * 100);
+    recommendedItemContainer.innerHTML += `
         <div id="${_id}" data-category="${category}"
             class="recommItems bg-[#f6f6f6] rounded shadow-sm hover:shadow-[0px_0px_12px_3px_#dadada] transition-all duration-300 overflow-hidden max-w-sm group hover:bg-white"
           >
@@ -223,25 +243,28 @@ function displayRecommendedItems(recommendedItems) {
             </div>
           </div>
         `
-    });
+  });
 }
 displayRecommendedItems(recommendedItems);
 
 let recommItems = document.querySelectorAll(".recommItems");
 
 recommItems.forEach((items) => {
-    items.addEventListener('click', (e) => {
-        console.log(e.target);
-        let id = items.id;
-        let quantity = 1;
-        if (e.target.classList.contains("addToWishList")) {
-            console.log("addToWishList");
-          }
-          if (e.target.classList.contains("addToCart")) {
-            addToCart(id, quantity);
-          }
-          if (e.target.classList.contains("viewDetails")) {
-          window.location.href = `../html/foodDetails.html?id=${id}&category=${product.category}`
-        }
-    })
+  items.addEventListener('click', (e) => {
+    console.log(e.target);
+    let id = items.id;
+    let quantity = 1;
+    if (e.target.classList.contains("addToWishList")) {
+      console.log("addToWishList");
+
+      addToWishList(id);
+    }
+
+    if (e.target.classList.contains("addToCart")) {
+      addToCart(id, quantity);
+    }
+    if (e.target.classList.contains("viewDetails")) {
+      window.location.href = `../html/foodDetails.html?id=${id}&category=${product.category}`
+    }
+  })
 })
