@@ -5,5 +5,4 @@ export function getCartLength() {
     cartItems.forEach((item) => {
         item.innerHTML = cartLength
     })
-
 }
