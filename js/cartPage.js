@@ -1,5 +1,6 @@
 import { getCartLength } from "./getCartLength.js";
 import { showToast } from "../assets/utility/showToast.js";
+import { getWishlistLength } from "../assets/utility/getWishlistLength.js";
 document.addEventListener("DOMContentLoaded", () => {
   const cartItemsContainer = document.getElementById("cartItems");
   const totalQuantityEl = document.getElementById("totalQuantity");
@@ -12,6 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let overlay = document.querySelector(".overlay");
 
   getCartLength();
+  getWishlistLength();
 
   let cartItems = JSON.parse(localStorage.getItem("myCart")) || [];
 
