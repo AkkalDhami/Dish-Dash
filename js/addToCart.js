@@ -1,5 +1,4 @@
 import { getCartLength } from "./getCartLength.js";
-import { showToast } from "../assets/utility/showToast.js";
 import { addToCart } from "../assets/utility/addToCart.js";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -9,22 +8,15 @@ document.addEventListener("DOMContentLoaded", () => {
     foodItems.forEach((item) => {
         item.addEventListener("click", (e) => {
             const id = item.id;
-            console.log(item)
-            console.log(id)
             if (!id) {
-                console.error("ID not found for food item!");
+                console.error("ID not found for food item!", item);
                 return;
             }
-            if (e.target.classList.contains("addToCart")) {
-                let quantity = 1;
-                addToCart(id, quantity);
+
+            if (e.target.closest(".addToCart")) {
+                addToCart(id, 1);
             }
+
         });
     });
-
-    // addToCartBtn.addEventListener("click", () => {
-    //   const quantity = parseInt(quantityInput.value, 10);
-    //   const productId = product._id;
-    //   addToCart(productId, quantity);
-    // });
 });
