@@ -67,7 +67,7 @@
           >
             <i class="ri-heart-line text-[26px]"></i>
             <span
-              class="cartItems absolute w-[23px] h-[23px] rounded-full text-white top-0 -right-1 bg-[#3284e8] text-[12px] flex items-center justify-center"
+              class="wishlistItems absolute w-[23px] h-[23px] rounded-full text-white top-0 -right-1 bg-[#3284e8] text-[12px] flex items-center justify-center"
               >0</span
             >
           </button>
@@ -177,7 +177,6 @@
       </nav>
     </header>
 
-    <!-- search results -->
     <div
       id="searchResultsContainer"
       class="fixed -top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 max-w-[1200px] w-full z-[117] duration-300"
@@ -257,10 +256,35 @@
         <a
           data-nav-link
           href="#"
-          class="nav-link flex flex-col items-center text-gray-700"
+          class="nav-link  flex flex-col items-center text-gray-700"
         >
           <i class="ri-bowl-line sm:text-xl"></i>
           <span class="text-xs">Food</span>
+        </a>
+
+        <a
+          href="./html/wishlist.html"
+          class="flex flex-col items-center text-gray-700 relative"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5 sm:h-6 sm:w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+            />
+          </svg>
+          <span class="text-xs mt-1"> Wishlist</span>
+          <span
+            class="wishlistItems absolute w-[25px] h-[25px] rounded-full text-white -top-2 -right-3 bg-[#3284e8] text-[12px] flex items-center justify-center"
+            >0</span
+          >
         </a>
 
         <a
@@ -462,5 +486,7 @@
     <script src="./js/search.js"></script>
     <script src="./js/script.js"></script>
     <script type="module" src="./js/addToCart.js"></script>
+    <script type="module" src="./js/addToWishlist.js"></script>
+
   </body>
 </html>
