@@ -41,14 +41,20 @@ function displayMenu() {
   });
 
   food_list.forEach((food, ind) => {
-    let { _id, category, description, image, name, selling_price, original_price, rating } = food;
+
+    const userReview = food.reviews.map((review) => review.rating);
+    const finalRating = userReview.reduce((total, rating) => total + rating, 0) / userReview.length || 0;
+    const rating = finalRating || "No rating available";
+
+    let { _id, category, description, image, name, selling_price, original_price } = food;
     let discount = Math.floor((original_price - selling_price) / original_price * 100);
 
     item_container.innerHTML += `
   <div data-category="${category}"
             id="${_id}"
-            class="foodItem bg-[#f6f6f6] p-5 rounded-md hover:shadow-lg hover:bg-[#ffffff] duration-300 w-[300px] group overflow-hidden"
+            class="foodItem bg-[#f6f6f6] p-5 rounded-md hover:shadow-lg hover:bg-[#ffffff] duration-300 w-[300px] group overflow-hidden relative"
           >
+          <i title="Add to wishlist" class="addToWishList ri-heart-line z-30 duration-500 w-[30px] h-[30px] flex items-center justify-center p-5 cursor-pointer hover:bg-[#ff6b38] bg-white rounded-full hover:text-white absolute top-5 opacity-0 group-hover:opacity-100 -right-80 group-hover:right-6 text-2xl text-[#ff6b38]"></i>
             <div
               class="img max-w-[280px] max-h-[280px] rounded-md overflow-hidden"
             >
