@@ -18,6 +18,21 @@ export const addToCart = (productId, quantity) => {
     const cart = getCart();
     const productInCart = cart.find((product) => product._id === productId);
 
+    let stock = FoodList.find((product) => product._id === productId);
+    if (!stock) {
+        console.error("Product not found in FoodList!");
+        return;
+    }
+
+    if (stock.stock === 0) {
+        showToast("Out of Stock!", "error");
+        return;
+    }
+
+    if (stock.stock < quantity) {
+        quantity = stock.stock;
+    }
+
     if (productInCart) {
         productInCart.quantity += quantity;
     } else {
