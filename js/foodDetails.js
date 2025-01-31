@@ -50,7 +50,7 @@ const updateFoodDetails = () => {
   itemStock.innerHTML = `
         <span>In Stock:</span>
         <span class="text-gray-700 z-10 font-semibold"> ${product.stock}</span>
-        <span class="inStock w-3 h-3 rounded-full inline-block"></span>
+        <span class="${product.stock === 0 ? "outStock" : "inStock"} w-3 h-3 ml-3 rounded-full inline-block"></span>
     `;
   itemName.innerHTML = `${product.name}`;
   itemDescription.innerHTML = `
@@ -70,7 +70,7 @@ const updateFoodDetails = () => {
             >
                 <div class="flex items-center mb-4">
                     <img
-                        class="w-12 h-12 rounded-full object-cover border border-r-red-500 mr-4"
+                        class="w-12 h-12 rounded-full object-cover  mr-4"
                         src="../assets/images/profile_icon.png"
                         alt="Profile Picture"
                     />
@@ -155,16 +155,19 @@ quantityContainer.addEventListener("click", (e) => {
 
     }
   }
-
 })
 
 addToCartBtn.addEventListener("click", () => {
-
   addToCart(product._id, quantity);
   getCartLength();
 });
+document.querySelector("#addToWishlist").addEventListener("click", () => {
+  addToWishList(product._id);
+  getWishlistLength();
+});
 
 getCartLength();
+getWishlistLength();
 
 
 function displayRecommendedItems(recommendedItems) {
@@ -256,7 +259,6 @@ recommItems.forEach((items) => {
     let quantity = 1;
     if (e.target.classList.contains("addToWishList")) {
       console.log("addToWishList");
-
       addToWishList(id);
     }
 
