@@ -105,7 +105,7 @@ function displayMenu() {
   menuItems.forEach((item) => {
     item.addEventListener("click", () => {
       let menu = item.getAttribute("data-menu");
-      window.location.href = `../html/filterFood.html?menu=${menu.toUpperCase()}`;
+      window.location.href = `../html/filterFood.html?menu=${menu}`;
     });
   });
 }
