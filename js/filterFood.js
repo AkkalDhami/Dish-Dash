@@ -3,17 +3,21 @@ let filterFoodHeading = document.getElementById("filterFoodHeading");
 function filterFood() {
   let food_list = JSON.parse(localStorage.getItem("FoodList"));
   const params = new URLSearchParams(window.location.search);
-  const menunname = String(params.get("menu")).toUpperCase();
-  let filteredFood = food_list.filter((food) => food.category.toUpperCase() === menunname);
+  const menunname = String(params.get("menu"));
+  let filteredFood = food_list.filter((food) => food.category === menunname);
   filterFoodHeading.innerHTML = `${menunname} <i class="ri-restaurant-fill text-[#ff6b38]"></i>`;
   filteredFood.forEach((food, ind) => {
-    let { _id, category, description, image, name, original_price, selling_price, rating } = food;
+    const userReview = food.reviews.map((review) => review.rating);
+    const finalRating = userReview.reduce((total, rating) => total + rating, 0) / userReview.length || 0;
+    const rating = finalRating || "No rating available";
+    let { _id, category, description, image, name, original_price, selling_price } = food;
     let discount = Math.floor((original_price - selling_price) / original_price * 100);
     foodMenuContainer.innerHTML += `
-    <div data-category="${category}"
+     <div data-category="${category}"
             id="${_id}"
-            class="foodItem bg-[#f6f6f6] p-5 rounded-md hover:shadow-lg hover:bg-[#ffffff] duration-300 w-[300px] group overflow-hidden"
+            class="foodItem bg-[#f6f6f6] p-5 rounded-md hover:shadow-lg hover:bg-[#ffffff] duration-300 w-[300px] group overflow-hidden relative"
           >
+          <i title="Add to wishlist" class="addToWishList ri-heart-line z-30 duration-500 w-[30px] h-[30px] flex items-center justify-center p-5 cursor-pointer hover:bg-[#ff6b38] bg-white rounded-full hover:text-white absolute top-5 opacity-0 group-hover:opacity-100 -right-80 group-hover:right-6 text-2xl text-[#ff6b38]"></i>
             <div
               class="img max-w-[280px] max-h-[280px] rounded-md overflow-hidden"
             >
@@ -25,7 +29,7 @@ function filterFood() {
             </div>
             <div class="flex mt-3 flex-col">
              <div class="flex justify-between my-1 items-center">
-               <h3 class="text-[18px] font-semibold">${name}</h3>
+               <h3 class="text-[18px] group-hover:text-[#0d6efd] duration-200 font-semibold">${name}</h3>
                <span class="text-[#fff] px-3 py-[2px] rounded-full bg-[#ff6b38] sm:text-[14px] text-[12px] font-[500]">${discount}% off</span>
               </div>
               <h4 class="text-[15px]">${description}</h4>
