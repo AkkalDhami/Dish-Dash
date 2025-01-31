@@ -436,7 +436,7 @@
     </div>
 
     <!-- Share Wishlist Modal -->
-    <div id="shareModal" class="fixed inset-0 z-50 hidden">
+    <div id="shareModal" class="fixed inset-0 z-50 ">
       <div class="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
       <div class="relative min-h-screen flex items-center justify-center p-4">
         <div class="bg-white rounded-2xl p-6 max-w-md w-full shadow-xl">
@@ -534,7 +534,7 @@
 
     <script>
       // Initialize variables
-      let wishlistItems = [];
+      let wishlistItems =  JSON.parse(localStorage.getItem("myWishlist")) || [];
       let currentPage = 1;
       const itemsPerPage = 9;
       let selectedItems = new Set();
@@ -597,9 +597,9 @@
             case "name":
               return a.name.localeCompare(b.name);
             case "price-low":
-              return a.price - b.price;
+              return a.selling_price - b.selling_price;
             case "price-high":
-              return b.price - a.price;
+              return b.selling_price - a.selling_price;
             case "rating":
               return b.rating - a.rating;
             default:
@@ -608,32 +608,18 @@
         });
       }
 
-      // Bulk Actions
-      function updateBulkActionButtons() {
-        const hasSelection = selectedItems.size > 0;
-        bulkShareBtn.disabled = !hasSelection;
-        bulkMoveBtn.disabled = !hasSelection;
-        bulkDeleteBtn.disabled = !hasSelection;
-      }
-
-      function handleBulkShare() {
-        const selectedProducts = wishlistItems.filter((item) =>
-          selectedItems.has(item.id)
-        );
-        // Implement share logic
-        showNotification(`Sharing ${selectedProducts.length} items`);
-      }
+ 
 
       function handleBulkMoveToCart() {
         const selectedProducts = wishlistItems.filter((item) =>
-          selectedItems.has(item.id)
+          selectedItems.has(item._id)
         );
         const inStockItems = selectedProducts.filter((item) => item.stock > 0);
 
         if (inStockItems.length > 0) {
           // Add to cart logic here
           wishlistItems = wishlistItems.filter(
-            (item) => !selectedItems.has(item.id)
+            (item) => !selectedItems.has(item._id)
           );
           selectedItems.clear();
           renderWishlist();
@@ -647,123 +633,7 @@
       async function initialize() {
         try {
           // Sample wishlist items
-          wishlistItems = [
-            {
-              id: 30,
-              name: "Veg Noodles",
-              image: "../../assets/images/food_30.png",
-              price: 12,
-              description:
-                "Fresh vegetables stir-fried with noodles in our special sauce. A healthy and delicious choice for noodle lovers.",
-              category: "Noodles",
-              rating: 4.2,
-              stock: 50,
-              reviews: [
-                {
-                  user: "John Doe",
-                  rating: 4.5,
-                  comment: "Good but could use more seasoning.",
-                  date: "28 Jan 2025",
-                },
-              ],
-            },
-            {
-              id: 45,
-              name: "Spicy Chicken Pizza",
-              image: "../../assets/images/food_4.png",
-              price: 18,
-              description:
-                "Hand-tossed pizza topped with spicy chicken, bell peppers, onions, and our signature sauce blend.",
-              category: "Pizza",
-              rating: 4.8,
-              stock: 0, // Out of stock
-              reviews: [
-                {
-                  user: "Sarah Smith",
-                  rating: 5.0,
-                  comment: "Best pizza in town! Love the spicy kick.",
-                  date: "25 Jan 2025",
-                },
-              ],
-            },
-            {
-              id: 52,
-              name: "Classic Burger",
-              image: "../../assets/images/food_5.png",
-              price: 15,
-              description:
-                "100% beef patty with fresh lettuce, tomatoes, cheese, and our special sauce. Served with crispy fries.",
-              category: "Burgers",
-              rating: 4.5,
-              stock: 25,
-              reviews: [
-                {
-                  user: "Mike Johnson",
-                  rating: 4.0,
-                  comment: "Juicy and flavorful. Great value!",
-                  date: "27 Jan 2025",
-                },
-              ],
-            },
-            {
-              id: 67,
-              name: "Chocolate Brownie",
-              image: "../../assets/images/food_6.png",
-              price: 8,
-              description:
-                "Rich and fudgy chocolate brownie topped with vanilla ice cream and chocolate sauce.",
-              category: "Desserts",
-              rating: 4.9,
-              stock: 0, // Out of stock
-              reviews: [
-                {
-                  user: "Emily White",
-                  rating: 5.0,
-                  comment: "Absolutely divine! Can't wait to order again.",
-                  date: "26 Jan 2025",
-                },
-              ],
-            },
-            {
-              id: 73,
-              name: "Green Salad Bowl",
-              image: "../../assets/images/food_7.png",
-              price: 10,
-              description:
-                "Fresh mixed greens with cherry tomatoes, cucumber, avocado, and balsamic dressing.",
-              category: "Salads",
-              rating: 4.3,
-              stock: 15,
-              reviews: [
-                {
-                  user: "Lisa Brown",
-                  rating: 4.5,
-                  comment: "Fresh and healthy. Perfect lunch option.",
-                  date: "24 Jan 2025",
-                },
-              ],
-            },
-            {
-              id: 88,
-              name: "Sushi Platter",
-              image: "../../assets/images/food_1.png",
-              price: 25,
-              description:
-                "Assorted sushi rolls including California, Spicy Tuna, and Vegetable rolls. Served with wasabi and ginger.",
-              category: "Sushi",
-              rating: 4.7,
-              stock: 8,
-              reviews: [
-                {
-                  user: "David Chen",
-                  rating: 4.8,
-                  comment: "Fresh fish and well-balanced flavors.",
-                  date: "23 Jan 2025",
-                },
-              ],
-            },
-          ];
-
+          wishlistItems =  JSON.parse(localStorage.getItem("myWishlist")) || [];
           initializeCategories();
           setupEventListeners();
           renderWishlist();
@@ -839,14 +709,14 @@
 
       // Remove item from wishlist
       function removeFromWishlist(id) {
-        wishlistItems = wishlistItems.filter((item) => item.id !== id);
+        wishlistItems = wishlistItems.filter((item) => item._id !== id);
         renderWishlist();
         showNotification("Item removed from wishlist");
       }
 
       // Add item to cart
       function addToCart(id) {
-        const item = wishlistItems.find((item) => item.id === id);
+        const item = wishlistItems.find((item) => item._id === id);
         // Add your cart logic here
         removeFromWishlist(id);
         showNotification("Item moved to cart");
@@ -884,7 +754,9 @@
       // Confirm clear button click handler
       confirmClearBtn.addEventListener("click", () => {
         wishlistItems = [];
+        localStorage.setItem("myWishlist", JSON.stringify([]));
         renderWishlist();
+
         showNotification("Wishlist cleared");
         hideClearModal();
       });
@@ -928,10 +800,10 @@
 
       // Show Item Action Modal
       function showItemActionModal(itemId) {
-        const item = wishlistItems.find((item) => item.id === itemId);
+        const item = wishlistItems.find((item) => item._id === itemId);
         if (!item) return;
 
-        selectedItemId = item.id;
+        selectedItemId = item._id;
 
         // Update modal content
         modalProductImage.src = item.image;
@@ -1007,7 +879,7 @@
       // Move to Cart Action
       moveToCartBtn.addEventListener("click", () => {
         if (selectedItemId) {
-          const item = wishlistItems.find((item) => item.id === selectedItemId);
+          const item = wishlistItems.find((item) => item._id === selectedItemId);
           if (item && item.stock > 0) {
             // Add to cart logic here
             removeFromWishlist(selectedItemId);
@@ -1174,7 +1046,7 @@
 
                     <!-- Quick Actions -->
                     <div class="absolute top-3 right-3 flex flex-col gap-2">
-                        <button onclick="showItemActionModal(${item.id})" 
+                        <button onclick="showItemActionModal(${item._id})" 
                             class="bg-white/90 p-2 w-[40px] h-[40px] flex item-center justify-center rounded-full shadow-md hover:bg-[#ff6b38] hover:text-white 
                             transition-all duration-300 transform hover:scale-110">
                          <i class="ri-delete-bin-line"></i>
@@ -1184,7 +1056,7 @@
                     <!-- Price Badge -->
                     <div class="absolute bottom-3 left-3">
                         <span class="bg-[#ff6b38] text-white px-3 py-1 rounded-full text-sm font-medium">
-                            $${item.price.toFixed(2)}
+                            $${item.selling_price.toFixed(2)}
                         </span>
                     </div>
                 </div>
@@ -1219,7 +1091,7 @@
                         ${
                           item.stock > 0
                             ? `
-                            <button onclick="moveToCart(${item.id})"
+                            <button onclick="moveToCart(${item._id})"
                                   class="addToCart bg-[#0d6efd] w-full hover:bg-transparent border-2 hover:text-gray-800 border-[#0d6efd] text-white px-6 py-3 rounded-full shadow-md flex justify-center items-center space-x-2 transition text-[16px]">
                               <i class="ri-shopping-bag-line"></i>
                               <span>  Move to Cart</span>
@@ -1227,7 +1099,7 @@
                           
                         `
                             : `
-                            <button disabled onclick="setStockAlert(${item.id})"
+                            <button disabled onclick="setStockAlert(${item._id})"
                                 class="flex-1 px-3 py-3 bg-gray-100 text-gray-600 rounded-full  cursor-not-allowed
                                 transition-all duration-300 flex items-center justify-center gap-2 text-sm">
                                 <i class="ri-notification-line"></i>
@@ -1274,13 +1146,13 @@
       }
 
       function moveToCart(itemId) {
-        const item = wishlistItems.find((item) => item.id === itemId);
+        const item = wishlistItems.find((item) => item._id === itemId);
         if (!item) return;
 
         if (item.stock > 0) {
           // Add to cart logic here
           // For demo, we'll just remove from wishlist
-          wishlistItems = wishlistItems.filter((i) => i.id !== itemId);
+          wishlistItems = wishlistItems.filter((i) => i._id !== itemId);
           selectedItems.delete(itemId);
           renderWishlist();
           showNotification(`${item.name} moved to cart`);
@@ -1292,7 +1164,7 @@
       // Bulk Actions
       function bulkMoveToCart() {
         const selectedProducts = wishlistItems.filter((item) =>
-          selectedItems.has(item.id)
+          selectedItems.has(item._id)
         );
         const inStockItems = selectedProducts.filter((item) => item.stock > 0);
 
@@ -1303,7 +1175,7 @@
 
         // Move in-stock items to cart
         wishlistItems = wishlistItems.filter(
-          (item) => !selectedItems.has(item.id) || item.stock === 0
+          (item) => !selectedItems.has(item._id) || item.stock === 0
         );
         selectedItems.clear();
         renderWishlist();
@@ -1313,7 +1185,7 @@
       function bulkDelete() {
         const count = selectedItems.size;
         wishlistItems = wishlistItems.filter(
-          (item) => !selectedItems.has(item.id)
+          (item) => !selectedItems.has(item._id)
         );
         selectedItems.clear();
         renderWishlist();
@@ -1404,9 +1276,9 @@
             case "name-desc":
               return b.name.localeCompare(a.name);
             case "price-low":
-              return a.price - b.price;
+              return a.selling_price - b.selling_price;
             case "price-high":
-              return b.price - a.price;
+              return b.selling_price - a.selling_price;
             case "rating":
               return b.rating - a.rating;
             case "stock":
@@ -1554,129 +1426,7 @@
           }
 
           // Sample wishlist items
-          wishlistItems = [
-            {
-              id: 30,
-              name: "Veg Noodles",
-              image: "../assets/images/food_30.png",
-              price: 12,
-              description:
-                "Fresh vegetables stir-fried with noodles in our special sauce. A healthy and delicious choice for noodle lovers.",
-              category: "Noodles",
-              rating: 4.2,
-              stock: 50,
-              reviews: [
-                {
-                  user: "John Doe",
-                  rating: 4.5,
-                  comment: "Good but could use more seasoning.",
-                  date: "28 Jan 2025",
-                },
-              ],
-            },
-
-            {
-              id: 31,
-              name: "Veg Noodles",
-              image: "../assets/images/food_31.png",
-              price: 12,
-              description:
-                "Fresh vegetables stir-fried with noodles in our special sauce. A healthy and delicious choice for noodle lovers.",
-              category: "Noodles",
-              rating: 4.2,
-              stock: 0,
-              reviews: [
-                {
-                  user: "John Doe",
-                  rating: 4.5,
-                  comment: "Good but could use more seasoning.",
-                  date: "28 Jan 2025",
-                },
-              ],
-            },
-
-            {
-              id: 33,
-              name: "Veg Noodles",
-              image: "../assets/images/food_32.png",
-              price: 12,
-              price: 12,
-              description:
-                "Fresh vegetables stir-fried with noodles in our special sauce. A healthy and delicious choice for noodle lovers.",
-              category: "Noodles",
-              rating: 4.2,
-              stock: 10,
-              reviews: [
-                {
-                  user: "John Doe",
-                  rating: 4.5,
-                  comment: "Good but could use more seasoning.",
-                  date: "28 Jan 2025",
-                },
-              ],
-            },
-            {
-              id: 34,
-              name: "Veg Noodles",
-              image: "../assets/images/food_30.png",
-              price: 12,
-              description:
-                "Fresh vegetables stir-fried with noodles in our special sauce. A healthy and delicious choice for noodle lovers.",
-              category: "Noodles",
-              rating: 4.2,
-              stock: 50,
-              reviews: [
-                {
-                  user: "John Doe",
-                  rating: 4.5,
-                  comment: "Good but could use more seasoning.",
-                  date: "28 Jan 2025",
-                },
-              ],
-            },
-
-            {
-              id: 36,
-              name: "",
-              image: "../assets/images/food_31.png",
-              price: 12,
-              description:
-                "Fresh vegetables stir-fried with noodles in our special sauce. A healthy and delicious choice for noodle lovers.",
-              category: "Noodles",
-              rating: 4.2,
-              stock: 0,
-              reviews: [
-                {
-                  user: "John Doe",
-                  rating: 4.5,
-                  comment: "Good but could use more seasoning.",
-                  date: "28 Jan 2025",
-                },
-              ],
-            },
-
-            {
-              id: 32,
-              name: "Veg Noodles",
-              image: "../assets/images/food_32.png",
-              price: 12,
-              price: 12,
-              description:
-                "Fresh vegetables stir-fried with noodles in our special sauce. A healthy and delicious choice for noodle lovers.",
-              category: "Noodles",
-              rating: 4.2,
-              stock: 10,
-              reviews: [
-                {
-                  user: "John Doe",
-                  rating: 4.5,
-                  comment: "Good but could use more seasoning.",
-                  date: "28 Jan 2025",
-                },
-              ],
-            },
-          ];
-
+          wishlistItems =  JSON.parse(localStorage.getItem("myWishlist")) || [];
           updateFilterOptions();
           initializeFromURL();
           setupEventListeners();
