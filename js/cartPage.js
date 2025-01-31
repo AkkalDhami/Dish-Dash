@@ -191,10 +191,10 @@ document.addEventListener("DOMContentLoaded", () => {
               🍣 Rolls
             </button>
             <button
-              data-category="Salads"
+              data-category="Salad"
               class="px-4 py-2 rounded-full bg-[#ff6b38]/5 text-[#ff6b38] hover:bg-[#ff6b38]/10 transition-colors duration-300"
             >
-              🥗 Salads
+              🥗 Salad
             </button>
             <button
               data-category="Sandwich"
@@ -209,7 +209,7 @@ document.addEventListener("DOMContentLoaded", () => {
               🍰 Cake
             </button>
             <button
-              data-category="pasta"
+              data-category="Pasta"
               class="px-4 py-2 rounded-full bg-[#ff6b38]/5 text-[#ff6b38] hover:bg-[#ff6b38]/10 transition-colors duration-300"
             >
               🍝 Pasta
