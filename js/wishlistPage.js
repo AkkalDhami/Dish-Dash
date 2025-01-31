@@ -241,6 +241,7 @@ document.addEventListener("DOMContentLoaded", () => {
         renderWishlist();
         showNotification("Wishlist cleared");
         hideClearModal();
+        getWishlistLength();
     });
 
     // Close modal when clicking outside
@@ -444,8 +445,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Generate page numbers
         let paginationHTML = "";
-
-
 
         for (let i = 1; i <= totalPages; i++) {
             if (
