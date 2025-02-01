@@ -1225,6 +1225,10 @@ input[type="number"] {
   margin-left: 0.5rem;
 }
 
+.ml-3 {
+  margin-left: 0.75rem;
+}
+
 .ml-4 {
   margin-left: 1rem;
 }
@@ -1319,10 +1323,6 @@ input[type="number"] {
 
 .mt-\[6px\] {
   margin-top: 6px;
-}
-
-.ml-3 {
-  margin-left: 0.75rem;
 }
 
 .line-clamp-1 {
@@ -2233,6 +2233,11 @@ input[type="number"] {
   border-color: rgb(55 65 81 / var(--tw-border-opacity, 1));
 }
 
+.border-gray-800 {
+  --tw-border-opacity: 1;
+  border-color: rgb(31 41 55 / var(--tw-border-opacity, 1));
+}
+
 .border-green-500 {
   --tw-border-opacity: 1;
   border-color: rgb(34 197 94 / var(--tw-border-opacity, 1));
@@ -2265,15 +2270,6 @@ input[type="number"] {
 
 .border-transparent {
   border-color: transparent;
-}
-
-.border-gray-800 {
-  --tw-border-opacity: 1;
-  border-color: rgb(31 41 55 / var(--tw-border-opacity, 1));
-}
-
-.border-\[\] {
-  border-color: ;
 }
 
 .border-r-red-500 {
@@ -2620,6 +2616,11 @@ input[type="number"] {
   padding-right: 0px;
 }
 
+.px-1 {
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+}
+
 .px-2 {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
@@ -2748,11 +2749,6 @@ input[type="number"] {
 .py-\[8px\] {
   padding-top: 8px;
   padding-bottom: 8px;
-}
-
-.px-1 {
-  padding-left: 0.25rem;
-  padding-right: 0.25rem;
 }
 
 .pl-10 {
@@ -4084,10 +4080,6 @@ textarea {
 
   .sm\:w-\[140px\] {
     width: 140px;
-  }
-
-  .sm\:w-\[300px\] {
-    width: 300px;
   }
 
   .sm\:w-\[350px\] {
