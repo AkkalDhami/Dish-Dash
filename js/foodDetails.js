@@ -169,6 +169,35 @@ document.querySelector("#addToWishlist").addEventListener("click", () => {
 getCartLength();
 getWishlistLength();
 
+const orderNow = (productId, quantity) => {
+  console.log(productId, quantity);
+
+  let orderNowProd = foodList.find((item) => item._id === product._id);
+
+  let orderNowItem = JSON.parse(localStorage.getItem("orderNowProd")) || [];
+
+  if (!orderNowProd) {
+    console.error("Product not found in foodList!");
+    return;
+  }
+
+  orderNowItem.push({
+    ...orderNowProd,
+    quantity: quantity,
+  });
+
+  localStorage.setItem("orderNow", JSON.stringify(orderNowItem));
+
+  window.location.href = `../html/orderNowPage.html`
+}
+
+let orderNowBtn = document.getElementById("orderNowBtn");
+orderNowBtn.addEventListener("click", () => {
+  orderNow(product._id, quantity);
+
+});
+
+
 
 function displayRecommendedItems(recommendedItems) {
   recommendedItems.forEach((item, ind) => {
