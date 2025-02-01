@@ -343,7 +343,9 @@
       class="fixed top-10 left-1/2 -translate-x-1/2 z-50 flex flex-col space-y-4"
     ></div>
 
-    <section class="sm:mt-[100px] mt-2 container mx-auto px-1 sm:px-4 py-4 sm:py-8">
+    <section
+      class="sm:mt-[100px] mt-2 container mx-auto px-1 sm:px-4 py-4 sm:py-8"
+    >
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 p-2 sm:p-6">
         <!-- Image Section -->
         <div class="flex justify-center">
@@ -389,18 +391,27 @@
           </div>
 
           <!-- Action Buttons -->
-          <div class="flex flex-col my-2 sm:flex-row gap-4">
+          <div class="flex flex-col my-2 gap-4">
+            <div class="flex flex-col sm:flex-row gap-4">
+              <button
+                id="addToCartBtn"
+                class="bg-[#0d6efd] hover:bg-transparent border-2 hover:text-gray-800 border-[#0d6efd] text-white px-6 py-2.5 rounded-md shadow-md flex justify-center items-center space-x-2 transition text-[16px] sm:text-[18px]"
+              >
+                <span>Add to Cart</span> <i class="ri-shopping-bag-line"></i>
+              </button>
+              <button
+                id="addToWishlist"
+                class="bg-white border-2 border-[#ff6b38] text-gray-800 hover:bg-[#ff6b38] hover:text-white duration-300 px-6 py-2.5 rounded-md shadow-md flex justify-center items-center space-x-2 transition text-[16px] sm:text-[18px]"
+              >
+                <span> Add to Wishlist</span> <i class="ri-heart-line"></i>
+              </button>
+            </div>
+            <!-- order now button -->
             <button
-              id="addToCartBtn"
-              class="bg-[#0d6efd] hover:bg-transparent border-2 hover:text-gray-800 border-[#0d6efd] text-white px-6 py-2.5 rounded-md shadow-md flex justify-center items-center space-x-2 transition text-[16px] sm:text-[18px]"
+              id="orderNowBtn"
+              class="sm:max-w-[410px] border-2 border-transparent bg-[#0d6efd] hover:bg-[#ff6b38] text-white duration-300 px-6 py-2.5 rounded-md shadow-md flex justify-center items-center space-x-2 transition text-[16px] sm:text-[18px]"
             >
-              <span>Add to Cart</span> <i class="ri-shopping-bag-line"></i>
-            </button>
-            <button
-              id="addToWishlist"
-              class="bg-white border-2 border-[#ff6b38] text-gray-800 hover:bg-[#ff6b38] hover:text-white duration-300 px-6 py-2.5 rounded-md shadow-md flex justify-center items-center space-x-2 transition text-[16px] sm:text-[18px]"
-            >
-              <span> Add to Wishlist</span> <i class="ri-heart-line"></i>
+              <span>Order Now</span> <i class="ri-fire-line"></i>
             </button>
           </div>
 
