@@ -1,5 +1,5 @@
 import { getCartLength } from "./getCartLength.js";
-import { showToast } from "../assets/utility/showToast.js";
+import { showToastNotify } from "../assets/utility/showToast.js";
 import { getWishlistLength } from "../assets/utility/getWishlistLength.js";
 document.addEventListener("DOMContentLoaded", () => {
   const cartItemsContainer = document.getElementById("cartItems");
@@ -277,7 +277,7 @@ document.addEventListener("DOMContentLoaded", () => {
         cancelClearCart();
       });
     } else {
-      showToast("Your cart is empty", "error");
+      showToastNotify("Your cart is empty", "error");
     }
   });
 
@@ -328,7 +328,7 @@ document.addEventListener("DOMContentLoaded", () => {
           item.quantity -= 1;
           if (item.quantity < 1) {
             item.quantity = 1;
-            showToast("Quantity cannot be less than 1", "error");
+            showToastNotify("Quantity cannot be less than 1", "error");
           }
 
         }
