@@ -54,9 +54,16 @@ function displayMenu() {
             id="${_id}"
             class="foodItem bg-[#f6f6f6] p-5 rounded-md hover:shadow-lg hover:bg-[#ffffff] duration-300 w-[300px] group overflow-hidden relative"
           >
-          <i title="Add to wishlist" class="addToWishList ri-heart-line z-30 duration-500 w-[30px] h-[30px] flex items-center justify-center p-5 cursor-pointer hover:bg-[#ff6b38] bg-white rounded-full hover:text-white absolute top-5 opacity-0 group-hover:opacity-100 -right-80 group-hover:right-6 text-2xl text-[#ff6b38]"></i>
-            <div
-              class="img max-w-[280px] max-h-[280px] rounded-md overflow-hidden"
+          <div class="absolute top-5 opacity-100 group-hover:opacity-100 right-6 group-hover:right-6 flex space-y-2 duration-300 flex-col">
+            
+            <i title="Add to wishlist" class="addToWishList ri-heart-line z-30 duration-500 w-[30px] h-[30px] flex items-center justify-center p-5 cursor-pointer shadow-[0px_0px_16px_3px_#a19393] hover:bg-[#ff6b38] bg-white rounded-full hover:text-white  text-2xl text-[#ff6b38]"></i>
+            
+            <i title="View Details" onclick="window.location.href='../html/foodDetails.html?id=${_id}&category=${category}'" class="ri-eye-line viewMore z-30 w-[30px] h-[30px] flex items-center justify-center p-5 cursor-pointer hover:bg-[#0d6efd] bg-white rounded-full hover:text-white duration-300 shadow-[0px_0px_16px_3px_#a19393] text-2xl text-[#3284e8]"
+                ></i>
+          </div>
+
+            <div onclick="window.location.href='../html/foodDetails.html?id=${_id}&category=${category}'"
+              class="img cursor-pointer max-w-[280px] max-h-[280px] rounded-md overflow-hidden"
             >
               <img
                 src="${image}"
@@ -88,25 +95,22 @@ function displayMenu() {
               >
                 Add to Cart <i class="ri-shopping-bag-line addToCart"></i>
               </button>
-              <button onclick="window.location.href='../html/foodDetails.html?id=${_id}&category=${category}'"
-                class="viewMore px-4 flex items-center gap-4 py-[10px] border-2 border-[#eb5f2f] hover:bg-[#ff6b38] text-gray-800 rounded-full hover:text-white text-[16px] group/viewMore sm:text-[16px] duration-300 justify-center w-full"
-              >
-                View More
-                <i
-                  class="ri-arrow-right-line group-hover/viewMore:translate-x-2 duration-100"
-                ></i>
-              </button>
+              
             </div>
           </div>
     `;
   });
 
-  let menuItems = document.querySelectorAll(".foodMenu");
-  menuItems.forEach((item) => {
-    item.addEventListener("click", () => {
-      let menu = item.getAttribute("data-menu");
+
+  menu_container.addEventListener("click", (event) => {
+    const menuItem = event.target.closest(".foodMenu");
+    if (menuItem) {
+      const menu = menuItem.getAttribute("data-menu");
+      console.log("Clicked menu:", menu);
       window.location.href = `../html/filterFood.html?menu=${menu}`;
-    });
+    }
   });
+
+
 }
 displayMenu();
