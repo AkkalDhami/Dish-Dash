@@ -1,4 +1,4 @@
-import { showToast } from '../assets/utility/showToast.js';
+import { showToastNotify } from '../assets/utility/showToast.js';
 
 function togglePassword() {
     const passwordInput = document.getElementById("login-Password");
@@ -24,8 +24,8 @@ function validateForm(event) {
     const password = document.getElementById("login-Password").value;
 
     if (email === "admin@admin.com" && password === "admin123") {
-        showToast("Login successful", "success");
+        showToastNotify("Login successful", "success");
     } else {
-        showToast("Invalid email or password try again or sign up", "error");
+        showToastNotify("Invalid email or password try again or sign up", "error");
     }
 }

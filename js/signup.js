@@ -1,4 +1,4 @@
-import { showToast } from '../assets/utility/showToast.js';
+import { showToastNotify } from '../assets/utility/showToast.js';
 
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("signupForm");
@@ -78,12 +78,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Validate Terms Checkbox
         if (!termsCheckbox.checked) {
-            showToast("Please agree to the terms and conditions.", "error");
+            showToastNotify("Please agree to the terms and conditions.", "error");
             valid = false;
         }
 
         if (valid) {
-            showToast("Signup Successful!", "success");
+            showToastNotify("Signup Successful!", "success");
             clearInput();
 
         }

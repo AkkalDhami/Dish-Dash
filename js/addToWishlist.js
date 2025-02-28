@@ -1,5 +1,5 @@
 import { getWishlistLength } from "../assets/utility/getWishlistLength.js";
-import { addToWishList } from "../assets/utility/addToWishList.js";
+import { addToWishList } from "../assets/utility/addTowishList.js";
 
 document.addEventListener("DOMContentLoaded", () => {
     getWishlistLength();
