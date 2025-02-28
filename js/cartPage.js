@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (cartItems.length == 0) {
       cartItemsContainer.innerHTML = `
-                     <div id="emptyState" class="">
+      <div id="emptyState" class="">
       <div class="bg-white rounded-2xl shadow-sm p-8 md:p-12">
         <div class="relative w-full max-w-[300px] h-[300px] mx-auto mb-8">
           <div
@@ -154,7 +154,7 @@ document.addEventListener("DOMContentLoaded", () => {
           >
             <a
               href="../index.html"
-              class="group px-6 py-3 bg-gradient-to-r from-[#2896ea] to-[#107bdf] text-white rounded-md hover:shadow-lg hover:shadow-[#ff6b38]/20 transition-all duration-300 flex items-center justify-center gap-2 transform hover:scale-[1.02] active:scale-[0.98]"
+              class="group px-6 py-3 bg-gradient-to-r from-[#2896ea] to-[#107bdf] text-white rounded-full hover:shadow-lg hover:shadow-[#ff6b38]/20 transition-all duration-300 flex items-center justify-center gap-2 transform hover:scale-[1.02] active:scale-[0.98]"
             >
               <i
                 class="ri-restaurant-line text-xl group-hover:rotate-12 transition-transform duration-300"
@@ -163,9 +163,9 @@ document.addEventListener("DOMContentLoaded", () => {
             </a>
             <a
               href="../index.html"
-              class="group px-6 py-3 border-2 border-[#ff6b38] text-[#ff6b38] rounded-xl hover:bg-[#ff6b38]/5 transition-all duration-300 flex items-center justify-center gap-2"
+              class="group px-6 py-3 border-2 border-[#ff6b38] text-[#ff6b38] rounded-full hover:bg-[#ff6b38]/5 transition-all duration-300 flex items-center justify-center gap-2"
             >
-             <i class="ri-arrow-left-fill text-xl group-hover:-translate-x-1"></i>
+             <i class="ri-arrow-left-fill text-xl duration-300 group-hover:-translate-x-1"></i>
               <span>Back to Homepage</span>
             </a>
           </div>
@@ -242,8 +242,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   clearCartBtn.addEventListener("click", () => {
     if (cartItems.length >= 1) {
-
-
       overlay.classList.remove("overlayActive");
       deleteToast.classList.remove("-top-1/2");
       deleteToast.classList.add("top-1/2");
@@ -290,18 +288,17 @@ document.addEventListener("DOMContentLoaded", () => {
     if (cartItems.length >= 1) {
       window.location.href = `../html/checkoutPage.html`;
     } else {
-      showToast("Your cart is empty", "error");
+      showToastNotify("Your cart is empty", "error");
     }
   });
 
   renderCart();
 
-  const categoryButtons = document.querySelectorAll("#category-buttons button");
-  categoryButtons.forEach((button) => {
-    button.addEventListener('click', (e) => {
-      console.log(e.target.dataset.category);
-      window.location.href = `../html/filterFood.html?menu=${e.target.dataset.category}`
-    })
+  const categoryButtons = document.querySelector("#category-buttons");
+  categoryButtons?.addEventListener('click', (e) => {
+    console.log(e.target.dataset.category);
+    window.location.href = `../html/filterFood.html?menu=${e.target.dataset.category}`
+
   })
 
   cartItemsContainer.addEventListener("click", (event) => {
@@ -313,6 +310,7 @@ document.addEventListener("DOMContentLoaded", () => {
         cartItems = cartItems.map((item) => {
           if (item._id === itemId) {
             item.quantity += 1;
+            showToastNotify("Item quantity updated successfully", "success");
           }
           return item;
         })
@@ -326,6 +324,7 @@ document.addEventListener("DOMContentLoaded", () => {
       cartItems = cartItems.map((item) => {
         if (item._id === itemId) {
           item.quantity -= 1;
+          showToastNotify("Item quantity updated successfully", "success");
           if (item.quantity < 1) {
             item.quantity = 1;
             showToastNotify("Quantity cannot be less than 1", "error");
@@ -346,6 +345,7 @@ document.addEventListener("DOMContentLoaded", () => {
       updateCart();
       saveCart(cartItems);
       getCartLength();
+      showToastNotify("Item Deleted successfully", "success");
     }
   });
 
