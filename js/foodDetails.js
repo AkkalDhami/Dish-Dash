@@ -1,4 +1,4 @@
-import { showToast } from '../assets/utility/showToast.js';
+import { showToastNotify } from '../assets/utility/showToast.js';
 import { addToCart } from "../assets/utility/addToCart.js";
 import { getCartLength } from "./getCartLength.js";
 import { getWishlistLength } from "../assets/utility/getWishlistLength.js";
@@ -127,14 +127,14 @@ quantityContainer.addEventListener("click", (e) => {
     if (product.stock === 0) {
       quantityInput.value = 1
       quantity = parseInt(quantityInput.value);
-      showToast("Out of stock", "error");
+      showToastNotify("Out of stock", "error");
     } else if (quantityInput.value > 1) {
       quantityInput.value--;
       quantity = parseInt(quantityInput.value)
     } else {
       quantityInput.value = 1
       quantity = parseInt(quantityInput.value)
-      showToast("Quantity cannot be less than 1", "error");
+      showToastNotify("Quantity cannot be less than 1", "error");
     }
   }
 
@@ -142,12 +142,12 @@ quantityContainer.addEventListener("click", (e) => {
     if (product.stock === 0) {
       quantityInput.value = 1
       quantity = parseInt(quantityInput.value);
-      showToast("Out of stock", "error");
+      showToastNotify("Out of stock", "error");
     }
     else if (quantityInput.value >= product.stock) {
       quantityInput.value = product.stock
       quantity = parseInt(quantityInput.value)
-      showToast("Quantity cannot be more than stock", "error");
+      showToastNotify("Quantity cannot be more than stock", "error");
     }
     else {
       quantityInput.value++;
@@ -170,6 +170,9 @@ getCartLength();
 getWishlistLength();
 
 const orderNow = (productId, quantity) => {
+
+
+
   console.log(productId, quantity);
 
   let orderNowProd = foodList.find((item) => item._id === product._id);
@@ -193,6 +196,11 @@ const orderNow = (productId, quantity) => {
 
 let orderNowBtn = document.getElementById("orderNowBtn");
 orderNowBtn.addEventListener("click", () => {
+
+  if (product.stock === 0) {
+    showToastNotify("Out of stock", "error");
+    return;
+  } 
   orderNow(product._id, quantity);
 
 });
@@ -209,68 +217,46 @@ function displayRecommendedItems(recommendedItems) {
 
     let discount = Math.floor((original_price - selling_price) / original_price * 100);
     recommendedItemContainer.innerHTML += `
-        <div id="${_id}" data-category="${category}"
-            class="recommItems bg-[#f6f6f6] rounded shadow-sm hover:shadow-[0px_0px_12px_3px_#dadada] transition-all duration-300 overflow-hidden max-w-sm group hover:bg-white"
+        <div data-category="${category}"
+            id="${_id}"
+            class="foodItem bg-[#f6f6f6]  rounded-md hover:shadow-lg hover:bg-[#ffffff] duration-300 w-[300px] group overflow-hidden relative"
           >
-            <div class="relative">
+          <div class="absolute top-5 opacity-100 group-hover:opacity-100 right-3  flex space-y-2 duration-300 flex-col">
+            
+            <i title="Add to wishlist" class="addToWishList ri-heart-line z-30 duration-500 w-[30px] h-[30px] flex items-center justify-center p-5 cursor-pointer shadow-[0px_0px_16px_3px_#a19393] hover:bg-[#ff6b38] bg-white rounded-full hover:text-white  text-2xl text-[#ff6b38]"></i>
+            
+            <i title="View Details" onclick="window.location.href='../html/foodDetails.html?id=${_id}&category=${category}'" class="ri-eye-line viewMore z-30 w-[30px] h-[30px] flex items-center justify-center p-5 cursor-pointer hover:bg-[#0d6efd] bg-white rounded-full hover:text-white duration-300 shadow-[0px_0px_16px_3px_#a19393] text-2xl text-[#3284e8]"></i>
+          </div>
+
+            <div onclick="window.location.href='../html/foodDetails.html?id=${_id}&category=${category}'"
+              class="img max-h-[280px] cursor-pointer w-full overflow-hidden"
+            >  
               <img
                 src="${image}"
-                alt="Veg Salad-${ind}"
-                class="w-full h-56 object-cover group-hover:scale-100 duration-300"
+                alt="food-${ind} image"
+                class="w-full h-full object-cover object-center scale-100 group-hover:scale-110 duration-300 transition-all"
               />
-
-              <div
-                class="absolute top-3 group-hover:right-3 -right-5 flex duration-300 flex-col gap-3"
-              >
-                <button
-                  class="addToWishList bg-white p-3 w-[36px] h-[36px] flex items-center justify-center rounded-full shadow-md hover:bg-[#ff6b38] hover:text-white transition-colors duration-300 opacity-0 group-hover:opacity-100 transform translate-x-4 group-hover:translate-x-0"
-                >
-                  <i class="ri-heart-line addToWishList text-[20px]"></i>
-                </button>
-
-                <button
-                  class="viewDetails bg-white p-3 w-[36px] h-[36px] flex items-center justify-center rounded-full shadow-md hover:bg-[#ff6b38] hover:text-white transition-colors duration-300 opacity-0 group-hover:opacity-100 transform translate-x-4 group-hover:translate-x-0"
-                >
-                  <i class="ri-eye-line viewDetails text-lg"></i>
-                </button>
-              </div>
-
-              <div class="absolute bottom-3 left-3">
-                <span
-                  class="bg-orange-500 text-white px-3 py-1 rounded-full text-sm font-medium"
-                >
-                  ${discount}% off
-                </span>
-              </div>
             </div>
 
-            <div class="p-4">
-              <h3 class="text-xl font-semibold mb-2 text-gray-800">
-              ${name}
-              </h3>
-
-              <p class="text-gray-600 text-sm mb-3 line-clamp-2">
-              ${description}
-              </p>
-
-              <div class="flex justify-between items-center mb-4">
-                <div class="flex items-center gap-2">
-                  <span
-                    class="text-[16px] sm:text-[18px] font-[500] text-gray-800"
-                    >$${selling_price}</span
-                  >
-                  <span class="text-gray-400 text-sm line-through">$${original_price}</span>
-                </div>
-                <div class="flex items-center gap-1">
-                  <i class="ri-star-fill text-orange-500"></i>
-                  <span class="text-gray-600"> | ${rating}</span>
-                </div>
+            <div class="flex p-[8px_12px] mt-3 flex-col">
+             <div class="flex justify-between my-1 items-center">
+               <h3 class="text-[18px] group-hover:text-[#0d6efd] duration-200 font-semibold">${name}</h3>
+               <span class="text-[#fff] px-3 py-[2px] rounded-full bg-[#ff6b38] sm:text-[14px] text-[12px] font-[500]">${discount}% off</span>
               </div>
-
+              <h4 class="text-[15px]">${description}</h4>
+              <div class="flex mt-2 w-full justify-between">
+                <div class="flex gap-4 items-center">
+                  <p class="text-[18px] font-[500]">$${selling_price}</p>
+                  <p class="text-[16px] text-[#727374] font-[400] line-through">
+                    $${original_price}
+                  </p>
+                </div>
+                <h3><i class="ri-star-fill text-[#ff6b38]"></i> | ${rating}</h3>
+              </div>
               <button
-                class="addToCart bg-[#0d6efd] w-full hover:bg-transparent border-2 hover:text-gray-800 border-[#0d6efd] text-white px-6 py-2.5 rounded-full shadow-md flex justify-center items-center space-x-2 transition text-[16px]"
+                class="addToCart mt-3 mb-2 px-4 flex items-center gap-4 py-[12px] bg-[#0d6efd] hover:bg-[#3284e8] rounded-full text-white text-[16px] sm:text-[16px] duration-300 justify-center w-full"
               >
-                <span class="addToCart">Add to Cart</span> <i class="ri-shopping-bag-line addToCart"></i>
+                Add to Cart <i class="ri-shopping-bag-line addToCart"></i>
               </button>
             </div>
           </div>
@@ -279,23 +265,15 @@ function displayRecommendedItems(recommendedItems) {
 }
 displayRecommendedItems(recommendedItems);
 
-let recommItems = document.querySelectorAll(".recommItems");
+// let recommItems = document.querySelectorAll(".recommItems");
 
-recommItems.forEach((items) => {
-  items.addEventListener('click', (e) => {
-    console.log(e.target);
-    let id = items.id;
-    let quantity = 1;
-    if (e.target.classList.contains("addToWishList")) {
-      console.log("addToWishList");
-      addToWishList(id);
-    }
-
-    if (e.target.classList.contains("addToCart")) {
-      addToCart(id, quantity);
-    }
-    if (e.target.classList.contains("viewDetails")) {
-      window.location.href = `../html/foodDetails.html?id=${id}&category=${product.category}`
-    }
-  })
-})
+// recommItems.forEach((items) => {
+//   items.addEventListener('click', (e) => {
+//     console.log(e.target);
+//     let id = items.id;
+//     if (e.target.classList.contains("addToWishList")) {
+//       console.log("addToWishList");
+//       addToWishList(id);
+//     }
+//   })
+// })
