@@ -1,4 +1,4 @@
-import { showToast } from "./showToast.js";
+import { showToastNotify } from "./showToast.js";
 import { getWishlistLength } from "../assets/utility/getWishlistLength.js";
 import { getCartLength } from "../assets/utility/getCartLength.js";
 
@@ -14,7 +14,7 @@ export const moveToCart = (productId) => {
     const productIndex = wishlist.findIndex((product) => product._id === productId);
 
     if (productIndex === -1) {
-        showToast("Product not found in wishlist!", "error");
+        showToastNotify("Product not found in wishlist!", "error");
         return;
     }
 
@@ -40,7 +40,7 @@ export const moveToCart = (productId) => {
     getWishlistLength();
     getCartLength();
 
-    showToast("Item moved to cart!", "success");
+    showToastNotify("Item moved to cart!", "success");
 
     console.log("Updated Wishlist:", wishlist);
     console.log("Updated Cart:", cart);
