@@ -58,18 +58,18 @@
           >
             <i class="fa-solid fa-magnifying-glass"></i>
           </button>
-       
+
           <button
-          data-nav-link
-          class="nav-link p-2 relative hover:text-[#3284e8]"
-          onclick="window.location.href=`../html/wishlist.html`"
-        >
-          <i class="ri-heart-line text-[26px]"></i>
-          <span
-            class="wishlistItems absolute w-[23px] h-[23px] rounded-full text-white top-0 -right-1 bg-[#3284e8] text-[12px] flex items-center justify-center"
-            >0</span
+            data-nav-link
+            class="nav-link p-2 relative hover:text-[#3284e8]"
+            onclick="window.location.href=`../html/wishlist.html`"
           >
-        </button>
+            <i class="ri-heart-line text-[26px]"></i>
+            <span
+              class="wishlistItems absolute w-[23px] h-[23px] rounded-full text-white top-0 -right-1 bg-[#3284e8] text-[12px] flex items-center justify-center"
+              >0</span
+            >
+          </button>
 
           <button
             data-nav-link
@@ -325,6 +325,15 @@
       id="toastContainer"
       class="fixed top-10 left-1/2 -translate-x-1/2 z-50 flex flex-col space-y-4"
     ></div>
+
+    <div id="toast" class="toast">
+      <span class="toast-icon"></span>
+      <span class="toast-message"></span>
+      <span class="toast-close">&times;</span>
+      <div class="toast-progress">
+        <div class="toast-progress-bar"></div>
+      </div>
+    </div>
 
     <!-- main section -->
     <main class="mt-[16px] sm:mt-[100px] p-3 sm:p-6">
