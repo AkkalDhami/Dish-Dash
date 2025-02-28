@@ -1,4 +1,4 @@
-import { showToast } from "./showToast.js";
+import { showToastNotify } from "./showToast.js";
 import { getWishlistLength } from "../../assets/utility/getWishlistLength.js";
 
 export const addToWishList = (productId) => {
@@ -10,7 +10,7 @@ export const addToWishList = (productId) => {
     console.log("FoodList:", FoodList);
 
     if (!FoodList.length) {
-        showToast("FoodList not found in localStorage!", "error");
+        showToastNotify("FoodList not found in localStorage!", "error");
         return;
     }
 
@@ -29,7 +29,7 @@ export const addToWishList = (productId) => {
 
     updateWishlist(wishlist);
     getWishlistLength();
-    showToast("Item added to your wishlist!", "success");
+    showToastNotify("Item added to your wishlist!", "success");
 
     console.log("Wishlist updated:", wishlist);
 };
