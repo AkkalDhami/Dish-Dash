@@ -46,7 +46,7 @@ function displayMenu() {
     const finalRating = userReview.reduce((total, rating) => total + rating, 0) / userReview.length || 0;
     const rating = finalRating || "No rating available";
 
-    let { _id, category, description, image, name, selling_price, original_price } = food;
+    let { _id, category, description, image, name, stock, selling_price, original_price } = food;
     let discount = Math.floor((original_price - selling_price) / original_price * 100);
 
     item_container.innerHTML += `
@@ -63,12 +63,12 @@ function displayMenu() {
           </div>
 
             <div onclick="window.location.href='../html/foodDetails.html?id=${_id}&category=${category}'"
-              class="img cursor-pointer max-w-[280px] max-h-[280px] rounded-md overflow-hidden"
-            >
+              class="img cursor-pointer max-w-[280px] max-h-[280px] rounded-md overflow-hidden relative"
+            > <div class="px-2 ${stock === 0 ? "opacity-100" : "opacity-0"} py-1 z-50 bg-red-500 text-white rounded-full absolute top-1/2 left-1/2 -translate-x-1/2">Out of Stock</div>
               <img
                 src="${image}"
                 alt="food-${ind} image"
-                class="w-full h-full object-cover object-center scale-100 group-hover:scale-110 duration-300 transition-all"
+                class="w-full h-full object-cover object-center scale-100 group-hover:scale-110  duration-300 transition-all"
               />
             </div>
             <div class="flex mt-3 flex-col">
