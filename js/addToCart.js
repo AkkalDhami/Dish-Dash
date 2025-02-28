@@ -4,19 +4,18 @@ import { addToCart } from "../assets/utility/addToCart.js";
 document.addEventListener("DOMContentLoaded", () => {
     getCartLength();
 
-    const foodItems = document.querySelectorAll(".foodItem");
-    foodItems.forEach((item) => {
-        item.addEventListener("click", (e) => {
-            const id = item.id;
-            if (!id) {
-                console.error("ID not found for food item!", item);
-                return;
-            }
+    let item_container = document.querySelector("#item_container") || document.querySelector("#foodMenuContainer") || document.querySelector("#recommendedItemContainer");
 
-            if (e.target.closest(".addToCart")) {
-                addToCart(id, 1);
-            }
-
-        });
+    item_container?.addEventListener("click", (e) => {
+        const foodItem = e.target.closest(".foodItem");
+        const id = foodItem.id;
+        const addToCartt = e.target.closest(".addToCart");
+        if (!id) {
+            console.error("ID not found for food item!", e.target);
+            return;
+        }
+        if (addToCartt) {
+            addToCart(id, 1);
+        }
     });
 });
