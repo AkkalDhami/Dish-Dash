@@ -32,6 +32,7 @@
         <div class="hidden md:flex items-center space-x-8">
           <a
             href="#"
+            n
             data-nav-link
             class="nav-link text-gray-600 hover:text-[#3284e8] relative text-[18px]"
             data-active="true"
@@ -210,7 +211,7 @@
         <a
           data-nav-link
           data-active="true"
-          href="./index.html"
+          href="#"
           class="nav-link flex flex-col items-center text-gray-700"
         >
           <svg
@@ -266,10 +267,23 @@
           href="./html/wishlist.html"
           class="flex flex-col items-center text-gray-700 relative"
         >
-          <i class="ri-heart-line text-[16px]"></i>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5 sm:h-6 sm:w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+            />
+          </svg>
           <span class="text-xs mt-1"> Wishlist</span>
           <span
-            class="wishlistItems absolute w-[25px] h-[25px] rounded-full text-white -top-2 -right-2 bg-[#3284e8] text-[12px] flex items-center justify-center"
+            class="wishlistItems absolute w-[25px] h-[25px] rounded-full text-white -top-2 -right-3 bg-[#3284e8] text-[12px] flex items-center justify-center"
             >0</span
           >
         </a>
@@ -320,6 +334,15 @@
           </svg>
           <span class="text-xs mt-1">Profile</span>
         </a>
+
+        <a
+          data-nav-link
+          href="#"
+          class="nav-link flex flex-col items-center text-gray-700"
+        >
+          <i class="ri-customer-service-2-line"></i>
+          <span class="text-xs mt-1">Contact</span>
+        </a>
       </div>
     </div>
 
@@ -338,12 +361,11 @@
               mission is to satisfy your cravings and elevate your dining
               experience, one delicious meal at a time.
             </p>
-            <a
-              href="#menu_containerrrrr"
+            <button
               class="bg-[#ff6b38] text-white px-8 border-2 border-[#ff6b38] font-medium py-3 rounded-full hover:bg-[#3284e8] hover:border-[#ff6b38] transition duration-300"
             >
               View Menu
-            </a>
+            </button>
           </div>
           <div class="md:w-1/2 mt-10 md:mt-0">
             <img
@@ -362,8 +384,17 @@
       class="fixed top-10 left-1/2 -translate-x-1/2 z-50 flex flex-col space-y-4"
     ></div>
 
+    <div id="toast" class="toast">
+      <span class="toast-icon"></span>
+      <span class="toast-message"></span>
+      <span class="toast-close">&times;</span>
+      <div class="toast-progress">
+        <div class="toast-progress-bar"></div>
+      </div>
+    </div>
+
     <main class="my-16 p-2 sm:p-6">
-      <div class="container mx-auto" id="menu_containerrrrr">
+      <div class="container mx-auto">
         <div class="flex flex-col mx-auto container">
           <h2 class="text-2xl sm:text-3xl font-bold px-4">Top Food Category</h2>
         </div>
