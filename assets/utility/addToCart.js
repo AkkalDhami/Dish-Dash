@@ -1,4 +1,4 @@
-import { showToast } from "./showToast.js";
+import { showToastNotify } from "./showToast.js";
 import { getCartLength } from "../../js/getCartLength.js";
 export const addToCart = (productId, quantity) => {
     const getCart = () => JSON.parse(localStorage.getItem("myCart")) || [];
@@ -11,7 +11,7 @@ export const addToCart = (productId, quantity) => {
         return;
     }
     if (quantity <= 0) {
-        showToast("Invalid quantity!", "error");
+        showToastNotify("Invalid quantity!", "error");
         return;
     }
 
@@ -25,7 +25,7 @@ export const addToCart = (productId, quantity) => {
     }
 
     if (stock.stock === 0) {
-        showToast("Out of Stock!", "error");
+        showToastNotify("Out of Stock!", "error");
         return;
     }
 
@@ -47,7 +47,7 @@ export const addToCart = (productId, quantity) => {
 
     updateCart(cart);
     getCartLength();
-    showToast(`${quantity} Item added to your cart!`, "success");
+    showToastNotify(`${quantity} Item added to your cart!`, "success");
     console.log("FoodList:", FoodList);
     console.log("Cart before update:", cart);
 
