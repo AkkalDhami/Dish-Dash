@@ -2,7 +2,7 @@ import { showToastNotify } from '../assets/utility/showToast.js';
 import { addToCart } from "../assets/utility/addToCart.js";
 import { getCartLength } from "./getCartLength.js";
 import { getWishlistLength } from "../assets/utility/getWishlistLength.js";
-import { addToWishList } from "../assets/utility/addToWishList.js";
+import { addToWishList } from "../assets/utility/addTowishList.js";
 getCartLength();
 
 getWishlistLength();
