@@ -1,5 +1,5 @@
 import { getCartLength } from "../js/getCartLength.js";
-import { showToast } from "../assets/utility/showToast.js";
+import { showToastNotify } from "../assets/utility/showToast.js";
 document.addEventListener("DOMContentLoaded", () => {
   getCartLength();
   let carts = JSON.parse(localStorage.getItem("myCart")) || [];
@@ -217,7 +217,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (isValid) {
       clearCheckoutForm();
-      showToast("Form submitted successfully!", "success");
+      showToastNotify("Form submitted successfully!", "success");
 
       setTimeout(() => {
         overlay.classList.remove("overlayActive");
@@ -240,13 +240,13 @@ document.addEventListener("DOMContentLoaded", () => {
         let myOrders = JSON.parse(localStorage.getItem("myOrders")) || [];
 
         if (cartItems.length === 0) {
-          showToast("Your cart is empty. Please add items to your cart before checkout.", "error");
+          showToastNotify("Your cart is empty. Please add items to your cart before checkout.", "error");
           return;
         }
 
         // Validate the user-provided payment method
         if (!pmmthd || typeof pmmthd !== "string") {
-          showToast("Invalid payment method. Please try again.", "error");
+          showToastNotify("Invalid payment method. Please try again.", "error");
           return;
         }
 
@@ -265,11 +265,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         localStorage.setItem("myCart", JSON.stringify([]));
 
-        showToast("Order placed successfully!", "success");
+        showToastNotify("Order placed successfully!", "success");
 
       }, 3000);
     } else {
-      showToast("Please fill up all the required fields.", "error");
+      showToastNotify("Please fill up all the required fields.", "error");
     }
 
   });
