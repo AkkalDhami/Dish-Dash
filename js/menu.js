@@ -64,7 +64,7 @@ function displayMenu() {
 
             <div onclick="window.location.href='../html/foodDetails.html?id=${_id}&category=${category}'"
               class="img cursor-pointer max-w-[280px] max-h-[280px] rounded-md overflow-hidden relative"
-            > <div class="px-2 ${stock === 0 ? "opacity-100" : "opacity-0"} py-1 z-50 bg-red-500 text-white rounded-full absolute top-1/2 left-1/2 -translate-x-1/2">Out of Stock</div>
+            > <div class="px-2 ${stock === 0 ? "opacity-100" : "opacity-0"} py-1 z-30 bg-red-500 text-white rounded-full absolute top-1/2 left-1/2 -translate-x-1/2">Out of Stock</div>
               <img
                 src="${image}"
                 alt="food-${ind} image"
