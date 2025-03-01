@@ -1,4 +1,4 @@
-import { showToast } from "../assets/utility/showToast.js";
+import { showToastNotify } from "../assets/utility/showToast.js";
 
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("contactForm");
@@ -58,11 +58,11 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         if (!isValid) {
-            showToast("Please fill in all the required fields.", "error");
+            showToastNotify("Please fill in all the required fields.", "error");
             return;
         }
 
-        showToast(
+        showToastNotify(
             "Your message has been sent successfully. We will get back to you soon.", "success"
         );
         clearInput();
