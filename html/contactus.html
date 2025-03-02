@@ -21,6 +21,36 @@
     />
 
     <link rel="stylesheet" href="../css/output.css" />
+    <style>
+        .shake {
+            animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+        }
+
+        @keyframes shake {
+            10%, 90% {
+                transform: translate3d(-1px, 0, 0);
+            }
+            20%, 80% {
+                transform: translate3d(2px, 0, 0);
+            }
+            30%, 50%, 70% {
+                transform: translate3d(-2px, 0, 0);
+            }
+            40%, 60% {
+                transform: translate3d(2px, 0, 0);
+            }
+        }
+
+        .borderError {
+            border-color: #ef4444 !important;
+        }
+
+        /* Disable button styles */
+        button:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+    </style>
   </head>
 
   <body class="font-['Poppins']">
@@ -317,73 +347,126 @@
       </div>
     </div>
 
+    <section class="flex flex-col mt-[16px] sm:mt-[100px] items-center justify-center my-8">
+      <!-- Contact Info Section -->
+      <div class="w-full max-w-6xl px-4 mb-12">
+        <div class="text-center mb-12">
+          <h1 class="text-3xl sm:text-4xl font-bold text-gray-800 mb-4">Get in Touch</h1>
+          <p class="text-gray-600 max-w-2xl mx-auto">Have questions about our services? We're here to help! Choose the best way to reach us.</p>
+        </div>
 
-    <section
-      class="flex mt-[16px] sm:mt-[100px] items-center justify-center my-8"
-    >
-      <form
-        action="#"
-        class="p-5 rounded-lg w-full max-w-md bg-[#f6f6f6] text-black"
-        id="contactForm"
-      >
-        <div class="mb-6">
-          <h2
-            class="text-2xl sm:text-3xl font-semibold tracking-wide text-center"
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Phone Contact -->
+          <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-[0_0_2px_2px_#0000001a] transition-shadow">
+            <div class="flex items-center justify-center w-14 h-14 bg-blue-50 rounded-full mb-4 mx-auto">
+              <i class="ri-phone-line text-2xl text-blue-500"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-center mb-2">Phone Support</h3>
+            <p class="text-gray-600 text-center mb-4">Mon-Fri from 8am to 5pm</p>
+            <p class="text-blue-500 text-center font-medium">+1-212-456-7890</p>
+          </div>
+
+          <!-- Email Contact -->
+          <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-[0_0_2px_2px_#0000001a] transition-shadow">
+            <div class="flex items-center justify-center w-14 h-14 bg-orange-50 rounded-full mb-4 mx-auto">
+              <i class="ri-mail-line text-2xl text-orange-500"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-center mb-2">Email Us</h3>
+            <p class="text-gray-600 text-center mb-4">24/7 email support</p>
+            <p class="text-orange-500 text-center font-medium">support@dishdash.com</p>
+          </div>
+
+          <!-- Office Location -->
+          <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-[0_0_2px_2px_#0000001a] transition-shadow">
+            <div class="flex items-center justify-center w-14 h-14 bg-green-50 rounded-full mb-4 mx-auto">
+              <i class="ri-map-pin-line text-2xl text-green-500"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-center mb-2">Visit Us</h3>
+            <p class="text-gray-600 text-center mb-4">Main Office Location</p>
+            <p class="text-green-500 text-center font-medium">123 Gharko Cheau, Kathmandu</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Form Section -->
+      <div class="w-full max-w-6xl px-4 grid md:grid-cols-2 gap-8 items-start">
+        <!-- Form -->
+        <form action="#" class="p-8 rounded-xl bg-white shadow-sm hover:shadow-md transition-all" id="contactForm">
+          <div class="mb-8">
+            <h2 class="text-2xl sm:text-3xl font-semibold text-gray-800 mb-2">Send us a Message</h2>
+            <p class="text-gray-600">We'll get back to you as soon as possible.</p>
+          </div>
+
+          <!-- Name Input -->
+          <div class="mb-6">
+            <label for="contactUserName" class="block text-gray-700 mb-2">Full Name</label>
+            <input
+              type="text"
+              class="w-full text-[16px] p-3 sm:text-[18px] bg-white rounded-md focus:ring focus:ring-[#ff6b38] outline-none duration-300 border-[3px] border-blue-100 focus:bg-transparent focus:border-transparent"
+              id="contactUserName"
+              placeholder="John Doe"
+            />
+            <div id="contactUserNameError" class="mt-2 text-[14px] text-red-500"></div>
+          </div>
+
+          <!-- Email Input -->
+          <div class="mb-6">
+            <label for="contactEmail" class="block text-gray-700 mb-2">Email Address</label>
+            <input
+              type="email"
+              class="w-full text-[16px] p-3 sm:text-[18px] bg-white rounded-md focus:ring focus:ring-[#ff6b38] outline-none duration-300 border-[3px] border-blue-100 focus:bg-transparent focus:border-transparent"
+              id="contactEmail"
+              placeholder="john@example.com"
+            />
+            <div id="contactEmailError" class="mt-2 text-[14px] text-red-500"></div>
+          </div>
+
+          <!-- Message Input -->
+          <div class="mb-6">
+            <label for="message" class="block text-gray-700 mb-2">Your Message</label>
+            <textarea
+              placeholder="Type your message here..."
+              id="message"
+              rows="5"
+              class="w-full text-[16px] resize-none p-3 bg-gray-50 rounded-md focus:ring focus:ring-[#ff6b38] outline-none transition-all border-[3px] border-blue-100 focus:bg-transparent focus:border-transparent"
+            ></textarea>
+            <div id="messageError" class="mt-2 text-[14px] text-red-500"></div>
+          </div>
+
+          <!-- Submit Button -->
+          <button
+            type="submit"
+            id="contactbutton"
+            class="w-full p-4 text-lg font-medium text-white bg-blue-500 rounded-lg hover:bg-blue-600 transition-all duration-300 flex items-center justify-center gap-2 group"
           >
-            Contact Us
-          </h2>
-        </div>
+            <span>Send Message</span>
+            <i class="ri-send-plane-line group-hover:translate-x-1 transition-transform"></i>
+          </button>
+        </form>
 
-        <!-- username Input -->
-        <div class="mb-5">
-          <input
-            type="text"
-            class="w-full text-[16px] p-3 sm:text-[18px] bg-white rounded focus:ring focus:ring-[#ff6b38] outline-none duration-300 border-[3px] border-blue-100 focus:bg-transparent focus:border-transparent"
-            id="contactUserName"
-            placeholder="Name"
-          />
-          <div
-            id="contactUserNameError"
-            class="mt-2 text-[16px] text-red-500 ml-1"
-          ></div>
+        <!-- FAQ Section -->
+        <div class="bg-white p-8 rounded-xl shadow-sm">
+          <h3 class="text-xl font-semibold mb-6">Frequently Asked Questions</h3>
+          <div class="space-y-4">
+            <div class="border-b border-gray-100 pb-4">
+              <h4 class="font-medium text-gray-800 mb-2">What are your delivery hours?</h4>
+              <p class="text-gray-600">We deliver from 10 AM to 10 PM, seven days a week.</p>
+            </div>
+            <div class="border-b border-gray-100 pb-4">
+              <h4 class="font-medium text-gray-800 mb-2">How can I track my order?</h4>
+              <p class="text-gray-600">Once your order is confirmed, you'll receive a tracking link via email and SMS.</p>
+            </div>
+            <div class="border-b border-gray-100 pb-4">
+              <h4 class="font-medium text-gray-800 mb-2">What's your refund policy?</h4>
+              <p class="text-gray-600">We offer full refunds for orders cancelled before preparation begins.</p>
+            </div>
+            <div class="pb-4">
+              <h4 class="font-medium text-gray-800 mb-2">Do you cater to special dietary requirements?</h4>
+              <p class="text-gray-600">Yes, we offer various options for vegetarian, vegan, and gluten-free diets.</p>
+            </div>
+          </div>
         </div>
-
-        <!-- Email Input -->
-        <div class="mb-5">
-          <input
-            type="text"
-            class="w-full text-[16px] p-3 sm:text-[18px] bg-white rounded focus:ring focus:ring-[#ff6b38] outline-none duration-300 focus:bg-transparent border-[3px] border-blue-100 focus:border-transparent"
-            id="contactEmail"
-            placeholder="Email"
-          />
-          <div
-            id="contactEmailError"
-            class="mt-2 text-[16px] text-red-500 ml-1"
-          ></div>
-        </div>
-
-        <div class="mb-5">
-          <textarea
-            placeholder="Message"
-            id="message"
-            rows="7"
-            class="w-full text-[16px] resize-none p-3 sm:text-[18px] bg-white rounded focus:ring focus:ring-[#ff6b38] outline-none duration-300 border-[3px] border-blue-100 focus:bg-transparent focus:border-transparent h-full overflow-auto"
-          ></textarea>
-          <div
-            id="messageError"
-            class="mt-2 text-[16px] text-red-500 ml-1"
-          ></div>
-        </div>
-
-        <!-- Submit Button -->
-        <button
-          type="submit"
-          id="contactbutton"
-          class="w-full p-3 text-lg font-medium text-white bg-[#3284e8] rounded-md hover:bg-[#0d6efd] transition duration-300"
-        >
-          Submit Now
-        </button>
-      </form>
+      </div>
     </section>
 
     <footer class="bg-gray-800 py-8 mb-[70px] md:mb-0">
