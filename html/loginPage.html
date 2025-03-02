@@ -20,6 +20,156 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="../css/output.css" />
+    <style>
+      /* Social Login Button Hover Effects */
+      .social-btn {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .social-btn::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.8) 0%,
+          transparent 50%
+        );
+        transform: translate(-50%, -50%) scale(0);
+        transition: transform 0.5s;
+        opacity: 0;
+      }
+
+      .social-btn:hover::after {
+        transform: translate(-50%, -50%) scale(2);
+        opacity: 1;
+      }
+
+      button:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
+      }
+
+      .transition-all {
+        transition-property: all;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        transition-duration: 300ms;
+      }
+
+      .shake {
+        animation: shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+      }
+
+      @keyframes shake {
+        10%,
+        90% {
+          transform: translate3d(-1px, 0, 0);
+        }
+        20%,
+        80% {
+          transform: translate3d(2px, 0, 0);
+        }
+        30%,
+        50%,
+        70% {
+          transform: translate3d(-2px, 0, 0);
+        }
+        40%,
+        60% {
+          transform: translate3d(2px, 0, 0);
+        }
+      }
+
+      .borderError {
+        border-color: #ef4444 !important;
+      }
+
+      /* Newsletter form styles */
+      .newsletter-input.ring-red-500 {
+        --tw-ring-color: rgb(239 68 68);
+        --tw-ring-opacity: 1;
+        --tw-ring-offset-width: 0px;
+        --tw-ring-offset-color: #fff;
+        --tw-ring-offset-shadow: 0 0 #0000;
+        --tw-ring-shadow: 0 0 0 2px var(--tw-ring-color);
+        box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow);
+      }
+
+      .newsletter-input.ring-green-500 {
+        --tw-ring-color: rgb(34 197 94);
+        --tw-ring-opacity: 1;
+        --tw-ring-offset-width: 0px;
+        --tw-ring-offset-color: #fff;
+        --tw-ring-offset-shadow: 0 0 #0000;
+        --tw-ring-shadow: 0 0 0 2px var(--tw-ring-color);
+        box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow);
+      }
+
+      .newsletter-button:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
+      }
+
+      /* Enhanced social button effects */
+      .social-btn::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 120%;
+        height: 120%;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.7) 0%,
+          transparent 70%
+        );
+        transform: translate(-50%, -50%) scale(0);
+        transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        opacity: 0;
+      }
+
+      .social-btn:hover::before {
+        transform: translate(-50%, -50%) scale(2.5);
+        opacity: 0.3;
+      }
+
+      .social-btn:active::before {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.5;
+      }
+
+      /* Input focus effects */
+      .form-input:focus {
+        box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+        transform: translateY(-1px);
+      }
+
+      /* Button pulse effect */
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4);
+        }
+        70% {
+          box-shadow: 0 0 0 10px rgba(59, 130, 246, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+        }
+      }
+
+      .pulse-on-hover:hover {
+        animation: pulse 1.5s infinite;
+      }
+
+      /* Smooth transitions */
+      .transition-custom {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+    </style>
   </head>
 
   <body class="font-['Poppins']">
@@ -316,159 +466,448 @@
     <section
       class="flex mt-[16px] sm:mt-[100px] items-center justify-center my-8"
     >
-      <form
-        action="#"
-        class="p-5 rounded-lg w-full max-w-md bg-[#f6f6f6] text-black"
-        id="loginForm"
+      <div
+        class="w-full max-w-6xl px-4 grid grid-cols-1 md:grid-cols-2 gap-8 items-center"
       >
-        <div class="mb-6">
-          <h2
-            class="text-2xl sm:text-3xl font-semibold tracking-wide text-center"
-          >
-            LOGIN FORM
-          </h2>
-        </div>
-
-        <!-- Email Input -->
-        <div class="mb-5">
-          <input
-            type="email"
-            class="w-full text-[16px] p-3 sm:text-[18px] bg-white rounded focus:ring focus:ring-[#ff6b38] outline-none duration-300 border-[3px] border-blue-100 focus:bg-transparent focus:border-transparent"
-            id="login-Email"
-            placeholder="Your Email"
-          />
-          <div id="emailError" class="mt-2 text-[16px] text-red-500 ml-1"></div>
-        </div>
-
-        <!-- Password Input -->
-        <div class="mb-5">
-          <div class="relative">
-            <input
-              type="password"
-              class="w-full p-3 sm:text-[18px] text-[16px] bg-white rounded focus:ring focus:ring-[#ff6b38] outline-none duration-300 border-[3px] border-blue-100 focus:bg-transparent focus:border-transparent"
-              id="login-Password"
-              placeholder="Your Password"
-            />
-            <i
-              id="password-toggle-icon"
-              class="fa-regular fa-eye absolute right-4 top-1/2 transform -translate-y-1/2 sm:text-xl text-[18px] text-gray-600 cursor-pointer"
-            ></i>
-          </div>
+        <!-- Left Side - Image and Info -->
+        <div class="md:flex flex-col items-center justify-center p-8">
+          <!-- Hero Image -->
           <div
-            id="passwdError"
-            class="mt-2 ml-1 text-[16px] text-red-500"
-          ></div>
-        </div>
-
-        <!-- Remember Me & Forgot Password -->
-        <div class="flex items-center justify-between mb-6">
-          <label class="flex items-center space-x-2 text-gray-600">
-            <input
-              type="checkbox"
-              class="w-4 h-4 text-[#0d6efd] rounded focus:ring-2 focus:ring-[#eb5f2f] accent-secondary duration-300"
-            />
-            <span>Remember me</span>
-          </label>
-          <a href="#" class="text-[#0d6efd]">Forgot Password?</a>
-        </div>
-
-        <!-- Submit Button -->
-        <button
-          type="submit"
-          id="login-button"
-          class="w-full p-3 text-lg font-medium text-white bg-[#3284e8] rounded-md hover:bg-[#0d6efd] transition duration-300"
-        >
-          Log In
-        </button>
-
-        <!-- Sign Up -->
-        <div class="flex items-center justify-between mt-6 text-gray-600">
-          <span>Create a new account</span>
-          <a
-            href="../html/signupPage.html"
-            class="text-[#0d6efd] hover:underline duration-300"
-            >Sign Up</a
+            class="relative w-full max-w-md mb-8 rounded-2xl overflow-hidden shadow-lg"
           >
+            <img
+              src="https://images.unsplash.com/photo-1493770348161-369560ae357d?q=80&w=2070&auto=format&fit=crop"
+              alt="Food Delivery"
+              class="w-full h-[300px] object-cover transform hover:scale-105 transition-transform duration-700"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"
+            ></div>
+            <div class="absolute bottom-6 left-6 text-white">
+              <h3 class="text-2xl font-bold mb-2">Welcome Back!</h3>
+              <p class="text-sm opacity-90">
+                Your favorite meals are just a click away
+              </p>
+            </div>
+          </div>
+
+          <!-- Features Section -->
+          <div
+            class="text-center bg-white p-6 sm:p-8 rounded-2xl shadow-sm w-full max-w-md"
+          >
+            <div class="inline-block p-3 bg-blue-50 rounded-full mb-4">
+              <i
+                class="ri-shield-star-line text-2xl sm:text-3xl text-blue-500"
+              ></i>
+            </div>
+            <h2 class="text-xl sm:text-2xl font-bold text-gray-800 mb-4">
+              Member Benefits
+            </h2>
+            <div class="grid grid-cols-2 gap-6 mb-8">
+              <div class="text-left">
+                <div class="flex items-center gap-3 mb-2">
+                  <div
+                    class="w-8 h-8 bg-green-50 rounded-full flex items-center justify-center"
+                  >
+                    <i class="ri-coupon-3-line text-green-500"></i>
+                  </div>
+                  <h3 class="font-medium text-gray-800">Special Discounts</h3>
+                </div>
+                <p class="text-sm text-gray-600">
+                  Exclusive offers for members
+                </p>
+              </div>
+              <div class="text-left">
+                <div class="flex items-center gap-3 mb-2">
+                  <div
+                    class="w-8 h-8 bg-blue-50 rounded-full flex items-center justify-center"
+                  >
+                    <i class="ri-timer-flash-line text-blue-500"></i>
+                  </div>
+                  <h3 class="font-medium text-gray-800">Fast Delivery</h3>
+                </div>
+                <p class="text-sm text-gray-600">Priority delivery service</p>
+              </div>
+              <div class="text-left">
+                <div class="flex items-center gap-3 mb-2">
+                  <div
+                    class="w-8 h-8 bg-purple-50 rounded-full flex items-center justify-center"
+                  >
+                    <i class="ri-heart-line text-purple-500"></i>
+                  </div>
+                  <h3 class="font-medium text-gray-800">Save Favorites</h3>
+                </div>
+                <p class="text-sm text-gray-600">Quick access to loved items</p>
+              </div>
+              <div class="text-left">
+                <div class="flex items-center gap-3 mb-2">
+                  <div
+                    class="w-8 h-8 bg-orange-50 rounded-full flex items-center justify-center"
+                  >
+                    <i class="ri-gift-line text-orange-500"></i>
+                  </div>
+                  <h3 class="font-medium text-gray-800">Rewards</h3>
+                </div>
+                <p class="text-sm text-gray-600">Earn points on orders</p>
+              </div>
+            </div>
+          </div>
         </div>
-      </form>
+
+        <!-- Right Side - Login Form -->
+        <form
+          action="#"
+          class="p-8 rounded-xl bg-white shadow-sm hover:shadow-[0_0_2px_2px_#0000001a] transition-all"
+          id="loginForm"
+        >
+          <div class="mb-8 text-center">
+            <h2 class="text-2xl sm:text-3xl font-semibold text-gray-800 mb-2">
+              Welcome Back
+            </h2>
+            <p class="text-gray-600">Sign in to continue to your account</p>
+          </div>
+
+          <!-- Email Input -->
+          <div class="mb-5">
+            <label for="login-Email" class="block text-gray-700 mb-2"
+              >Email Address</label
+            >
+            <div class="relative">
+              <input
+                type="email"
+                class="w-full text-[16px] p-3 pl-10 sm:text-[18px] bg-white rounded-md focus:ring focus:ring-[#ff6b38] outline-none duration-300 border-[3px] border-blue-100 focus:bg-transparent focus:border-transparent"
+                id="login-Email"
+                placeholder="Enter your email"
+              />
+              <i
+                class="ri-mail-line absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+              ></i>
+            </div>
+            <div id="emailError" class="mt-2 text-[14px] text-red-500"></div>
+          </div>
+
+          <!-- Password Input -->
+          <div class="mb-6">
+            <label for="login-Password" class="block text-gray-700 mb-2"
+              >Password</label
+            >
+            <div class="relative">
+              <input
+                type="password"
+                class="w-full text-[16px] p-3 pl-10 sm:text-[18px] bg-white rounded-md focus:ring focus:ring-[#ff6b38] outline-none duration-300 border-[3px] border-blue-100 focus:bg-transparent focus:border-transparent"
+                id="login-Password"
+                placeholder="Enter your password"
+              />
+              <i
+                class="ri-lock-line absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+              ></i>
+              <i
+                id="password-toggle-icon"
+                class="fa-regular fa-eye absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 cursor-pointer hover:text-gray-600"
+              ></i>
+            </div>
+            <div id="passwdError" class="mt-2 text-[14px] text-red-500"></div>
+          </div>
+
+          <!-- Remember Me & Forgot Password -->
+          <div class="flex items-center justify-between mb-6">
+            <label class="flex items-center space-x-2 text-gray-600">
+              <input
+                type="checkbox"
+                class="w-4 h-4 text-blue-500 rounded focus:ring-2 focus:ring-[#ff6b38] accent-blue-500"
+              />
+              <span>Remember me</span>
+            </label>
+            <a href="#" class="text-blue-500 hover:text-blue-600"
+              >Forgot Password?</a
+            >
+          </div>
+
+          <!-- Submit Button -->
+          <button
+            type="submit"
+            id="login-button"
+            class="w-full p-4 text-lg font-medium text-white bg-blue-500 rounded-lg hover:bg-blue-600 transition-all duration-300 flex items-center justify-center gap-2 group pulse-on-hover relative overflow-hidden"
+          >
+            <span class="relative z-10">Sign In</span>
+            <i
+              class="ri-login-circle-line group-hover:translate-x-1 transition-transform relative z-10"
+            ></i>
+            <div
+              class="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            ></div>
+          </button>
+
+          <!-- Social Login Section -->
+          <div class="relative my-8">
+            <div class="absolute inset-0 flex items-center">
+              <div class="w-full border-t border-gray-200"></div>
+            </div>
+            <div class="relative flex justify-center text-sm">
+              <span class="px-4 text-gray-500 bg-white">Or continue with</span>
+            </div>
+          </div>
+
+          <!-- Social Login Buttons -->
+          <div class="grid grid-cols-3 gap-3">
+            <!-- Google -->
+            <button
+              type="button"
+              class="social-btn flex items-center justify-center px-4 py-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-all duration-300 group relative overflow-hidden"
+            >
+              <div
+                class="absolute inset-0 bg-gradient-to-r from-red-500/10 via-blue-500/10 to-yellow-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+              ></div>
+              <img
+                src="https://www.svgrepo.com/show/475656/google-color.svg"
+                class="w-5 h-5 group-hover:scale-110 transition-transform duration-300 relative z-10"
+                alt="Google"
+              />
+            </button>
+
+            <!-- Facebook -->
+            <button
+              type="button"
+              class="social-btn flex items-center justify-center px-4 py-3 border border-gray-200 rounded-lg hover:bg-[#1877F2]/5 transition-all duration-300 group relative overflow-hidden"
+            >
+              <div
+                class="absolute inset-0 bg-[#1877F2]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+              ></div>
+              <svg
+                class="w-5 h-5 text-[#1877F2] group-hover:scale-110 transition-transform duration-300 relative z-10"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"
+                />
+              </svg>
+            </button>
+
+            <!-- Apple -->
+            <button
+              type="button"
+              class="social-btn flex items-center justify-center px-4 py-3 border border-gray-200 rounded-lg hover:bg-gray-900/5 transition-all duration-300 group relative overflow-hidden"
+            >
+              <div
+                class="absolute inset-0 bg-gray-900/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+              ></div>
+              <svg
+                class="w-5 h-5 text-gray-900 group-hover:scale-110 transition-transform duration-300 relative z-10"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"
+                />
+              </svg>
+            </button>
+          </div>
+
+          <!-- Add this right after the social login buttons and before the Sign Up Link -->
+          <div class="mt-8 bg-gray-50 rounded-lg p-4 border border-gray-200">
+            <div class="flex items-start space-x-3">
+              <div class="flex-shrink-0">
+                <i class="ri-shield-keyhole-line text-2xl text-blue-500"></i>
+              </div>
+              <div>
+                <h4 class="text-sm font-medium text-gray-900">Secure Login</h4>
+                <p class="mt-1 text-sm text-gray-500">
+                  Your data is protected with industry-standard encryption and
+                  security measures.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sign Up Link -->
+          <div class="text-center mt-8">
+            <p class="text-gray-600">
+              Don't have an account?
+              <a
+                href="../html/signupPage.html"
+                class="text-blue-500 hover:text-blue-600 font-medium"
+                >Sign Up</a
+              >
+            </p>
+          </div>
+        </form>
+      </div>
     </section>
 
-    <footer class="bg-gray-800 py-8 mb-[70px] md:mb-0">
-      <div
-        class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-start"
-      >
-        <div class="mb-6 md:mb-0 md:max-w-[250px] lg:max-w-[290px]">
-          <div class="text-3xl font-bold text-[#3284e8]">DishDash</div>
-          <p class="mt-2 text-gray-400">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minima
-            dolorum ab itaque?
-          </p>
-          <div class="flex mt-4 space-x-4">
-            <a href="#" class="text-gray-400 hover:text-white"
-              ><i class="fab fa-facebook-f"></i
-            ></a>
-            <a href="#" class="text-gray-400 hover:text-white"
-              ><i class="fab fa-twitter"></i
-            ></a>
-            <a href="#" class="text-gray-400 hover:text-white"
-              ><i class="fab fa-linkedin-in"></i
-            ></a>
+    <footer class="bg-gray-900 pt-16 pb-12 relative overflow-hidden">
+      <!-- Background Pattern -->
+      <div class="absolute inset-0 opacity-5"></div>
+
+      <div class="container mx-auto px-4 relative">
+        <!-- Main Footer Content -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+          <!-- Brand Section -->
+          <div class="space-y-6">
+            <div class="flex items-center space-x-2">
+              <i class="ri-restaurant-2-line text-4xl text-[#3284e8]"></i>
+              <div class="text-3xl font-bold text-white">DishDash</div>
+            </div>
+            <p class="text-gray-400 leading-relaxed">
+              Delivering happiness to your doorstep. Experience the best food
+              delivery service in town.
+            </p>
+            <div class="flex space-x-4">
+              <a
+                href="#"
+                class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:bg-[#3284e8] hover:text-white transition-all duration-300"
+              >
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:bg-[#3284e8] hover:text-white transition-all duration-300"
+              >
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:bg-[#3284e8] hover:text-white transition-all duration-300"
+              >
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:bg-[#3284e8] hover:text-white transition-all duration-300"
+              >
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Quick Links -->
+          <div>
+            <h3 class="text-xl font-semibold text-white mb-6 flex items-center">
+              <i class="ri-links-line mr-2 text-[#3284e8]"></i>Quick Links
+            </h3>
+            <ul class="space-y-4">
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-[#3284e8] transition-colors duration-300 flex items-center"
+                >
+                  <i class="ri-arrow-right-s-line mr-2"></i>Home
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-[#3284e8] transition-colors duration-300 flex items-center"
+                >
+                  <i class="ri-arrow-right-s-line mr-2"></i>Menu
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-[#3284e8] transition-colors duration-300 flex items-center"
+                >
+                  <i class="ri-arrow-right-s-line mr-2"></i>About Us
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-[#3284e8] transition-colors duration-300 flex items-center"
+                >
+                  <i class="ri-arrow-right-s-line mr-2"></i>Contact
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Contact Info -->
+          <div>
+            <h3 class="text-xl font-semibold text-white mb-6 flex items-center">
+              <i class="ri-customer-service-2-line mr-2 text-[#3284e8]"></i
+              >Contact Info
+            </h3>
+            <ul class="space-y-4">
+              <li class="flex items-start space-x-3 text-gray-400">
+                <i class="ri-map-pin-line text-[#3284e8] mt-1"></i>
+                <span>123 Gharko Cheau, Kathmandu, Nepal</span>
+              </li>
+              <li class="flex items-center space-x-3 text-gray-400">
+                <i class="ri-phone-line text-[#3284e8]"></i>
+                <span>+977-9876543210</span>
+              </li>
+              <li class="flex items-center space-x-3 text-gray-400">
+                <i class="ri-mail-line text-[#3284e8]"></i>
+                <span>contact@dishdash.com</span>
+              </li>
+              <li class="flex items-center space-x-3 text-gray-400">
+                <i class="ri-time-line text-[#3284e8]"></i>
+                <span>Open: 09:00 AM - 09:00 PM</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Newsletter -->
+          <div>
+            <h3 class="text-xl font-semibold text-white mb-6 flex items-center">
+              <i class="ri-mail-send-line mr-2 text-[#3284e8]"></i>Newsletter
+            </h3>
+            <p class="text-gray-400 mb-4">
+              Subscribe to our newsletter for updates and exclusive offers!
+            </p>
+            <form class="space-y-3 newsletter-form">
+              <div class="relative">
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  class="newsletter-input w-full px-4 py-3 bg-gray-800 text-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#3284e8] placeholder-gray-500 transition-all duration-300"
+                />
+              </div>
+              <button
+                type="submit"
+                class="newsletter-button w-full px-4 py-3 bg-[#3284e8] text-white rounded-lg hover:bg-blue-600 transition-colors duration-300 flex items-center justify-center gap-2 group"
+              >
+                Subscribe
+                <i
+                  class="ri-send-plane-line group-hover:translate-x-1 transition-transform"
+                ></i>
+              </button>
+            </form>
           </div>
         </div>
-        <div class="mb-6 md:mb-0">
-          <h3 class="text-xl text-white font-semibold uppercase">
-            Quick Links
-          </h3>
-          <ul class="mt-2 space-y-2">
-            <li>
+
+        <!-- Footer Bottom -->
+        <div class="mt-12 pt-8 border-t border-gray-800">
+          <div class="flex flex-col md:flex-row justify-between items-center">
+            <div class="text-gray-400 mb-4 md:mb-0">
+              © 2024
+              <a href="#" class="text-[#3284e8] hover:text-white">DishDash</a>.
+              All rights reserved.
+            </div>
+            <div class="flex space-x-6">
               <a
                 href="#"
-                class="text-gray-300 duration-300 hover:text-[#3284e8]"
-                >Home</a
+                class="text-gray-400 hover:text-[#3284e8] transition-colors duration-300"
+                >Privacy Policy</a
               >
-            </li>
-            <li>
               <a
                 href="#"
-                class="text-gray-300 duration-300 hover:text-[#3284e8]"
-                >Food</a
+                class="text-gray-400 hover:text-[#3284e8] transition-colors duration-300"
+                >Terms of Service</a
               >
-            </li>
-            <li>
               <a
                 href="#"
-                class="text-gray-300 duration-300 hover:text-[#3284e8]"
-                >Contact us</a
+                class="text-gray-400 hover:text-[#3284e8] transition-colors duration-300"
+                >Cookie Policy</a
               >
-            </li>
-            <li>
-              <a
-                href="#"
-                class="text-gray-300 duration-300 hover:text-[#3284e8]"
-                >Privacy policy</a
-              >
-            </li>
-          </ul>
+            </div>
+          </div>
         </div>
-        <div>
-          <h3 class="text-xl font-semibold text-white">GET IN TOUCH</h3>
-          <p class="mt-2 text-gray-400">+1-212-4560-7890</p>
-          <p class="mt-2 text-gray-400">contact@dishdash.com</p>
-        </div>
-      </div>
-      <div
-        class="border-t-[1px] py-3 text-[#d1d5db] border-gray-300 text-center mt-12 max-w-[1400px] mx-auto w-full"
-      >
-        <a
-          href="./index.html"
-          class="text-[#3284e8] hover:text-[#ff6b38] duration-200"
-          >DishDash</a
-        >
-        &copy; | 2025 All Rights are Preserved
       </div>
     </footer>
 
     <script src="../js/search.js"></script>
+    <script type="module" src="../js/newsletter.js"></script>
     <script src="../js/script.js"></script>
     <script type="module" src="../js/loginPage.js"></script>
     <script type="module" src="../js/addToCart.js"></script>
