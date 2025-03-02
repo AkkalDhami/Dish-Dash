@@ -1,3 +1,7 @@
+let searchResultBox = document.querySelector(".search_results");
+let inputBox = document.querySelector("#searchInput")
+let searchResults = document.querySelector("#searchResults");
+let food_list = JSON.parse(localStorage.getItem("FoodList"));
 let searchButton = document.getElementById('searchButton');
 let searchBottomButton = document.getElementById('searchBottomButton');
 let searchResultsContainer = document.getElementById('searchResultsContainer');
@@ -17,14 +21,12 @@ searchButton.addEventListener('click', () => {
 
 overlay1.addEventListener('click', () => {
   overlay1.classList.add('overlayActive');
+  inputBox.value = "";
+  searchResults.innerHTML = "";
   searchResultsContainer.classList.remove("top-1/2");
   searchResultsContainer.classList.add("-top-1/2");
 })
 
-let searchResultBox = document.querySelector(".search_results");
-let inputBox = document.querySelector("#searchInput")
-let searchResults = document.querySelector("#searchResults");
-let food_list = JSON.parse(localStorage.getItem("FoodList"));
 inputBox?.addEventListener('input', () => {
   searchResults.innerHTML = '';
   let inputValue = inputBox.value.trim().toLowerCase();
