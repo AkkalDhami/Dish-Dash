@@ -7,16 +7,111 @@ document.addEventListener("DOMContentLoaded", () => {
     const signupPassword = document.getElementById("signupPassword");
     const signupPassword2 = document.getElementById("signupPassword2");
     const termsCheckbox = document.getElementById("termsCheckbox");
+    const submitButton = document.getElementById("signup-button");
 
     const usernameError = document.getElementById("usernameError");
     const emailError = document.getElementById("emailError");
     const passwdError = document.getElementById("passwdError");
     const passwd2Error = document.getElementById("passwd2Error");
 
-    usernameError.innerHTML = "";
-    emailError.innerHTML = "";
-    passwdError.innerHTML = "";
-    passwd2Error.innerHTML = "";
+    // Original button text
+    const originalButtonHtml = submitButton.innerHTML;
+
+    function showInputError(input, errorElement, message) {
+        input.classList.add("borderError", "shake");
+        errorElement.innerHTML = `
+            <div class="flex items-center gap-1 text-red-500">
+                <i class="ri-error-warning-line text-[18px]"></i>
+                <span>${message}</span>
+            </div>
+        `;
+
+        // Remove borderError class after 1 second
+        setTimeout(() => {
+            input.classList.remove("borderError");
+        }, 1000);
+    }
+
+    function setLoadingState(isLoading) {
+        submitButton.disabled = isLoading;
+        submitButton.innerHTML = isLoading
+            ? `<div class="flex items-center gap-2">
+                <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                Creating Account...
+               </div>`
+            : originalButtonHtml;
+    }
+
+    form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        let isValid = true;
+
+        // Clear previous errors
+        [usernameError, emailError, passwdError, passwd2Error].forEach(error => {
+            error.innerHTML = "";
+        });
+        [username, signupEmail, signupPassword, signupPassword2].forEach(input => {
+            input.classList.remove("borderError", "shake");
+        });
+
+        // Validate Username
+        const usernameRegex = /^[a-zA-Z0-9]{3,}$/;
+        if (!usernameRegex.test(username.value.trim())) {
+            showInputError(username, usernameError, "Username must be at least 3 characters long");
+            isValid = false;
+        }
+
+        // Validate Email
+        const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+        if (signupEmail.value.trim() === "") {
+            showInputError(signupEmail, emailError, "Please enter your email");
+            isValid = false;
+        } else if (!emailPattern.test(signupEmail.value.trim())) {
+            showInputError(signupEmail, emailError, "Please enter a valid email");
+            isValid = false;
+        }
+
+        // Validate Password
+        const passwordRegex = /^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{6,20}$/;
+        if (!passwordRegex.test(signupPassword.value)) {
+            showInputError(signupPassword, passwdError, "Password must include letters, numbers, and special characters");
+            isValid = false;
+        }
+
+        // Validate Confirm Password
+        if (signupPassword.value !== signupPassword2.value) {
+            showInputError(signupPassword2, passwd2Error, "Passwords do not match");
+            isValid = false;
+        }
+
+        // Validate Terms Checkbox
+        if (!termsCheckbox.checked) {
+            showToastNotify("Please agree to the terms and conditions", "error");
+            isValid = false;
+        }
+
+        if (!isValid) {
+            return;
+        }
+
+        // Show loading state
+        setLoadingState(true);
+
+        try {
+            // Simulate API call
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            
+            showToastNotify("Account created successfully!", "success");
+            clearInput();
+            setLoadingState(false);
+        } catch (error) {
+            showToastNotify("Failed to create account. Please try again.", "error");
+            setLoadingState(false);
+        }
+    });
 
     function clearInput() {
         signupEmail.value = "";
@@ -26,90 +121,16 @@ document.addEventListener("DOMContentLoaded", () => {
         termsCheckbox.checked = false;
     }
 
-    form.addEventListener("submit", (e) => {
-        e.preventDefault();
-        let valid = true;
-        // Validate Username
-        const usernameRegex = /^[a-zA-Z0-9]{3,}$/;
-        if (!usernameRegex.test(username.value.trim())) {
-            usernameError.innerHTML = `<i class="ri-error-warning-line text-[18px]"></i> Username must be at least 3 characters long`;
-            valid = false;
-            username.classList.add("borderError");
-        } else {
-            usernameError.innerHTML = "";
-            username.classList.remove("borderError");
-        }
-
-        // Validate Email
-        if (signupEmail.value.trim() === "") {
-            emailError.innerHTML = `<i class="ri-error-warning-line text-[18px]"></i> Please enter your email`;
-            valid = false;
-            signupEmail.classList.add("borderError");
-        } else {
-            emailError.innerHTML = "";
-            signupEmail.classList.remove("borderError");
-        }
-
-        // Validate Password
-        const passwordRegex =
-            /^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{6,20}$/;
-        if (!passwordRegex.test(signupPassword.value.trim())) {
-            passwdError.innerHTML = `<i class="ri-error-warning-line text-[18px]"></i> Password must be 6-25 characters long, include uppercase, lowercase, digit, and special character`;
-            valid = false;
-            signupPassword.classList.add("borderError");
-            return;
-        } else {
-            passwdError.innerHTML = "";
-            signupPassword.classList.remove("borderError");
-        }
-
-        // Validate Confirm Password
-        if (
-            signupPassword2.value.trim() === "" ||
-            signupPassword.value !== signupPassword2.value
-        ) {
-            passwd2Error.innerHTML = `<i class="ri-error-warning-line text-[18px]"></i> Passwords do not match`;
-            valid = false;
-            signupPassword2.classList.add("borderError");
-        } else {
-            passwd2Error.innerHTML = "";
-            signupPassword2.classList.remove("borderError");
-        }
-
-        // Validate Terms Checkbox
-        if (!termsCheckbox.checked) {
-            showToastNotify("Please agree to the terms and conditions.", "error");
-            valid = false;
-        }
-
-        if (valid) {
-            showToastNotify("Signup Successful!", "success");
-            clearInput();
-
-        }
+    // Animation end handlers
+    [username, signupEmail, signupPassword, signupPassword2].forEach(input => {
+        input.addEventListener("animationend", () => {
+            input.classList.remove("shake");
+        });
     });
 
-
-
-    username.addEventListener("animationend", () => {
-        username.classList.remove("borderError");
-    });
-
-    signupEmail.addEventListener("animationend", () => {
-        signupEmail.classList.remove("borderError");
-    });
-
-    signupPassword.addEventListener("animationend", () => {
-        signupPassword.classList.remove("borderError");
-    });
-    signupPassword2.addEventListener("animationend", () => {
-        signupPassword2.classList.remove("borderError");
-    });
-
+    // Password visibility toggle
     function togglePasswordVisibility(inputId, iconId) {
-        const passwordInput = document.querySelector(
-            `[data-input-id="${inputId}"]`
-        );
+        const passwordInput = document.querySelector(`[data-input-id="${inputId}"]`);
         const toggleIcon = document.getElementById(iconId);
 
         if (passwordInput.type === "password") {
@@ -123,16 +144,11 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // Event listeners for toggle icons
-    document
-        .getElementById("password-toggle-icon1")
-        .addEventListener("click", () => {
-            togglePasswordVisibility(1, "password-toggle-icon1");
-        });
+    document.getElementById("password-toggle-icon1").addEventListener("click", () => {
+        togglePasswordVisibility(1, "password-toggle-icon1");
+    });
 
-    document
-        .getElementById("password-toggle-icon2")
-        .addEventListener("click", () => {
-            togglePasswordVisibility(2, "password-toggle-icon2");
-        });
+    document.getElementById("password-toggle-icon2").addEventListener("click", () => {
+        togglePasswordVisibility(2, "password-toggle-icon2");
+    });
 });
