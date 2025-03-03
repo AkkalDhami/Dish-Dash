@@ -215,7 +215,6 @@
     ></div>
 
     <!-- Toast Container -->
- 
 
     <div id="toast" class="toast">
       <span class="toast-icon"></span>
@@ -325,20 +324,30 @@
         <!-- Right Side - Login Form -->
         <form
           action="#"
-          class="p-8 rounded-xl bg-white shadow-sm hover:shadow-[0_0_2px_2px_#0000001a] transition-all"
+          class="p-8 rounded-xl bg-white shadow-sm hover:shadow-[0_0_2px_2px_#0000001a] overflow-hidden transition-all"
           id="loginForm"
           data-aos="fade-up"
           data-aos-duration="400"
         >
           <div class="mb-8 text-center">
-            <h2 data-aos="fade-up" data-aos-duration="600" class="text-2xl sm:text-3xl font-semibold text-gray-800 mb-2">
+            <h2
+              data-aos="fade-up"
+              data-aos-duration="600"
+              class="text-2xl sm:text-3xl font-semibold text-gray-800 mb-2"
+            >
               Welcome Back
             </h2>
-            <p data-aos="fade-down" data-aos-duration="800" class="text-gray-600">Sign in to continue to your account</p>
+            <p
+              data-aos="fade-down"
+              data-aos-duration="800"
+              class="text-gray-600"
+            >
+              Sign in to continue to your account
+            </p>
           </div>
 
           <!-- Email Input -->
-          <div class="mb-5">
+          <div class="mb-5" data-aos="fade-right">
             <label for="login-Email" class="block text-gray-700 mb-2"
               >Email Address</label
             >
@@ -360,7 +369,7 @@
           </div>
 
           <!-- Password Input -->
-          <div class="mb-6">
+          <div class="mb-6" data-aos="fade-left">
             <label for="login-Password" class="block text-gray-700 mb-2"
               >Password</label
             >
@@ -401,6 +410,7 @@
 
           <!-- Submit Button -->
           <button
+            data-aos="fade-up"
             type="submit"
             id="login-button"
             class="w-full p-4 text-lg font-medium text-white bg-blue-500 rounded-lg hover:bg-blue-600 transition-all duration-300 flex items-center justify-center gap-2 group pulse-on-hover relative overflow-hidden"
@@ -415,7 +425,7 @@
           </button>
 
           <!-- Social Login Section -->
-          <div class="relative my-8">
+          <div class="relative my-8" data-aos="fade-right">
             <div class="absolute inset-0 flex items-center">
               <div class="w-full border-t border-gray-200"></div>
             </div>
@@ -425,7 +435,7 @@
           </div>
 
           <!-- Social Login Buttons -->
-          <div class="grid grid-cols-3 gap-3">
+          <div class="grid grid-cols-3 gap-3" data-aos="fade-up">
             <!-- Google -->
             <button
               type="button"
@@ -520,7 +530,7 @@
       AOS.init({
         duration: 1200,
         once: false,
-        offset: 200,
+        offset: 130,
       });
     </script>
 
