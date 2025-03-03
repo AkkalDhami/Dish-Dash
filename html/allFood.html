@@ -172,9 +172,41 @@
     </style>
   </head>
   <body class="bg-gray-50">
-    <header class="md:fixed header w-full md:top-0 md:left-0 z-50 bg-[#f6f6f6]">
+    <header
+      class="md:fixed header w-full md:top-0 md:left-0 z-50 shadow-lg bg-[#ffffff]"
+    >
       <script src="../assets/utility/navbar.js"></script>
     </header>
+
+    <!-- Search Box -->
+    <div
+      id="searchResultsContainer"
+      class="fixed -top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 max-w-[900px] w-full z-[117] duration-300"
+    >
+      <div class="searchBox relative bg-[#f6f6f6] px-4 py-5 w-full">
+        <i
+          class="ri-search-line absolute top-[33px] left-[23px] text-[18px] sm:text-[22px]"
+        ></i>
+        <input
+          id="searchInput"
+          type="search"
+          placeholder="Search Foods, Menu.."
+          class="w-full border-2 border-blue-300 focus:border-transparent p-[12px_20px_12px_30px] sm:p-[15px_22px_15px_35px] rounded-md outline-0 focus:ring focus:ring-[#ff6b38] duration-300"
+        />
+      </div>
+      <div
+        id="searchResults"
+        class="max-h-[500px] sm:max-h-[600px] bg-[#f6f6f6] overflow-auto"
+      ></div>
+    </div>
+
+    <!-- Mobile Bottom Navigation -->
+    <div
+      class="fixed mobileBottomNav bottom-0 left-0 right-0 bg-white md:hidden z-50"
+    >
+      <script defer src="../assets/utility/mobileNavbar.js"></script>
+    </div>
+
     <main class="max-w-[1400px] mt-0 md:mt-[90px] mx-auto px-4 py-8">
       <!-- Mobile Filter Toggle -->
       <button
@@ -289,6 +321,12 @@
       </div>
     </main>
 
+    <footer class="bg-gray-800 footerSection py-8 mb-[70px] md:mb-0">
+      <script src="../assets/utility/footer.js"></script>
+    </footer>
+
+    <script src="./js/search.js"></script>
+    <script type="module" src="../js/newsletter.js"></script>
     <script type="module" src="../js/allFood.js"></script>
   </body>
 </html>

@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Clear previous errors and remove error classes
         [contactUserNameError, contactEmailError, messageError].forEach(error => {
             error.innerHTML = "";
+            error.classList.remove("hidden");
         });
         [username, contactEmail, message].forEach(input => {
             input.classList.remove("borderError", "shake");
@@ -34,8 +35,11 @@ document.addEventListener("DOMContentLoaded", () => {
             isValid = false;
         } else if (!usernameRegex.test(username.value.trim())) {
             showInputError(username, contactUserNameError, "Please enter a valid name (letters only)");
-            isValid = false;
+            isValid = false; 
+        } else {
+            contactUserNameError.classList.add("hidden");
         }
+
 
         // Email validation
         const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
@@ -46,6 +50,8 @@ document.addEventListener("DOMContentLoaded", () => {
         } else if (!emailPattern.test(contactEmail.value.trim())) {
             showInputError(contactEmail, contactEmailError, "Please enter a valid email");
             isValid = false;
+        } else {
+            contactEmailError.classList.add("hidden");
         }
 
         // Message validation - minimum 10 characters
@@ -55,6 +61,8 @@ document.addEventListener("DOMContentLoaded", () => {
         } else if (message.value.trim().length < 10) {
             showInputError(message, messageError, "Message must be at least 10 characters long");
             isValid = false;
+        } else {
+            messageError.classList.add("hidden");
         }
 
         if (!isValid) {
@@ -82,6 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function showInputError(input, errorElement, message) {
         input.classList.add("borderError", "shake");
+
         errorElement.innerHTML = `
             <div class="flex items-center gap-1 text-red-500">
                 <i class="ri-error-warning-line text-[18px]"></i>

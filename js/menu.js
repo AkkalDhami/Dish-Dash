@@ -40,7 +40,7 @@ function displayMenu() {
         `;
   });
 
-  food_list.forEach((food, ind) => {
+  food_list.slice(0, 12).forEach((food, ind) => {
 
     const userReview = food.reviews.map((review) => review.rating);
     const finalRating = userReview.reduce((total, rating) => total + rating, 0) / userReview.length || 0;
@@ -50,7 +50,7 @@ function displayMenu() {
     let discount = Math.floor((original_price - selling_price) / original_price * 100);
 
     item_container.innerHTML += `
-  <div data-category="${category}"
+  <div data-category="${category}" 
             id="${_id}"
             class="foodItem bg-[#f6f6f6] p-5 rounded-md hover:shadow-lg hover:bg-[#ffffff] duration-300 w-[300px] group overflow-hidden relative"
           >

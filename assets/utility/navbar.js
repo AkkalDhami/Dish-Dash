@@ -3,18 +3,20 @@ const header = document.querySelector(".header");
 header.innerHTML += `
  <nav class="container mx-auto px-6 py-4 flex items-center justify-between"
       >
-        <div onclick="window.location.href='../../index.html'" class="text-3xl cursor-pointer font-bold text-[#0d6efd]">DishDash</div>
+        <div onclick="window.location.href='../../index.html'" class="cursor-pointer font-bold text-[#0d6efd] flex items-center space-x-2">
+              <i class="ri-restaurant-2-line text-4xl text-orange-500"></i>
+              <div class="text-3xl font-bold text-[#0d6efd]">DishDash</div>
+        </div>
         <div class="hidden md:flex items-center space-x-8">
           <a
-            href="../../index.html"
-            data-nav-link
+            href="/"
             class="nav-link text-gray-600 hover:text-[#3284e8] relative text-[18px]"
             data-active="true"
             >Home</a
           >
           <a
             href="../../html/allFood.html"
-            data-nav-link
+           
             class="nav-link text-gray-600 hover:text-[#3284e8] relative text-[18px]"
             >Foods</a
           >

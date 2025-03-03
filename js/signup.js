@@ -52,16 +52,25 @@ document.addEventListener("DOMContentLoaded", () => {
         // Clear previous errors
         [usernameError, emailError, passwdError, passwd2Error].forEach(error => {
             error.innerHTML = "";
+            error.classList.remove("hidden");
         });
         [username, signupEmail, signupPassword, signupPassword2].forEach(input => {
             input.classList.remove("borderError", "shake");
         });
 
         // Validate Username
-        const usernameRegex = /^[a-zA-Z0-9]{3,}$/;
-        if (!usernameRegex.test(username.value.trim())) {
-            showInputError(username, usernameError, "Username must be at least 3 characters long");
+        const usernameRegex = /^[a-zA-Z]+(?: [a-zA-Z]+)*$/;
+        if (username.value.trim() === "") {
+            showInputError(username, usernameError, "Please enter your name");
             isValid = false;
+        } else if (username.value.trim().length < 3) {
+            showInputError(username, usernameError, "Name must be at least 3 characters long");
+            isValid = false;
+        } else if (!usernameRegex.test(username.value.trim())) {
+            showInputError(username, usernameError, "Please enter a valid name");
+            isValid = false;
+        } else {
+            usernameError.classList.add("hidden");
         }
 
         // Validate Email
@@ -72,6 +81,8 @@ document.addEventListener("DOMContentLoaded", () => {
         } else if (!emailPattern.test(signupEmail.value.trim())) {
             showInputError(signupEmail, emailError, "Please enter a valid email");
             isValid = false;
+        } else {
+            emailError.classList.add("hidden");
         }
 
         // Validate Password
@@ -79,12 +90,16 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!passwordRegex.test(signupPassword.value)) {
             showInputError(signupPassword, passwdError, "Password must include letters, numbers, and special characters");
             isValid = false;
+        } else {
+            passwdError.classList.add("hidden");
         }
 
         // Validate Confirm Password
         if (signupPassword.value !== signupPassword2.value) {
             showInputError(signupPassword2, passwd2Error, "Passwords do not match");
             isValid = false;
+        } else {
+            passwd2Error.classList.add("hidden");
         }
 
         // Validate Terms Checkbox
@@ -103,7 +118,7 @@ document.addEventListener("DOMContentLoaded", () => {
         try {
             // Simulate API call
             await new Promise(resolve => setTimeout(resolve, 2000));
-            
+
             showToastNotify("Account created successfully!", "success");
             clearInput();
             setLoadingState(false);

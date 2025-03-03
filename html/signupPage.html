@@ -347,152 +347,21 @@
         transition-duration: 300ms;
       }
     </style>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
   </head>
 
   <body class="font-['Poppins']">
     <!-- Navbar -->
-    <header class="md:fixed w-full md:top-0 md:left-0 z-50 bg-[#f6f6f6]">
-      <nav
-        class="container mx-auto px-6 py-4 flex items-center justify-between"
-      >
-        <div class="text-3xl font-bold text-[#0d6efd]">DishDash</div>
-        <div class="hidden md:flex items-center space-x-8">
-          <a
-            href="#"
-            data-nav-link
-            class="nav-link text-gray-600 hover:text-[#3284e8] relative text-[18px]"
-            data-active="true"
-            >Home</a
-          >
-          <a
-            href="#"
-            data-nav-link
-            class="nav-link text-gray-600 hover:text-[#3284e8] relative text-[18px]"
-            >Food</a
-          >
-
-          <a
-            href="#"
-            data-nav-link
-            class="nav-link text-gray-600 hover:text-[#3284e8] relative text-[18px]"
-            >Contact us</a
-          >
-        </div>
-        <div class="hidden md:flex items-center space-x-4">
-          <button
-            id="searchButton"
-            class="p-2 text-[22px] hover:text-[#3284e8]"
-          >
-            <i class="fa-solid fa-magnifying-glass"></i>
-          </button>
-          <button
-            class="p-2 relative hover:text-[#3284e8]"
-            onclick="window.location.href=`../html/cartPage.html`"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-7 w-7"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
-              />
-            </svg>
-            <span
-              class="cartItems absolute w-[23px] h-[23px] rounded-full text-white top-0 right-0 bg-[#3284e8] text-[12px] flex items-center justify-center"
-              >0</span
-            >
-          </button>
-          <div class="relative inline-block text-left">
-            <div>
-              <button
-                class="inline-flex justify-center items-center gap-2 w-full rounded-full shadow-sm px-4 py-3 bg-[#0d6efd] text-[18px] text-white hover:bg-[#3284e8]"
-                id="menu-button"
-                aria-expanded="true"
-                aria-haspopup="true"
-              >
-                <i class="fa-solid fa-circle-user"></i>
-                <span class="text-[16px]"> My Profile</span>
-                <svg
-                  class="ml-2 h-5 w-5 rotate"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  aria-hidden="true"
-                  id="chevron-icon"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-              </button>
-            </div>
-            <div
-              class="dropdown-content origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
-              role="menu"
-              aria-orientation="vertical"
-              aria-labelledby="menu-button"
-              tabindex="-1"
-            >
-              <div class="py-1" role="none">
-                <a
-                  href="./html/loginPage.html"
-                  class="text-gray-700 text-[16px] flex items-center gap-2 px-4 py-3 hover:bg-[#f6f6f6]"
-                  role="menuitem"
-                  tabindex="-1"
-                  id="menu-item-0"
-                >
-                  <i class="fa-solid fa-arrow-right-to-bracket"></i>
-                  <span>Login</span>
-                </a>
-                <a
-                  href="./html/signup.html"
-                  class="text-gray-700 text-[16px] flex items-center gap-2 px-4 py-3 text-sm hover:bg-[#f6f6f6]"
-                  role="menuitem"
-                  tabindex="-1"
-                  id="menu-item-1"
-                >
-                  <i class="fa-solid fa-user-plus"></i>
-                  <span>Signup</span>
-                </a>
-                <a
-                  href="#"
-                  class="text-gray-700 text-[16px] flex items-center gap-2 px-4 py-3 text-sm hover:bg-[#f6f6f6]"
-                  role="menuitem"
-                  tabindex="-1"
-                  id="menu-item-2"
-                >
-                  <i class="fa-solid fa-user"></i>
-                  <span> My Profile</span>
-                </a>
-                <a
-                  href="#"
-                  class="text-gray-700 text-[16px] flex items-center gap-2 px-4 py-3 text-sm hover:bg-[#f6f6f6]"
-                  role="menuitem"
-                  tabindex="-1"
-                  id="menu-item-3"
-                >
-                  <i class="fa-solid fa-box-open"></i>
-                  <span>My Orders</span>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </nav>
+    <header
+      class="md:fixed header w-full md:top-0 md:left-0 z-50 shadow-lg bg-[#ffffff]"
+    >
+      <script defer src="../assets/utility/navbar.js"></script>
     </header>
 
-    <!-- search results -->
+    <!-- Search Box -->
     <div
       id="searchResultsContainer"
-      class="fixed -top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 max-w-[1200px] w-full z-[117] duration-300"
+      class="fixed -top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 max-w-[900px] w-full z-[117] duration-300"
     >
       <div class="searchBox relative bg-[#f6f6f6] px-4 py-5 w-full">
         <i
@@ -511,128 +380,16 @@
       ></div>
     </div>
 
+    <!-- Mobile Bottom Navigation -->
+    <div
+      class="fixed mobileBottomNav bottom-0 left-0 right-0 bg-white md:hidden z-50"
+    >
+      <script defer src="../assets/utility/mobileNavbar.js"></script>
+    </div>
+
     <div
       class="overlay overlayActive bg-[#6a6666ba] fixed top-0 left-0 w-full h-full z-[115]"
     ></div>
-
-    <!-- Mobile Bottom Navigation -->
-    <div class="fixed bottom-0 left-0 right-0 bg-white md:hidden z-50">
-      <div
-        class="flex justify-between items-center px-6 py-3 border-t border-gray-200"
-      >
-        <a
-          data-nav-link
-          data-active="true"
-          href="#"
-          class="nav-link flex flex-col items-center text-gray-700 hover:text-[#3284e8]"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-5 w-5 sm:h-6 sm:w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-            />
-          </svg>
-          <span class="text-xs mt-1">Home</span>
-        </a>
-
-        <a
-          id="searchBottomButton"
-          data-nav-link
-          href="#"
-          class="nav-link flex flex-col items-center text-gray-700 hover:text-[#3284e8]"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-5 w-5 sm:h-6 sm:w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-            />
-          </svg>
-          <span class="text-xs mt-1">Search</span>
-        </a>
-
-        <a
-          data-nav-link
-          href="#"
-          class="nav-link flex flex-col items-center text-gray-700 hover:text-[#3284e8]"
-        >
-          <i class="ri-bowl-line sm:text-xl"></i>
-          <span class="text-xs">Food</span>
-        </a>
-
-        <a
-          data-nav-link
-          href="#"
-          class="nav-link flex flex-col items-center text-gray-700 relative hover:text-[#3284e8]"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-5 w-5 sm:h-6 sm:w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
-            />
-          </svg>
-          <span class="text-xs mt-1">Cart</span>
-          <span
-            class="cartItems absolute w-[20px] h-[20px] rounded-full text-white -top-2 -right-2 bg-[#3284e8] text-[12px] flex items-center justify-center"
-            >0</span
-          >
-        </a>
-
-        <a
-          data-nav-link
-          href="#"
-          class="nav-link flex flex-col items-center text-gray-700 hover:text-[#3284e8]"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-5 w-5 sm:h-6 sm:w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-            />
-          </svg>
-          <span class="text-xs mt-1">Profile</span>
-        </a>
-
-        <a
-          data-nav-link
-          href="#"
-          class="nav-link flex flex-col items-center text-gray-700 hover:text-[#3284e8]"
-        >
-          <i class="ri-customer-service-2-line"></i>
-          <span class="text-xs mt-1">Contact</span>
-        </a>
-      </div>
-    </div>
 
     <!-- Toast Container -->
     <div
@@ -655,7 +412,11 @@
         class="w-full max-w-6xl px-4 grid grid-cols-1 md:grid-cols-2 gap-8 items-start"
       >
         <!-- Left Side - Image and Info -->
-        <div class="md:flex flex-col items-center justify-center p-8">
+        <div
+          class="md:flex flex-col items-center justify-center p-8"
+          data-aos="fade-down"
+          data-aos-delay="500"
+        >
           <!-- Image Gallery -->
           <div class="w-full max-w-md mb-8 mx-auto space-y-4">
             <!-- First Row -->
@@ -744,17 +505,29 @@
                 class="ri-restaurant-2-line text-2xl sm:text-3xl text-blue-500"
               ></i>
             </div>
-            <h2 class="text-xl sm:text-2xl font-bold text-gray-800 mb-4">
+            <h2
+              class="text-xl sm:text-2xl font-bold text-gray-800 mb-4"
+              data-aos="zoom-in"
+              data-aos-duration="1000"
+            >
               Join Our Food Community
             </h2>
-            <p class="text-sm sm:text-base text-gray-600 mb-6 sm:mb-8">
+            <p
+              data-aos="zoom-in"
+              data-aos-duration="1200"
+              class="text-sm sm:text-base text-gray-600 mb-6 sm:mb-8"
+            >
               Get exclusive access to special offers, personalized
               recommendations, and more!
             </p>
 
             <!-- Features with Enhanced Design -->
             <div class="grid grid-cols-3 gap-2 sm:gap-4">
-              <div class="text-center group">
+              <div
+                class="text-center group"
+                data-aos="zoom-in"
+                data-aos-duration="1400"
+              >
                 <div
                   class="w-10 h-10 sm:w-12 sm:h-12 bg-blue-50 rounded-full flex items-center justify-center mb-2 mx-auto transform group-hover:scale-110 transition-transform duration-300"
                 >
@@ -766,7 +539,11 @@
                   Quick Delivery
                 </p>
               </div>
-              <div class="text-center group">
+              <div
+                class="text-center group"
+                data-aos="zoom-in"
+                data-aos-duration="1600"
+              >
                 <div
                   class="w-10 h-10 sm:w-12 sm:h-12 bg-orange-50 rounded-full flex items-center justify-center mb-2 mx-auto transform group-hover:scale-110 transition-transform duration-300"
                 >
@@ -780,7 +557,11 @@
                   Secure Account
                 </p>
               </div>
-              <div class="text-center group">
+              <div
+                class="text-center group"
+                data-aos="zoom-in"
+                data-aos-duration="1800"
+              >
                 <div
                   class="w-10 h-10 sm:w-12 sm:h-12 bg-green-50 rounded-full flex items-center justify-center mb-2 mx-auto transform group-hover:scale-110 transition-transform duration-300"
                 >
@@ -800,19 +581,31 @@
             <div
               class="grid grid-cols-3 gap-2 sm:gap-4 mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-gray-100"
             >
-              <div class="text-center">
+              <div
+                class="text-center"
+                data-aos="zoom-out"
+                data-aos-duration="1200"
+              >
                 <div class="text-xl sm:text-2xl font-bold text-blue-500">
                   500+
                 </div>
                 <p class="text-xs sm:text-sm text-gray-600">Restaurants</p>
               </div>
-              <div class="text-center">
+              <div
+                class="text-center"
+                data-aos="zoom-out"
+                data-aos-duration="1300"
+              >
                 <div class="text-xl sm:text-2xl font-bold text-orange-500">
                   10k+
                 </div>
                 <p class="text-xs sm:text-sm text-gray-600">Happy Users</p>
               </div>
-              <div class="text-center">
+              <div
+                class="text-center"
+                data-aos="zoom-out"
+                data-aos-duration="1400"
+              >
                 <div class="text-xl sm:text-2xl font-bold text-green-500">
                   50+
                 </div>
@@ -827,6 +620,8 @@
           action="#"
           class="p-8 rounded-xl bg-white shadow-sm hover:shadow-[0_0_2px_2px_#0000001a] transition-all"
           id="signupForm"
+          data-aos="fade-up"
+          data-aos-duration="1000"
         >
           <div class="mb-8 text-center">
             <h2 class="text-2xl sm:text-3xl font-semibold text-gray-800 mb-2">
@@ -851,7 +646,10 @@
                 class="ri-user-line absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
               ></i>
             </div>
-            <div id="usernameError" class="mt-2 text-[14px] text-red-500"></div>
+            <div
+              id="usernameError"
+              class="mt-2 text-[14px] bg-red-50 py-1 border-l-[3px] hidden border-red-500 pl-4 text-red-500"
+            ></div>
           </div>
 
           <!-- Email Input -->
@@ -870,7 +668,10 @@
                 class="ri-mail-line absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
               ></i>
             </div>
-            <div id="emailError" class="mt-2 text-[14px] text-red-500"></div>
+            <div
+              id="emailError"
+              class="mt-2 text-[14px] bg-red-50 py-1 border-l-[3px] hidden border-red-500 pl-4 text-red-500"
+            ></div>
           </div>
 
           <!-- Password Input -->
@@ -894,7 +695,10 @@
                 class="fa-regular fa-eye absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 cursor-pointer hover:text-gray-600"
               ></i>
             </div>
-            <div id="passwdError" class="mt-2 text-[14px] text-red-500"></div>
+            <div
+              id="passwdError"
+              class="mt-2 text-[14px] bg-red-50 py-1 border-l-[3px] hidden border-red-500 pl-4 text-red-500"
+            ></div>
           </div>
 
           <!-- Confirm Password Input -->
@@ -918,7 +722,10 @@
                 class="fa-regular fa-eye absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 cursor-pointer hover:text-gray-600"
               ></i>
             </div>
-            <div id="passwd2Error" class="mt-2 text-[14px] text-red-500"></div>
+            <div
+              id="passwd2Error"
+              class="mt-2 text-[14px] bg-red-50 py-1 border-l-[3px] hidden border-red-500 pl-4 text-red-500"
+            ></div>
           </div>
 
           <!-- Terms Checkbox -->
@@ -1032,238 +839,19 @@
       </div>
     </section>
 
-    <footer class="bg-gray-900 pt-16 pb-12 relative overflow-hidden">
-      <!-- Background Pattern -->
-      <div class="absolute inset-0 opacity-5"></div>
-
-      <div class="container mx-auto px-4 relative">
-        <!-- Main Footer Content -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-          <!-- Brand Section -->
-          <div class="space-y-6">
-            <div class="flex items-center space-x-2">
-              <i class="ri-restaurant-2-line text-4xl text-[#3284e8]"></i>
-              <div class="text-3xl font-bold text-white">DishDash</div>
-            </div>
-            <p class="text-gray-400 leading-relaxed">
-              Delivering happiness to your doorstep. Experience the best food
-              delivery service in town.
-            </p>
-            <div class="flex space-x-4">
-              <a
-                href="#"
-                class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:bg-[#3284e8] hover:text-white transition-all duration-300"
-              >
-                <i class="fab fa-facebook-f"></i>
-              </a>
-              <a
-                href="#"
-                class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:bg-[#3284e8] hover:text-white transition-all duration-300"
-              >
-                <i class="fab fa-twitter"></i>
-              </a>
-              <a
-                href="#"
-                class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:bg-[#3284e8] hover:text-white transition-all duration-300"
-              >
-                <i class="fab fa-instagram"></i>
-              </a>
-              <a
-                href="#"
-                class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:bg-[#3284e8] hover:text-white transition-all duration-300"
-              >
-                <i class="fab fa-linkedin-in"></i>
-              </a>
-            </div>
-          </div>
-
-          <!-- Quick Links -->
-          <div>
-            <h3 class="text-xl font-semibold text-white mb-6 flex items-center">
-              <i class="ri-links-line mr-2 text-[#3284e8]"></i>Quick Links
-            </h3>
-            <ul class="space-y-4">
-              <li>
-                <a
-                  href="#"
-                  class="text-gray-400 hover:text-[#3284e8] transition-colors duration-300 flex items-center"
-                >
-                  <i class="ri-arrow-right-s-line mr-2"></i>Home
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="text-gray-400 hover:text-[#3284e8] transition-colors duration-300 flex items-center"
-                >
-                  <i class="ri-arrow-right-s-line mr-2"></i>Menu
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="text-gray-400 hover:text-[#3284e8] transition-colors duration-300 flex items-center"
-                >
-                  <i class="ri-arrow-right-s-line mr-2"></i>About Us
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="text-gray-400 hover:text-[#3284e8] transition-colors duration-300 flex items-center"
-                >
-                  <i class="ri-arrow-right-s-line mr-2"></i>Contact
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <!-- Contact Info -->
-          <!-- Contact Info -->
-          <div>
-            <h3 class="text-xl font-semibold text-white mb-6 flex items-center">
-              <i class="ri-customer-service-2-line mr-2 text-[#3284e8]"></i
-              >Contact Info
-            </h3>
-            <ul class="space-y-4">
-              <li class="flex items-start space-x-3 group">
-                <i
-                  class="ri-map-pin-line text-[#3284e8] mt-1 group-hover:text-[#ff6b38] transition-colors"
-                ></i>
-                <span
-                  class="text-gray-400 group-hover:text-white transition-colors"
-                  >123 Gharko Cheau, Kathmandu, Nepal</span
-                >
-              </li>
-              <li class="flex items-center space-x-3 group">
-                <i
-                  class="ri-phone-line text-[#3284e8] group-hover:text-[#ff6b38] transition-colors"
-                ></i>
-                <span
-                  class="text-gray-400 group-hover:text-white transition-colors"
-                  >+977-9876543210</span
-                >
-              </li>
-              <li class="flex items-center space-x-3 group">
-                <i
-                  class="ri-mail-line text-[#3284e8] group-hover:text-[#ff6b38] transition-colors"
-                ></i>
-                <span
-                  class="text-gray-400 group-hover:text-white transition-colors"
-                  >contact@dishdash.com</span
-                >
-              </li>
-              <li class="flex items-center space-x-3 group">
-                <i
-                  class="ri-time-line text-[#3284e8] group-hover:text-[#ff6b38] transition-colors"
-                ></i>
-                <span
-                  class="text-gray-400 group-hover:text-white transition-colors"
-                  >Open: 09:00 AM - 09:00 PM</span
-                >
-              </li>
-            </ul>
-          </div>
-
-          <!-- Newsletter -->
-          <div>
-            <h3 class="text-xl font-semibold text-white mb-6 flex items-center">
-              <i class="ri-mail-send-line mr-2 text-[#3284e8]"></i>Newsletter
-            </h3>
-            <p class="text-gray-400 mb-4">
-              Subscribe to our newsletter for updates and exclusive offers!
-            </p>
-            <form class="space-y-3 newsletter-form">
-              <div class="relative">
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  class="newsletter-input w-full px-4 py-3 bg-gray-800 text-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#3284e8] placeholder-gray-500 transition-all duration-300"
-                />
-              </div>
-              <button
-                type="submit"
-                class="newsletter-button w-full px-4 py-3 bg-[#3284e8] text-white rounded-lg hover:bg-blue-600 transition-colors duration-300 flex items-center justify-center gap-2 group"
-              >
-                Subscribe
-                <i
-                  class="ri-send-plane-line group-hover:translate-x-1 transition-transform"
-                ></i>
-              </button>
-            </form>
-          </div>
-        </div>
-
-        <div class="mt-16 bg-gray-800 rounded-2xl p-8 relative overflow-hidden">
-          <div class="absolute inset-0 bg-pattern opacity-5"></div>
-          <div
-            class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8"
-          >
-            <div class="text-center md:text-left">
-              <h3 class="text-2xl font-bold text-white mb-2">
-                Download Our Mobile App
-              </h3>
-              <p class="text-gray-400">
-                Get the best food delivery experience on your phone
-              </p>
-            </div>
-            <div class="flex flex-wrap gap-4">
-              <!-- App Store Button -->
-              <a
-                href="#"
-                class="flex items-center gap-3 bg-black text-white px-6 py-3 rounded-xl hover:bg-gray-900 transition-colors"
-              >
-                <i class="fab fa-apple text-2xl"></i>
-                <div class="text-left">
-                  <div class="text-xs">Download on the</div>
-                  <div class="text-sm font-semibold">App Store</div>
-                </div>
-              </a>
-              <!-- Play Store Button -->
-              <a
-                href="#"
-                class="flex items-center gap-3 bg-black text-white px-6 py-3 rounded-xl hover:bg-gray-900 transition-colors"
-              >
-                <i class="fab fa-google-play text-2xl"></i>
-                <div class="text-left">
-                  <div class="text-xs">Get it on</div>
-                  <div class="text-sm font-semibold">Google Play</div>
-                </div>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Footer Bottom -->
-        <div class="mt-12 pt-8 border-t border-gray-800">
-          <div class="flex flex-col md:flex-row justify-between items-center">
-            <div class="text-gray-400 mb-4 md:mb-0">
-              © 2024
-              <a href="#" class="text-[#3284e8] hover:text-white">DishDash</a>.
-              All rights reserved.
-            </div>
-            <div class="flex space-x-6">
-              <a
-                href="#"
-                class="text-gray-400 hover:text-[#3284e8] transition-colors duration-300"
-                >Privacy Policy</a
-              >
-              <a
-                href="#"
-                class="text-gray-400 hover:text-[#3284e8] transition-colors duration-300"
-                >Terms of Service</a
-              >
-              <a
-                href="#"
-                class="text-gray-400 hover:text-[#3284e8] transition-colors duration-300"
-                >Cookie Policy</a
-              >
-            </div>
-          </div>
-        </div>
-      </div>
+    <footer class="bg-gray-800 footerSection py-8 mb-[70px] md:mb-0">
+      <script defer src="../assets/utility/footer.js"></script>
     </footer>
 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        duration: 1200,
+        once: false,
+        offset: 200,
+      });
+    </script>
+    <script type="module" src="../js/newsletter.js"></script>
     <script src="../js/search.js"></script>
     <script type="module" src="../js/signup.js"></script>
     <script src="../js/script.js"></script>

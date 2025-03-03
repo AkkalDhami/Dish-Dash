@@ -76,7 +76,7 @@ function initializeCountdown() {
     const totalTime = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
 
     // Update the countdown every 1 second
-    const x = setInterval(function() {
+    const x = setInterval(function () {
         const now = new Date().getTime();
         const distance = countDownDate - now;
         const timeElapsed = totalTime - distance;
@@ -93,10 +93,7 @@ function initializeCountdown() {
         document.getElementById("minutes").innerHTML = minutes.toString().padStart(2, '0');
         document.getElementById("seconds").innerHTML = seconds.toString().padStart(2, '0');
 
-        // Update progress bar
-        const progressBar = document.getElementById("timer-progress");
-        const progressPercentage = (timeElapsed / totalTime) * 100;
-        progressBar.style.width = (100 - progressPercentage) + '%';
+
 
         // Add pulsing effect when time is running low (less than 1 hour)
         if (distance < 3600000) { // 1 hour in milliseconds

@@ -19,16 +19,25 @@
       href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
       rel="stylesheet"
     />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <link rel="stylesheet" href="./css/output.css" />
   </head>
 
   <body class="font-['Poppins']">
     <!-- Navbar -->
-    <header class="md:fixed w-full md:top-0 md:left-0 z-50 bg-[#f6f6f6]">
+    <header
+      class="md:fixed w-full md:top-0 md:left-0 z-50 shadow-lg bg-[#ffffff]"
+    >
       <nav
-        class="container mx-auto px-6 py-4 flex items-center justify-between"
+        class="container mx-auto px-6 py-4 flex items-center justify-between z-50"
       >
-        <div class="text-3xl font-bold text-[#0d6efd]">DishDash</div>
+        <div
+          onclick="window.location.href='./index.html'"
+          class="cursor-pointer font-bold text-[#0d6efd] flex items-center space-x-2"
+        >
+          <i class="ri-restaurant-2-line text-4xl text-orange-500"></i>
+          <div class="text-3xl font-bold text-[#0d6efd]">DishDash</div>
+        </div>
         <div class="hidden md:flex items-center space-x-8">
           <a
             href="#"
@@ -179,6 +188,7 @@
       </nav>
     </header>
 
+    <!-- Search Box -->
     <div
       id="searchResultsContainer"
       class="fixed -top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 max-w-[900px] w-full z-[117] duration-300"
@@ -205,14 +215,15 @@
     ></div>
 
     <!-- Mobile Bottom Navigation -->
-    <div class="fixed bottom-0 left-0 right-0 bg-white md:hidden z-50">
+    <div
+      class="fixed mobileBottomNav bottom-0 left-0 right-0 bg-white md:hidden z-50"
+    >
       <div
         class="flex justify-between items-center px-6 py-3 border-t border-gray-200"
       >
         <a
-          data-nav-link
           data-active="true"
-          href="#"
+          href="./index.html"
           class="nav-link flex flex-col items-center text-gray-700"
         >
           <svg
@@ -234,7 +245,6 @@
 
         <a
           id="searchBottomButton"
-          data-nav-link
           href="#"
           class="nav-link flex flex-col items-center text-gray-700"
         >
@@ -256,8 +266,7 @@
         </a>
 
         <a
-          data-nav-link
-          href="#"
+          href="./html/allFood.html"
           class="nav-link flex flex-col items-center text-gray-700"
         >
           <i class="ri-bowl-line sm:text-xl"></i>
@@ -337,8 +346,7 @@
         </a>
 
         <a
-          data-nav-link
-          href="#"
+          href="./html/contactus.html"
           class="nav-link flex flex-col items-center text-gray-700"
         >
           <i class="ri-customer-service-2-line"></i>
@@ -348,14 +356,14 @@
     </div>
 
     <!-- banner -->
-    <div class="mt-[100px]">
+    <div class="mt-[100px]" data-aos="fade-up" data-aos-delay="200">
       <div class="container mx-auto px-6 py-20">
         <!-- Main Banner -->
         <div
           class="relative bg-gradient-to-br from-[#3284e8] to-[#1a6cd4] rounded-3xl shadow-2xl overflow-hidden"
         >
           <!-- Animated Background Pattern -->
-          <div class="absolute inset-0 opacity-10">
+          <div class="absolute inset-0 opacity-100">
             <div
               class="absolute inset-0 bg-pattern animate-pattern-slide"
             ></div>
@@ -384,7 +392,11 @@
             class="relative flex flex-col md:flex-row items-center p-8 md:p-12 gap-12"
           >
             <!-- Left Content -->
-            <div class="md:w-1/2 text-white z-10">
+            <div
+              class="md:w-1/2 text-white z-10"
+              data-aos="fade-right"
+              data-aos-delay="400"
+            >
               <div
                 class="inline-flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full backdrop-blur-sm mb-6"
               >
@@ -396,6 +408,8 @@
 
               <h1
                 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 animate-fade-in"
+                data-aos="fade-down"
+                data-aos-delay="500"
               >
                 Order your<br />
                 <span class="text-gradient">favourite food</span><br />
@@ -409,7 +423,7 @@
               </p>
 
               <div class="flex flex-wrap gap-4">
-                <button
+                <button onclick="location.href='/#menu_container'"
                   class="group bg-[#ff6b38] text-white px-8 border-2 border-[#ff6b38] font-medium py-3 rounded-full hover:bg-transparent hover:text-white transition-all duration-300 relative overflow-hidden"
                 >
                   <span class="relative z-10 flex items-center gap-2">
@@ -451,7 +465,11 @@
             </div>
 
             <!-- Right Images Grid -->
-            <div class="md:w-1/2 z-10 relative">
+            <div
+              class="md:w-1/2 z-10 relative"
+              data-aos="fade-left"
+              data-aos-delay="400"
+            >
               <div
                 class="relative rounded-3xl overflow-hidden shadow-2xl group"
               >
@@ -595,7 +613,11 @@
     </div>
 
     <!-- Hot Deals Section -->
-    <div class="container mx-auto px-6 py-12">
+    <div
+      class="container mx-auto px-6 py-12"
+      data-aos="fade-up"
+      data-aos-delay="100"
+    >
       <div
         class="relative bg-gradient-to-br from-[#ff6b38] to-[#ff8c38] rounded-3xl shadow-2xl overflow-hidden"
       >
@@ -604,9 +626,15 @@
           <div class="absolute inset-0 bg-pattern animate-pattern-slide"></div>
         </div>
 
-        <div class="relative flex flex-col lg:flex-row items-center p-8 gap-8">
+        <div
+          class="relative flex flex-col lg:flex-row overflow-hidden items-center p-8 gap-8"
+        >
           <!-- Left Content -->
-          <div class="lg:w-1/2 text-white">
+          <div
+            class="lg:w-1/2 text-white"
+            data-aos="fade-right"
+            data-aos-delay="200"
+          >
             <div
               class="inline-flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full backdrop-blur-sm mb-6"
             >
@@ -678,80 +706,64 @@
                 <!-- Days -->
                 <div class="text-center relative countdown-item">
                   <div
-                    class="bg-white/20 rounded-lg p-4 backdrop-blur-sm relative overflow-hidden group hover:bg-white/30 transition-all duration-300"
+                    class="bg-white/20 rounded-sm p-4 backdrop-blur-sm relative overflow-hidden group hover:bg-white/30 transition-all duration-300"
                   >
                     <span class="text-3xl font-bold" id="days">00</span>
                     <div
-                      class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-500 to-red-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
+                      class="absolute bottom-0 left-0 w-full h-1 bg-purple-500"
                     ></div>
                   </div>
                   <span class="text-sm mt-2 block text-white/80">Days</span>
-                  <div
-                    class="absolute -bottom-1 left-0 w-full h-[2px] bg-gradient-to-r from-yellow-500 to-red-500"
-                  ></div>
                 </div>
 
                 <!-- Hours -->
                 <div class="text-center relative countdown-item">
                   <div
-                    class="bg-white/20 rounded-lg p-4 backdrop-blur-sm relative overflow-hidden group hover:bg-white/30 transition-all duration-300"
+                    class="bg-white/20 w-[70px] rounded-sm p-4 backdrop-blur-sm relative overflow-hidden group hover:bg-white/30 transition-all duration-300"
                   >
                     <span class="text-3xl font-bold" id="hours">00</span>
                     <div
-                      class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-purple-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
+                      class="absolute bottom-0 left-0 w-full h-1 bg-green-500"
                     ></div>
                   </div>
                   <span class="text-sm mt-2 block text-white/80">Hours</span>
-                  <div
-                    class="absolute -bottom-1 left-0 w-full h-[2px] bg-gradient-to-r from-blue-500 to-purple-500"
-                  ></div>
                 </div>
 
                 <!-- Minutes -->
                 <div class="text-center relative countdown-item">
                   <div
-                    class="bg-white/20 rounded-lg p-4 backdrop-blur-sm relative overflow-hidden group hover:bg-white/30 transition-all duration-300"
+                    class="bg-white/20 w-[70px] rounded-sm p-4 backdrop-blur-sm relative overflow-hidden group hover:bg-white/30 transition-all duration-300"
                   >
                     <span class="text-3xl font-bold" id="minutes">00</span>
                     <div
-                      class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-green-500 to-teal-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
+                      class="absolute bottom-0 left-0 w-full h-1 bg-blue-600"
                     ></div>
                   </div>
                   <span class="text-sm mt-2 block text-white/80">Minutes</span>
-                  <div
-                    class="absolute -bottom-1 left-0 w-full h-[2px] bg-gradient-to-r from-green-500 to-teal-500"
-                  ></div>
                 </div>
 
                 <!-- Seconds -->
                 <div class="text-center relative countdown-item">
                   <div
-                    class="bg-white/20 rounded-lg p-4 backdrop-blur-sm relative overflow-hidden group hover:bg-white/30 transition-all duration-300"
+                    class="bg-white/20 rounded-sm w-[70px] p-4 backdrop-blur-sm relative overflow-hidden group hover:bg-white/30 transition-all duration-300"
                   >
                     <span class="text-3xl font-bold" id="seconds">00</span>
                     <div
-                      class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-pink-500 to-rose-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
+                      class="absolute bottom-0 left-0 w-full h-1 bg-red-500"
                     ></div>
                   </div>
                   <span class="text-sm mt-2 block text-white/80">Seconds</span>
-                  <div
-                    class="absolute -bottom-1 left-0 w-full h-[2px] bg-gradient-to-r from-pink-500 to-rose-500"
-                  ></div>
                 </div>
-              </div>
-
-              <!-- Progress Bar -->
-              <div class="mt-6 bg-white/10 rounded-full h-2 overflow-hidden">
-                <div
-                  id="timer-progress"
-                  class="h-full bg-gradient-to-r from-green-500 to-blue-500 transition-all duration-1000"
-                ></div>
               </div>
             </div>
           </div>
 
           <!-- Right Content -->
-          <div class="lg:w-1/2 relative">
+          <div
+            class="lg:w-1/2 relative"
+            data-aos="fade-left"
+            data-aos-delay="200"
+          >
             <!-- Main Deal Image -->
             <div class="relative rounded-2xl overflow-hidden group">
               <img
@@ -765,7 +777,7 @@
 
               <!-- Deal Badge -->
               <div
-                class="absolute top-4 right-4 bg-red-500 text-white px-4 py-2 rounded-full font-bold animate-bounce"
+                class="absolute bottom-[10rem] right-4 bg-red-500 text-white px-4 py-2 rounded-full font-bold animate-bounce"
               >
                 SAVE 50%
               </div>
@@ -819,12 +831,18 @@
       </div>
     </div>
 
-    <main class="my-16 p-2 sm:p-6">
+    <main class="my-16 p-2 sm:p-6 overflow-hidden">
       <div class="container mx-auto">
-        <div class="flex flex-col mx-auto container">
+        <div
+          class="flex flex-col mx-auto container"
+          data-aos="fade-up"
+          data-aos-duration="600"
+        >
           <h2 class="text-2xl sm:text-3xl font-bold px-4">Top Food Category</h2>
         </div>
         <div
+          data-aos="fade-left"
+          data-aos-duration="600"
           id="menu_container"
           class="mt-10 flex items-center gap-8 flex-wrap"
         ></div>
@@ -832,34 +850,68 @@
 
       <div class="container mt-10 mx-auto">
         <div class="flex flex-col mx-auto container">
-          <h2 class="text-2xl sm:text-3xl font-bold px-4">
+          <h2
+            class="text-2xl sm:text-3xl font-bold px-4"
+            data-aos="fade-up"
+            data-aos-duration="600"
+          >
             Top Food Lists <i class="ri-restaurant-fill text-[#ff6b38]"></i>
           </h2>
         </div>
         <div
+          data-aos="fade-right"
+          data-aos-duration="600"
           id="item_container"
           class="mt-8 flex flex-wrap items-center justify-center gap-5"
         ></div>
       </div>
+
+      <a
+        href="./html/allFood.html"
+        class="flex container mt-10 mx-auto justify-center"
+      >
+        <button
+          data-aos=" fade-up"
+          data-aos-duration="600"
+          class="bg-[#ff6b38] text-white py-3 px-4 rounded-full hover:bg-[#ff6b38]/80 transition-colors duration-300"
+        >
+          <span>View All Foods</span>
+          <i class="ri-arrow-right-line"></i>
+        </button>
+      </a>
     </main>
 
     <!-- Features Section -->
     <section class="py-20 bg-gray-50">
-      <div class="container mx-auto px-6">
+      <div class="container mx-auto px-6 overflow-hidden">
         <div class="text-center mb-16">
-          <h2 class="text-4xl font-bold text-gray-900 mb-4">
+          <h2
+            class="text-4xl font-bold text-gray-900 mb-4"
+            data-aos="fade-up"
+            data-aos-duration="600"
+          >
             Why Choose DishDash?
           </h2>
-          <p class="text-gray-600 max-w-2xl mx-auto">
+          <p
+            class="text-gray-600 max-w-2xl mx-auto"
+            data-aos="fade-left"
+            data-aos-duration="700"
+          >
             Experience the perfect blend of convenience, quality, and
             reliability with our exceptional food delivery service.
           </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+          data-aos="fade-up"
+          data-aos-duration="600"
+        >
           <!-- Feature 1 -->
           <div
             class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 group"
+            data-aos=" fade-left"
+            data-aos-duration="900"
           >
             <div
               class="w-14 h-14 bg-blue-50 rounded-lg flex items-center justify-center mb-6 group-hover:bg-[#3284e8] transition-colors duration-300"
@@ -880,6 +932,8 @@
           <!-- Feature 2 -->
           <div
             class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 group"
+            data-aos="fade-left"
+            data-aos-duration="900"
           >
             <div
               class="w-14 h-14 bg-orange-50 rounded-lg flex items-center justify-center mb-6 group-hover:bg-[#ff6b38] transition-colors duration-300"
@@ -900,6 +954,8 @@
           <!-- Feature 3 -->
           <div
             class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 group"
+            data-aos="fade-right"
+            data-aos-duration="1000"
           >
             <div
               class="w-14 h-14 bg-green-50 rounded-lg flex items-center justify-center mb-6 group-hover:bg-green-500 transition-colors duration-300"
@@ -920,6 +976,8 @@
           <!-- Feature 4 -->
           <div
             class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 group"
+            data-aos="fade-right"
+            data-aos-duration="1100"
           >
             <div
               class="w-14 h-14 bg-purple-50 rounded-lg flex items-center justify-center mb-6 group-hover:bg-purple-500 transition-colors duration-300"
@@ -940,7 +998,7 @@
 
         <!-- Stats Counter -->
         <div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8">
-          <div class="text-center">
+          <div class="text-center" data-aos="fade-up" data-aos-delay="500">
             <div
               class="text-4xl font-bold text-[#3284e8] mb-2"
               data-count="15000"
@@ -949,7 +1007,7 @@
             </div>
             <p class="text-gray-600">Happy Customers</p>
           </div>
-          <div class="text-center">
+          <div class="text-center" data-aos="fade-up" data-aos-delay="400">
             <div
               class="text-4xl font-bold text-[#ff6b38] mb-2"
               data-count="500"
@@ -958,13 +1016,13 @@
             </div>
             <p class="text-gray-600">Restaurant Partners</p>
           </div>
-          <div class="text-center">
+          <div class="text-center" data-aos="fade-up" data-aos-delay="300">
             <div class="text-4xl font-bold text-green-500 mb-2" data-count="50">
               50+
             </div>
             <p class="text-gray-600">Cities Covered</p>
           </div>
-          <div class="text-center">
+          <div class="text-center" data-aos="fade-up" data-aos-delay="400">
             <div
               class="text-4xl font-bold text-purple-500 mb-2"
               data-count="100000"
@@ -977,499 +1035,264 @@
       </div>
     </section>
 
-    <footer class="bg-gray-900 pt-16 pb-12 relative overflow-hidden">
+    <footer
+      class="bg-gray-900 footerSection pt-16 pb-12 relative overflow-hidden"
+    >
       <!-- Background Pattern -->
-      <div class="absolute inset-0 opacity-5"></div>
+      <section>
+        <div class="absolute inset-0 opacity-0"></div>
 
-      <div class="container mx-auto px-4 relative">
-        <!-- Main Footer Content -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-          <!-- Brand Section -->
-          <div class="space-y-6">
-            <div class="flex items-center space-x-2">
-              <i class="ri-restaurant-2-line text-4xl text-[#3284e8]"></i>
-              <div class="text-3xl font-bold text-white">DishDash</div>
-            </div>
-            <p class="text-gray-400 leading-relaxed">
-              Delivering happiness to your doorstep. Experience the best food
-              delivery service in town.
-            </p>
-            <div class="flex space-x-4">
-              <a
-                href="#"
-                class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:bg-[#3284e8] hover:text-white transition-all duration-300"
-              >
-                <i class="fab fa-facebook-f"></i>
-              </a>
-              <a
-                href="#"
-                class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:bg-[#3284e8] hover:text-white transition-all duration-300"
-              >
-                <i class="fab fa-twitter"></i>
-              </a>
-              <a
-                href="#"
-                class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:bg-[#3284e8] hover:text-white transition-all duration-300"
-              >
-                <i class="fab fa-instagram"></i>
-              </a>
-              <a
-                href="#"
-                class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:bg-[#3284e8] hover:text-white transition-all duration-300"
-              >
-                <i class="fab fa-linkedin-in"></i>
-              </a>
-            </div>
-          </div>
-
-          <!-- Quick Links -->
-          <div>
-            <h3 class="text-xl font-semibold text-white mb-6 flex items-center">
-              <i class="ri-links-line mr-2 text-[#3284e8]"></i>Quick Links
-            </h3>
-            <ul class="space-y-4">
-              <li>
-                <a
-                  href="#"
-                  class="text-gray-400 hover:text-[#3284e8] transition-colors duration-300 flex items-center"
-                >
-                  <i class="ri-arrow-right-s-line mr-2"></i>Home
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="text-gray-400 hover:text-[#3284e8] transition-colors duration-300 flex items-center"
-                >
-                  <i class="ri-arrow-right-s-line mr-2"></i>Menu
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="text-gray-400 hover:text-[#3284e8] transition-colors duration-300 flex items-center"
-                >
-                  <i class="ri-arrow-right-s-line mr-2"></i>About Us
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="text-gray-400 hover:text-[#3284e8] transition-colors duration-300 flex items-center"
-                >
-                  <i class="ri-arrow-right-s-line mr-2"></i>Contact
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <!-- Contact Info -->
-          <!-- Contact Info -->
-          <div>
-            <h3 class="text-xl font-semibold text-white mb-6 flex items-center">
-              <i class="ri-customer-service-2-line mr-2 text-[#3284e8]"></i
-              >Contact Info
-            </h3>
-            <ul class="space-y-4">
-              <li class="flex items-start space-x-3 group">
-                <i
-                  class="ri-map-pin-line text-[#3284e8] mt-1 group-hover:text-[#ff6b38] transition-colors"
-                ></i>
-                <span
-                  class="text-gray-400 group-hover:text-white transition-colors"
-                  >123 Gharko Cheau, Kathmandu, Nepal</span
-                >
-              </li>
-              <li class="flex items-center space-x-3 group">
-                <i
-                  class="ri-phone-line text-[#3284e8] group-hover:text-[#ff6b38] transition-colors"
-                ></i>
-                <span
-                  class="text-gray-400 group-hover:text-white transition-colors"
-                  >+977-9876543210</span
-                >
-              </li>
-              <li class="flex items-center space-x-3 group">
-                <i
-                  class="ri-mail-line text-[#3284e8] group-hover:text-[#ff6b38] transition-colors"
-                ></i>
-                <span
-                  class="text-gray-400 group-hover:text-white transition-colors"
-                  >contact@dishdash.com</span
-                >
-              </li>
-              <li class="flex items-center space-x-3 group">
-                <i
-                  class="ri-time-line text-[#3284e8] group-hover:text-[#ff6b38] transition-colors"
-                ></i>
-                <span
-                  class="text-gray-400 group-hover:text-white transition-colors"
-                  >Open: 09:00 AM - 09:00 PM</span
-                >
-              </li>
-            </ul>
-          </div>
-
-          <!-- Newsletter -->
-          <div>
-            <h3 class="text-xl font-semibold text-white mb-6 flex items-center">
-              <i class="ri-mail-send-line mr-2 text-[#3284e8]"></i>Newsletter
-            </h3>
-            <p class="text-gray-400 mb-4">
-              Subscribe to our newsletter for updates and exclusive offers!
-            </p>
-            <form class="space-y-3 newsletter-form">
-              <div class="relative">
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  class="newsletter-input w-full px-4 py-3 bg-gray-800 text-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#3284e8] placeholder-gray-500 transition-all duration-300"
-                />
+        <div class="container mx-auto px-4 relative mb-9">
+          <!-- Main Footer Content -->
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+            <!-- Brand Section -->
+            <div class="space-y-6">
+              <div class="flex items-center space-x-2">
+                <i class="ri-restaurant-2-line text-4xl text-orange-500"></i>
+                <div class="text-3xl font-bold text-[#3284e8]">DishDash</div>
               </div>
-              <button
-                type="submit"
-                class="newsletter-button w-full px-4 py-3 bg-[#3284e8] text-white rounded-lg hover:bg-blue-600 transition-colors duration-300 flex items-center justify-center gap-2 group"
-              >
-                Subscribe
-                <i
-                  class="ri-send-plane-line group-hover:translate-x-1 transition-transform"
-                ></i>
-              </button>
-            </form>
-          </div>
-        </div>
-
-        <div class="mt-16 bg-gray-800 rounded-2xl p-8 relative overflow-hidden">
-          <div class="absolute inset-0 bg-pattern opacity-5"></div>
-          <div
-            class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8"
-          >
-            <div class="text-center md:text-left">
-              <h3 class="text-2xl font-bold text-white mb-2">
-                Download Our Mobile App
-              </h3>
-              <p class="text-gray-400">
-                Get the best food delivery experience on your phone
+              <p class="text-gray-400 leading-relaxed">
+                Delivering happiness to your doorstep. Experience the best food
+                delivery service in town.
               </p>
+              <div class="flex space-x-4">
+                <a
+                  href="#"
+                  class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:bg-[#3284e8] hover:text-white transition-all duration-300"
+                >
+                  <i class="fab fa-facebook-f"></i>
+                </a>
+                <a
+                  href="#"
+                  class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:bg-[#3284e8] hover:text-white transition-all duration-300"
+                >
+                  <i class="fab fa-twitter"></i>
+                </a>
+                <a
+                  href="#"
+                  class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:bg-[#3284e8] hover:text-white transition-all duration-300"
+                >
+                  <i class="fab fa-instagram"></i>
+                </a>
+                <a
+                  href="#"
+                  class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:bg-[#3284e8] hover:text-white transition-all duration-300"
+                >
+                  <i class="fab fa-linkedin-in"></i>
+                </a>
+              </div>
             </div>
-            <div class="flex flex-wrap gap-4">
-              <!-- App Store Button -->
-              <a
-                href="#"
-                class="flex items-center gap-3 bg-black text-white px-6 py-3 rounded-xl hover:bg-gray-900 transition-colors"
-              >
-                <i class="fab fa-apple text-2xl"></i>
-                <div class="text-left">
-                  <div class="text-xs">Download on the</div>
-                  <div class="text-sm font-semibold">App Store</div>
-                </div>
-              </a>
-              <!-- Play Store Button -->
-              <a
-                href="#"
-                class="flex items-center gap-3 bg-black text-white px-6 py-3 rounded-xl hover:bg-gray-900 transition-colors"
-              >
-                <i class="fab fa-google-play text-2xl"></i>
-                <div class="text-left">
-                  <div class="text-xs">Get it on</div>
-                  <div class="text-sm font-semibold">Google Play</div>
-                </div>
-              </a>
-            </div>
-          </div>
-        </div>
 
-        <!-- Footer Bottom -->
-        <div class="mt-12 pt-8 border-t border-gray-800">
-          <div class="flex flex-col md:flex-row justify-between items-center">
-            <div class="text-gray-400 mb-4 md:mb-0">
-              © 2024
-              <a href="#" class="text-[#3284e8] hover:text-white">DishDash</a>.
-              All rights reserved.
+            <!-- Quick Links -->
+            <div>
+              <h3
+                class="text-xl font-semibold text-white mb-6 flex items-center"
+              >
+                <i class="ri-links-line mr-2 text-[#3284e8]"></i>Quick Links
+              </h3>
+              <ul class="space-y-4">
+                <li>
+                  <a
+                    href="./index.html"
+                    class="text-gray-400 hover:text-[#3284e8] transition-colors duration-300 flex items-center"
+                  >
+                    <i class="ri-arrow-right-s-line mr-2"></i>Home
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="./html/allFood.html"
+                    class="text-gray-400 hover:text-[#3284e8] transition-colors duration-300 flex items-center"
+                  >
+                    <i class="ri-arrow-right-s-line mr-2"></i>Menu
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    class="text-gray-400 hover:text-[#3284e8] transition-colors duration-300 flex items-center"
+                  >
+                    <i class="ri-arrow-right-s-line mr-2"></i>About Us
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="./html/contactus.html"
+                    class="text-gray-400 hover:text-[#3284e8] transition-colors duration-300 flex items-center"
+                  >
+                    <i class="ri-arrow-right-s-line mr-2"></i>Contact
+                  </a>
+                </li>
+              </ul>
             </div>
-            <div class="flex space-x-6">
-              <a
-                href="#"
-                class="text-gray-400 hover:text-[#3284e8] transition-colors duration-300"
-                >Privacy Policy</a
+
+            <!-- Contact Info -->
+            <div>
+              <h3
+                class="text-xl font-semibold text-white mb-6 flex items-center"
               >
-              <a
-                href="#"
-                class="text-gray-400 hover:text-[#3284e8] transition-colors duration-300"
-                >Terms of Service</a
+                <i class="ri-customer-service-2-line mr-2 text-[#3284e8]"></i
+                >Contact Info
+              </h3>
+              <ul class="space-y-4">
+                <li class="flex items-start space-x-3 group">
+                  <i
+                    class="ri-map-pin-line text-[#3284e8] mt-1 group-hover:text-[#ff6b38] transition-colors"
+                  ></i>
+                  <span
+                    class="text-gray-400 group-hover:text-white transition-colors"
+                    >123 Gharko Cheau, Kathmandu, Nepal</span
+                  >
+                </li>
+                <li class="flex items-center space-x-3 group">
+                  <i
+                    class="ri-phone-line text-[#3284e8] group-hover:text-[#ff6b38] transition-colors"
+                  ></i>
+                  <span
+                    class="text-gray-400 group-hover:text-white transition-colors"
+                    >+977-9876543210</span
+                  >
+                </li>
+                <li class="flex items-center space-x-3 group">
+                  <i
+                    class="ri-mail-line text-[#3284e8] group-hover:text-[#ff6b38] transition-colors"
+                  ></i>
+                  <span
+                    class="text-gray-400 group-hover:text-white transition-colors"
+                    >contact@dishdash.com</span
+                  >
+                </li>
+                <li class="flex items-center space-x-3 group">
+                  <i
+                    class="ri-time-line text-[#3284e8] group-hover:text-[#ff6b38] transition-colors"
+                  ></i>
+                  <span
+                    class="text-gray-400 group-hover:text-white transition-colors"
+                    >Open: 09:00 AM - 09:00 PM</span
+                  >
+                </li>
+              </ul>
+            </div>
+
+            <!-- Newsletter -->
+            <div>
+              <h3
+                class="text-xl font-semibold text-white mb-6 flex items-center"
               >
-              <a
-                href="#"
-                class="text-gray-400 hover:text-[#3284e8] transition-colors duration-300"
-                >Cookie Policy</a
-              >
+                <i class="ri-mail-send-line mr-2 text-[#3284e8]"></i>Newsletter
+              </h3>
+              <p class="text-gray-400 mb-4">
+                Subscribe to our newsletter for updates and exclusive offers!
+              </p>
+              <form class="space-y-3 newsletter-form">
+                <div class="relative">
+                  <input
+                    type="email"
+                    placeholder="Enter your email"
+                    class="newsletter-input w-full px-4 py-3 bg-gray-800 text-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#3284e8] placeholder-gray-500 transition-all duration-300"
+                  />
+                </div>
+                <button
+                  type="submit"
+                  class="newsletter-button w-full px-4 py-3 bg-[#3284e8] text-white rounded-lg hover:bg-blue-600 transition-colors duration-300 flex items-center justify-center gap-2 group"
+                >
+                  Subscribe
+                  <i
+                    class="ri-send-plane-line group-hover:translate-x-1 transition-transform"
+                  ></i>
+                </button>
+              </form>
+            </div>
+          </div>
+
+          <div
+            class="mt-16 bg-gray-800 rounded-2xl p-8 relative overflow-hidden"
+          >
+            <div class="absolute inset-0 bg-pattern opacity-5"></div>
+            <div
+              class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8"
+            >
+              <div class="text-center md:text-left">
+                <h3 class="text-2xl font-bold text-white mb-2">
+                  Download Our Mobile App
+                </h3>
+                <p class="text-gray-400">
+                  Get the best food delivery experience on your phone
+                </p>
+              </div>
+              <div class="flex flex-wrap gap-4">
+                <!-- App Store Button -->
+                <a
+                  href="#"
+                  class="flex items-center gap-3 bg-black text-white px-6 py-3 rounded-xl hover:bg-gray-900 transition-colors"
+                >
+                  <i class="fab fa-apple text-2xl"></i>
+                  <div class="text-left">
+                    <div class="text-xs">Download on the</div>
+                    <div class="text-sm font-semibold">App Store</div>
+                  </div>
+                </a>
+                <!-- Play Store Button -->
+                <a
+                  href="#"
+                  class="flex items-center gap-3 bg-black text-white px-6 py-3 rounded-xl hover:bg-gray-900 transition-colors"
+                >
+                  <i class="fab fa-google-play text-2xl"></i>
+                  <div class="text-left">
+                    <div class="text-xs">Get it on</div>
+                    <div class="text-sm font-semibold">Google Play</div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Footer Bottom -->
+          <div class="mt-12 pt-8 border-t border-gray-800">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+              <div class="text-gray-400 mb-4 md:mb-0">
+                © 2024
+                <a href="#" class="text-[#3284e8] hover:text-white">DishDash</a
+                >. All rights reserved.
+              </div>
+              <div class="flex space-x-6">
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-[#3284e8] transition-colors duration-300"
+                  >Privacy Policy</a
+                >
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-[#3284e8] transition-colors duration-300"
+                  >Terms of Service</a
+                >
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-[#3284e8] transition-colors duration-300"
+                  >Cookie Policy</a
+                >
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </footer>
 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        duration: 1200,
+        once: false,
+        offset: 200,
+      });
+    </script>
+
     <script src="./js/menu.js"></script>
+    <script src="./js/timer.js"></script>
     <script type="module" src="./js/newsletter.js"></script>
     <script src="./js/search.js"></script>
     <script src="./js/script.js"></script>
     <script type="module" src="./js/addToCart.js"></script>
     <script type="module" src="./js/addToWishlist.js"></script>
-
-    <style>
-      @keyframes fade-in {
-        from {
-          opacity: 0;
-          transform: translateY(20px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      .animate-fade-in {
-        animation: fade-in 0.6s ease-out forwards;
-      }
-
-      /* Add smooth scroll behavior */
-      html {
-        scroll-behavior: smooth;
-      }
-
-      /* Enhanced hover effects */
-      .group:hover .group-hover\:scale-110 {
-        transform: scale(1.1);
-      }
-
-      /* Gradient animation */
-      .gradient-animate {
-        background-size: 200% 200%;
-        animation: gradient 3s ease infinite;
-      }
-
-      @keyframes gradient {
-        0% {
-          background-position: 0% 50%;
-        }
-        50% {
-          background-position: 100% 50%;
-        }
-        100% {
-          background-position: 0% 50%;
-        }
-      }
-
-      /* Add these new styles */
-      .text-gradient {
-        background: linear-gradient(to right, #ffffff, #ff6b38);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-      }
-
-      .bg-pattern {
-        background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-      }
-
-      @keyframes pattern-slide {
-        0% {
-          background-position: 0 0;
-        }
-        100% {
-          background-position: 60px 60px;
-        }
-      }
-
-      .animate-pattern-slide {
-        animation: pattern-slide 20s linear infinite;
-      }
-
-      @keyframes float {
-        0%,
-        100% {
-          transform: translateY(0);
-        }
-        50% {
-          transform: translateY(-20px);
-        }
-      }
-
-      .floating-element {
-        animation: float 6s ease-in-out infinite;
-      }
-
-      /* Smooth transitions */
-      .transition-all {
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      }
-
-      /* Enhanced shadow for floating cards */
-      .shadow-xl {
-        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
-          0 10px 10px -5px rgba(0, 0, 0, 0.04);
-      }
-
-      /* Smooth hover transitions */
-      .transition-transform {
-        transition-property: transform;
-        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-        transition-duration: 300ms;
-      }
-
-      /* Glass effect */
-      .backdrop-blur-md {
-        backdrop-filter: blur(12px);
-      }
-
-      /* Deal section animations */
-      @keyframes bounce {
-        0%,
-        100% {
-          transform: translateY(0);
-        }
-        50% {
-          transform: translateY(-10px);
-        }
-      }
-
-      .animate-bounce {
-        animation: bounce 2s infinite;
-      }
-
-      /* Enhanced glass effect */
-      .backdrop-blur-md {
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-      }
-
-      /* Responsive adjustments */
-      @media (max-width: 768px) {
-        .countdown-container {
-          flex-wrap: wrap;
-          justify-content: center;
-        }
-      }
-
-      /* Timer Styles */
-      .countdown-item {
-        position: relative;
-        transition: transform 0.3s ease;
-      }
-
-      .countdown-item:hover {
-        transform: translateY(-2px);
-      }
-
-      /* Progress Bar Animation */
-      @keyframes progress {
-        from {
-          width: 100%;
-        }
-        to {
-          width: 0%;
-        }
-      }
-
-      #timer-progress {
-        animation: progress 86400s linear forwards; /* 24 hours in seconds */
-      }
-
-      /* Pulse Animation for Low Time */
-      @keyframes pulse-red {
-        0%,
-        100% {
-          background-color: rgba(255, 255, 255, 0.2);
-        }
-        50% {
-          background-color: rgba(239, 68, 68, 0.3);
-        }
-      }
-
-      .time-low {
-        animation: pulse-red 1s ease-in-out infinite;
-      }
-
-      /* Glass effect */
-      .backdrop-blur-sm {
-        backdrop-filter: blur(8px);
-        -webkit-backdrop-filter: blur(8px);
-      }
-
-      /* Footer Styles */
-      .social-icon-link {
-        @apply w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:bg-[#3284e8] hover:text-white transition-all duration-300 transform hover:-translate-y-1;
-      }
-
-      .footer-link {
-        @apply flex items-center text-gray-400 hover:text-[#3284e8] transition-colors duration-300 transform hover:translate-x-2;
-      }
-
-      .footer-bottom-link {
-        @apply text-gray-400 hover:text-[#3284e8] transition-colors duration-300 relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-[#3284e8] after:transition-all hover:after:w-full;
-      }
-
-      /* Newsletter Input Focus Effect */
-      .newsletter-input:focus {
-        @apply ring-2 ring-[#3284e8] transform -translate-y-0.5;
-      }
-
-      /* Enhanced Hover Effects */
-      .group:hover .group-hover\:text-\[\#ff6b38\] {
-        color: #ff6b38;
-      }
-
-      /* Gradient Background */
-      .bg-gradient-footer {
-        background: linear-gradient(
-          to bottom,
-          rgba(17, 24, 39, 0.8),
-          rgba(17, 24, 39, 1)
-        );
-      }
-
-      /* Mobile Responsiveness */
-      @media (max-width: 768px) {
-        .footer-grid {
-          grid-template-columns: repeat(1, 1fr);
-          gap: 2rem;
-        }
-      }
-
-      /* Feature Card Hover Effect */
-      .feature-card {
-        transition: transform 0.3s ease;
-      }
-
-      .feature-card:hover {
-        transform: translateY(-5px);
-      }
-
-      /* Stats Counter Animation */
-      @keyframes countUp {
-        from {
-          opacity: 0;
-          transform: translateY(20px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      .stat-number {
-        animation: countUp 1s ease-out forwards;
-      }
-
-      /* App Download Button Hover */
-      .app-download-btn {
-        transition: all 0.3s ease;
-      }
-
-      .app-download-btn:hover {
-        transform: scale(1.05);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-      }
-    </style>
   </body>
 </html>

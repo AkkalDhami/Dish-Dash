@@ -62,6 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Clear previous errors
         [emailError, passwdError].forEach(error => {
             error.innerHTML = "";
+            error.classList.remove("hidden");
         });
         [loginEmail, loginPassword].forEach(input => {
             input.classList.remove("borderError", "shake");
@@ -75,12 +76,16 @@ document.addEventListener("DOMContentLoaded", () => {
         } else if (!emailPattern.test(loginEmail.value.trim())) {
             showInputError(loginEmail, emailError, "Please enter a valid email");
             isValid = false;
+        } else {
+            emailError.classList.add("hidden");
         }
 
         // Password validation
         if (loginPassword.value.trim() === "") {
             showInputError(loginPassword, passwdError, "Please enter your password");
             isValid = false;
+        } else {
+            passwdError.classList.add("hidden");
         }
 
         if (!isValid) return;
@@ -111,5 +116,5 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-  
+
 });
