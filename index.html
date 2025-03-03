@@ -707,9 +707,11 @@
                 <!-- Days -->
                 <div class="text-center relative countdown-item">
                   <div
-                    class="bg-white/20 rounded-sm p-4 backdrop-blur-sm relative overflow-hidden group hover:bg-white/30 transition-all duration-300"
+                    class="bg-white/20 w-[60px] sm:w-[80px] rounded-sm p-4 backdrop-blur-sm relative overflow-hidden group hover:bg-white/30 transition-all duration-300"
                   >
-                    <span class="text-3xl font-bold" id="days">00</span>
+                    <span class="sm:text-3xl text-xl font-bold" id="days"
+                      >00</span
+                    >
                     <div
                       class="absolute bottom-0 left-0 w-full h-1 bg-purple-500"
                     ></div>
@@ -720,9 +722,11 @@
                 <!-- Hours -->
                 <div class="text-center relative countdown-item">
                   <div
-                    class="bg-white/20 w-[70px] rounded-sm p-4 backdrop-blur-sm relative overflow-hidden group hover:bg-white/30 transition-all duration-300"
+                    class="bg-white/20 w-[60px] sm:w-[80px] rounded-sm p-4 backdrop-blur-sm relative overflow-hidden group hover:bg-white/30 transition-all duration-300"
                   >
-                    <span class="text-3xl font-bold" id="hours">00</span>
+                    <span class="sm:text-3xl text-xl font-bold" id="hours"
+                      >00</span
+                    >
                     <div
                       class="absolute bottom-0 left-0 w-full h-1 bg-green-500"
                     ></div>
@@ -733,9 +737,11 @@
                 <!-- Minutes -->
                 <div class="text-center relative countdown-item">
                   <div
-                    class="bg-white/20 w-[70px] rounded-sm p-4 backdrop-blur-sm relative overflow-hidden group hover:bg-white/30 transition-all duration-300"
+                    class="bg-white/20 w-[60px] sm:w-[80px] rounded-sm p-4 backdrop-blur-sm relative overflow-hidden group hover:bg-white/30 transition-all duration-300"
                   >
-                    <span class="text-3xl font-bold" id="minutes">00</span>
+                    <span class="sm:text-3xl text-xl font-bold" id="minutes"
+                      >00</span
+                    >
                     <div
                       class="absolute bottom-0 left-0 w-full h-1 bg-blue-600"
                     ></div>
@@ -746,9 +752,11 @@
                 <!-- Seconds -->
                 <div class="text-center relative countdown-item">
                   <div
-                    class="bg-white/20 rounded-sm w-[70px] p-4 backdrop-blur-sm relative overflow-hidden group hover:bg-white/30 transition-all duration-300"
+                    class="bg-white/20 rounded-sm w-[60px] sm:w-[80px] p-4 backdrop-blur-sm relative overflow-hidden group hover:bg-white/30 transition-all duration-300"
                   >
-                    <span class="text-3xl font-bold" id="seconds">00</span>
+                    <span class="sm:text-3xl text-xl font-bold" id="seconds"
+                      >00</span
+                    >
                     <div
                       class="absolute bottom-0 left-0 w-full h-1 bg-red-500"
                     ></div>
@@ -819,10 +827,7 @@
     </div>
 
     <!-- Toast Container -->
-    <div
-      id="toastContainer"
-      class="fixed top-10 left-1/2 -translate-x-1/2 z-50 flex flex-col space-y-4"
-    ></div>
+
     <div id="toast" class="toast">
       <span class="toast-icon"></span>
       <span class="toast-message"></span>
