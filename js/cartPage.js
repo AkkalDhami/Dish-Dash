@@ -309,7 +309,7 @@ class CartComponent {
     const { _id, rating, image, name, selling_price, quantity } = item;
 
     return `
-      <div id="${_id}" class="itemDiv group hover:shadow-lg transition-all duration-300 rounded-lg p-3 sm:p-4 bg-white border border-gray-100">
+      <div data-aos="zoom-in" data-aos-duration="500" id="${_id}" class="itemDiv group hover:shadow-lg transition-all duration-300 rounded-lg p-3 sm:p-4 bg-white border border-gray-100">
         <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
           <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto">
             <div class="relative w-full sm:w-auto">
