@@ -117,7 +117,7 @@ header.innerHTML += `
                   <span>Login</span>
                 </a>
                 <a
-                  href="./html/signupPage.html"
+                  href="../../html/signupPage.html"
                   class="text-gray-700 text-[16px] flex items-center gap-2 px-4 py-3 text-sm hover:bg-[#f6f6f6]"
                   role="menuitem"
                   tabindex="-1"
