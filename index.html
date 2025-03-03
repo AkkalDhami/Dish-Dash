@@ -19,14 +19,17 @@
       href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
       rel="stylesheet"
     />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <link rel="stylesheet" href="./css/output.css" />
   </head>
 
   <body class="font-['Poppins']">
     <!-- Navbar -->
-    <header class="md:fixed w-full md:top-0 md:left-0 z-50 bg-[#f6f6f6]">
+    <header
+      class="md:fixed w-full md:top-0 md:left-0 z-50 shadow-lg bg-[#ffffff]"
+    >
       <nav
-        class="container mx-auto px-6 py-4 flex items-center justify-between"
+        class="container mx-auto px-6 py-4 flex items-center justify-between z-50"
       >
         <div
           onclick="window.location.href='./index.html'"
@@ -185,6 +188,7 @@
       </nav>
     </header>
 
+    <!-- Search Box -->
     <div
       id="searchResultsContainer"
       class="fixed -top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 max-w-[900px] w-full z-[117] duration-300"
@@ -211,14 +215,15 @@
     ></div>
 
     <!-- Mobile Bottom Navigation -->
-    <div class="fixed bottom-0 left-0 right-0 bg-white md:hidden z-50">
+    <div
+      class="fixed mobileBottomNav bottom-0 left-0 right-0 bg-white md:hidden z-50"
+    >
       <div
         class="flex justify-between items-center px-6 py-3 border-t border-gray-200"
       >
         <a
-          data-nav-link
           data-active="true"
-          href="#"
+          href="./index.html"
           class="nav-link flex flex-col items-center text-gray-700"
         >
           <svg
@@ -240,7 +245,6 @@
 
         <a
           id="searchBottomButton"
-          data-nav-link
           href="#"
           class="nav-link flex flex-col items-center text-gray-700"
         >
@@ -262,8 +266,7 @@
         </a>
 
         <a
-          data-nav-link
-          href="#"
+          href="./html/allFood.html"
           class="nav-link flex flex-col items-center text-gray-700"
         >
           <i class="ri-bowl-line sm:text-xl"></i>
@@ -343,8 +346,7 @@
         </a>
 
         <a
-          data-nav-link
-          href="#"
+          href="./html/contactus.html"
           class="nav-link flex flex-col items-center text-gray-700"
         >
           <i class="ri-customer-service-2-line"></i>
@@ -354,14 +356,14 @@
     </div>
 
     <!-- banner -->
-    <div class="mt-[100px]">
+    <div class="mt-[100px]" data-aos="fade-up" data-aos-delay="200">
       <div class="container mx-auto px-6 py-20">
         <!-- Main Banner -->
         <div
           class="relative bg-gradient-to-br from-[#3284e8] to-[#1a6cd4] rounded-3xl shadow-2xl overflow-hidden"
         >
           <!-- Animated Background Pattern -->
-          <div class="absolute inset-0 opacity-10">
+          <div class="absolute inset-0 opacity-100">
             <div
               class="absolute inset-0 bg-pattern animate-pattern-slide"
             ></div>
@@ -390,7 +392,11 @@
             class="relative flex flex-col md:flex-row items-center p-8 md:p-12 gap-12"
           >
             <!-- Left Content -->
-            <div class="md:w-1/2 text-white z-10">
+            <div
+              class="md:w-1/2 text-white z-10"
+              data-aos="fade-right"
+              data-aos-delay="400"
+            >
               <div
                 class="inline-flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full backdrop-blur-sm mb-6"
               >
@@ -402,6 +408,8 @@
 
               <h1
                 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 animate-fade-in"
+                data-aos="fade-down"
+                data-aos-delay="500"
               >
                 Order your<br />
                 <span class="text-gradient">favourite food</span><br />
@@ -416,6 +424,7 @@
 
               <div class="flex flex-wrap gap-4">
                 <button
+                  onclick="location.href='/#menu_container'"
                   class="group bg-[#ff6b38] text-white px-8 border-2 border-[#ff6b38] font-medium py-3 rounded-full hover:bg-transparent hover:text-white transition-all duration-300 relative overflow-hidden"
                 >
                   <span class="relative z-10 flex items-center gap-2">
@@ -457,7 +466,11 @@
             </div>
 
             <!-- Right Images Grid -->
-            <div class="md:w-1/2 z-10 relative">
+            <div
+              class="md:w-1/2 z-10 relative"
+              data-aos="fade-left"
+              data-aos-delay="400"
+            >
               <div
                 class="relative rounded-3xl overflow-hidden shadow-2xl group"
               >
@@ -601,7 +614,11 @@
     </div>
 
     <!-- Hot Deals Section -->
-    <div class="container mx-auto px-6 py-12">
+    <div
+      class="container mx-auto px-6 py-12"
+      data-aos="fade-up"
+      data-aos-delay="100"
+    >
       <div
         class="relative bg-gradient-to-br from-[#ff6b38] to-[#ff8c38] rounded-3xl shadow-2xl overflow-hidden"
       >
@@ -610,9 +627,15 @@
           <div class="absolute inset-0 bg-pattern animate-pattern-slide"></div>
         </div>
 
-        <div class="relative flex flex-col lg:flex-row items-center p-8 gap-8">
+        <div
+          class="relative flex flex-col lg:flex-row overflow-hidden items-center p-8 gap-8"
+        >
           <!-- Left Content -->
-          <div class="lg:w-1/2 text-white">
+          <div
+            class="lg:w-1/2 text-white"
+            data-aos="fade-right"
+            data-aos-delay="200"
+          >
             <div
               class="inline-flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full backdrop-blur-sm mb-6"
             >
@@ -737,7 +760,11 @@
           </div>
 
           <!-- Right Content -->
-          <div class="lg:w-1/2 relative">
+          <div
+            class="lg:w-1/2 relative"
+            data-aos="fade-left"
+            data-aos-delay="200"
+          >
             <!-- Main Deal Image -->
             <div class="relative rounded-2xl overflow-hidden group">
               <img
@@ -805,12 +832,18 @@
       </div>
     </div>
 
-    <main class="my-16 p-2 sm:p-6">
+    <main class="my-16 p-2 sm:p-6 overflow-hidden">
       <div class="container mx-auto">
-        <div class="flex flex-col mx-auto container">
+        <div
+          class="flex flex-col mx-auto container"
+          data-aos="fade-up"
+          data-aos-duration="600"
+        >
           <h2 class="text-2xl sm:text-3xl font-bold px-4">Top Food Category</h2>
         </div>
         <div
+          data-aos="fade-left"
+          data-aos-duration="600"
           id="menu_container"
           class="mt-10 flex items-center gap-8 flex-wrap"
         ></div>
@@ -818,37 +851,71 @@
 
       <div class="container mt-10 mx-auto">
         <div class="flex flex-col mx-auto container">
-          <h2 class="text-2xl sm:text-3xl font-bold px-4">
+          <h2
+            class="text-2xl sm:text-3xl font-bold px-4"
+            data-aos="fade-up"
+            data-aos-duration="600"
+          >
             Top Food Lists <i class="ri-restaurant-fill text-[#ff6b38]"></i>
           </h2>
         </div>
         <div
+          data-aos="fade-right"
+          data-aos-duration="600"
           id="item_container"
           class="mt-8 flex flex-wrap items-center justify-center gap-5"
         ></div>
       </div>
+
+      <a
+        href="./html/allFood.html"
+        class="flex container mt-10 mx-auto justify-center"
+      >
+        <button
+          data-aos=" fade-up"
+          data-aos-duration="600"
+          class="bg-[#ff6b38] text-white py-3 px-4 rounded-full hover:bg-[#ff6b38]/80 transition-colors duration-300"
+        >
+          <span>View All Foods</span>
+          <i class="ri-arrow-right-line"></i>
+        </button>
+      </a>
     </main>
 
     <!-- Features Section -->
     <section class="py-20 bg-gray-50">
-      <div class="container mx-auto px-6">
+      <div class="container mx-auto px-6 overflow-hidden">
         <div class="text-center mb-16">
-          <h2 class="text-4xl font-bold text-gray-900 mb-4">
+          <h2
+            class="text-4xl font-bold text-gray-900 mb-4"
+            data-aos="fade-up"
+            data-aos-duration="600"
+          >
             Why Choose DishDash?
           </h2>
-          <p class="text-gray-600 max-w-2xl mx-auto">
+          <p
+            class="text-gray-600 max-w-2xl mx-auto"
+            data-aos="fade-left"
+            data-aos-duration="700"
+          >
             Experience the perfect blend of convenience, quality, and
             reliability with our exceptional food delivery service.
           </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+          data-aos="fade-up"
+          data-aos-duration="600"
+        >
           <!-- Feature 1 -->
           <div
-            class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 group"
+            class="bg-white flex flex-col items-center border border-gray-100 rounded-xl p-6 hover:shadow-[0_0_2px_2px_#0000001a] duration-200 group"
+            data-aos=" fade-up"
+            data-aos-duration="900"
           >
             <div
-              class="w-14 h-14 bg-blue-50 rounded-lg flex items-center justify-center mb-6 group-hover:bg-[#3284e8] transition-colors duration-300"
+              class="w-14 h-14 bg-blue-50 rounded-full flex items-center justify-center mb-6 group-hover:bg-[#3284e8] transition-colors duration-300"
             >
               <i
                 class="ri-timer-flash-line text-[#3284e8] text-2xl group-hover:text-white transition-colors duration-300"
@@ -865,10 +932,12 @@
 
           <!-- Feature 2 -->
           <div
-            class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 group"
+            class="bg-white flex flex-col items-center border border-gray-100 rounded-xl p-6 hover:shadow-[0_0_2px_2px_#0000001a] duration-200 group"
+            data-aos="fade-up"
+            data-aos-duration="1100"
           >
             <div
-              class="w-14 h-14 bg-orange-50 rounded-lg flex items-center justify-center mb-6 group-hover:bg-[#ff6b38] transition-colors duration-300"
+              class="w-14 h-14 bg-orange-50 rounded-full flex items-center justify-center mb-6 group-hover:bg-[#ff6b38] transition-colors duration-300"
             >
               <i
                 class="ri-restaurant-line text-[#ff6b38] text-2xl group-hover:text-white transition-colors duration-300"
@@ -885,10 +954,12 @@
 
           <!-- Feature 3 -->
           <div
-            class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 group"
+            class="bg-white flex flex-col items-center border border-gray-100 rounded-xl p-6 hover:shadow-[0_0_2px_2px_#0000001a] duration-200 group"
+            data-aos="fade-up"
+            data-aos-duration="1300"
           >
             <div
-              class="w-14 h-14 bg-green-50 rounded-lg flex items-center justify-center mb-6 group-hover:bg-green-500 transition-colors duration-300"
+              class="w-14 h-14 bg-green-50 rounded-full flex items-center justify-center mb-6 group-hover:bg-green-500 transition-colors duration-300"
             >
               <i
                 class="ri-shield-check-line text-green-500 text-2xl group-hover:text-white transition-colors duration-300"
@@ -905,10 +976,12 @@
 
           <!-- Feature 4 -->
           <div
-            class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 group"
+            class="bg-white flex flex-col items-center border border-gray-100 rounded-xl p-6 hover:shadow-[0_0_2px_2px_#0000001a] duration-200 group"
+            data-aos="fade-up"
+            data-aos-duration="1500"
           >
             <div
-              class="w-14 h-14 bg-purple-50 rounded-lg flex items-center justify-center mb-6 group-hover:bg-purple-500 transition-colors duration-300"
+              class="w-14 h-14 bg-purple-50 rounded-full flex items-center justify-center mb-6 group-hover:bg-purple-500 transition-colors duration-300"
             >
               <i
                 class="ri-customer-service-2-line text-purple-500 text-2xl group-hover:text-white transition-colors duration-300"
@@ -926,7 +999,7 @@
 
         <!-- Stats Counter -->
         <div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8">
-          <div class="text-center">
+          <div class="text-center" data-aos="fade-up" data-aos-delay="500">
             <div
               class="text-4xl font-bold text-[#3284e8] mb-2"
               data-count="15000"
@@ -935,7 +1008,7 @@
             </div>
             <p class="text-gray-600">Happy Customers</p>
           </div>
-          <div class="text-center">
+          <div class="text-center" data-aos="fade-up" data-aos-delay="400">
             <div
               class="text-4xl font-bold text-[#ff6b38] mb-2"
               data-count="500"
@@ -944,13 +1017,13 @@
             </div>
             <p class="text-gray-600">Restaurant Partners</p>
           </div>
-          <div class="text-center">
+          <div class="text-center" data-aos="fade-up" data-aos-delay="300">
             <div class="text-4xl font-bold text-green-500 mb-2" data-count="50">
               50+
             </div>
             <p class="text-gray-600">Cities Covered</p>
           </div>
-          <div class="text-center">
+          <div class="text-center" data-aos="fade-up" data-aos-delay="400">
             <div
               class="text-4xl font-bold text-purple-500 mb-2"
               data-count="100000"
@@ -963,12 +1036,14 @@
       </div>
     </section>
 
-    <footer class="bg-gray-900 footerSection pt-16 pb-12 relative overflow-hidden">
+    <footer
+      class="bg-gray-900 footerSection pt-16 pb-12 relative overflow-hidden"
+    >
       <!-- Background Pattern -->
       <section>
-        <div class="absolute inset-0 opacity-5"></div>
+        <div class="absolute inset-0 opacity-0"></div>
 
-        <div class="container mx-auto px-4 relative">
+        <div class="container mx-auto px-4 relative mb-9">
           <!-- Main Footer Content -->
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
             <!-- Brand Section -->
@@ -1200,12 +1275,21 @@
               </div>
             </div>
           </div>
-          
         </div>
       </section>
     </footer>
 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        duration: 1200,
+        once: false,
+        offset: 140,
+      });
+    </script>
+
     <script src="./js/menu.js"></script>
+    
     <script src="./js/timer.js"></script>
     <script type="module" src="./js/newsletter.js"></script>
     <script src="./js/search.js"></script>
