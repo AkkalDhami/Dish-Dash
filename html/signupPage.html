@@ -405,6 +405,7 @@
       </div>
     </div>
 
+    <!-- Hero Section -->
     <section
       class="flex mt-[16px] sm:mt-[100px] items-center justify-center my-8"
     >
@@ -618,20 +619,30 @@
         <!-- Right Side - Form -->
         <form
           action="#"
-          class="p-8 rounded-xl bg-white shadow-sm hover:shadow-[0_0_2px_2px_#0000001a] transition-all"
+          class="p-8 rounded-xl bg-white shadow-sm hover:shadow-[0_0_2px_2px_#0000001a] transition-all overflow-hidden"
           id="signupForm"
           data-aos="fade-up"
           data-aos-duration="1000"
         >
-          <div class="mb-8 text-center">
-            <h2 class="text-2xl sm:text-3xl font-semibold text-gray-800 mb-2">
+          <div class="mb-8 text-center overflow-hidden">
+            <h2
+              data-aos="fade-left"
+              data-aos-duration="600"
+              class="text-2xl sm:text-3xl font-semibold text-gray-800 mb-2"
+            >
               Create Account
             </h2>
-            <p class="text-gray-600">Join us for a delicious journey!</p>
+            <p
+              data-aos="fade-right"
+              data-aos-duration="800"
+              class="text-gray-600"
+            >
+              Join us for a delicious journey!
+            </p>
           </div>
 
           <!-- Username Input -->
-          <div class="mb-5">
+          <div class="mb-5" data-aos="fade-left" data-aos-duration="800">
             <label for="username" class="block text-gray-700 mb-2"
               >Username</label
             >
@@ -653,7 +664,7 @@
           </div>
 
           <!-- Email Input -->
-          <div class="mb-5">
+          <div class="mb-5" data-aos="fade-right" data-aos-duration="900">
             <label for="signupEmail" class="block text-gray-700 mb-2"
               >Email Address</label
             >
@@ -675,7 +686,7 @@
           </div>
 
           <!-- Password Input -->
-          <div class="mb-5">
+          <div class="mb-5" data-aos="fade-left" data-aos-duration="1000">
             <label for="signupPassword" class="block text-gray-700 mb-2"
               >Password</label
             >
@@ -702,7 +713,7 @@
           </div>
 
           <!-- Confirm Password Input -->
-          <div class="mb-6">
+          <div class="mb-6" data-aos="fade-right" data-aos-duration="1200">
             <label for="signupPassword2" class="block text-gray-700 mb-2"
               >Confirm Password</label
             >
@@ -729,7 +740,11 @@
           </div>
 
           <!-- Terms Checkbox -->
-          <div class="flex items-center mb-6">
+          <div
+            class="flex items-center mb-6"
+            data-aos="fade-left"
+            data-aos-duration="1400"
+          >
             <input
               type="checkbox"
               id="termsCheckbox"
@@ -748,6 +763,8 @@
           </div>
 
           <button
+            data-aos="fade-left"
+            data-aos-duration="1600"
             type="submit"
             id="signup-button"
             class="w-full p-4 text-lg font-medium text-white bg-blue-500 rounded-lg hover:bg-blue-600 transition-all duration-300 flex items-center justify-center gap-2 group pulse-on-hover relative overflow-hidden"
@@ -771,7 +788,7 @@
           </div>
 
           <!-- Social Login Options -->
-          <div class="grid grid-cols-3 gap-3">
+          <div class="grid grid-cols-3 gap-3" data-aos="fade-up">
             <!-- Google -->
             <button
               type="button"
@@ -848,7 +865,7 @@
       AOS.init({
         duration: 1200,
         once: false,
-        offset: 200,
+        offset: 100,
       });
     </script>
     <script type="module" src="../js/newsletter.js"></script>
