@@ -167,15 +167,15 @@ footerSection.innerHTML += `
           <div
             class="mt-16 bg-gray-800 rounded-2xl p-8 relative overflow-hidden"
           >
-            <div class="absolute inset-0 bg-pattern "></div>
+            <div class="absolute inset-0 bg-pattern"></div>
             <div
               class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8"
             >
               <div class="text-center md:text-left">
-                <h3 class="text-2xl font-bold text-white mb-2">
+                <h3 class="text-2xl font-bold text-[#ff6b38] mb-2">
                   Download Our Mobile App
                 </h3>
-                <p class="text-gray-400">
+                <p class="text-gray-200">
                   Get the best food delivery experience on your phone
                 </p>
               </div>
@@ -211,7 +211,7 @@ footerSection.innerHTML += `
             <div class="flex flex-col md:flex-row justify-between items-center">
               <div class="text-gray-400 mb-4 md:mb-0">
                 © 2024
-                <a href="#" class="text-[#3284e8] hover:text-white">DishDash</a
+                <a href="#" class="text-[#3284e8] hover:text-[#ff6b38]">DishDash</a
                 >. All rights reserved.
               </div>
               <div class="flex space-x-6">

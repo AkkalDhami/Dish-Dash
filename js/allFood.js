@@ -2,7 +2,7 @@ import { showToastNotify } from "../assets/utility/showToast.js";
 import { getCartLength } from "../js/getCartLength.js"
 import { addToCart } from "../assets/utility/addToCart.js"
 import { addToWishList } from "../assets/utility/addTowishList.js"
-import { getWishlistLength  } from "../assets/utility/getWishlistLength.js"
+import { getWishlistLength } from "../assets/utility/getWishlistLength.js"
 function foodCollection() {
     return {
         foods: [],
@@ -62,17 +62,17 @@ function foodCollection() {
             if (target.closest('.category-label')) {
                 const label = target.closest('.category-label');
                 const checkbox = document.querySelector(`input[value="${label.dataset.category}"]`);
-                
+
                 if (checkbox) {
                     checkbox.checked = !checkbox.checked;
-                    
+
                     // Update visual feedback
                     if (checkbox.checked) {
                         label.classList.add('text-blue-600', 'font-semibold');
                     } else {
                         label.classList.remove('text-blue-600', 'font-semibold');
                     }
-                    
+
                     filterAndDisplayFoods();
                 }
             }
@@ -243,17 +243,17 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (target.closest('.category-label')) {
             const label = target.closest('.category-label');
             const checkbox = document.querySelector(`input[value="${label.dataset.category}"]`);
-            
+
             if (checkbox) {
                 checkbox.checked = !checkbox.checked;
-                
+
                 // Update visual feedback
                 if (checkbox.checked) {
                     label.classList.add('text-blue-600', 'font-semibold');
                 } else {
                     label.classList.remove('text-blue-600', 'font-semibold');
                 }
-                
+
                 filterAndDisplayFoods();
             }
         }
@@ -297,13 +297,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     function setupEventListeners() {
         // Use event delegation for all click events
         document.addEventListener('click', handleGlobalClick);
-        
+
         // Input and change events
-        document.getElementById('searchInput').addEventListener('input', filterAndDisplayFoods);
+        document.getElementById('searchInputBox').addEventListener('input', filterAndDisplayFoods);
         document.getElementById('minPrice').addEventListener('input', updatePriceRange);
         document.getElementById('maxPrice').addEventListener('input', updatePriceRange);
         document.getElementById('sortSelect').addEventListener('change', filterAndDisplayFoods);
-        
+
         // Mobile filter toggle
         document.getElementById('filterToggle')?.addEventListener('click', () => {
             const filtersPanel = document.getElementById('filtersPanel');
@@ -317,11 +317,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         const minValue = document.getElementById('minPriceValue');
         const maxValue = document.getElementById('maxPriceValue');
 
-        if (e.target.id === 'minPrice' && parseInt(minInput.value) > parseInt(maxInput.value)) {
-            minInput.value = maxInput.value;
+        if (e.target.id === 'minPrice' && parseInt(minInput.value) > parseInt(maxInput.value - 8)) {
+            minInput.value = parseInt(maxInput.value - 8) || maxInput.value;
         }
-        if (e.target.id === 'maxPrice' && parseInt(maxInput.value) < parseInt(minInput.value)) {
-            maxInput.value = minInput.value;
+        if (e.target.id === 'maxPrice' && parseInt(maxInput.value) < parseInt(minInput.value + 8)) {
+            maxInput.value = parseInt(minInput.value + 8) || minInput.value;
         }
 
         minValue.textContent = minInput.value;
@@ -333,9 +333,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         let result = [...foods];
 
         // Search filter
-        const searchQuery = document.getElementById('searchInput').value.toLowerCase();
+        const searchQuery = document.getElementById('searchInputBox').value.toLowerCase();
         if (searchQuery) {
-            result = result.filter(food => 
+            result = result.filter(food =>
                 food.name.toLowerCase().includes(searchQuery) ||
                 food.category.toLowerCase().includes(searchQuery)
             );
@@ -351,8 +351,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Price range filter
         const minPrice = parseInt(document.getElementById('minPrice').value);
         const maxPrice = parseInt(document.getElementById('maxPrice').value);
-        result = result.filter(food => 
-            food.selling_price >= minPrice && 
+        result = result.filter(food =>
+            food.selling_price >= minPrice &&
             food.selling_price <= maxPrice
         );
 
@@ -428,7 +428,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                                 Reset All Filters
                             </button>
                             <button 
-                                onclick="document.getElementById('searchInput').focus()"
+                                onclick="document.getElementById('searchInputBox').focus()"
                                 class="flex items-center justify-center gap-2 px-6 py-3 border-2 border-gray-300 text-gray-700 rounded-full hover:border-blue-500 hover:text-blue-500 transition-all duration-300 group"
                             >
                                 <i class="ri-search-line group-hover:scale-110 transition-transform"></i>
@@ -580,7 +580,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Add resetFilters function
     function resetFilters() {
         // Reset search
-        document.getElementById('searchInput').value = '';
+        document.getElementById('searchInputBox').value = '';
 
         // Reset categories
         document.querySelectorAll('.category-checkbox').forEach(checkbox => {
@@ -623,11 +623,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.error("Error loading food data:", error);
     }
 
-    
+
     function setupCategories() {
         const categories = [...new Set(foods.map(food => food.category))];
         const container = document.getElementById('categoryContainer');
-        
+
         container.innerHTML = categories.map(category => `
             <div class="flex items-center gap-2 hover:text-blue-600 transition-colors">
                 <input type="checkbox" value="${category}" class="category-checkbox custom-checkbox">
