@@ -1,6 +1,7 @@
 import { getCartLength } from "./getCartLength.js";
 import { getWishlistLength } from "../assets/utility/getWishlistLength.js";
 import { addToCart } from "../assets/utility/addToCart.js";
+import { showToastNotify } from "../assets/utility/showToast.js";
 
 document.addEventListener("DOMContentLoaded", () => {
     getWishlistLength();
@@ -8,6 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let wishlistItems = JSON.parse(localStorage.getItem("myWishlist")) || [];
     let currentPage = 1;
+
     const itemsPerPage = 9;
     let selectedItems = new Set();
 
@@ -17,11 +19,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const stockFilter = document.getElementById("stockFilter");
 
     const wishlistGrid = document.getElementById("wishlistGrid");
-    const emptyState = document.getElementById("emptyState");
-    const notification = document.getElementById("notification");
     const clearAllBtn = document.getElementById("clearAll");
     const addAllToCartBtn = document.getElementById("addAllToCart");
-    console.log(wishlistItems);
 
     const itemActionModal = document.getElementById("itemActionModal");
     const closeItemModalBtn = document.getElementById("closeItemModal");
@@ -41,9 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const confirmClearBtn = document.getElementById("confirmClear");
 
     function initializeCategories() {
-        const categories = [
-            ...new Set(wishlistItems.map((item) => item.category)),
-        ];
+        const categories = [...new Set(wishlistItems.map((item) => item.category))];
         categoryFilter.innerHTML = `
         <option value="">All Categories</option>
         ${categories
@@ -94,6 +91,11 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    // save wishlist to local storage
+    function saveWishlist(items) {
+        localStorage.setItem("myWishlist", JSON.stringify(items));
+    }
+
     // Initialize
     async function initialize() {
         try {
@@ -104,7 +106,7 @@ document.addEventListener("DOMContentLoaded", () => {
             renderWishlist();
         } catch (error) {
             console.error("Failed to initialize wishlist:", error);
-            showNotification("Failed to load wishlist", "error");
+            showToastNotify("Failed to load wishlist", "error");
         }
     }
 
@@ -122,10 +124,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Apply pagination
         const startIndex = (currentPage - 1) * itemsPerPage;
-        const paginatedItems = items.slice(
-            startIndex,
-            startIndex + itemsPerPage
-        );
+        const paginatedItems = items.slice(startIndex, startIndex + itemsPerPage);
 
         // Update grid
         const grid = document.getElementById("wishlistGrid");
@@ -137,59 +136,13 @@ document.addEventListener("DOMContentLoaded", () => {
         setupPagination(items.length);
 
         // Update item count
-        document.getElementById(
-            "itemCount"
-        ).textContent = `${items.length} Items`;
+        document.getElementById("itemCount").textContent = `${items.length} Items`;
 
         document
             .getElementById("emptyState")
             .classList.toggle("hidden", items.length > 0);
     }
 
-    // Show notification
-    function showNotification(message, type = "success") {
-        const notificationText = document.getElementById("notificationText");
-        const icon = notification.querySelector("i");
-
-        // Update icon and colors based on type
-        if (type === "success") {
-            icon.className = "ri-check-line text-green-500";
-            icon.parentElement.className =
-                "w-8 h-8 bg-green-100 rounded-full flex items-center justify-center";
-        } else if (type === "error") {
-            icon.className = "ri-error-warning-line text-red-500";
-            icon.parentElement.className =
-                "w-8 h-8 bg-red-100 rounded-full flex items-center justify-center";
-        }
-
-        notificationText.textContent = message;
-        notification.classList.remove("translate-y-full", "opacity-0");
-
-        setTimeout(() => {
-            notification.classList.add("translate-y-full", "opacity-0");
-        }, 3000);
-    }
-
-    // Remove item from wishlist
-    function removeFromWishlist(id) {
-        wishlistItems = wishlistItems.filter((item) => item._id !== id);
-        renderWishlist();
-        showNotification("Item removed from wishlist");
-    }
-
-    // Add item to cart
-    function addToCart(id) {
-        const item = wishlistItems.find((item) => item._id === id);
-
-        if (!item) {
-            showNotification("Item not found in wishlist", "error");
-            return;
-        }
-
-        removeFromWishlist(id);
-        // moveToCart(id);
-        showNotification("Item moved to cart");
-    }
 
 
     function moveToCart(itemId) {
@@ -200,16 +153,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (item.stock > 0) {
             addToCart(itemId, quantity);
+            showToastNotify(`${item.name} moved to cart`, "success");
             wishlistItems = wishlistItems.filter((i) => i._id !== itemId);
             selectedItems.delete(itemId);
             renderWishlist();
-            showNotification(`${item.name} moved to cart`);
+            saveWishlist(wishlistItems);
+            getWishlistLength();
         } else {
-            showNotification("Item is out of stock", "error");
+            showToastNotify("Item is out of stock", "error");
         }
     }
-    moveToCart('12');
-
 
     // Show Modal Function
     function showClearModal() {
@@ -220,7 +173,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Hide Modal Function
     function hideClearModal() {
         clearModal.classList.add("hidden");
-        document.body.style.overflow = ""; // Restore scrolling
+        document.body.style.overflow = "";
     }
 
     // Update Clear All button click handler
@@ -231,7 +184,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // Close button click handler
     closeModalBtn.addEventListener("click", hideClearModal);
 
-
     cancelClearBtn.addEventListener("click", hideClearModal);
 
     // Confirm clear button click handler
@@ -239,7 +191,7 @@ document.addEventListener("DOMContentLoaded", () => {
         wishlistItems = [];
         localStorage.setItem("myWishlist", JSON.stringify([]));
         renderWishlist();
-        showNotification("Wishlist cleared");
+        showToastNotify("Your Wishlist has been cleared", "success");
         hideClearModal();
         getWishlistLength();
     });
@@ -261,24 +213,21 @@ document.addEventListener("DOMContentLoaded", () => {
     // Add all to cart
     addAllToCartBtn.addEventListener("click", () => {
         const inStockItems = wishlistItems.filter((item) => item.stock > 0);
-        // Add your cart logic here
 
         if (inStockItems.length === 0) {
-            showNotification("No items in stock", "error");
+            showToastNotify("No items in stock", "error");
             return;
         }
 
-        // moveToCart(inStockItems.map((item) => item._id));
-
         wishlistItems = wishlistItems.filter((item) => item.stock === 0);
         renderWishlist();
-        showNotification(`${inStockItems.length} items moved to cart`);
-        // moveToCart(inStockItems.map((item) => item._id));
-
+        showToastNotify(`${inStockItems.length} items moved to cart`, "success");
+        saveWishlist(wishlistItems);
+        getWishlistLength();
+        getCartLength();
     });
 
     // Item Action Modal Elements
-
 
     let selectedItemId = null;
 
@@ -286,10 +235,11 @@ document.addEventListener("DOMContentLoaded", () => {
     function showItemActionModal(itemId) {
         const item = wishlistItems.find((item) => item._id === itemId);
         if (!item) return;
+        console.log(wishlistItems);
 
+        console.log(item);
         selectedItemId = item._id;
 
-        // Update modal content
         modalProductImage.src = item.image;
         modalProductImage.alt = item.name;
         modalProductName.textContent = item.name;
@@ -343,8 +293,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Show modal with enhanced animation
         itemActionModal.classList.remove("hidden");
         requestAnimationFrame(() => {
-            const modalContent =
-                itemActionModal.querySelector("div:nth-child(2)");
+            const modalContent = itemActionModal.querySelector("div:nth-child(2)");
             modalContent.classList.remove("translate-y-full", "opacity-0");
         });
     }
@@ -365,48 +314,27 @@ document.addEventListener("DOMContentLoaded", () => {
         if (selectedItemId) {
             const item = wishlistItems.find((item) => item._id === selectedItemId);
             if (item && item.stock > 0) {
-                // Add to cart logic here
-                removeFromWishlist(selectedItemId);
-                showNotification("Item moved to cart");
+                moveToCart(selectedItemId);
+
                 hideItemActionModal();
             } else if (item && item.stock === 0) {
-                // Notify me logic here
-                showNotification(
-                    "We'll notify you when this item is back in stock"
-                );
+                showToastNotify("We'll notify you when this item is back in stock", "success");
                 hideItemActionModal();
             }
         }
     });
 
-    // Remove Item Action
-    removeItemBtn.addEventListener("click", () => {
-        if (selectedItemId) {
-            removeFromWishlist(selectedItemId);
-            showNotification("Item removed from wishlist");
-        }
-        hideItemActionModal();
-    });
 
     // Close Modal Events
     closeItemModalBtn.addEventListener("click", hideItemActionModal);
 
     // Close on Escape key
     document.addEventListener("keydown", (e) => {
-        if (
-            e.key === "Escape" &&
-            !itemActionModal.classList.contains("hidden")
-        ) {
+        if (e.key === "Escape" && !itemActionModal.classList.contains("hidden")) {
             hideItemActionModal();
         }
     });
 
-    // Close on scroll
-    window.addEventListener("scroll", () => {
-        if (!itemActionModal.classList.contains("hidden")) {
-            hideItemActionModal();
-        }
-    });
 
     // Close modal when clicking on backdrop
     itemActionModal.addEventListener("click", (e) => {
@@ -426,6 +354,7 @@ document.addEventListener("DOMContentLoaded", () => {
             .getElementById("wishlistGrid")
             .scrollIntoView({ behavior: "smooth" });
     }
+
     // Pagination Functions
     function updatePagination(totalItems) {
         const pageNumbers = document.getElementById("pageNumbers");
@@ -477,8 +406,6 @@ document.addEventListener("DOMContentLoaded", () => {
         window.history.replaceState({}, "", url);
     }
 
-
-
     // Update Item Count
     function updateItemCount(count) {
         const itemCount = document.getElementById("itemCount");
@@ -501,69 +428,75 @@ document.addEventListener("DOMContentLoaded", () => {
     // Create Wishlist Item Card
     function createWishlistItem(item) {
         return `
-          <div class="bg-white rounded-md shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden group">
+          <div id="${item._id
+            }" class="bg-white foodItem  rounded-md shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden group">
               <!-- Product Image Container -->
               <div class="relative aspect-[4/3]">
-                 
 
                   <!-- Product Image -->
-                  <img src="${item.image}" 
-                      alt="${item.name}" 
-                      onerror="this.src='../../assets/images/default-food.png'"
-                      class="w-full h-full object-cover ${item.stock === 0 ? "filter grayscale" : ""
+                 <div class="overflow-hidden">
+                      <img src="${item.image}" 
+                          alt="${item.name}" 
+                          onerror="this.src='../../assets/images/default-food.png'"
+                          class="w-full h-full object-cover ${item.stock === 0 ? "filter grayscale" : ""
             } 
-                      group-hover:scale-105 transition-transform duration-500"/>
-                  
-                  <!-- Stock Badge -->
-                  ${item.stock === 0
+                          group-hover:scale-105 transition-transform duration-500"/>
+                      
+                      <!-- Stock Badge -->
+                      ${item.stock === 0
                 ? `
-                      <div class="absolute inset-0 bg-black/40 backdrop-blur-[2px] flex items-center justify-center">
-                          <span class="bg-red-500 text-white px-4 py-2 rounded-full text-sm font-medium">
-                              Out of Stock!!
-                          </span>
-                      </div>
-                  `
+                          <div class="absolute inset-0 bg-black/40 backdrop-blur-[2px] flex items-center justify-center">
+                              <span class="bg-red-500 text-white px-4 py-2 rounded-full text-sm font-medium">
+                                  Out of Stock!!
+                              </span>
+                          </div>
+                      `
                 : ""
             }
+                 </div>
 
                   <div class="absolute top-3 right-3 flex flex-col gap-3">
-                      <button onclick="showItemActionModal(${item._id})" 
-                          class="bg-white/90 p-2 w-[40px] h-[40px] flex item-center justify-center rounded-full shadow-md hover:bg-[#ff6b38] hover:text-white 
+                      <button  title="Remove From Wishlist" 
+                          class="bg-white/90 removeFromWishlist p-2 w-[40px] h-[40px] flex item-center justify-center rounded-full shadow-md hover:bg-red-600 hover:text-white 
                           transition-all duration-300 transform hover:scale-110">
-                       <i class="ri-delete-bin-line"></i>
+                       <i class="ri-delete-bin-line removeFromWishlist"></i>
                       </button>
-                      <button ittle="View Details" onclick="window.location.href='foodDetails.html?id=${item._id}'" 
-                          class="bg-white/90 p-2 w-[40px] h-[40px] flex item-center justify-center rounded-full shadow-md hover:bg-[#ff6b38] hover:text-white 
+                      <button title="View Details" onclick="window.location.href='foodDetails.html?id=${item._id
+            }'" 
+                          class="bg-white/90 p-2 w-[40px] h-[40px] flex item-center justify-center rounded-full shadow-md hover:bg-[#0d6efd] hover:text-white 
                           transition-all duration-300 transform hover:scale-110">
                      <i class="ri-eye-line"></i>
                       </button>
                   </div>
 
-                  <!-- Price Badge -->
-                  <div class="absolute bottom-3 left-3">
-                      <span class="bg-[#ff6b38] text-white px-3 py-1 rounded-full text-sm font-medium">
-                          $${item.selling_price.toFixed(2)}
-                      </span>
-                  </div>
+                  
               </div>
 
               <!-- Product Details -->
               <div class="p-4">
-                  <!-- Category & Rating -->
+
                   <div class="flex items-center justify-between mb-2">
-                      <span class="text-sm px-3 py-1 bg-blue-400 rounded-full text-gray-50">${item.category
-            }</span>
+                      <div class="flex gap-4 items-center justify-center">
+                      <span class=" text-gray-800 rounded-full text-[16px] font-medium">
+                          $${item.selling_price.toFixed(2)}
+                      </span>
+                      <span class=" text-gray-500 line-through rounded-full text-[16px] font-medium">
+                          $${item.original_price.toFixed(2)}
+                      </span>
+                  </div>
                       <div class="flex items-center gap-1">
-                          <i class="ri-star-fill text-yellow-400"></i>
+                          <i class="ri-star-fill text-[#ff6b38]"></i> | 
                           <span class="text-sm font-medium">${item.rating.toFixed(
                 1
             )}</span>
                       </div>
                   </div>
 
-                  <!-- Product Name -->
-                  <h3 class="text-lg font-semibold mb-2 line-clamp-1">${item.name
-            }</h3>
+                   <div class="flex items-center justify-between mb-1">
+                  <h3 class="text-lg duration-300 group-hover:text-[#0d6efd] font-semibold mb-2 line-clamp-1">${item.name
+            }</h3> <span class="text-sm px-3 py-1 bg-orange-50 rounded-full text-[#ff6b38]">${item.category
+            }</span>
+             </div>
                   
                   <!-- Description -->
                   <p class="text-gray-600 text-sm mb-4 line-clamp-2">${item.description
@@ -573,8 +506,8 @@ document.addEventListener("DOMContentLoaded", () => {
                   <div class="flex gap-2">
                       ${item.stock > 0
                 ? `
-                          <button onclick="moveToCart(${item._id})"
-                                class="addToCart bg-[#0d6efd] w-full hover:bg-transparent border-2 hover:text-gray-800 border-[#0d6efd] text-white px-6 py-3 rounded-full shadow-md flex justify-center items-center space-x-2 transition text-[16px]">
+                          <button 
+                                class="moveToCart bg-[#0d6efd] w-full hover:bg-transparent border-2 hover:text-gray-800 border-[#0d6efd] text-white px-6 py-3 rounded-full shadow-md flex justify-center items-center space-x-2 transition text-[16px]">
                             <i class="ri-shopping-bag-line"></i>
                             <span>  Move to Cart</span>
                           </button>
@@ -623,15 +556,45 @@ document.addEventListener("DOMContentLoaded", () => {
             .classList.toggle("hidden", sortedItems.length > 0);
     }
 
-    function closeShareModal() {
-        document.getElementById("shareModal").classList.add("hidden");
+    // Function to remove item from wishlist
+    function removeFromWishlist(id) {
+        wishlistItems = wishlistItems.filter((item) => item._id !== id);
+        renderWishlist();
+        showToastNotify("Item removed from wishlist", "success");
+        saveWishlist(wishlistItems);
+        getWishlistLength();
+    }
+
+    // Remove Item Action
+    removeItemBtn.addEventListener("click", () => {
+        if (selectedItemId) {
+            removeFromWishlist(selectedItemId);
+        }
+
+        hideItemActionModal();
+        getWishlistLength();
+    });
+
+    // Function to set stock alert
+    function setStockAlert(id) {
+        console.log("sadf");
+        console.log(wishlistItems);
+        const item = wishlistItems.find((item) => item._id === id);
+        if (item) {
+            showToastNotify(
+                `Item "${item.name}" is out of stock. Notify when available.`,
+                "error"
+            );
+        } else {
+            showToastNotify("Item not found in wishlist", "error");
+        }
+        console.log(item);
     }
 
 
 
-
+    // Event Listeners
     function setupEventListeners() {
-        // Search input with debounce
         searchInput.addEventListener(
             "input",
             debounce(() => {
@@ -669,7 +632,26 @@ document.addEventListener("DOMContentLoaded", () => {
             window.history.replaceState({}, "", url);
         });
 
-        // ... existing event listeners ...
+        // remove item from wishlist
+        wishlistGrid.addEventListener("click", (e) => {
+            const item = e.target.closest(".foodItem");
+            const itemId = item.id;
+            if (e.target.classList.contains("removeFromWishlist")) {
+                showItemActionModal(itemId);
+                getWishlistLength();
+            }
+            if (e.target.classList.contains("moveToCart")) {
+                if (itemId) {
+                    const item = wishlistItems.find((item) => item._id === itemId);
+                    if (item && item.stock > 0) {
+                        moveToCart(itemId);
+                        hideItemActionModal();
+                    }
+                }
+                getWishlistLength();
+
+            }
+        });
     }
 
     // Search and Filter Functions
@@ -698,7 +680,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
             return matchesSearch && matchesCategory && matchesStock;
         });
-
         // Apply sorting
         filteredItems = sortItems(filteredItems, sortBy);
 
@@ -729,9 +710,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Update the filter dropdowns
     function updateFilterOptions() {
         // Update category filter
-        const categories = [
-            ...new Set(wishlistItems.map((item) => item.category)),
-        ];
+        const categories = [...new Set(wishlistItems.map((item) => item.category))];
         categoryFilter.innerHTML = `
           <option value="">All Categories</option>
           ${categories
@@ -831,7 +810,6 @@ document.addEventListener("DOMContentLoaded", () => {
     function initializeFromURL() {
         const urlParams = new URLSearchParams(window.location.search);
 
-        // Set initial values from URL
         searchInput.value = urlParams.get("search") || "";
         categoryFilter.value = urlParams.get("category") || "";
         stockFilter.value = urlParams.get("stock") || "";
@@ -842,7 +820,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // Update initialize function
     async function initialize() {
         try {
-            // Ensure required elements exist
             const requiredElements = [
                 "wishlistGrid",
                 "pageNumbers",
@@ -860,7 +837,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             }
 
-
             if (wishlistItems.length === 0) {
                 wishlistItems = JSON.parse(localStorage.getItem("myWishlist")) || [];
             }
@@ -869,10 +845,10 @@ document.addEventListener("DOMContentLoaded", () => {
             initializeFromURL();
             setupEventListeners();
             renderWishlist();
+            getWishlistLength();
         } catch (error) {
             console.error("Failed to initialize wishlist:", error);
-            showNotification("Failed to load wishlist", "error");
+            showToastNotify("Failed to load wishlist", "error");
         }
     }
-
 });
