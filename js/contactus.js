@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
             isValid = false;
         } else if (!usernameRegex.test(username.value.trim())) {
             showInputError(username, contactUserNameError, "Please enter a valid name (letters only)");
-            isValid = false; 
+            isValid = false;
         } else {
             contactUserNameError.classList.add("hidden");
         }
