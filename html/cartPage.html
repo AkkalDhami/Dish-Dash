@@ -1,364 +1,251 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DishDash - Food Delivery Website, Find Your Favourite Dishes</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <link
-      href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
-      rel="stylesheet"
-    />
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-    <link rel="stylesheet" href="../css/output.css" />
-  </head>
 
-  <body class="font-['Poppins']">
-    <!-- Navbar -->
-    <header
-      class="md:fixed header w-full md:top-0 md:left-0 z-50 shadow-lg bg-[#ffffff]"
-    >
-      <script src="../assets/utility/navbar.js"></script>
-    </header>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DishDash - Food Delivery Website, Find Your Favourite Dishes</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/output.css" />
+</head>
 
-    <!-- search results -->
-    <div
-      id="searchResultsContainer"
-      class="fixed -top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 max-w-[1200px] w-full z-[117] duration-300"
-    >
-      <div class="searchBox relative bg-[#f6f6f6] px-4 py-5 w-full">
-        <i
-          class="ri-search-line absolute top-[33px] left-[23px] text-[18px] sm:text-[22px]"
-        ></i>
-        <input
-          id="searchInput"
-          type="search"
-          placeholder="Search Foods, Menu.."
-          class="w-full border-2 border-blue-300 focus:border-transparent p-[12px_20px_12px_30px] sm:p-[15px_22px_15px_35px] rounded-md outline-0 focus:ring focus:ring-[#ff6b38] duration-300"
-        />
-      </div>
-      <div
-        id="searchResults"
-        class="max-h-[500px] sm:max-h-[600px] bg-[#f6f6f6] overflow-auto"
-      ></div>
+<body class="font-['Poppins']">
+  <!-- Navbar -->
+  <header class="md:fixed header w-full md:top-0 md:left-0 z-50 shadow-lg bg-[#ffffff]">
+    <script src="../assets/utility/navbar.js"></script>
+  </header>
+
+  <!-- search results -->
+  <div id="searchResultsContainer"
+    class="fixed -top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 max-w-[1200px] w-full z-[117] duration-300">
+    <div class="searchBox relative bg-[#f6f6f6] px-4 py-5 w-full">
+      <i class="ri-search-line absolute top-[33px] left-[23px] text-[18px] sm:text-[22px]"></i>
+      <input id="searchInput" type="search" placeholder="Search Foods, Menu.."
+        class="w-full border-2 border-blue-300 focus:border-transparent p-[12px_20px_12px_30px] sm:p-[15px_22px_15px_35px] rounded-md outline-0 focus:ring focus:ring-[#ff6b38] duration-300" />
     </div>
+    <div id="searchResults" class="max-h-[500px] sm:max-h-[600px] bg-[#f6f6f6] overflow-auto"></div>
+  </div>
 
-    <div
-      class="overlay overlayActive bg-[#6a6666ba] fixed top-0 left-0 w-full h-full z-[115]"
-    ></div>
+  <div class="overlay overlayActive bg-[#6a6666ba] fixed top-0 left-0 w-full h-full z-[115]"></div>
 
-    <!-- Mobile Bottom Navigation -->
-    <div
-      class="fixed mobileBottomNav bottom-0 left-0 right-0 bg-white md:hidden z-50"
-    >
-      <script defer src="../assets/utility/mobileNavbar.js"></script>
+  <!-- Mobile Bottom Navigation -->
+  <div class="fixed mobileBottomNav bottom-0 left-0 right-0 bg-white md:hidden z-50">
+    <script defer src="../assets/utility/mobileNavbar.js"></script>
+  </div>
+
+  <!-- Toast Container -->
+  <div id="toast" class="toast">
+    <span class="toast-icon"></span>
+    <span class="toast-message"></span>
+    <span class="toast-close">&times;</span>
+    <div class="toast-progress">
+      <div class="toast-progress-bar"></div>
     </div>
+  </div>
 
-    <!-- Toast Container -->
-    <div id="toast" class="toast">
-      <span class="toast-icon"></span>
-      <span class="toast-message"></span>
-      <span class="toast-close">&times;</span>
-      <div class="toast-progress">
-        <div class="toast-progress-bar"></div>
-      </div>
-    </div>
-
-    <!-- remove toast notification -->
-    <div
-      class="overlay overlayActive bg-[#6a6666ba] fixed top-0 left-0 w-full h-full z-[115]"
-    ></div>
-    <div
-      id="deleteToast"
-      class="p-4 w-full fixed duration-300 -top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[1111] max-w-md max-h-full"
-    >
-      <div class="relative bg-white rounded-lg shadow">
-        <button
-          type="button"
-          class="cancelClearCartItems absolute top-3 end-2.5 text-gray-700 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
-          data-modal-hide="popup-modal"
-        >
-          <svg
-            class="w-3 h-3"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 14 14"
-          >
-            <path
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
-            />
-          </svg>
-          <span class="sr-only">Close modal</span>
+  <!-- remove toast notification -->
+  <div class="overlay overlayActive bg-[#6a6666ba] fixed top-0 left-0 w-full h-full z-[115]"></div>
+  <div id="deleteToast"
+    class="p-4 w-full fixed duration-300 -top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[1111] max-w-md max-h-full">
+    <div class="relative bg-white rounded-lg shadow">
+      <button type="button"
+        class="cancelClearCartItems absolute top-3 end-2.5 text-gray-700 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
+        data-modal-hide="popup-modal">
+        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+        </svg>
+        <span class="sr-only">Close modal</span>
+      </button>
+      <div class="p-4 md:p-5 text-center">
+        <svg class="mx-auto mb-4 text-red-600 w-12 h-12" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+          fill="none" viewBox="0 0 20 20">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+        </svg>
+        <h3 class="mb-5 text-lg font-normal text-gray-800">
+          Are you sure to clear all products from your cart?
+        </h3>
+        <button data-modal-hide="popup-modal" type="button" id="yesSureClearCartItems"
+          class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none duration-300 focus:ring-red-300 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
+          Yes, I'm sure
         </button>
-        <div class="p-4 md:p-5 text-center">
-          <svg
-            class="mx-auto mb-4 text-red-600 w-12 h-12"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 20 20"
-          >
-            <path
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-            />
-          </svg>
-          <h3 class="mb-5 text-lg font-normal text-gray-800">
-            Are you sure to clear all products from your cart?
-          </h3>
-          <button
-            data-modal-hide="popup-modal"
-            type="button"
-            id="yesSureClearCartItems"
-            class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none duration-300 focus:ring-red-300 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center"
-          >
-            Yes, I'm sure
-          </button>
-          <button
-            data-modal-hide="popup-modal"
-            type="button"
-            class="cancelClearCartItems py-2.5 px-5 ms-3 mt-2 sm:mt-0 text-sm font-medium text-[#fff] focus:outline-none duration-300 bg-[#3284e8] hover:bg-[#0d6efd] rounded-lg border border-gray-200 focus:z-10 focus:ring-4 focus:ring-gray-10"
-          >
-            No, cancel
-          </button>
-        </div>
+        <button data-modal-hide="popup-modal" type="button"
+          class="cancelClearCartItems py-2.5 px-5 ms-3 mt-2 sm:mt-0 text-sm font-medium text-[#fff] focus:outline-none duration-300 bg-[#3284e8] hover:bg-[#0d6efd] rounded-lg border border-gray-200 focus:z-10 focus:ring-4 focus:ring-gray-10">
+          No, cancel
+        </button>
       </div>
     </div>
+  </div>
 
-    <!-- main section -->
-    <main
-      class="mt-[16px] sm:mt-[100px] p-2 sm:p-4 lg:p-6 bg-gray-50 min-h-screen"
-    >
-      <div class="container mx-auto px-2 sm:px-4 py-4 sm:py-6">
-        <!-- Cart Header -->
-        <div class="text-center mb-6 sm:mb-8">
-          <h1
-            data-aos="fade-up"
-            class="text-xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-2 flex items-center justify-center gap-2 sm:gap-3"
-          >
-            <i class="fas fa-shopping-cart text-[#3284e8]"></i>
-            Your Shopping Cart
-          </h1>
-          <p data-aos="fade-down" class="text-sm sm:text-base text-gray-600">
-            Review and manage your selected items
-          </p>
+  <!-- main section -->
+  <main class="mt-[16px] sm:mt-[100px] p-2 sm:p-4 lg:p-6 bg-gray-50 min-h-screen">
+    <div class="container mx-auto px-2 sm:px-4 py-4 sm:py-6">
+      <!-- Cart Header -->
+      <div class="text-center mb-6 sm:mb-8">
+        <h1 data-aos="fade-up"
+          class="text-xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-2 flex items-center justify-center gap-2 sm:gap-3">
+          <i class="fas fa-shopping-cart text-[#3284e8]"></i>
+          Your Shopping Cart
+        </h1>
+        <p data-aos="fade-down" class="text-sm sm:text-base text-gray-600">
+          Review and manage your selected items
+        </p>
+      </div>
+
+      <!-- Cart Items Container -->
+      <div class="flex flex-col lg:flex-row gap-4 sm:gap-6 lg:gap-8" data-aos="fade-up">
+        <!-- Left Column: Cart & Saved Items -->
+        <div class="w-full lg:w-2/3 space-y-4 sm:space-y-6">
+          <!-- Cart Items Section -->
+          <section class="bg-white p-4 sm:p-6 rounded-xl shadow-sm">
+            <div class="flex justify-between items-center mb-4">
+              <h2 class="text-lg sm:text-xl font-semibold text-gray-800">
+                Cart Items
+              </h2>
+              <span class="text-xs sm:text-sm text-gray-500">Price per item</span>
+            </div>
+            <div id="cartItems" class="space-y-3 sm:space-y-4">
+              <!-- Cart items will be dynamically inserted here -->
+            </div>
+          </section>
+
+          <!-- Saved For Later Section -->
+          <section class="bg-white p-4 sm:p-6 rounded-xl shadow-sm">
+            <h2 class="text-lg sm:text-xl font-semibold text-gray-800 mb-4">
+              Saved For Later
+            </h2>
+            <div id="savedItems" class="space-y-3 sm:space-y-4">
+              <!-- Saved items will be dynamically inserted here -->
+            </div>
+          </section>
         </div>
 
-        <!-- Cart Items Container -->
-        <div
-          class="flex flex-col lg:flex-row gap-4 sm:gap-6 lg:gap-8"
-          data-aos="fade-up"
-        >
-          <!-- Left Column: Cart & Saved Items -->
-          <div class="w-full lg:w-2/3 space-y-4 sm:space-y-6">
-            <!-- Cart Items Section -->
-            <section class="bg-white p-4 sm:p-6 rounded-xl shadow-sm">
-              <div class="flex justify-between items-center mb-4">
-                <h2 class="text-lg sm:text-xl font-semibold text-gray-800">
-                  Cart Items
-                </h2>
-                <span class="text-xs sm:text-sm text-gray-500"
-                  >Price per item</span
-                >
-              </div>
-              <div id="cartItems" class="space-y-3 sm:space-y-4">
-                <!-- Cart items will be dynamically inserted here -->
-              </div>
-            </section>
-
-            <!-- Saved For Later Section -->
-            <section class="bg-white p-4 sm:p-6 rounded-xl shadow-sm">
-              <h2 class="text-lg sm:text-xl font-semibold text-gray-800 mb-4">
-                Saved For Later
+        <!-- Right Column: Order Summary -->
+        <div class="w-full lg:w-1/3" data-aos="fade-up">
+          <div class="bg-white p-4 sm:p-6 rounded-xl shadow-sm sticky top-24 space-y-4 sm:space-y-6">
+            <!-- Order Summary Header -->
+            <div class="flex items-center justify-between">
+              <h2 class="text-lg sm:text-xl font-bold text-gray-800">
+                Order Summary
               </h2>
-              <div id="savedItems" class="space-y-3 sm:space-y-4">
-                <!-- Saved items will be dynamically inserted here -->
-              </div>
-            </section>
-          </div>
+              <span class="text-xs sm:text-sm text-gray-500">
+                <i class="fas fa-shield-alt text-[#3284e8]"></i> Secure
+                Checkout
+              </span>
+            </div>
 
-          <!-- Right Column: Order Summary -->
-          <div class="w-full lg:w-1/3" data-aos="fade-up">
-            <div
-              class="bg-white p-4 sm:p-6 rounded-xl shadow-sm sticky top-24 space-y-4 sm:space-y-6"
-            >
-              <!-- Order Summary Header -->
-              <div class="flex items-center justify-between">
-                <h2 class="text-lg sm:text-xl font-bold text-gray-800">
-                  Order Summary
-                </h2>
-                <span class="text-xs sm:text-sm text-gray-500">
-                  <i class="fas fa-shield-alt text-[#3284e8]"></i> Secure
-                  Checkout
-                </span>
+            <!-- Coupon Code Section -->
+            <div class="border-b pb-4">
+              <div class="flex flex-wrap gap-1">
+                <input type="text" id="couponCode" placeholder="Enter coupon code"
+                  class="flex-1 px-3 sm:px-4 py-2 text-sm sm:text-base border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#3284e8]" />
+                <button id="applyCoupon"
+                  class="px-3 sm:px-4 py-2 bg-[#3284e8] text-white rounded-lg hover:bg-[#0d6efd] transition duration-300 text-sm sm:text-base whitespace-nowrap">
+                  Apply
+                </button>
               </div>
+              <p id="couponMessage" class="text-xs sm:text-sm mt-2 hidden"></p>
+            </div>
 
-              <!-- Coupon Code Section -->
-              <div class="border-b pb-4">
-                <div class="flex flex-wrap gap-1">
-                  <input
-                    type="text"
-                    id="couponCode"
-                    placeholder="Enter coupon code"
-                    class="flex-1 px-3 sm:px-4 py-2 text-sm sm:text-base border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#3284e8]"
-                  />
-                  <button
-                    id="applyCoupon"
-                    class="px-3 sm:px-4 py-2 bg-[#3284e8] text-white rounded-lg hover:bg-[#0d6efd] transition duration-300 text-sm sm:text-base whitespace-nowrap"
-                  >
-                    Apply
-                  </button>
-                </div>
-                <p
-                  id="couponMessage"
-                  class="text-xs sm:text-sm mt-2 hidden"
-                ></p>
+            <!-- Price Breakdown -->
+            <div class="space-y-2 sm:space-y-3 text-sm sm:text-base">
+              <div class="flex justify-between text-gray-600">
+                <span>Total Items:</span>
+                <span id="totalQuantity" class="font-medium">0</span>
               </div>
+              <div class="flex justify-between text-gray-600">
+                <span>Subtotal:</span>
+                <span class="font-medium">$<span id="totalPrice">0.00</span></span>
+              </div>
+              <div class="flex justify-between text-gray-600">
+                <span>Delivery Fee:</span>
+                <span class="font-medium">Free</span>
+              </div>
+              <div class="flex justify-between text-gray-600">
+                <span>Discount:</span>
+                <span class="font-medium text-green-500">-$<span id="discountAmount">0.00</span></span>
+              </div>
+              <div class="border-t pt-3 mt-3">
+                <div class="flex justify-between">
+                  <span class="text-base sm:text-lg font-bold text-gray-800">Total:</span>
+                  <span class="text-base sm:text-lg font-bold text-[#3284e8]">$<span id="finalPrice">0.00</span></span>
+                </div>
+              </div>
+            </div>
 
-              <!-- Price Breakdown -->
-              <div class="space-y-2 sm:space-y-3 text-sm sm:text-base">
-                <div class="flex justify-between text-gray-600">
-                  <span>Total Items:</span>
-                  <span id="totalQuantity" class="font-medium">0</span>
-                </div>
-                <div class="flex justify-between text-gray-600">
-                  <span>Subtotal:</span>
-                  <span class="font-medium"
-                    >$<span id="totalPrice">0.00</span></span
-                  >
-                </div>
-                <div class="flex justify-between text-gray-600">
-                  <span>Delivery Fee:</span>
-                  <span class="font-medium">Free</span>
-                </div>
-                <div class="flex justify-between text-gray-600">
-                  <span>Discount:</span>
-                  <span class="font-medium text-green-500"
-                    >-$<span id="discountAmount">0.00</span></span
-                  >
-                </div>
-                <div class="border-t pt-3 mt-3">
-                  <div class="flex justify-between">
-                    <span class="text-base sm:text-lg font-bold text-gray-800"
-                      >Total:</span
-                    >
-                    <span class="text-base sm:text-lg font-bold text-[#3284e8]"
-                      >$<span id="finalPrice">0.00</span></span
-                    >
+            <!-- Delivery Time Estimate -->
+            <div class="bg-gray-50 p-3 sm:p-4 rounded-lg" data-aos="fade-up">
+              <div class="flex items-center gap-3">
+                <i class="ri-timer-flash-line text-[#3284e8] text-lg sm:text-xl"></i>
+                <div>
+                  <p class="text-xs sm:text-sm font-semibold text-gray-800">
+                    Estimated Delivery Time
+                  </p>
+                  <div class="flex items-center gap-2">
+                    <span id="deliveryCountdown" class="text-sm sm:text-base font-mono text-[#3284e8]">30:00</span>
+                    <span class="text-xs sm:text-sm text-gray-600">minutes</span>
                   </div>
                 </div>
               </div>
+            </div>
 
-              <!-- Delivery Time Estimate -->
-              <div class="bg-gray-50 p-3 sm:p-4 rounded-lg" data-aos="fade-up">
-                <div class="flex items-center gap-3">
-                  <i
-                    class="ri-timer-flash-line text-[#3284e8] text-lg sm:text-xl"
-                  ></i>
-                  <div>
-                    <p class="text-xs sm:text-sm font-semibold text-gray-800">
-                      Estimated Delivery Time
-                    </p>
-                    <div class="flex items-center gap-2">
-                      <span
-                        id="deliveryCountdown"
-                        class="text-sm sm:text-base font-mono text-[#3284e8]"
-                        >30:00</span
-                      >
-                      <span class="text-xs sm:text-sm text-gray-600"
-                        >minutes</span
-                      >
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <!-- Action Buttons -->
+            <div class="space-y-2 sm:space-y-3">
+              <button data-aos="fade-up" data-aos-delay="100" id="checkout"
+                class="btn-primary bg-orange-500 hover:bg-orange-600  group duration-300 w-full">
 
-              <!-- Action Buttons -->
-              <div class="space-y-2 sm:space-y-3">
-                <button
-                  data-aos="fade-up"
-                  data-aos-delay="100"
-                  id="checkout"
-                  class="btn-primary w-full"
-                >
-                  <i class="fas fa-lock"></i>
-                  Secure Checkout
-                </button>
-                <button
-                  data-aos="fade-up"
-                  data-aos-delay="200"
-                  id="continueShopping"
-                  class="btn-secondary w-full"
-                >
-                  <i class="fas fa-arrow-left"></i>
-                  Continue Shopping
-                </button>
-                <button
-                  data-aos="fade-up"
-                  data-aos-delay="300"
-                  id="clearCart"
-                  class="btn-danger w-full"
-                >
-                  <i class="fas fa-trash-alt"></i>
-                  Clear Cart
-                </button>
-              </div>
+                Secure Checkout &nbsp; <i class="ri-send-plane-line group-hover:rotate-[45deg] transition-transform"></i>
+              </button>
+              <button data-aos="fade-up" data-aos-delay="200" id="continueShopping" class="btn-secondary w-full group">
+                <i class="fas fa-arrow-left group-hover:-translate-x-1"></i> &nbsp;
+                Continue Shopping
+              </button>
+              <button data-aos="fade-up" data-aos-delay="300" id="clearCart" class="btn-danger w-full">
+                <i class="fas fa-trash-alt"></i> &nbsp;
+                Clear Cart
+              </button>
+            </div>
 
-              <!-- Payment Methods -->
-              <div class="pt-4 border-t">
-                <p class="text-xs sm:text-sm text-gray-600 mb-2">
-                  Secure Payment Methods
-                </p>
-                <div
-                  class="flex gap-4 flex-wrap items-center text-3xl text-gray-700"
-                >
-                  <i class="ri-visa-line hover:text-blue-600 transition"></i>
-                  <i class="ri-paypal-fill hover:text-blue-500 transition"></i>
-                  <i
-                    class="ri-mastercard-fill hover:text-red-600 transition"
-                  ></i>
-                </div>
+            <!-- Payment Methods -->
+            <div class="pt-4 border-t">
+              <p class="text-xs sm:text-sm text-gray-600 mb-2">
+                Secure Payment Methods
+              </p>
+              <div class="flex gap-4 flex-wrap items-center text-3xl text-gray-700">
+                <i class="ri-visa-line hover:text-blue-600 transition"></i>
+                <i class="ri-paypal-fill hover:text-blue-500 transition"></i>
+                <i class="ri-mastercard-fill hover:text-red-600 transition"></i>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </main>
+    </div>
+  </main>
 
-    <footer class="bg-gray-800 footerSection py-8 mb-[70px] md:mb-0">
-      <script src="../assets/utility/footer.js"></script>
-    </footer>
+  <footer class="bg-gray-800 footerSection py-8 mb-[70px] md:mb-0">
+    <script src="../assets/utility/footer.js"></script>
+  </footer>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-      AOS.init({
-        duration: 1200,
-        once: false,
-        offset: 110,
-      });
-    </script>
-    <script src="../js/search.js"></script>
-    <script src="../js/countdown.js"></script>
-    <script type="module" src="../js/cartPage.js"></script>
-    <script type="module" src="../js/newsletter.js"></script>
-    <script type="module" src="../js/addToCart.js"></script>
-  </body>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1200,
+      once: false,
+      offset: 110,
+    });
+  </script>
+  <script src="../js/search.js"></script>
+  <script src="../js/countdown.js"></script>
+  <script type="module" src="../js/cartPage.js"></script>
+  <script type="module" src="../js/newsletter.js"></script>
+  <script type="module" src="../js/addToCart.js"></script>
+</body>
+
 </html>
