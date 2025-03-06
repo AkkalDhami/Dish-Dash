@@ -255,9 +255,10 @@ document.addEventListener("DOMContentLoaded", () => {
       const newOrder = {
         orderId: Date.now().toString(),
         items: carts,
-        totalAmount: carts.reduce((total, item) => total + item.price * item.quantity, 0),
+        totalAmount: carts.reduce((total, item) => total + item.selling_price * item.quantity, 0),
         paymentMethod: pmmthd,
-        orderStatus: "Completed",
+        orderStatus: "Pending",
+        orderDate: Date.now()
       };
 
       const myOrders = JSON.parse(localStorage.getItem("myOrders")) || [];
