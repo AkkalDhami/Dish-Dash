@@ -1,898 +1,706 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DishDash - Food Delivery Website, Find Your Favourite Dishes</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <link
-      href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
-      rel="stylesheet"
-    />
 
-    <link rel="stylesheet" href="../css/output.css" />
-    <style>
-      /* Social Login Button Hover Effects */
-      .social-btn {
-        position: relative;
-        overflow: hidden;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DishDash - Food Delivery Website, Find Your Favourite Dishes</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
 
-      .social-btn::after {
-        content: "";
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 100%;
-        height: 100%;
-        background: radial-gradient(
-          circle,
+  <link rel="stylesheet" href="../css/output.css" />
+  <style>
+    /* Social Login Button Hover Effects */
+    .social-btn {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .social-btn::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle,
           rgba(255, 255, 255, 0.8) 0%,
-          transparent 50%
-        );
-        transform: translate(-50%, -50%) scale(0);
-        transition: transform 0.5s;
-        opacity: 0;
+          transparent 50%);
+      transform: translate(-50%, -50%) scale(0);
+      transition: transform 0.5s;
+      opacity: 0;
+    }
+
+    .social-btn:hover::after {
+      transform: translate(-50%, -50%) scale(2);
+      opacity: 1;
+    }
+
+    button:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+
+    .transition-all {
+      transition-property: all;
+      transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+      transition-duration: 300ms;
+    }
+
+    .shake {
+      animation: shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+    }
+
+    @keyframes shake {
+
+      10%,
+      90% {
+        transform: translate3d(-1px, 0, 0);
       }
 
-      .social-btn:hover::after {
-        transform: translate(-50%, -50%) scale(2);
-        opacity: 1;
+      20%,
+      80% {
+        transform: translate3d(2px, 0, 0);
       }
 
-      button:disabled {
-        opacity: 0.7;
-        cursor: not-allowed;
+      30%,
+      50%,
+      70% {
+        transform: translate3d(-2px, 0, 0);
       }
 
-      .transition-all {
-        transition-property: all;
-        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-        transition-duration: 300ms;
+      40%,
+      60% {
+        transform: translate3d(2px, 0, 0);
       }
+    }
 
-      .shake {
-        animation: shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
-      }
+    .borderError {
+      border-color: #ef4444 !important;
+    }
 
-      @keyframes shake {
-        10%,
-        90% {
-          transform: translate3d(-1px, 0, 0);
-        }
-        20%,
-        80% {
-          transform: translate3d(2px, 0, 0);
-        }
-        30%,
-        50%,
-        70% {
-          transform: translate3d(-2px, 0, 0);
-        }
-        40%,
-        60% {
-          transform: translate3d(2px, 0, 0);
-        }
-      }
+    /* Newsletter form styles */
+    .newsletter-input.ring-red-500 {
+      --tw-ring-color: rgb(239 68 68);
+      --tw-ring-opacity: 1;
+      --tw-ring-offset-width: 0px;
+      --tw-ring-offset-color: #fff;
+      --tw-ring-offset-shadow: 0 0 #0000;
+      --tw-ring-shadow: 0 0 0 2px var(--tw-ring-color);
+      box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow);
+    }
 
-      .borderError {
-        border-color: #ef4444 !important;
-      }
+    .newsletter-input.ring-green-500 {
+      --tw-ring-color: rgb(34 197 94);
+      --tw-ring-opacity: 1;
+      --tw-ring-offset-width: 0px;
+      --tw-ring-offset-color: #fff;
+      --tw-ring-offset-shadow: 0 0 #0000;
+      --tw-ring-shadow: 0 0 0 2px var(--tw-ring-color);
+      box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow);
+    }
 
-      /* Newsletter form styles */
-      .newsletter-input.ring-red-500 {
-        --tw-ring-color: rgb(239 68 68);
-        --tw-ring-opacity: 1;
-        --tw-ring-offset-width: 0px;
-        --tw-ring-offset-color: #fff;
-        --tw-ring-offset-shadow: 0 0 #0000;
-        --tw-ring-shadow: 0 0 0 2px var(--tw-ring-color);
-        box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow);
-      }
+    .newsletter-button:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
 
-      .newsletter-input.ring-green-500 {
-        --tw-ring-color: rgb(34 197 94);
-        --tw-ring-opacity: 1;
-        --tw-ring-offset-width: 0px;
-        --tw-ring-offset-color: #fff;
-        --tw-ring-offset-shadow: 0 0 #0000;
-        --tw-ring-shadow: 0 0 0 2px var(--tw-ring-color);
-        box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow);
-      }
-
-      .newsletter-button:disabled {
-        opacity: 0.7;
-        cursor: not-allowed;
-      }
-
-      /* Enhanced social button effects */
-      .social-btn::before {
-        content: "";
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 120%;
-        height: 120%;
-        background: radial-gradient(
-          circle,
+    /* Enhanced social button effects */
+    .social-btn::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 120%;
+      height: 120%;
+      background: radial-gradient(circle,
           rgba(255, 255, 255, 0.7) 0%,
-          transparent 70%
-        );
-        transform: translate(-50%, -50%) scale(0);
-        transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        opacity: 0;
+          transparent 70%);
+      transform: translate(-50%, -50%) scale(0);
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      opacity: 0;
+    }
+
+    .social-btn:hover::before {
+      transform: translate(-50%, -50%) scale(2.5);
+      opacity: 0.3;
+    }
+
+    .social-btn:active::before {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 0.5;
+    }
+
+    /* Input focus effects */
+    .form-input:focus {
+      box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+      transform: translateY(-1px);
+    }
+
+    /* Button pulse effect */
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4);
       }
 
-      .social-btn:hover::before {
-        transform: translate(-50%, -50%) scale(2.5);
-        opacity: 0.3;
+      70% {
+        box-shadow: 0 0 0 10px rgba(59, 130, 246, 0);
       }
 
-      .social-btn:active::before {
-        transform: translate(-50%, -50%) scale(1);
-        opacity: 0.5;
+      100% {
+        box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+      }
+    }
+
+    .pulse-on-hover:hover {
+      animation: pulse 1.5s infinite;
+    }
+
+    /* Smooth transitions */
+    .transition-custom {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .shake {
+      animation: shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+    }
+
+    @keyframes shake {
+
+      10%,
+      90% {
+        transform: translate3d(-1px, 0, 0);
       }
 
-      /* Input focus effects */
-      .form-input:focus {
-        box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
-        transform: translateY(-1px);
+      20%,
+      80% {
+        transform: translate3d(2px, 0, 0);
       }
 
-      /* Button pulse effect */
-      @keyframes pulse {
-        0% {
-          box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4);
-        }
-        70% {
-          box-shadow: 0 0 0 10px rgba(59, 130, 246, 0);
-        }
-        100% {
-          box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
-        }
+      30%,
+      50%,
+      70% {
+        transform: translate3d(-2px, 0, 0);
       }
 
-      .pulse-on-hover:hover {
-        animation: pulse 1.5s infinite;
+      40%,
+      60% {
+        transform: translate3d(2px, 0, 0);
+      }
+    }
+
+    .borderError {
+      border-color: #ef4444 !important;
+    }
+
+    button:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0);
       }
 
-      /* Smooth transitions */
-      .transition-custom {
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      50% {
+        transform: translateY(-10px);
       }
-      .shake {
-        animation: shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
-      }
+    }
 
-      @keyframes shake {
-        10%,
-        90% {
-          transform: translate3d(-1px, 0, 0);
-        }
-        20%,
-        80% {
-          transform: translate3d(2px, 0, 0);
-        }
-        30%,
-        50%,
-        70% {
-          transform: translate3d(-2px, 0, 0);
-        }
-        40%,
-        60% {
-          transform: translate3d(2px, 0, 0);
-        }
+    .animate-float {
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .group:hover .group-hover\:scale-110 {
+      transform: scale(1.1);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .grid-cols-2 {
+        gap: 0.75rem;
       }
 
-      .borderError {
-        border-color: #ef4444 !important;
+      .section-container {
+        padding-top: 1rem;
       }
 
-      button:disabled {
-        opacity: 0.7;
-        cursor: not-allowed;
+      /* Add smooth spacing between sections on mobile */
+      .mobile-section-gap {
+        margin-bottom: 2rem;
       }
 
-      @keyframes float {
-        0%,
-        100% {
-          transform: translateY(0);
-        }
-        50% {
-          transform: translateY(-10px);
-        }
+      /* Ensure text remains readable on mobile */
+      .mobile-text {
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+      }
+    }
+
+    /* Enhance hover effects for touch devices */
+    @media (hover: none) {
+      .hover\:scale-105 {
+        transform: none;
       }
 
-      .animate-float {
-        animation: float 3s ease-in-out infinite;
+      .group-hover\:scale-110 {
+        transform: none;
+      }
+    }
+
+    /* Smooth scroll behavior */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Gallery animations */
+    [data-aos="fade-right"] {
+      opacity: 0;
+      transform: translateX(-20px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    [data-aos="fade-left"] {
+      opacity: 0;
+      transform: translateX(20px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    [data-aos].aos-animate {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 640px) {
+      .gallery-container {
+        gap: 0.5rem;
       }
 
-      .group:hover .group-hover\:scale-110 {
-        transform: scale(1.1);
+      .gallery-item {
+        height: 150px;
       }
 
-      /* Responsive adjustments */
-      @media (max-width: 768px) {
-        .grid-cols-2 {
-          gap: 0.75rem;
-        }
-
-        .section-container {
-          padding-top: 1rem;
-        }
-
-        /* Add smooth spacing between sections on mobile */
-        .mobile-section-gap {
-          margin-bottom: 2rem;
-        }
-
-        /* Ensure text remains readable on mobile */
-        .mobile-text {
-          font-size: 0.875rem;
-          line-height: 1.25rem;
-        }
+      .gallery-title {
+        font-size: 1rem;
       }
 
-      /* Enhance hover effects for touch devices */
-      @media (hover: none) {
-        .hover\:scale-105 {
-          transform: none;
-        }
-
-        .group-hover\:scale-110 {
-          transform: none;
-        }
+      .gallery-subtitle {
+        font-size: 0.75rem;
       }
+    }
 
-      /* Smooth scroll behavior */
-      html {
-        scroll-behavior: smooth;
-      }
+    /* Enhanced hover effects */
+    .gallery-item:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
 
-      /* Gallery animations */
-      [data-aos="fade-right"] {
-        opacity: 0;
-        transform: translateX(-20px);
-        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-      }
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
 
-      [data-aos="fade-left"] {
-        opacity: 0;
-        transform: translateX(20px);
-        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-      }
+    /* Social Login Button Hover Effects */
+    .social-btn {
+      position: relative;
+      overflow: hidden;
+    }
 
-      [data-aos].aos-animate {
-        opacity: 1;
-        transform: translateX(0);
-      }
-
-      /* Responsive adjustments */
-      @media (max-width: 640px) {
-        .gallery-container {
-          gap: 0.5rem;
-        }
-
-        .gallery-item {
-          height: 150px;
-        }
-
-        .gallery-title {
-          font-size: 1rem;
-        }
-
-        .gallery-subtitle {
-          font-size: 0.75rem;
-        }
-      }
-
-      /* Enhanced hover effects */
-      .gallery-item:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-      }
-
-      .gallery-item:hover img {
-        transform: scale(1.1);
-      }
-
-      /* Social Login Button Hover Effects */
-      .social-btn {
-        position: relative;
-        overflow: hidden;
-      }
-
-      .social-btn::after {
-        content: "";
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 100%;
-        height: 100%;
-        background: radial-gradient(
-          circle,
+    .social-btn::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle,
           rgba(255, 255, 255, 0.8) 0%,
-          transparent 50%
-        );
-        transform: translate(-50%, -50%) scale(0);
-        transition: transform 0.5s;
-        opacity: 0;
-      }
+          transparent 50%);
+      transform: translate(-50%, -50%) scale(0);
+      transition: transform 0.5s;
+      opacity: 0;
+    }
 
-      .social-btn:hover::after {
-        transform: translate(-50%, -50%) scale(2);
-        opacity: 1;
-      }
+    .social-btn:hover::after {
+      transform: translate(-50%, -50%) scale(2);
+      opacity: 1;
+    }
 
-      /* Improve button focus states */
-      button:focus-visible {
-        outline: 2px solid #3b82f6;
-        outline-offset: 2px;
-      }
+    /* Improve button focus states */
+    button:focus-visible {
+      outline: 2px solid #3b82f6;
+      outline-offset: 2px;
+    }
 
-      /* Add smooth transitions */
-      .transition-all {
-        transition-property: all;
-        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-        transition-duration: 300ms;
-      }
-    </style>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-  </head>
+    /* Add smooth transitions */
+    .transition-all {
+      transition-property: all;
+      transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+      transition-duration: 300ms;
+    }
+  </style>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+</head>
 
-  <body class="font-['Poppins']">
-    <!-- Navbar -->
-    <header
-      class="md:fixed header w-full md:top-0 md:left-0 z-50 shadow-lg bg-[#ffffff]"
-    >
-      <script defer src="../assets/utility/navbar.js"></script>
-    </header>
+<body class="font-['Poppins']">
+  <!-- Navbar -->
+  <header class="md:fixed header w-full md:top-0 md:left-0 z-50 shadow-lg bg-[#ffffff]">
+    <script defer src="../assets/utility/navbar.js"></script>
+  </header>
 
-    <!-- Search Box -->
-    <div
-      id="searchResultsContainer"
-      class="fixed -top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 max-w-[900px] w-full z-[117] duration-300"
-    >
-      <div class="searchBox relative bg-[#f6f6f6] px-4 py-5 w-full">
-        <i
-          class="ri-search-line absolute top-[33px] left-[23px] text-[18px] sm:text-[22px]"
-        ></i>
-        <input
-          id="searchInput"
-          type="search"
-          placeholder="Search Foods, Menu.."
-          class="w-full border-2 border-blue-300 focus:border-transparent p-[12px_20px_12px_30px] sm:p-[15px_22px_15px_35px] rounded-md outline-0 focus:ring focus:ring-[#ff6b38] duration-300"
-        />
-      </div>
-      <div
-        id="searchResults"
-        class="max-h-[500px] sm:max-h-[600px] bg-[#f6f6f6] overflow-auto"
-      ></div>
+  <!-- Search Box -->
+  <div id="searchResultsContainer"
+    class="fixed -top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 max-w-[900px] w-full z-[117] duration-300">
+    <div class="searchBox relative bg-[#f6f6f6] px-4 py-5 w-full">
+      <i class="ri-search-line absolute top-[33px] left-[23px] text-[18px] sm:text-[22px]"></i>
+      <input id="searchInput" type="search" placeholder="Search Foods, Menu.."
+        class="w-full border-2 border-blue-300 focus:border-transparent p-[12px_20px_12px_30px] sm:p-[15px_22px_15px_35px] rounded-md outline-0 focus:ring focus:ring-[#ff6b38] duration-300" />
     </div>
+    <div id="searchResults" class="max-h-[500px] sm:max-h-[600px] bg-[#f6f6f6] overflow-auto"></div>
+  </div>
 
-    <!-- Mobile Bottom Navigation -->
-    <div
-      class="fixed mobileBottomNav bottom-0 left-0 right-0 bg-white md:hidden z-50"
-    >
-      <script defer src="../assets/utility/mobileNavbar.js"></script>
+  <!-- Mobile Bottom Navigation -->
+  <div class="fixed mobileBottomNav bottom-0 left-0 right-0 bg-white md:hidden z-50">
+    <script defer src="../assets/utility/mobileNavbar.js"></script>
+  </div>
+
+  <div class="overlay overlayActive bg-[#6a6666ba] fixed top-0 left-0 w-full h-full z-[115]"></div>
+
+  <!-- Toast Container -->
+  <div id="toastContainer" class="fixed top-10 left-1/2 -translate-x-1/2 z-50 flex flex-col space-y-4"></div>
+  <div id="toast" class="toast">
+    <span class="toast-icon"></span>
+    <span class="toast-message"></span>
+    <span class="toast-close">&times;</span>
+    <div class="toast-progress">
+      <div class="toast-progress-bar"></div>
     </div>
+  </div>
 
-    <div
-      class="overlay overlayActive bg-[#6a6666ba] fixed top-0 left-0 w-full h-full z-[115]"
-    ></div>
-
-    <!-- Toast Container -->
-    <div
-      id="toastContainer"
-      class="fixed top-10 left-1/2 -translate-x-1/2 z-50 flex flex-col space-y-4"
-    ></div>
-    <div id="toast" class="toast">
-      <span class="toast-icon"></span>
-      <span class="toast-message"></span>
-      <span class="toast-close">&times;</span>
-      <div class="toast-progress">
-        <div class="toast-progress-bar"></div>
-      </div>
-    </div>
-
-    <!-- Hero Section -->
-    <section
-      class="flex mt-[16px] sm:mt-[100px] items-center justify-center my-8"
-    >
-      <div
-        class="w-full max-w-6xl px-4 grid grid-cols-1 md:grid-cols-2 gap-8 items-start"
-      >
-        <!-- Left Side - Image and Info -->
-        <div
-          class="md:flex flex-col items-center justify-center p-8"
-          data-aos="fade-down"
-          data-aos-delay="500"
-        >
-          <!-- Image Gallery -->
-          <div class="w-full max-w-md mb-8 mx-auto space-y-4">
-            <!-- First Row -->
-            <div class="flex gap-4">
-              <div
-                class="w-2/3 relative rounded-2xl overflow-hidden shadow-lg h-[200px] transform hover:-translate-y-2 transition-all duration-500 hover:shadow-xl"
-                data-aos="fade-right"
-              >
-                <img
-                  src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=2070&auto=format&fit=crop"
-                  alt="Delicious Food"
-                  class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700"
-                />
-                <div
-                  class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"
-                ></div>
-                <div class="absolute bottom-4 left-4 text-white">
-                  <h3 class="text-lg font-semibold">Gourmet Dishes</h3>
-                  <p class="text-sm opacity-90">Premium Selection</p>
-                </div>
-              </div>
-              <div
-                class="w-1/3 relative rounded-2xl overflow-hidden shadow-lg h-[200px] transform hover:-translate-y-2 transition-all duration-500 hover:shadow-xl"
-                data-aos="fade-left"
-              >
-                <img
-                  src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=1981&auto=format&fit=crop"
-                  alt="Pizza"
-                  class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700"
-                />
-                <div
-                  class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"
-                ></div>
-                <div class="absolute bottom-4 left-4 text-white">
-                  <h3 class="text-lg font-semibold">Pizza</h3>
-                  <p class="text-sm opacity-90">Italian Style</p>
-                </div>
+  <!-- Hero Section -->
+  <section class="flex mt-[16px] sm:mt-[100px] items-center justify-center my-8">
+    <div class="w-full max-w-6xl px-4 grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+      <!-- Left Side - Image and Info -->
+      <div class="md:flex flex-col items-center justify-center p-8" data-aos="fade-down" data-aos-delay="500">
+        <!-- Image Gallery -->
+        <div class="w-full max-w-md mb-8 mx-auto space-y-4">
+          <!-- First Row -->
+          <div class="flex gap-4">
+            <div
+              class="w-2/3 relative rounded-2xl overflow-hidden shadow-lg h-[200px] transform hover:-translate-y-2 transition-all duration-500 hover:shadow-xl"
+              data-aos="fade-right">
+              <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=2070&auto=format&fit=crop"
+                alt="Delicious Food"
+                class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700" />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+              <div class="absolute bottom-4 left-4 text-white">
+                <h3 class="text-lg font-semibold">Gourmet Dishes</h3>
+                <p class="text-sm opacity-90">Premium Selection</p>
               </div>
             </div>
-
-            <!-- Second Row -->
-            <div class="flex gap-4">
-              <div
-                class="w-1/3 relative rounded-2xl overflow-hidden shadow-lg h-[200px] transform hover:-translate-y-2 transition-all duration-500 hover:shadow-xl"
-                data-aos="fade-right"
-              >
-                <img
-                  src="https://images.unsplash.com/photo-1482049016688-2d3e1b311543?q=80&w=1910&auto=format&fit=crop"
-                  alt="Breakfast"
-                  class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700"
-                />
-                <div
-                  class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"
-                ></div>
-                <div class="absolute bottom-4 left-4 text-white">
-                  <h3 class="text-lg font-semibold">Breakfast</h3>
-                  <p class="text-sm opacity-90">Start Fresh</p>
-                </div>
-              </div>
-              <div
-                class="w-2/3 relative rounded-2xl overflow-hidden shadow-lg h-[200px] transform hover:-translate-y-2 transition-all duration-500 hover:shadow-xl"
-                data-aos="fade-left"
-              >
-                <img
-                  src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?q=80&w=1974&auto=format&fit=crop"
-                  alt="Dessert"
-                  class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700"
-                />
-                <div
-                  class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"
-                ></div>
-                <div class="absolute bottom-4 left-4 text-white">
-                  <h3 class="text-lg font-semibold">Desserts</h3>
-                  <p class="text-sm opacity-90">Sweet Delights</p>
-                </div>
+            <div
+              class="w-1/3 relative rounded-2xl overflow-hidden shadow-lg h-[200px] transform hover:-translate-y-2 transition-all duration-500 hover:shadow-xl"
+              data-aos="fade-left">
+              <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=1981&auto=format&fit=crop"
+                alt="Pizza"
+                class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700" />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+              <div class="absolute bottom-4 left-4 text-white">
+                <h3 class="text-lg font-semibold">Pizza</h3>
+                <p class="text-sm opacity-90">Italian Style</p>
               </div>
             </div>
           </div>
 
-          <!-- Info Section with Enhanced Design -->
-          <div
-            class="text-center bg-white p-6 sm:p-8 rounded-2xl shadow-sm w-full max-w-md mx-auto"
-          >
-            <div class="inline-block p-3 bg-blue-50 rounded-full mb-4">
-              <i
-                class="ri-restaurant-2-line text-2xl sm:text-3xl text-blue-500"
-              ></i>
-            </div>
-            <h2
-              class="text-xl sm:text-2xl font-bold text-gray-800 mb-4"
-              data-aos="zoom-in"
-              data-aos-duration="1000"
-            >
-              Join Our Food Community
-            </h2>
-            <p
-              data-aos="zoom-in"
-              data-aos-duration="1200"
-              class="text-sm sm:text-base text-gray-600 mb-6 sm:mb-8"
-            >
-              Get exclusive access to special offers, personalized
-              recommendations, and more!
-            </p>
-
-            <!-- Features with Enhanced Design -->
-            <div class="grid grid-cols-3 gap-2 sm:gap-4">
-              <div
-                class="text-center group"
-                data-aos="zoom-in"
-                data-aos-duration="1400"
-              >
-                <div
-                  class="w-10 h-10 sm:w-12 sm:h-12 bg-blue-50 rounded-full flex items-center justify-center mb-2 mx-auto transform group-hover:scale-110 transition-transform duration-300"
-                >
-                  <i class="ri-time-line text-xl sm:text-2xl text-blue-500"></i>
-                </div>
-                <p
-                  class="text-xs sm:text-sm text-gray-600 group-hover:text-blue-500 transition-colors"
-                >
-                  Quick Delivery
-                </p>
-              </div>
-              <div
-                class="text-center group"
-                data-aos="zoom-in"
-                data-aos-duration="1600"
-              >
-                <div
-                  class="w-10 h-10 sm:w-12 sm:h-12 bg-orange-50 rounded-full flex items-center justify-center mb-2 mx-auto transform group-hover:scale-110 transition-transform duration-300"
-                >
-                  <i
-                    class="ri-shield-check-line text-xl sm:text-2xl text-orange-500"
-                  ></i>
-                </div>
-                <p
-                  class="text-xs sm:text-sm text-gray-600 group-hover:text-orange-500 transition-colors"
-                >
-                  Secure Account
-                </p>
-              </div>
-              <div
-                class="text-center group"
-                data-aos="zoom-in"
-                data-aos-duration="1800"
-              >
-                <div
-                  class="w-10 h-10 sm:w-12 sm:h-12 bg-green-50 rounded-full flex items-center justify-center mb-2 mx-auto transform group-hover:scale-110 transition-transform duration-300"
-                >
-                  <i
-                    class="ri-gift-line text-xl sm:text-2xl text-green-500"
-                  ></i>
-                </div>
-                <p
-                  class="text-xs sm:text-sm text-gray-600 group-hover:text-green-500 transition-colors"
-                >
-                  Special Offers
-                </p>
-              </div>
-            </div>
-
-            <!-- Stats Section -->
+          <!-- Second Row -->
+          <div class="flex gap-4">
             <div
-              class="grid grid-cols-3 gap-2 sm:gap-4 mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-gray-100"
-            >
-              <div
-                class="text-center"
-                data-aos="zoom-out"
-                data-aos-duration="1200"
-              >
-                <div class="text-xl sm:text-2xl font-bold text-blue-500">
-                  500+
-                </div>
-                <p class="text-xs sm:text-sm text-gray-600">Restaurants</p>
+              class="w-1/3 relative rounded-2xl overflow-hidden shadow-lg h-[200px] transform hover:-translate-y-2 transition-all duration-500 hover:shadow-xl"
+              data-aos="fade-right">
+              <img src="https://images.unsplash.com/photo-1482049016688-2d3e1b311543?q=80&w=1910&auto=format&fit=crop"
+                alt="Breakfast"
+                class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700" />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+              <div class="absolute bottom-4 left-4 text-white">
+                <h3 class="text-lg font-semibold">Breakfast</h3>
+                <p class="text-sm opacity-90">Start Fresh</p>
               </div>
-              <div
-                class="text-center"
-                data-aos="zoom-out"
-                data-aos-duration="1300"
-              >
-                <div class="text-xl sm:text-2xl font-bold text-orange-500">
-                  10k+
-                </div>
-                <p class="text-xs sm:text-sm text-gray-600">Happy Users</p>
-              </div>
-              <div
-                class="text-center"
-                data-aos="zoom-out"
-                data-aos-duration="1400"
-              >
-                <div class="text-xl sm:text-2xl font-bold text-green-500">
-                  50+
-                </div>
-                <p class="text-xs sm:text-sm text-gray-600">Cities</p>
+            </div>
+            <div
+              class="w-2/3 relative rounded-2xl overflow-hidden shadow-lg h-[200px] transform hover:-translate-y-2 transition-all duration-500 hover:shadow-xl"
+              data-aos="fade-left">
+              <img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?q=80&w=1974&auto=format&fit=crop"
+                alt="Dessert"
+                class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700" />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+              <div class="absolute bottom-4 left-4 text-white">
+                <h3 class="text-lg font-semibold">Desserts</h3>
+                <p class="text-sm opacity-90">Sweet Delights</p>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Right Side - Form -->
-        <form
-          action="#"
-          class="p-8 rounded-xl bg-white shadow-sm hover:shadow-[0_0_2px_2px_#0000001a] transition-all overflow-hidden"
-          id="signupForm"
-          data-aos="fade-up"
-          data-aos-duration="1000"
-        >
-          <div class="mb-8 text-center overflow-hidden">
-            <h2
-              data-aos="fade-left"
-              data-aos-duration="600"
-              class="text-2xl sm:text-3xl font-semibold text-gray-800 mb-2"
-            >
-              Create Account
-            </h2>
-            <p
-              data-aos="fade-right"
-              data-aos-duration="800"
-              class="text-gray-600"
-            >
-              Join us for a delicious journey!
-            </p>
+        <!-- Info Section with Enhanced Design -->
+        <div class="text-center bg-white p-6 sm:p-8 rounded-2xl shadow-sm w-full max-w-md mx-auto">
+          <div class="inline-block p-3 bg-blue-50 rounded-full mb-4">
+            <i class="ri-restaurant-2-line text-2xl sm:text-3xl text-blue-500"></i>
           </div>
+          <h2 class="text-xl sm:text-2xl font-bold text-gray-800 mb-4" data-aos="zoom-in" data-aos-duration="1000">
+            Join Our Food Community
+          </h2>
+          <p data-aos="zoom-in" data-aos-duration="1200" class="text-sm sm:text-base text-gray-600 mb-6 sm:mb-8">
+            Get exclusive access to special offers, personalized
+            recommendations, and more!
+          </p>
 
-          <!-- Username Input -->
-          <div class="mb-5" data-aos="fade-left" data-aos-duration="800">
-            <label for="username" class="block text-gray-700 mb-2"
-              >Username</label
-            >
-            <div class="relative">
-              <input
-                type="text"
-                class="w-full text-[16px] p-3 pl-10 sm:text-[18px] bg-white rounded-md focus:ring focus:ring-[#ff6b38] outline-none duration-300 border-[3px] border-blue-100 focus:bg-transparent focus:border-transparent"
-                id="username"
-                placeholder="Enter your username"
-              />
-              <i
-                class="ri-user-line absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
-              ></i>
+          <!-- Features with Enhanced Design -->
+          <div class="grid grid-cols-3 gap-2 sm:gap-4">
+            <div class="text-center group" data-aos="zoom-in" data-aos-duration="1400">
+              <div
+                class="w-10 h-10 sm:w-12 sm:h-12 bg-blue-50 rounded-full flex items-center justify-center mb-2 mx-auto transform group-hover:scale-110 transition-transform duration-300">
+                <i class="ri-time-line text-xl sm:text-2xl text-blue-500"></i>
+              </div>
+              <p class="text-xs sm:text-sm text-gray-600 group-hover:text-blue-500 transition-colors">
+                Quick Delivery
+              </p>
             </div>
-            <div
-              id="usernameError"
-              class="mt-2 text-[14px] bg-red-50 py-1 border-l-[3px] hidden border-red-500 pl-4 text-red-500"
-            ></div>
-          </div>
-
-          <!-- Email Input -->
-          <div class="mb-5" data-aos="fade-right" data-aos-duration="900">
-            <label for="signupEmail" class="block text-gray-700 mb-2"
-              >Email Address</label
-            >
-            <div class="relative">
-              <input
-                type="email"
-                class="w-full text-[16px] p-3 pl-10 sm:text-[18px] bg-white rounded-md focus:ring focus:ring-[#ff6b38] outline-none duration-300 border-[3px] border-blue-100 focus:bg-transparent focus:border-transparent"
-                id="signupEmail"
-                placeholder="Enter your email"
-              />
-              <i
-                class="ri-mail-line absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
-              ></i>
+            <div class="text-center group" data-aos="zoom-in" data-aos-duration="1600">
+              <div
+                class="w-10 h-10 sm:w-12 sm:h-12 bg-orange-50 rounded-full flex items-center justify-center mb-2 mx-auto transform group-hover:scale-110 transition-transform duration-300">
+                <i class="ri-shield-check-line text-xl sm:text-2xl text-orange-500"></i>
+              </div>
+              <p class="text-xs sm:text-sm text-gray-600 group-hover:text-orange-500 transition-colors">
+                Secure Account
+              </p>
             </div>
-            <div
-              id="emailError"
-              class="mt-2 text-[14px] bg-red-50 py-1 border-l-[3px] hidden border-red-500 pl-4 text-red-500"
-            ></div>
-          </div>
-
-          <!-- Password Input -->
-          <div class="mb-5" data-aos="fade-left" data-aos-duration="1000">
-            <label for="signupPassword" class="block text-gray-700 mb-2"
-              >Password</label
-            >
-            <div class="relative">
-              <input
-                data-input-id="1"
-                type="password"
-                class="w-full text-[16px] p-3 pl-10 sm:text-[18px] bg-white rounded-md focus:ring focus:ring-[#ff6b38] outline-none duration-300 border-[3px] border-blue-100 focus:bg-transparent focus:border-transparent"
-                id="signupPassword"
-                placeholder="Create a password"
-              />
-              <i
-                class="ri-lock-line absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
-              ></i>
-              <i
-                id="password-toggle-icon1"
-                class="fa-regular fa-eye absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 cursor-pointer hover:text-gray-600"
-              ></i>
-            </div>
-            <div
-              id="passwdError"
-              class="mt-2 text-[14px] bg-red-50 py-1 border-l-[3px] hidden border-red-500 pl-4 text-red-500"
-            ></div>
-          </div>
-
-          <!-- Confirm Password Input -->
-          <div class="mb-6" data-aos="fade-right" data-aos-duration="1200">
-            <label for="signupPassword2" class="block text-gray-700 mb-2"
-              >Confirm Password</label
-            >
-            <div class="relative">
-              <input
-                data-input-id="2"
-                type="password"
-                class="w-full text-[16px] p-3 pl-10 sm:text-[18px] bg-white rounded-md focus:ring focus:ring-[#ff6b38] outline-none duration-300 border-[3px] border-blue-100 focus:bg-transparent focus:border-transparent"
-                id="signupPassword2"
-                placeholder="Confirm your password"
-              />
-              <i
-                class="ri-lock-line absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
-              ></i>
-              <i
-                id="password-toggle-icon2"
-                class="fa-regular fa-eye absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 cursor-pointer hover:text-gray-600"
-              ></i>
-            </div>
-            <div
-              id="passwd2Error"
-              class="mt-2 text-[14px] bg-red-50 py-1 border-l-[3px] hidden border-red-500 pl-4 text-red-500"
-            ></div>
-          </div>
-
-          <!-- Terms Checkbox -->
-          <div
-            class="flex items-center mb-6"
-            data-aos="fade-left"
-            data-aos-duration="1400"
-          >
-            <input
-              type="checkbox"
-              id="termsCheckbox"
-              class="w-4 h-4 text-blue-500 rounded focus:ring-2 focus:ring-[#ff6b38] accent-blue-500"
-            />
-            <label for="termsCheckbox" class="ml-2 text-gray-700">
-              I agree to the
-              <a href="#" class="text-blue-500 hover:text-blue-600"
-                >Terms of Service</a
-              >
-              and
-              <a href="#" class="text-blue-500 hover:text-blue-600"
-                >Privacy Policy</a
-              >
-            </label>
-          </div>
-
-          <button
-            data-aos="fade-left"
-            data-aos-duration="1600"
-            type="submit"
-            id="signup-button"
-            class="w-full p-4 text-lg font-medium text-white bg-blue-500 rounded-lg hover:bg-blue-600 transition-all duration-300 flex items-center justify-center gap-2 group pulse-on-hover relative overflow-hidden"
-          >
-            <span class="relative z-10">Create Account</span>
-            <i
-              class="ri-login-circle-line group-hover:translate-x-1 transition-transform relative z-10"
-            ></i>
-            <div
-              class="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-            ></div>
-          </button>
-          <!-- Add after the submit button and before the login link -->
-          <div class="relative my-8">
-            <div class="absolute inset-0 flex items-center">
-              <div class="w-full border-t border-gray-200"></div>
-            </div>
-            <div class="relative flex justify-center text-sm">
-              <span class="px-4 text-gray-500 bg-white">Or continue with</span>
+            <div class="text-center group" data-aos="zoom-in" data-aos-duration="1800">
+              <div
+                class="w-10 h-10 sm:w-12 sm:h-12 bg-green-50 rounded-full flex items-center justify-center mb-2 mx-auto transform group-hover:scale-110 transition-transform duration-300">
+                <i class="ri-gift-line text-xl sm:text-2xl text-green-500"></i>
+              </div>
+              <p class="text-xs sm:text-sm text-gray-600 group-hover:text-green-500 transition-colors">
+                Special Offers
+              </p>
             </div>
           </div>
 
-          <!-- Social Login Options -->
-          <div class="grid grid-cols-3 gap-3" data-aos="fade-up">
-            <!-- Google -->
-            <button
-              type="button"
-              class="flex items-center justify-center px-4 py-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors duration-300 group"
-            >
-              <img
-                src="https://www.svgrepo.com/show/475656/google-color.svg"
-                class="w-5 h-5 group-hover:scale-110 transition-transform duration-300"
-                alt="Google"
-              />
-            </button>
-
-            <!-- Facebook -->
-            <button
-              type="button"
-              class="flex items-center justify-center px-4 py-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors duration-300 group"
-            >
-              <svg
-                class="w-5 h-5 text-[#1877F2] group-hover:scale-110 transition-transform duration-300"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"
-                />
-              </svg>
-            </button>
-
-            <!-- Apple -->
-            <button
-              type="button"
-              class="flex items-center justify-center px-4 py-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors duration-300 group"
-            >
-              <svg
-                class="w-5 h-5 text-gray-900 group-hover:scale-110 transition-transform duration-300"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"
-                />
-              </svg>
-            </button>
-          </div>
-
-          <!-- Divider -->
-          <div class="relative my-8">
-            <div class="absolute inset-0 flex items-center">
-              <div class="w-full border-t mb-2 border-gray-200"></div>
+          <!-- Stats Section -->
+          <div class="grid grid-cols-3 gap-2 sm:gap-4 mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-gray-100">
+            <div class="text-center" data-aos="zoom-out" data-aos-duration="1200">
+              <div class="text-xl sm:text-2xl font-bold text-blue-500">
+                500+
+              </div>
+              <p class="text-xs sm:text-sm text-gray-600">Restaurants</p>
+            </div>
+            <div class="text-center" data-aos="zoom-out" data-aos-duration="1300">
+              <div class="text-xl sm:text-2xl font-bold text-orange-500">
+                10k+
+              </div>
+              <p class="text-xs sm:text-sm text-gray-600">Happy Users</p>
+            </div>
+            <div class="text-center" data-aos="zoom-out" data-aos-duration="1400">
+              <div class="text-xl sm:text-2xl font-bold text-green-500">
+                50+
+              </div>
+              <p class="text-xs sm:text-sm text-gray-600">Cities</p>
             </div>
           </div>
-
-          <!-- Login Link -->
-          <div class="text-center mt-6">
-            <p class="text-gray-600">
-              Already have an account?
-              <a
-                href="../html/loginPage.html"
-                class="text-blue-500 hover:text-blue-600 font-medium"
-                >Log In</a
-              >
-            </p>
-          </div>
-        </form>
+        </div>
       </div>
-    </section>
 
-    <footer class="bg-gray-800 footerSection py-8 mb-[70px] md:mb-0">
-      <script defer src="../assets/utility/footer.js"></script>
-    </footer>
+      <!-- Right Side - Form -->
+      <form action="#"
+        class="p-8 rounded-xl bg-white shadow-sm hover:shadow-[0_0_2px_2px_#0000001a] transition-all overflow-hidden"
+        id="signupForm" data-aos="fade-up" data-aos-duration="1000">
+        <div class="mb-8 text-center overflow-hidden">
+          <h2 data-aos="fade-left" data-aos-duration="600"
+            class="text-2xl sm:text-3xl font-semibold text-gray-800 mb-2">
+            Create Account
+          </h2>
+          <p data-aos="fade-right" data-aos-duration="800" class="text-gray-600">
+            Join us for a delicious journey!
+          </p>
+        </div>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-      AOS.init({
-        duration: 1200,
-        once: false,
-        offset: 100,
-      });
-    </script>
-    <script type="module" src="../js/newsletter.js"></script>
-    <script src="../js/search.js"></script>
-    <script type="module" src="../js/signup.js"></script>
-    <script src="../js/script.js"></script>
-    <script type="module" src="../js/newsletter.js"></script>
-    <script type="module" src="../js/addToCart.js"></script>
-    <script>
-      // Simple AOS (Animate On Scroll) implementation
-      document.addEventListener("DOMContentLoaded", () => {
-        const observerOptions = {
-          threshold: 0.1,
-        };
+        <!-- Username Input -->
+        <div class="mb-5" data-aos="fade-left" data-aos-duration="800">
+          <label for="username" class="block text-gray-700 mb-2">Username</label>
+          <div class="relative">
+            <input type="text"
+              class="w-full text-[16px] p-3 pl-10 sm:text-[18px] bg-white rounded-md focus:ring focus:ring-[#ff6b38] outline-none duration-300 border-[3px] border-blue-100 focus:bg-transparent focus:border-transparent"
+              id="username" placeholder="Enter your username" />
+            <i class="ri-user-line absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+          </div>
+          <div id="usernameError"
+            class="mt-2 text-[14px] bg-red-50 py-1 border-l-[3px] hidden border-red-500 pl-4 text-red-500"></div>
+        </div>
 
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("aos-animate");
-            }
-          });
-        }, observerOptions);
+        <!-- Email Input -->
+        <div class="mb-5" data-aos="fade-right" data-aos-duration="900">
+          <label for="signupEmail" class="block text-gray-700 mb-2">Email Address</label>
+          <div class="relative">
+            <input type="email"
+              class="w-full text-[16px] p-3 pl-10 sm:text-[18px] bg-white rounded-md focus:ring focus:ring-[#ff6b38] outline-none duration-300 border-[3px] border-blue-100 focus:bg-transparent focus:border-transparent"
+              id="signupEmail" placeholder="Enter your email" />
+            <i class="ri-mail-line absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+          </div>
+          <div id="emailError"
+            class="mt-2 text-[14px] bg-red-50 py-1 border-l-[3px] hidden border-red-500 pl-4 text-red-500"></div>
+        </div>
 
-        document.querySelectorAll("[data-aos]").forEach((element) => {
-          observer.observe(element);
+        <!-- Password Input -->
+        <div class="mb-5" data-aos="fade-left" data-aos-duration="1000">
+          <label for="signupPassword" class="block text-gray-700 mb-2">Password</label>
+          <div class="relative">
+            <input data-input-id="1" type="password"
+              class="w-full text-[16px] p-3 pl-10 sm:text-[18px] bg-white rounded-md focus:ring focus:ring-[#ff6b38] outline-none duration-300 border-[3px] border-blue-100 focus:bg-transparent focus:border-transparent"
+              id="signupPassword" placeholder="Create a password" />
+            <i class="ri-lock-line absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+            <i id="password-toggle-icon1"
+              class="fa-regular fa-eye absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 cursor-pointer hover:text-gray-600"></i>
+          </div>
+          <div id="passwdError"
+            class="mt-2 text-[14px] bg-red-50 py-1 border-l-[3px] hidden border-red-500 pl-4 text-red-500"></div>
+        </div>
+
+        <!-- Confirm Password Input -->
+        <div class="mb-6" data-aos="fade-right" data-aos-duration="1200">
+          <label for="signupPassword2" class="block text-gray-700 mb-2">Confirm Password</label>
+          <div class="relative">
+            <input data-input-id="2" type="password"
+              class="w-full text-[16px] p-3 pl-10 sm:text-[18px] bg-white rounded-md focus:ring focus:ring-[#ff6b38] outline-none duration-300 border-[3px] border-blue-100 focus:bg-transparent focus:border-transparent"
+              id="signupPassword2" placeholder="Confirm your password" />
+            <i class="ri-lock-line absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+            <i id="password-toggle-icon2"
+              class="fa-regular fa-eye absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 cursor-pointer hover:text-gray-600"></i>
+          </div>
+          <div id="passwd2Error"
+            class="mt-2 text-[14px] bg-red-50 py-1 border-l-[3px] hidden border-red-500 pl-4 text-red-500"></div>
+        </div>
+
+        <!-- Terms Checkbox -->
+        <div class="flex items-center mb-6" data-aos="fade-left" data-aos-duration="1400">
+          <input type="checkbox" id="termsCheckbox"
+            class="w-4 h-4 text-blue-500 rounded focus:ring-2 focus:ring-[#ff6b38] accent-blue-500" />
+          <label for="termsCheckbox" class="ml-2 text-gray-700">
+            I agree to the
+            <a href="#" class="text-blue-500 hover:text-blue-600">Terms of Service</a>
+            and
+            <a href="#" class="text-blue-500 hover:text-blue-600">Privacy Policy</a>
+          </label>
+        </div>
+
+        <button data-aos="fade-left" data-aos-duration="1600" type="submit" id="signup-button"
+          class="w-full p-4 text-lg font-medium text-white bg-blue-500 rounded-lg hover:bg-blue-600 transition-all duration-300 flex items-center justify-center gap-2 group pulse-on-hover relative overflow-hidden">
+          <span class="relative z-10">Create Account</span>
+          <i class="ri-login-circle-line group-hover:translate-x-1 transition-transform relative z-10"></i>
+          <div
+            class="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          </div>
+        </button>
+        <!-- Add after the submit button and before the login link -->
+        <div class="relative my-8">
+          <div class="absolute inset-0 flex items-center">
+            <div class="w-full border-t border-gray-200"></div>
+          </div>
+          <div class="relative flex justify-center text-sm">
+            <span class="px-4 text-gray-500 bg-white">Or continue with</span>
+          </div>
+        </div>
+
+        <!-- Social Login Options -->
+        <div class="grid grid-cols-3 gap-3" data-aos="fade-up">
+          <!-- Google -->
+          <button type="button"
+            class="flex items-center justify-center px-4 py-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors duration-300 group">
+            <img src="https://www.svgrepo.com/show/475656/google-color.svg"
+              class="w-5 h-5 group-hover:scale-110 transition-transform duration-300" alt="Google" />
+          </button>
+
+          <!-- Facebook -->
+          <button type="button"
+            class="flex items-center justify-center px-4 py-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors duration-300 group">
+            <svg class="w-5 h-5 text-[#1877F2] group-hover:scale-110 transition-transform duration-300"
+              fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z" />
+            </svg>
+          </button>
+
+          <!-- Apple -->
+          <button type="button"
+            class="flex items-center justify-center px-4 py-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors duration-300 group">
+            <svg class="w-5 h-5 text-gray-900 group-hover:scale-110 transition-transform duration-300"
+              fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701" />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Divider -->
+        <div class="relative my-8">
+          <div class="absolute inset-0 flex items-center">
+            <div class="w-full border-t mb-2 border-gray-200"></div>
+          </div>
+        </div>
+
+        <!-- Login Link -->
+        <div class="text-center mt-6">
+          <p class="text-gray-600">
+            Already have an account?
+            <a href="../html/loginPage.html" class="text-blue-500 hover:text-blue-600 font-medium">Log In</a>
+          </p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <footer class="bg-gray-800 footerSection py-8 mb-[70px] md:mb-0">
+    <script defer src="../assets/utility/footer.js"></script>
+  </footer>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1200,
+      once: false,
+      offset: 100,
+    });
+  </script>
+  <script type="module" src="../js/newsletter.js"></script>
+  <script src="../js/search.js"></script>
+  <script type="module" src="../js/signup.js"></script>
+  <script src="../js/script.js"></script>
+  <script type="module" src="../js/newsletter.js"></script>
+  <script type="module" src="../js/addToCart.js"></script>
+  <script>
+    // Simple AOS (Animate On Scroll) implementation
+    document.addEventListener("DOMContentLoaded", () => {
+      const observerOptions = {
+        threshold: 0.1,
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("aos-animate");
+          }
         });
+      }, observerOptions);
+
+      document.querySelectorAll("[data-aos]").forEach((element) => {
+        observer.observe(element);
       });
-    </script>
-  </body>
+    });
+  </script>
+</body>
+
 </html>
