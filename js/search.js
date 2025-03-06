@@ -13,7 +13,7 @@ searchBottomButton?.addEventListener('click', () => {
   searchResultsContainer.classList.remove("-top-1/2");
 })
 
-searchButton.addEventListener('click', () => {
+searchButton?.addEventListener('click', () => {
   overlay1.classList.remove('overlayActive');
   searchResultsContainer.classList.add("top-1/2");
   searchResultsContainer.classList.remove("-top-1/2");
