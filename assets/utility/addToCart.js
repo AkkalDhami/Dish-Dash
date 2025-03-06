@@ -25,7 +25,7 @@ export const addToCart = (productId, quantity) => {
     }
 
     if (stock.stock === 0) {
-        showToastNotify("Out of Stock!", "error");
+        showToastNotify("Food is Out of Stock!", "warn");
         return;
     }
 
