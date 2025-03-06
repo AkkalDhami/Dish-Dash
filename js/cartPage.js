@@ -246,7 +246,7 @@ class CartComponent {
 
   handleClearCart() {
     if (this.cartItems.length === 0) {
-      showToastNotify("Your cart is already empty", "error");
+      showToastNotify("Your cart is already empty", "warn");
       return;
     }
 
@@ -452,7 +452,7 @@ class CartComponent {
           const newQuantity = item.quantity + change;
 
           if (newQuantity > item.stock) {
-            showToastNotify("Cannot exceed available stock", "warning");
+            showToastNotify("Cannot exceed available stock", "warn");
             return item;
           }
 
@@ -521,7 +521,7 @@ class CartComponent {
     if (this.cartItems.length >= 1) {
       window.location.href = "../html/checkoutPage.html";
     } else {
-      showToastNotify("Your cart is empty", "error");
+      showToastNotify("Your cart is empty", "warn");
     }
   }
 }
