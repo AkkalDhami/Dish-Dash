@@ -143,19 +143,19 @@ document.addEventListener("DOMContentLoaded", () => {
             .classList.toggle("hidden", items.length > 0);
     }
 
-
-
+    // move to cart
     function moveToCart(itemId) {
         const item = wishlistItems.find((item) => item._id === itemId);
         if (!item) return;
 
+        console.log('item; ', item)
         let quantity = 1;
-
         if (item.stock > 0) {
             addToCart(itemId, quantity);
             showToastNotify(`${item.name} moved to cart`, "success");
             wishlistItems = wishlistItems.filter((i) => i._id !== itemId);
             selectedItems.delete(itemId);
+            console.log("Aft ", wishlistItems)
             renderWishlist();
             saveWishlist(wishlistItems);
             getWishlistLength();
@@ -178,6 +178,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Update Clear All button click handler
     clearAllBtn.addEventListener("click", () => {
+        if (wishlistItems.length === 0) {
+            showToastNotify("Your wishlist is already cleared!", "warn");
+            hideClearModal();
+            return;
+        }
         showClearModal();
     });
 
@@ -188,6 +193,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Confirm clear button click handler
     confirmClearBtn.addEventListener("click", () => {
+
         wishlistItems = [];
         localStorage.setItem("myWishlist", JSON.stringify([]));
         renderWishlist();
@@ -215,7 +221,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const inStockItems = wishlistItems.filter((item) => item.stock > 0);
 
         if (inStockItems.length === 0) {
-            showToastNotify("No items in stock", "error");
+            showToastNotify("No items in your wishlist", "warn");
             return;
         }
 
@@ -323,7 +329,6 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
     });
-
 
     // Close Modal Events
     closeItemModalBtn.addEventListener("click", hideItemActionModal);
@@ -508,8 +513,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 ? `
                           <button 
                                 class="moveToCart bg-[#0d6efd] w-full hover:bg-transparent border-2 hover:text-gray-800 border-[#0d6efd] text-white px-6 py-3 rounded-full shadow-md flex justify-center items-center space-x-2 transition text-[16px]">
-                            <i class="ri-shopping-bag-line"></i>
-                            <span>  Move to Cart</span>
+                            <i class="ri-shopping-bag-line moveToCart"></i>
+                            <span class="moveToCart">  Move to Cart</span>
                           </button>
                         
                       `
@@ -591,8 +596,6 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log(item);
     }
 
-
-
     // Event Listeners
     function setupEventListeners() {
         searchInput.addEventListener(
@@ -600,7 +603,6 @@ document.addEventListener("DOMContentLoaded", () => {
             debounce(() => {
                 currentPage = 1; // Reset to first page on search
                 renderWishlist();
-                // Update URL with search params
                 const url = new URL(window.location);
                 url.searchParams.set("search", searchInput.value);
                 window.history.replaceState({}, "", url);
