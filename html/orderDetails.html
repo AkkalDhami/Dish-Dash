@@ -6,300 +6,450 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../css/output.css" />
+    <style>
+        /* Add custom keyframes */
+        @keyframes tilt {
+
+            0%,
+            100% {
+                transform: rotate(0deg);
+            }
+
+            25% {
+                transform: rotate(1deg);
+            }
+
+            75% {
+                transform: rotate(-1deg);
+            }
+        }
+
+        .animate-tilt {
+            animation: tilt 6s ease-in-out infinite;
+        }
+
+        /* Custom easing for AOS */
+        [data-aos] {
+            transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+    </style>
 </head>
 
-<body>
-    <section class="bg-white py-8 antialiased dark:bg-gray-900 md:py-16">
-        <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
-            <h2 class="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">Track the delivery of order
-                #957684673</h2>
+<body class="">
 
-            <div class="mt-6 sm:mt-8 lg:flex lg:gap-8">
-                <div
-                    class="w-full divide-y divide-gray-200 overflow-hidden rounded-lg border border-gray-200 dark:divide-gray-700 dark:border-gray-700 lg:max-w-xl xl:max-w-2xl">
-                    <div class="space-y-4 p-6">
-                        <div class="flex items-center gap-6">
-                            <a href="#" class="h-14 w-14 shrink-0">
-                                <img class="h-full w-full dark:hidden"
-                                    src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front.svg"
-                                    alt="imac image" />
-                                <img class="hidden h-full w-full dark:block"
-                                    src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front-dark.svg"
-                                    alt="imac image" />
-                            </a>
 
-                            <a href="#"
-                                class="min-w-0 flex-1 font-medium text-gray-900 hover:underline dark:text-white"> PC
-                                system All in One APPLE iMac (2023) mqrq3ro/a, Apple M3, 24" Retina 4.5K, 8GB, SSD
-                                256GB, 10-core GPU, macOS Sonoma, Blue, Keyboard layout INT </a>
+    <!-- Include Remix Icons for Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css">
+
+    <!-- Order Tracking Section -->
+    <section class="bg-gray-50 py-12">
+        <div class="mx-auto max-w-screen-lg px-6">
+            <!-- Header -->
+            <h2 class="text-3xl font-bold text-gray-900 sm:text-4xl text-center" data-aos="fade-down">
+                Track Your Order <span class="text-blue-600">#957684673</span>
+            </h2>
+
+            <div class="mt-10 flex flex-col lg:flex-row gap-8">
+                <!-- Product Details -->
+                <div class="w-full max-w-lg mx-auto lg:mx-0 bg-white rounded-xl shadow-lg p-6" data-aos="zoom-in">
+                    <div class="flex gap-4 items-center">
+                        <img class="w-24 h-24 rounded-lg shadow-md"
+                            src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front.svg" alt="iMac">
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-800">Apple iMac (2023)</h3>
+                            <p class="text-sm text-gray-500">M3, 24" Retina 4.5K, 8GB RAM, 256GB SSD, macOS Sonoma, Blue
+                            </p>
                         </div>
-
-                        <div class="flex items-center justify-between gap-4">
-                            <p class="text-sm font-normal text-gray-500 dark:text-gray-400"><span
-                                    class="font-medium text-gray-900 dark:text-white">Product ID:</span> BJ8364850</p>
-
-                            <div class="flex items-center justify-end gap-4">
-                                <p class="text-base font-normal text-gray-900 dark:text-white">x1</p>
-
-                                <p class="text-xl font-bold leading-tight text-gray-900 dark:text-white">$1,499</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="space-y-4 p-6">
-                        <div class="flex items-center gap-6">
-                            <a href="#" class="h-14 w-14 shrink-0">
-                                <img class="h-full w-full dark:hidden"
-                                    src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/apple-watch-light.svg"
-                                    alt="phone image" />
-                                <img class="hidden h-full w-full dark:block"
-                                    src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/apple-watch-dark.svg"
-                                    alt="phone image" />
-                            </a>
-
-                            <a href="#"
-                                class="min-w-0 flex-1 font-medium text-gray-900 hover:underline dark:text-white">
-                                Restored Apple Watch Series 8 (GPS) 41mm Midnight Aluminum Case with Midnight Sport Band
-                            </a>
-                        </div>
-
-                        <div class="flex items-center justify-between gap-4">
-                            <p class="text-sm font-normal text-gray-500 dark:text-gray-400"><span
-                                    class="font-medium text-gray-900 dark:text-white">Product ID:</span> BJ8364850</p>
-
-                            <div class="flex items-center justify-end gap-4">
-                                <p class="text-base font-normal text-gray-900 dark:text-white">x2</p>
-
-                                <p class="text-xl font-bold leading-tight text-gray-900 dark:text-white">$598</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="space-y-4 p-6">
-                        <div class="flex items-center gap-6">
-                            <a href="#" class="h-14 w-14 shrink-0">
-                                <img class="h-full w-full dark:hidden"
-                                    src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/ps5-light.svg"
-                                    alt="console image" />
-                                <img class="hidden h-full w-full dark:block"
-                                    src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/ps5-dark.svg"
-                                    alt="console image" />
-                            </a>
-
-                            <a href="#"
-                                class="min-w-0 flex-1 font-medium text-gray-900 hover:underline dark:text-white"> Sony
-                                Playstation 5 Digital Edition Console with Extra Blue Controller, White PULSE 3D Headset
-                                and Surge Dual Controller </a>
-                        </div>
-
-                        <div class="flex items-center justify-between gap-4">
-                            <p class="text-sm font-normal text-gray-500 dark:text-gray-400"><span
-                                    class="font-medium text-gray-900 dark:text-white">Product ID:</span> BJ8364850</p>
-
-                            <div class="flex items-center justify-end gap-4">
-                                <p class="text-base font-normal text-gray-900 dark:text-white">x1</p>
-
-                                <p class="text-xl font-bold leading-tight text-gray-900 dark:text-white">$799</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="space-y-4 p-6">
-                        <div class="flex items-center gap-6">
-                            <a href="#" class="h-14 w-14 shrink-0">
-                                <img class="h-full w-full dark:hidden"
-                                    src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/xbox-light.svg"
-                                    alt="xbox image" />
-                                <img class="hidden h-full w-full dark:block"
-                                    src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/xbox-dark.svg"
-                                    alt="xbox image" />
-                            </a>
-
-                            <a href="#"
-                                class="min-w-0 flex-1 font-medium text-gray-900 hover:underline dark:text-white"> Xbox
-                                Series X Diablo IV Bundle + 2 Xbox Wireless Controller Carbon Black + Controller Charger
-                            </a>
-                        </div>
-
-                        <div class="flex items-center justify-between gap-4">
-                            <p class="text-sm font-normal text-gray-500 dark:text-gray-400"><span
-                                    class="font-medium text-gray-900 dark:text-white">Product ID:</span> BJ8364850</p>
-
-                            <div class="flex items-center justify-end gap-4">
-                                <p class="text-base font-normal text-gray-900 dark:text-white">x1</p>
-
-                                <p class="text-xl font-bold leading-tight text-gray-900 dark:text-white">$699</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="space-y-4 p-6">
-                        <div class="flex items-center gap-6">
-                            <a href="#" class="h-14 w-14 shrink-0">
-                                <img class="h-full w-full dark:hidden"
-                                    src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/iphone-light.svg"
-                                    alt="phone image" />
-                                <img class="hidden h-full w-full dark:block"
-                                    src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/iphone-dark.svg"
-                                    alt="phone image" />
-                            </a>
-
-                            <a href="#"
-                                class="min-w-0 flex-1 font-medium text-gray-900 hover:underline dark:text-white"> APPLE
-                                iPhone 15 5G phone, 256GB, Gold </a>
-                        </div>
-
-                        <div class="flex items-center justify-between gap-4">
-                            <p class="text-sm font-normal text-gray-500 dark:text-gray-400"><span
-                                    class="font-medium text-gray-900 dark:text-white">Product ID:</span> BJ8364850</p>
-
-                            <div class="flex items-center justify-end gap-4">
-                                <p class="text-base font-normal text-gray-900 dark:text-white">x3</p>
-
-                                <p class="text-xl font-bold leading-tight text-gray-900 dark:text-white">$2,997</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="space-y-4 bg-gray-50 p-6 dark:bg-gray-800">
-                        <div class="space-y-2">
-                            <dl class="flex items-center justify-between gap-4">
-                                <dt class="font-normal text-gray-500 dark:text-gray-400">Original price</dt>
-                                <dd class="font-medium text-gray-900 dark:text-white">$6,592.00</dd>
-                            </dl>
-
-                            <dl class="flex items-center justify-between gap-4">
-                                <dt class="font-normal text-gray-500 dark:text-gray-400">Savings</dt>
-                                <dd class="text-base font-medium text-green-500">-$299.00</dd>
-                            </dl>
-
-                            <dl class="flex items-center justify-between gap-4">
-                                <dt class="font-normal text-gray-500 dark:text-gray-400">Store Pickup</dt>
-                                <dd class="font-medium text-gray-900 dark:text-white">$99</dd>
-                            </dl>
-
-                            <dl class="flex items-center justify-between gap-4">
-                                <dt class="font-normal text-gray-500 dark:text-gray-400">Tax</dt>
-                                <dd class="font-medium text-gray-900 dark:text-white">$799</dd>
-                            </dl>
-                        </div>
-
-                        <dl
-                            class="flex items-center justify-between gap-4 border-t border-gray-200 pt-2 dark:border-gray-700">
-                            <dt class="text-lg font-bold text-gray-900 dark:text-white">Total</dt>
-                            <dd class="text-lg font-bold text-gray-900 dark:text-white">$7,191.00</dd>
-                        </dl>
                     </div>
                 </div>
 
-                <div class="mt-6 grow sm:mt-8 lg:mt-0">
-                    <div
-                        class="space-y-6 rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
-                        <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Order history</h3>
-
-                        <ol class="relative ms-3 border-s border-gray-200 dark:border-gray-700">
-                            <li class="mb-10 ms-6">
-                                <span
-                                    class="absolute -start-3 flex h-6 w-6 items-center justify-center rounded-full bg-gray-100 ring-8 ring-white dark:bg-gray-700 dark:ring-gray-800">
-                                    <svg class="h-4 w-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                                        viewBox="0 0 24 24">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                            stroke-width="2"
-                                            d="m4 12 8-8 8 8M6 10.5V19a1 1 0 0 0 1 1h3v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h3a1 1 0 0 0 1-1v-8.5" />
-                                    </svg>
-                                </span>
-                                <h4 class="mb-0.5 text-base font-semibold text-gray-900 dark:text-white">Estimated
-                                    delivery in 24 Nov 2023</h4>
-                                <p class="text-sm font-normal text-gray-500 dark:text-gray-400">Products delivered</p>
+                <!-- Order Timeline -->
+                <div class="w-full">
+                    <div class="bg-white rounded-xl shadow-lg p-6" data-aos="fade-up">
+                        <h3 class="text-2xl font-semibold text-gray-800">Order Status</h3>
+                        <ol class="relative mt-6 border-l border-gray-300 pl-5">
+                            <!-- Delivered -->
+                            <li class="mb-6" data-aos="fade-right">
+                                <div
+                                    class="absolute -left-[10px] flex h-6 w-6 items-center justify-center rounded-full bg-green-500 text-white">
+                                    <i class="ri-check-line"></i>
+                                </div>
+                                <h4 class="text-lg font-semibold text-gray-900">Delivered on 24 Nov 2023</h4>
+                                <p class="text-sm text-gray-600">Your order has been successfully delivered.</p>
                             </li>
 
-                            <li class="mb-10 ms-6">
-                                <span
-                                    class="absolute -start-3 flex h-6 w-6 items-center justify-center rounded-full bg-gray-100 ring-8 ring-white dark:bg-gray-700 dark:ring-gray-800">
-                                    <svg class="h-4 w-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                                        viewBox="0 0 24 24">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                            stroke-width="2"
-                                            d="M13 7h6l2 4m-8-4v8m0-8V6a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v9h2m8 0H9m4 0h2m4 0h2v-4m0 0h-5m3.5 5.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Zm-10 0a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z" />
-                                    </svg>
-                                </span>
-                                <h4 class="mb-0.5 text-base font-semibold text-gray-900 dark:text-white">Today</h4>
-                                <p class="text-sm font-normal text-gray-500 dark:text-gray-400">Products being delivered
+                            <!-- Out for Delivery -->
+                            <li class="mb-6" data-aos="fade-right">
+                                <div
+                                    class="absolute -left-[10px] flex h-6 w-6 items-center justify-center rounded-full bg-blue-500 text-white">
+                                    <i class="ri-truck-line"></i>
+                                </div>
+                                <h4 class="text-lg font-semibold text-gray-900">Today</h4>
+                                <p class="text-sm text-gray-600">Your order is out for delivery.</p>
+                            </li>
+
+                            <!-- Warehouse -->
+                            <li class="mb-6" data-aos="fade-right">
+                                <div
+                                    class="absolute -left-[10px] flex h-6 w-6 items-center justify-center rounded-full bg-yellow-500 text-white">
+                                    <i class="ri-archive-line"></i>
+                                </div>
+                                <h4 class="text-lg font-semibold text-gray-900">23 Nov 2023, 15:15</h4>
+                                <p class="text-sm text-gray-600">Arrived at the courier's warehouse.</p>
+                            </li>
+
+                            <!-- Shipped -->
+                            <li class="mb-6" data-aos="fade-right">
+                                <div
+                                    class="absolute -left-[10px] flex h-6 w-6 items-center justify-center rounded-full bg-orange-500 text-white">
+                                    <i class="ri-box-line"></i>
+                                </div>
+                                <h4 class="text-lg font-semibold text-gray-900">22 Nov 2023, 12:27</h4>
+                                <p class="text-sm text-gray-600">Shipped via DHL Express.</p>
+                            </li>
+
+                            <!-- Payment Accepted -->
+                            <li class="mb-6" data-aos="fade-right">
+                                <div
+                                    class="absolute -left-[10px] flex h-6 w-6 items-center justify-center rounded-full bg-purple-500 text-white">
+                                    <i class="ri-bank-card-line"></i>
+                                </div>
+                                <h4 class="text-lg font-semibold text-gray-900">19 Nov 2023, 10:47</h4>
+                                <p class="text-sm text-gray-600">Payment accepted via VISA.</p>
+                            </li>
+
+                            <!-- Order Placed -->
+                            <li data-aos="fade-right">
+                                <div
+                                    class="absolute -left-[10px] flex h-6 w-6 items-center justify-center rounded-full bg-gray-500 text-white">
+                                    <i class="ri-file-list-line"></i>
+                                </div>
+                                <h4 class="text-lg font-semibold text-gray-900">19 Nov 2023, 10:45</h4>
+                                <a href="#" class="text-sm font-medium text-blue-600 hover:underline">Order Placed -
+                                    Receipt #647563</a>
+                            </li>
+                        </ol>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="mt-6 flex flex-col sm:flex-row gap-4 justify-center" data-aos="fade-up">
+                        <button
+                            class="w-full sm:w-auto rounded-lg border border-gray-300 bg-white px-6 py-3 text-sm font-medium text-gray-900 hover:bg-gray-100 shadow-md transition duration-300">
+                            Cancel Order
+                        </button>
+                        <a href="#"
+                            class="w-full sm:w-auto flex items-center justify-center rounded-lg bg-green-600 px-6 py-3 text-sm font-medium text-white hover:bg-green-700 shadow-md transition duration-300">
+                            Track on DHL <i class="ri-arrow-right-line ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Order Tracking Section -->
+    <section class="bg-gray-100 py-12">
+        <div class="mx-auto max-w-screen-lg px-6">
+            <!-- Header -->
+            <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl text-center" data-aos="fade-down">
+                Track Your Order <span class="text-blue-600">#957684673</span>
+            </h2>
+
+            <div class="mt-10 flex flex-col lg:flex-row gap-8">
+                <!-- Product Details -->
+                <div class="w-full max-w-lg mx-auto lg:mx-0 bg-white rounded-2xl shadow-xl p-6 relative overflow-hidden"
+                    data-aos="zoom-in">
+                    <div
+                        class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500">
+                    </div>
+                    <div class="flex gap-4 items-center">
+                        <img class="w-28 h-28 rounded-xl shadow-lg"
+                            src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front.svg" alt="iMac">
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800">Apple iMac (2023)</h3>
+                            <p class="text-sm text-gray-500">M3, 24" Retina 4.5K, 8GB RAM, 256GB SSD, macOS Sonoma, Blue
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Order Timeline -->
+                <div class="w-full">
+                    <div class="bg-white rounded-2xl shadow-xl p-6 relative overflow-hidden" data-aos="fade-up">
+                        <h3 class="text-2xl font-bold text-gray-800">Order Status</h3>
+                        <ol class="relative mt-6 border-l-4 border-blue-500 pl-5">
+                            <!-- Delivered -->
+                            <li class="mb-6" data-aos="fade-right">
+                                <div
+                                    class="absolute -left-5 flex h-10 w-10 items-center justify-center rounded-full bg-green-500 text-white text-2xl shadow-md">
+                                    <i class="ri-check-double-line"></i>
+                                </div>
+                                <h4 class="text-lg font-bold text-gray-900">Delivered <span
+                                        class="text-sm text-gray-500">(24 Nov 2023)</span></h4>
+                                <p class="text-sm text-gray-600">Your order has been successfully delivered.</p>
+                            </li>
+
+                            <!-- Out for Delivery -->
+                            <li class="mb-6" data-aos="fade-right">
+                                <div
+                                    class="absolute -left-5 flex h-10 w-10 items-center justify-center rounded-full bg-blue-500 text-white text-2xl shadow-md animate-pulse">
+                                    <i class="ri-truck-fill"></i>
+                                </div>
+                                <h4 class="text-lg font-bold text-gray-900">Out for Delivery</h4>
+                                <p class="text-sm text-gray-600">Your order is on the way to your location.</p>
+                            </li>
+
+                            <!-- Warehouse -->
+                            <li class="mb-6" data-aos="fade-right">
+                                <div
+                                    class="absolute -left-5 flex h-10 w-10 items-center justify-center rounded-full bg-yellow-500 text-white text-2xl shadow-md">
+                                    <i class="ri-warehouse-line"></i>
+                                </div>
+                                <h4 class="text-lg font-bold text-gray-900">Arrived at Warehouse <span
+                                        class="text-sm text-gray-500">(23 Nov 2023, 15:15)</span></h4>
+                                <p class="text-sm text-gray-600">Your order has been received at the logistics
+                                    warehouse.</p>
+                            </li>
+
+                            <!-- Shipped -->
+                            <li class="mb-6" data-aos="fade-right">
+                                <div
+                                    class="absolute -left-5 flex h-10 w-10 items-center justify-center rounded-full bg-orange-500 text-white text-2xl shadow-md">
+                                    <i class="ri-ship-fill"></i>
+                                </div>
+                                <h4 class="text-lg font-bold text-gray-900">Shipped <span
+                                        class="text-sm text-gray-500">(22 Nov 2023, 12:27)</span></h4>
+                                <p class="text-sm text-gray-600">Your order was shipped via DHL Express.</p>
+                            </li>
+
+                            <!-- Payment Accepted -->
+                            <li class="mb-6" data-aos="fade-right">
+                                <div
+                                    class="absolute -left-5 flex h-10 w-10 items-center justify-center rounded-full bg-purple-500 text-white text-2xl shadow-md">
+                                    <i class="ri-bank-card-fill"></i>
+                                </div>
+                                <h4 class="text-lg font-bold text-gray-900">Payment Accepted <span
+                                        class="text-sm text-gray-500">(19 Nov 2023, 10:47)</span></h4>
+                                <p class="text-sm text-gray-600">Your payment via VISA has been successfully processed.
                                 </p>
                             </li>
 
-                            <li class="mb-10 ms-6 text-primary-700 dark:text-primary-500">
+                            <!-- Order Placed -->
+                            <li data-aos="fade-right">
+                                <div
+                                    class="absolute -left-5 flex h-10 w-10 items-center justify-center rounded-full bg-gray-500 text-white text-2xl shadow-md">
+                                    <i class="ri-file-list-2-fill"></i>
+                                </div>
+                                <h4 class="text-lg font-bold text-gray-900">Order Placed <span
+                                        class="text-sm text-gray-500">(19 Nov 2023, 10:45)</span></h4>
+                                <a href="#" class="text-sm font-medium text-blue-600 hover:underline">View Receipt
+                                    #647563</a>
+                            </li>
+                        </ol>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="mt-6 flex flex-col sm:flex-row gap-4 justify-center" data-aos="fade-up">
+                        <button
+                            class="w-full sm:w-auto rounded-lg border border-gray-300 bg-white px-6 py-3 text-sm font-medium text-gray-900 hover:bg-gray-100 shadow-md transition duration-300">
+                            Cancel Order
+                        </button>
+                        <a href="#"
+                            class="w-full sm:w-auto flex items-center justify-center rounded-lg bg-green-600 px-6 py-3 text-sm font-medium text-white hover:bg-green-700 shadow-md transition duration-300">
+                            Track on DHL <i class="ri-arrow-right-line ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AOS Animation Library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true,
+        });
+    </script>
+
+    <!-- Remix Icons for Fancy Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css">
+
+    <!-- AOS Animation Library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,  // Animation speed
+            once: true,     // Animation occurs only once
+        });
+    </script>
+
+    <!-- Remix Icons for Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css">
+
+
+
+    <!-- Add AOS CSS in head -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <section class="bg-gradient-to-br from-blue-50 to-indigo-50 py-8 antialiased md:py-16">
+        <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
+            <!-- Header Section -->
+            <div class="mb-8 text-center md:text-left" data-aos="fade-down" data-aos-duration="800">
+                <h2 class="text-3xl font-bold text-gray-800 md:text-4xl">📦 Order Tracking #957684673</h2>
+                <p class="mt-3 text-lg text-blue-600 font-semibold">
+                    Estimated Delivery: <span class="underline decoration-wavy">November 24, 2023</span>
+                </p>
+            </div>
+
+            <div class="flex flex-col gap-8 lg:flex-row">
+                <!-- Product Card -->
+                <div class="w-full lg:max-w-md xl:max-w-lg" data-aos="fade-right" data-aos-delay="200">
+                    <div
+                        class="transform overflow-hidden rounded-2xl border-2 border-blue-100 bg-white shadow-md transition-all duration-300 hover:scale-[1.01] hover:border-blue-200 hover:shadow-xl">
+                        <div class="p-6">
+                            <div class="flex flex-col items-center gap-5 sm:flex-row">
+                                <div
+                                    class="h-32 w-32 shrink-0 overflow-hidden rounded-xl border-2 border-blue-50 bg-blue-50 p-3 animate-tilt">
+                                    <img class="h-full w-full object-contain"
+                                        src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front.svg"
+                                        alt="iMac" data-aos="zoom-in" data-aos-delay="400">
+                                </div>
+                                <div class="text-center sm:text-left">
+                                    <h3 class="text-xl font-bold text-gray-800" data-aos="fade-left"
+                                        data-aos-delay="600">Apple iMac 24" 2023</h3>
+                                    <p class="mt-2 text-sm text-gray-600" data-aos="fade-left" data-aos-delay="700">
+                                        M3 Chip • 24" 4.5K Retina • 8GB RAM • 256GB SSD • macOS Sonoma
+                                    </p>
+                                    <div class="mt-4" data-aos="zoom-in" data-aos-delay="800">
+                                        <span
+                                            class="inline-flex items-center rounded-full bg-gradient-to-r from-blue-600 to-purple-600 px-4 py-2 text-sm font-semibold text-white shadow-lg hover:shadow-xl transition-shadow">
+                                            🚚 In Transit
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Timeline -->
+                <div class="flex-1">
+                    <div class="rounded-2xl border-2 border-blue-100 bg-white p-6 shadow-lg" data-aos="fade-left"
+                        data-aos-delay="300">
+                        <h3 class="mb-8 text-2xl font-bold text-gray-800" data-aos="fade-down" data-aos-delay="400">
+                            Delivery Progress</h3>
+
+                        <ol class="relative ms-4 border-s-2 border-dashed border-blue-100">
+                            <!-- Current Step -->
+                            <li class="mb-10 ms-6" data-aos="fade-up" data-aos-delay="500">
                                 <span
-                                    class="absolute -start-3 flex h-6 w-6 items-center justify-center rounded-full bg-primary-100 ring-8 ring-white dark:bg-primary-900 dark:ring-gray-800">
-                                    <svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                        width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                    class="absolute -start-[17px] top-0 flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-blue-700 shadow-lg animate-pulse">
+                                    <svg class="h-5 w-5 text-white" aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                            stroke-width="2" d="M5 11.917 9.724 16.5 19 7.5" />
+                                            stroke-width="2"
+                                            d="M12 18.5A2.5 2.5 0 1 0 7 16a2.5 2.5 0 0 0 3.5 2.5 2.5 2.5 0 0 0 5 0 2.5 2.5 0 0 0-3.5-2.5M12 5V3m0 18v-2" />
                                     </svg>
                                 </span>
-                                <h4 class="mb-0.5 font-semibold">23 Nov 2023, 15:15</h4>
-                                <p class="text-sm">Products in the courier's warehouse</p>
+                                <div class="p-4 rounded-xl bg-blue-50" data-aos="zoom-in" data-aos-delay="600">
+                                    <h4 class="text-lg font-bold text-blue-700">Out for Delivery</h4>
+                                    <p class="mt-1 text-sm text-blue-600">Arriving today by 8 PM</p>
+                                    <div class="mt-2 flex items-center gap-2 text-sm text-blue-500">
+                                        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
+                                        Last updated: 2 hours ago
+                                    </div>
+                                </div>
                             </li>
 
-                            <li class="mb-10 ms-6 text-primary-700 dark:text-primary-500">
+                            <!-- Completed Steps -->
+                            <li class="mb-10 ms-6" data-aos="fade-up" data-aos-delay="700">
                                 <span
-                                    class="absolute -start-3 flex h-6 w-6 items-center justify-center rounded-full bg-primary-100 ring-8 ring-white dark:bg-primary-900 dark:ring-gray-800">
-                                    <svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                        width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                    class="absolute -start-[17px] top-0 flex h-8 w-8 items-center justify-center rounded-full bg-green-500 shadow-lg">
+                                    <svg class="h-5 w-5 text-white" aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                             stroke-width="2" d="M5 11.917 9.724 16.5 19 7.5" />
                                     </svg>
                                 </span>
-                                <h4 class="mb-0.5 text-base font-semibold">22 Nov 2023, 12:27</h4>
-                                <p class="text-sm">Products delivered to the courier - DHL Express</p>
+                                <h4 class="text-lg font-semibold text-gray-800">Departed Sorting Center</h4>
+                                <p class="mt-1 text-sm text-gray-600">November 23, 3:15 PM</p>
+                                <p class="text-sm text-gray-500">DHL Express Facility, London</p>
                             </li>
 
-                            <li class="mb-10 ms-6 text-primary-700 dark:text-primary-500">
-                                <span
-                                    class="absolute -start-3 flex h-6 w-6 items-center justify-center rounded-full bg-primary-100 ring-8 ring-white dark:bg-primary-900 dark:ring-gray-800">
-                                    <svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                        width="24" height="24" fill="none" viewBox="0 0 24 24">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                            stroke-width="2" d="M5 11.917 9.724 16.5 19 7.5" />
-                                    </svg>
-                                </span>
-                                <h4 class="mb-0.5 font-semibold">19 Nov 2023, 10:47</h4>
-                                <p class="text-sm">Payment accepted - VISA Credit Card</p>
-                            </li>
+                            <!-- More steps with animations... -->
 
-                            <li class="ms-6 text-primary-700 dark:text-primary-500">
+                            <!-- Final Step -->
+                            <li class="ms-6" data-aos="fade-up" data-aos-delay="900">
                                 <span
-                                    class="absolute -start-3 flex h-6 w-6 items-center justify-center rounded-full bg-primary-100 ring-8 ring-white dark:bg-primary-900 dark:ring-gray-800">
-                                    <svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                        width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                    class="absolute -start-[17px] top-0 flex h-8 w-8 items-center justify-center rounded-full bg-gray-300 shadow">
+                                    <svg class="h-5 w-5 text-white" aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                            stroke-width="2" d="M5 11.917 9.724 16.5 19 7.5" />
+                                            stroke-width="2" d="M12 6v13m0-13 4 4m-4-4-4 4" />
                                     </svg>
                                 </span>
-                                <div>
-                                    <h4 class="mb-0.5 font-semibold">19 Nov 2023, 10:45</h4>
-                                    <a href="#" class="text-sm font-medium hover:underline">Order placed - Receipt
-                                        #647563</a>
+                                <div class="pt-2">
+                                    <h4 class="text-lg font-semibold text-gray-800">Order Placed</h4>
+                                    <a href="#"
+                                        class="mt-2 inline-flex items-center text-blue-600 hover:text-blue-800 transition-colors"
+                                        data-aos="zoom-in" data-aos-delay="1000">
+                                        <span class="text-sm font-medium">View Receipt #647563</span>
+                                        <svg class="ml-2 h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                            fill="none" viewBox="0 0 24 24">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="2" d="M19 12H5m14 0-4 4m4-4-4-4" />
+                                        </svg>
+                                    </a>
                                 </div>
                             </li>
                         </ol>
 
-                        <div class="gap-4 sm:flex sm:items-center">
-                            <button type="button"
-                                class="w-full rounded-lg  border border-gray-200 bg-white px-5  py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700">Cancel
-                                the order</button>
-
+                        <!-- Actions -->
+                        <div class="mt-10 grid gap-4 sm:grid-cols-2" data-aos="fade-up" data-aos-delay="1100">
+                            <button
+                                class="flex items-center justify-center gap-2 rounded-xl bg-red-100 px-6 py-3 text-red-700 transition-all hover:bg-red-200 hover:shadow-md hover:scale-[1.02]">
+                                <svg class="h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    viewBox="0 0 24 24">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="M6 18 18 6m0 12L6 6" />
+                                </svg>
+                                Cancel Order
+                            </button>
                             <a href="#"
-                                class="mt-4 flex w-full items-center justify-center rounded-lg bg-primary-700  px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300  dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 sm:mt-0">Order
-                                details</a>
+                                class="flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-6 py-3 text-white transition-all hover:bg-blue-700 hover:shadow-md hover:scale-[1.02]">
+                                <svg class="h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    viewBox="0 0 24 24">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="M12 6v13m0-13 4 4m-4-4-4 4" />
+                                </svg>
+                                View Details
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Add AOS JS before closing body -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true, // Animation only once
+            duration: 800, // Default animation duration
+            easing: 'ease-out-quart', // Smooth easing function
+            offset: 20, // Trigger animations earlier
+            delay: 100, // Default delay between items
+        });
+    </script>
+
 </body>
 
 </html>
