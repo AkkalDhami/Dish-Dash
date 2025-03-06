@@ -520,6 +520,10 @@ html {
   .toast.success .toast-icon {
     color: #0d6efd;
   }
+  .toast.warn .toast-icon svg{
+    fill: #FFB300;
+  }
+
   .toast-message {
     font-weight: 500;
   }
@@ -555,6 +559,10 @@ html {
 
   .toast.error .toast-progress-bar {
     background-color: red;
+  }
+
+  .toast.warn .toast-progress-bar {
+    background-color: #FFC107;
   }
 
   .toast-progress-bar {
