@@ -425,6 +425,7 @@ class CartComponent {
     const code = this.couponInput.value.trim();
 
     if (!code) {
+      this.couponInput.focus();
       showToastNotify("Please enter a coupon code", "error");
       return;
     }
@@ -439,6 +440,7 @@ class CartComponent {
       this.render();
       this.couponInput.value = "";
     } else {
+      this.couponInput.focus();
       this.updateCouponUI(false, "Invalid coupon code");
       showToastNotify("Invalid coupon code", "error");
     }
