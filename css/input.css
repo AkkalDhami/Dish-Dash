@@ -149,9 +149,6 @@ html {
   }
 }
 
-
-
-
 /* Toast Notifications */
 .toast {
   @apply fixed top-4 right-4 bg-white shadow-lg rounded-lg p-4 
@@ -281,6 +278,9 @@ html {
   transition-property: transform;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 300ms;
+}
+.iconRotate {
+  transform: rotate(180deg);
 }
 
 /* Glass effect */
@@ -520,8 +520,8 @@ html {
   .toast.success .toast-icon {
     color: #0d6efd;
   }
-  .toast.warn .toast-icon svg{
-    fill: #FFB300;
+  .toast.warn .toast-icon svg {
+    fill: #ffb300;
   }
 
   .toast-message {
@@ -562,7 +562,7 @@ html {
   }
 
   .toast.warn .toast-progress-bar {
-    background-color: #FFC107;
+    background-color: #ffc107;
   }
 
   .toast-progress-bar {
