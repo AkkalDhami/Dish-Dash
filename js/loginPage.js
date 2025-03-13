@@ -88,7 +88,10 @@ document.addEventListener("DOMContentLoaded", () => {
             passwdError.classList.add("hidden");
         }
 
-        if (!isValid) return;
+        if (!isValid) {
+            showToastNotify("Please fix the errors in the form", "error");
+            return;
+        }
 
         setLoadingState(true);
 
@@ -100,7 +103,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 showToastNotify("Login successful", "success");
                 loginForm.reset();
             } else {
-                showToastNotify("Invalid email or password", "error");
+                showToastNotify("Invalid email or password! Please try again", "error");
             }
         } catch (error) {
             showToastNotify("Login failed. Please try again.", "error");
