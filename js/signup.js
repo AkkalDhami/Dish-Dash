@@ -109,6 +109,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         if (!isValid) {
+            showToastNotify("Please fix the errors in the form", "error");
             return;
         }
 
