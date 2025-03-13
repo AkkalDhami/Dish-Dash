@@ -211,7 +211,7 @@ footerSection.innerHTML += `
             <div class="flex flex-col md:flex-row justify-between items-center">
               <div class="text-gray-400 mb-4 md:mb-0">
                 © 2024
-                <a href="#" class="text-[#3284e8] hover:text-[#ff6b38]">DishDash</a
+                <a href="/" class="text-[#3284e8] hover:text-[#ff6b38]">DishDash</a
                 >. All rights reserved.
               </div>
               <div class="flex space-x-6">
