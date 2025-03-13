@@ -115,6 +115,7 @@ function handleCancelOrder(orderId, productId) {
       if (order.items.length === 0) {
         myOrders = myOrders.filter((order) => order.orderId !== orderId);
       }
+      console.log("order: ", order)
       localStorage.setItem("myOrders", JSON.stringify(myOrders));
       renderOrders();
       showToastNotify("Item cancelled successfully", "success");
@@ -138,16 +139,20 @@ function handleCancelOrder(orderId, productId) {
   );
 }
 
-orderItemContainer.addEventListener("click", (e) => {
-  let productImage = document.querySelector("#productImage");
-  let productName = document.querySelector("#productName");
-  let productQuantity = document.querySelector("#productQuantity");
-  let productPrice = document.querySelector("#productPrice");
+let productImage = document.querySelector("#productImage");
+let productName = document.querySelector("#productName");
+let productQuantity = document.querySelector("#productQuantity");
+let productPrice = document.querySelector("#productPrice");
+
+function removeCardHTML() {
   productImage.src = "";
   productName.innerHTML = "";
   productPrice.innerHTML = "";
   productQuantity.innerHTML = "";
+}
 
+orderItemContainer.addEventListener("click", (e) => {
+  removeCardHTML();
   if (e.target.classList.contains("cancelOrder")) {
     showCancelorderAlert();
     const orderId = e.target.closest("[data-orderId]").getAttribute("data-orderId");
@@ -162,6 +167,8 @@ orderItemContainer.addEventListener("click", (e) => {
     console.log("Order ID:", orderId);
     console.log("Product ID:", productId);
     handleCancelOrder(orderId, productId);
+    console.log(item)
+    // removeCardHTML();
     overlay.addEventListener("click", hideCancelorderAlert);
   } else if (e.target.classList.contains("orderAgain")) {
     const orderId = e.target.closest("[data-orderId]").getAttribute("data-orderId");
