@@ -5,7 +5,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>All Foods Collection</title>
-  <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
@@ -204,8 +203,10 @@
         <i class="ri-filter-3-line text-gray-600"></i>
         <span class="font-medium">Filters</span>
       </div>
-      <i class="ri-arrow-down-s-line transition-transform duration-200"></i>
+      <i id="iconRotate" class="ri-arrow-down-s-line  transition-transform duration-200"></i>
     </button>
+
+
 
     <!-- Toast Notification -->
     <div id="toast" class="toast">
@@ -220,6 +221,11 @@
     <!-- Filters Panel -->
     <div class="flex flex-col md:flex-row">
       <div id="filtersPanel" class="w-full md:w-1/4 h-auto bg-white p-6 rounded-xl shadow-sm hidden md:block">
+
+        <div class="hidden sm:flex items-center gap-3 mb-3 text-[#ff6b38]">
+          <i class="ri-color-filter-line text-2xl font-semibold"></i>
+          <h3 class="text-xl font-semibold">Filters</h3>
+        </div>
         <!-- Search -->
         <div class="relative mb-6">
           <input type="search" id="searchInputBox" placeholder="Search foods..."
@@ -283,7 +289,7 @@
     <script src="../assets/utility/footer.js"></script>
   </footer>
 
-  <script src="../js/search.js"></script>
+  <!-- <script src="../js/search.js"></script> -->
   <script type="module" src="../js/allFood.js"></script>
   <script src="../js/script.js"></script>
   <script type="module" src="../js/newsletter.js"></script>
