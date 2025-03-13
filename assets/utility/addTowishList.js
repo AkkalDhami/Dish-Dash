@@ -17,6 +17,11 @@ export const addToWishList = (productId) => {
     const wishlist = getWishlist();
     const productExists = wishlist.some((product) => product._id === productId);
 
+    if (productExists) {
+        showToastNotify("Item already in your wishlist!", "warn");
+        return;
+    }
+
     if (!productExists) {
         const productToAdd = FoodList.find((product) => product._id === productId);
         if (productToAdd) {
