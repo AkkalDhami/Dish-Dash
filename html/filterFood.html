@@ -1,180 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DishDash - Food Delivery Website, Find Your Favourite Dishes</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <link
-      href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="../css/output.css" />
-  </head>
 
-  <body class="font-['Poppins']">
-    <!-- Navbar -->
-    <header
-      class="md:fixed header w-full md:top-0 md:left-0 z-50 shadow-lg bg-[#ffffff]"
-    >
-      <script src="../assets/utility/navbar.js"></script>
-    </header>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DishDash - Food Delivery Website, Find Your Favourite Dishes</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/output.css" />
+</head>
 
-    <!-- Search Box -->
-    <div
-      id="searchResultsContainer"
-      class="fixed -top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 max-w-[900px] w-full z-[117] duration-300"
-    >
-      <div class="searchBox relative bg-[#f6f6f6] px-4 py-5 w-full">
-        <i
-          class="ri-search-line absolute top-[33px] left-[23px] text-[18px] sm:text-[22px]"
-        ></i>
-        <input
-          id="searchInput"
-          type="search"
-          placeholder="Search Foods, Menu.."
-          class="w-full border-2 border-blue-300 focus:border-transparent p-[12px_20px_12px_30px] sm:p-[15px_22px_15px_35px] rounded-md outline-0 focus:ring focus:ring-[#ff6b38] duration-300"
-        />
-      </div>
-      <div
-        id="searchResults"
-        class="max-h-[500px] sm:max-h-[600px] bg-[#f6f6f6] overflow-auto"
-      ></div>
+<body class="font-['Poppins']">
+  <!-- Navbar -->
+  <header class="md:fixed header w-full md:top-0 md:left-0 z-50 shadow-lg bg-[#ffffff]">
+    <script src="../assets/utility/navbar.js"></script>
+  </header>
+
+  <!-- Search Box -->
+  <div id="searchResultsContainer"
+    class="fixed -top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 max-w-[900px] w-full z-[117] duration-300">
+    <div class="searchBox relative bg-[#f6f6f6] px-4 py-5 w-full">
+      <i class="ri-search-line absolute top-[33px] left-[23px] text-[18px] sm:text-[22px]"></i>
+      <input id="searchInput" type="search" placeholder="Search Foods, Menu.."
+        class="w-full border-2 border-blue-300 focus:border-transparent p-[12px_20px_12px_30px] sm:p-[15px_22px_15px_35px] rounded-md outline-0 focus:ring focus:ring-[#ff6b38] duration-300" />
     </div>
+    <div id="searchResults" class="max-h-[500px] sm:max-h-[600px] bg-[#f6f6f6] overflow-auto"></div>
+  </div>
 
-    <!-- Mobile Bottom Navigation -->
-    <div
-      class="fixed mobileBottomNav bottom-0 left-0 right-0 bg-white md:hidden z-50"
-    >
-      <script defer src="../assets/utility/mobileNavbar.js"></script>
+  <!-- Mobile Bottom Navigation -->
+  <div class="fixed mobileBottomNav bottom-0 left-0 right-0 bg-white md:hidden z-50">
+    <script defer src="../assets/utility/mobileNavbar.js"></script>
+  </div>
+
+  <div class="overlay overlayActive bg-[#6a6666ba] fixed top-0 left-0 w-full h-full z-[115]"></div>
+
+  <!-- Toast Container -->
+  <div id="toast" class="toast">
+    <span class="toast-icon"></span>
+    <span class="toast-message"></span>
+    <span class="toast-close">&times;</span>
+    <div class="toast-progress">
+      <div class="toast-progress-bar"></div>
     </div>
+  </div>
 
-    <div
-      class="overlay overlayActive bg-[#6a6666ba] fixed top-0 left-0 w-full h-full z-[115]"
-    ></div>
+  <!-- main section -->
+  <main class="mt-[16px] sm:mt-[100px] p-3 sm:p-6">
+    <div class="container mx-auto">
+      <div class="flex flex-col mx-auto container">
+        <h2 id="filterFoodHeading" class="text-2xl sm:text-3xl font-bold px-4">
+          Sandwich<i class="ri-restaurant-fill text-[#ff6b38]"></i>
+        </h2>
+      </div>
+      <div id="foodMenuContainer" class="mt-8 flex flex-wrap items-center justify-center gap-5"></div>
+    </div>
+  </main>
 
-    <!-- Toast Container -->
-    <div
-      id="toastContainer"
-      class="fixed top-10 left-1/2 -translate-x-1/2 z-50 flex flex-col space-y-4"
-    ></div>
-
-    <div id="toast" class="toast">
-      <span class="toast-icon"></span>
-      <span class="toast-message"></span>
-      <span class="toast-close">&times;</span>
-      <div class="toast-progress">
-        <div class="toast-progress-bar"></div>
+  <!-- ! footer -->
+  <footer class="bg-gray-800 py-8 mb-[70px] md:mb-0">
+    <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-start">
+      <div class="mb-6 md:mb-0 md:max-w-[250px] lg:max-w-[290px]">
+        <div class="text-3xl font-bold text-[#3284e8]">DishDash</div>
+        <p class="mt-2 text-gray-400">
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minima
+          dolorum ab itaque?
+        </p>
+        <div class="flex mt-4 space-x-4">
+          <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+      <div class="mb-6 md:mb-0">
+        <h3 class="text-xl text-white font-semibold uppercase">
+          Quick Links
+        </h3>
+        <ul class="mt-2 space-y-2">
+          <li>
+            <a href="#" class="text-gray-300 duration-300 hover:text-[#3284e8]">Home</a>
+          </li>
+          <li>
+            <a href="#" class="text-gray-300 duration-300 hover:text-[#3284e8]">Food</a>
+          </li>
+          <li>
+            <a href="#" class="text-gray-300 duration-300 hover:text-[#3284e8]">Contact us</a>
+          </li>
+          <li>
+            <a href="#" class="text-gray-300 duration-300 hover:text-[#3284e8]">Privacy policy</a>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-xl font-semibold text-white">GET IN TOUCH</h3>
+        <p class="mt-2 text-gray-400">+1-212-4560-7890</p>
+        <p class="mt-2 text-gray-400">contact@dishdash.com</p>
       </div>
     </div>
+    <div class="border-t-[1px] py-3 text-[#d1d5db] border-gray-300 text-center mt-12 max-w-[1400px] mx-auto w-full">
+      <a href="./index.html" class="text-[#3284e8] hover:text-[#ff6b38] duration-200">DishDash</a>
+      &copy; | 2025 All Rights are Preserved
+    </div>
+  </footer>
 
-    <main class="mt-[16px] sm:mt-[100px] p-3 sm:p-6">
-      <div class="container mx-auto">
-        <div class="flex flex-col mx-auto container">
-          <h2
-            id="filterFoodHeading"
-            class="text-2xl sm:text-3xl font-bold px-4"
-          >
-            Sandwich<i class="ri-restaurant-fill text-[#ff6b38]"></i>
-          </h2>
-        </div>
-        <div
-          id="foodMenuContainer"
-          class="mt-8 flex flex-wrap items-center justify-center gap-5"
-        ></div>
-      </div>
-    </main>
+  <script src="../js/filterFood.js"></script>
+  <script type="module" src="../js/addToCart.js"></script>
+  <script type="module" src="../js/addToWishlist.js"></script>
+  <script src="../js/search.js"></script>
+  <script src="../js/script.js"></script>
+</body>
 
-    <!-- ! footer -->
-    <footer class="bg-gray-800 py-8 mb-[70px] md:mb-0">
-      <div
-        class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-start"
-      >
-        <div class="mb-6 md:mb-0 md:max-w-[250px] lg:max-w-[290px]">
-          <div class="text-3xl font-bold text-[#3284e8]">DishDash</div>
-          <p class="mt-2 text-gray-400">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minima
-            dolorum ab itaque?
-          </p>
-          <div class="flex mt-4 space-x-4">
-            <a href="#" class="text-gray-400 hover:text-white"
-              ><i class="fab fa-facebook-f"></i
-            ></a>
-            <a href="#" class="text-gray-400 hover:text-white"
-              ><i class="fab fa-twitter"></i
-            ></a>
-            <a href="#" class="text-gray-400 hover:text-white"
-              ><i class="fab fa-linkedin-in"></i
-            ></a>
-          </div>
-        </div>
-        <div class="mb-6 md:mb-0">
-          <h3 class="text-xl text-white font-semibold uppercase">
-            Quick Links
-          </h3>
-          <ul class="mt-2 space-y-2">
-            <li>
-              <a
-                href="#"
-                class="text-gray-300 duration-300 hover:text-[#3284e8]"
-                >Home</a
-              >
-            </li>
-            <li>
-              <a
-                href="#"
-                class="text-gray-300 duration-300 hover:text-[#3284e8]"
-                >Food</a
-              >
-            </li>
-            <li>
-              <a
-                href="#"
-                class="text-gray-300 duration-300 hover:text-[#3284e8]"
-                >Contact us</a
-              >
-            </li>
-            <li>
-              <a
-                href="#"
-                class="text-gray-300 duration-300 hover:text-[#3284e8]"
-                >Privacy policy</a
-              >
-            </li>
-          </ul>
-        </div>
-        <div>
-          <h3 class="text-xl font-semibold text-white">GET IN TOUCH</h3>
-          <p class="mt-2 text-gray-400">+1-212-4560-7890</p>
-          <p class="mt-2 text-gray-400">contact@dishdash.com</p>
-        </div>
-      </div>
-      <div
-        class="border-t-[1px] py-3 text-[#d1d5db] border-gray-300 text-center mt-12 max-w-[1400px] mx-auto w-full"
-      >
-        <a
-          href="./index.html"
-          class="text-[#3284e8] hover:text-[#ff6b38] duration-200"
-          >DishDash</a
-        >
-        &copy; | 2025 All Rights are Preserved
-      </div>
-    </footer>
-
-    <script src="../js/filterFood.js"></script>
-    <script type="module" src="../js/addToCart.js"></script>
-    <script type="module" src="../js/addToWishlist.js"></script>
-    <script src="../js/search.js"></script>
-    <script src="../js/script.js"></script>
-  </body>
 </html>
