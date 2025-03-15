@@ -3,7 +3,7 @@ const header = document.querySelector(".header");
 header.innerHTML += `
  <nav class="container mx-auto px-6 py-4 flex items-center justify-between"
       >
-        <div onclick="window.location.href='../../index.html'" class="cursor-pointer font-bold text-[#0d6efd] flex items-center space-x-2">
+        <div onclick="window.location.href='/'" class="cursor-pointer font-bold text-[#0d6efd] flex items-center space-x-2">
               <i class="ri-restaurant-2-line text-4xl text-orange-500"></i>
               <div class="text-3xl font-bold text-[#0d6efd]">DishDash</div>
         </div>
@@ -16,14 +16,12 @@ header.innerHTML += `
           >
           <a
             href="../../html/allFood.html"
-           
             class="nav-link text-gray-600 hover:text-[#3284e8] relative text-[18px]"
             >Foods</a
           >
 
           <a
             href="../../html/contactus.html"
-            data-nav-link
             class="nav-link text-gray-600 hover:text-[#3284e8] relative text-[18px]"
             >Contact us</a
           >
@@ -37,7 +35,6 @@ header.innerHTML += `
           </button>
 
           <button
-            data-nav-link
             class="nav-link p-2 relative hover:text-[#3284e8]"
             onclick="window.location.href='../../html/wishlist.html'"
           >
@@ -49,7 +46,6 @@ header.innerHTML += `
           </button>
 
           <button
-            data-nav-link
             class="nav-link p-2 relative hover:text-[#3284e8]"
             onclick="window.location.href='../../html/cartPage.html'"
           >
