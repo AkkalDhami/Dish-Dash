@@ -36,7 +36,7 @@ const discount = Math.round(((product.original_price - product.selling_price) / 
 const updateFoodDetails = () => {
   foodImage.src = product.image;
   itemRating.innerHTML = `
-        <span class="text-orange-500 text-[20px] flex items-center">
+        <span class="text-orange-500 text-[18px] flex items-center">
             <i class="ri-star-fill"></i>
             <span class="ml-1 text-gray-800"> | ${rating}</span>
         </span>
@@ -127,7 +127,7 @@ quantityContainer.addEventListener("click", (e) => {
     if (product.stock === 0) {
       quantityInput.value = 1
       quantity = parseInt(quantityInput.value);
-      showToastNotify("Out of stock", "error");
+      showToastNotify("Food is Out of stock", "warn");
     } else if (quantityInput.value > 1) {
       quantityInput.value--;
       quantity = parseInt(quantityInput.value)
@@ -142,7 +142,7 @@ quantityContainer.addEventListener("click", (e) => {
     if (product.stock === 0) {
       quantityInput.value = 1
       quantity = parseInt(quantityInput.value);
-      showToastNotify("Out of stock", "error");
+      showToastNotify("Food is Out of stock", "warn");
     }
     else if (quantityInput.value >= product.stock) {
       quantityInput.value = product.stock
@@ -171,12 +171,9 @@ getWishlistLength();
 
 const orderNow = (productId, quantity) => {
 
-
-
   console.log(productId, quantity);
 
   let orderNowProd = foodList.find((item) => item._id === product._id);
-
   let orderNowItem = JSON.parse(localStorage.getItem("orderNowProd")) || [];
 
   if (!orderNowProd) {
@@ -198,9 +195,9 @@ let orderNowBtn = document.getElementById("orderNowBtn");
 orderNowBtn.addEventListener("click", () => {
 
   if (product.stock === 0) {
-    showToastNotify("Out of stock", "error");
+    showToastNotify("Food is Out of stock", "warn");
     return;
-  } 
+  }
   orderNow(product._id, quantity);
 
 });
@@ -265,15 +262,16 @@ function displayRecommendedItems(recommendedItems) {
 }
 displayRecommendedItems(recommendedItems);
 
-// let recommItems = document.querySelectorAll(".recommItems");
 
-// recommItems.forEach((items) => {
-//   items.addEventListener('click', (e) => {
-//     console.log(e.target);
-//     let id = items.id;
-//     if (e.target.classList.contains("addToWishList")) {
-//       console.log("addToWishList");
-//       addToWishList(id);
-//     }
-//   })
-// })
+recommendedItemContainer.addEventListener("click", (e) => {
+  const foodItem = e.target.closest(".foodItem");
+  const id = foodItem.id;
+  const wishlistItem = e.target.closest(".addToWishList");
+  if (!id) {
+    console.error("ID not found for food item!", e.target);
+    return;
+  }
+  if (wishlistItem) {
+    addToWishList(id);
+  }
+})
