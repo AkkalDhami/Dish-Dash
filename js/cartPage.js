@@ -12,6 +12,7 @@ class CartComponent {
       WELCOME20: 20,
       SAVE10: 10,
       SPECIAL25: 25,
+      D: 100
     };
 
     if (document.readyState === "loading") {
@@ -41,6 +42,7 @@ class CartComponent {
     this.totalPriceEl = document.getElementById("totalPrice");
     this.finalPriceEl = document.getElementById("finalPrice");
     this.discountAmountEl = document.getElementById("discountAmount");
+    this.deliveryFee = document.getElementById("deliveryFee");
 
     // Buttons
     this.clearCartBtn = document.getElementById("clearCart");
@@ -434,7 +436,7 @@ class CartComponent {
       this.appliedCoupon = code;
       this.updateCouponUI(
         true,
-        `${this.VALID_COUPONS[code]}% discount applied!`
+        `<i class="ri-price-tag-3-line text-green-500"></i>&nbsp; ${this.VALID_COUPONS[code]}% discount applied!`
       );
       showToastNotify("Coupon applied successfully!", "success");
       this.render();
